@@ -1,0 +1,120 @@
+.content {
+  width: 1400px;
+  max-width: 95%;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 5rem;
+}
+
+.content .main_txt {
+  width: 1400px;
+  max-width: 95%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
+}
+
+.content .main_text h6 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.content .main_text h1 {
+  font-size: 8rem;
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 2rem;
+  font-family: "Permanent Marker", cursive;
+  word-wrap: break-word;
+}
+
+.content .main_text h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.content .main_text p {
+  max-width: 100%;
+  width: 480px;
+  color: #fff;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 3rem;
+}
+
+.content .main_text a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  background: #fff;
+  border: 1px solid #fff;
+  padding: 0.7rem 1.3rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 0.3rem;
+}
+
+.content .main_text a:hover {
+  transform: scale(1.15);
+  border: 1px solid #f5dca8;
+  background: transparent;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.image {
+  position: absolute;
+  width: 540px;
+  aspect-ratio: 9 / 16;
+  bottom: -10%;
+  right: 0;
+  text-align: right;
+}
+
+.image img {
+  height: 100%;
+  transition: 0.4s;
+  aspect-ratio: 9 / 16;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+@media (max-width: 1280px) {
+  .character {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image img {
+    width: 65%;
+  }
+}
+
+@media (max-width: 768px) {
+  .character {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image {
+    width: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    overflow-y: auto;
+  }
+  .image {
+    position: static;
+    text-align: center;
+  }
+}
