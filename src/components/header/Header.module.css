@@ -1,4 +1,9 @@
-.header {
+.navbar input[type="checkbox"],
+.navbar .hamburger-lines {
+  display: none;
+}
+
+.navbar {
   width: 1400px;
   max-width: 95%;
   margin: 0 auto;
@@ -8,34 +13,38 @@
   padding: 2rem 0 2rem;
 }
 
-.header .logo {
-  display: block;
+.navbar .logo a {
   font-size: 2rem;
   font-weight: 600;
   color: #fff;
   text-decoration: none;
 }
 
-.header .logo h2 a {
-  display: block;
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
-  text-decoration: none;
+.menu_items {
+  order: 2;
+  display: flex;
+  align-items: center;
 }
-.nav ul li a {
-  color: #fff;
+
+.menu_items li {
+  list-style: none;
   margin-left: 1.5rem;
+}
+
+.menu_items a {
+  text-decoration: none;
+  color: #fff;
   font-weight: 600;
   border-bottom: 2px solid transparent;
-  transition: 0.4s;
+  transition: color 0.3s ease-in-out;
 }
 
-.nav ul li.active a {
+.menu_items li:not(:last-child) a:hover,
+.menu_items li:not(:last-child) a:focus {
   border-bottom: 2px solid #fff;
 }
 
-.nav ul li.btn a {
+.menu_items li.btn a {
   background: transparent;
   color: #fff;
   border: 1px solid #f5dca8;
@@ -44,10 +53,9 @@
   line-height: 1.4;
   font-size: 0.9rem;
   font-weight: 500;
-  margin-left: 2rem;
 }
 
-.nav ul li.btn:hover a {
+.menu_items li.btn a:hover {
   border: 1px solid #fff;
   color: black;
   background: white;
