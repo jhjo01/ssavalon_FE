@@ -1,4 +1,5 @@
 .nav {
+  background: #000;
   height: 80px;
 }
 
@@ -77,6 +78,7 @@ a.active {
     right: -100%;
     text-align: center;
     transition: all 0.5s;
+    z-index: 999;
   }
 
   .nav ul li {
