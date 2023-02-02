@@ -1,0 +1,18 @@
+.kakao img {
+  width: 450px;
+  height: 70px;
+}
+
+.kakao img:hover {
+  filter: contrast(140%);
+}
+
+@media (max-width: 768px) {
+  .kakao {
+    text-align: center;
+  }
+
+  .kakao img {
+    width: 300px;
+  }
+}
