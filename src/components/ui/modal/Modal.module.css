@@ -47,13 +47,24 @@
   background: rgba(15, 13, 30);
 }
 
-.button {
+.buttonPrimary {
   font: inherit;
   border: 1px solid rgb(91, 53, 213);
   background: rgb(91, 53, 213);
   color: white;
   padding: 0.25rem 1rem;
   cursor: pointer;
+  margin-left: 10px;
+}
+
+.buttonDanger {
+  font: inherit;
+  border: 1px solid rgb(244, 47, 47);
+  background: rgb(244, 47, 47);
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 .button:hover,
@@ -64,6 +75,24 @@
 
 .button:focus {
   outline: none;
+}
+
+.input {
+  width: 95%;
+  height: 30px;
+  background-color: white;
+  margin: 0px 0px 5px 0px;
+}
+
+.form {
+  background-color: rgba(15, 13, 30);
+  color: white;
+  padding: 0px 10px 0px 20px;
+}
+
+.inputErrMsg {
+  color: red;
+  font-size: 0.5rem;
 }
 
 @media (min-width: 800px) {

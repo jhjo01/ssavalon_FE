@@ -20,7 +20,7 @@ const ModalOverlay = (props) => {
           <p>{message}</p>
         </div>
         <footer className={styled.actions}>
-          <button className={styled.button} onClick={props.onConfirm}>
+          <button className={styled.buttonPrimary} onClick={props.onConfirm}>
             확인
           </button>
         </footer>

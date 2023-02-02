@@ -1,26 +1,39 @@
 import React, { useState } from "react";
 import Header from "../components/header/Header";
 import ErrModal from "../components/ui/modal/ErrorModal";
+import RoomModal from "../components/ui/modal/RoomModal";
 
 const Lobby = () => {
-  const [error, setError] = useState();
+  const [modal, setModal] = useState();
 
-  const setEnterErrorHandler = () => {
-    setError(1);
+  const setModalHandler = (event) => {
+    if (event.target.value === "err") {
+      setModal("err");
+    } else {
+      setModal("room");
+    }
   };
 
-  const errorHandler = () => {
-    setError(null);
+  const modalHandler = () => {
+    setModal(null);
   };
 
   return (
     <>
       <Header />
       <div>
-        <button onClick={setEnterErrorHandler}>enterError</button>
+        <button value="err" onClick={setModalHandler}>
+          enterError
+        </button>
+      </div>
+      <div>
+        <button value="room" onClick={setModalHandler}>
+          방만들기
+        </button>
       </div>
 
-      {error && <ErrModal onConfirm={errorHandler} />}
+      {modal === "err" && <ErrModal onConfirm={modalHandler} />}
+      {modal === "room" && <RoomModal onConfirm={modalHandler} />}
     </>
   );
 };
