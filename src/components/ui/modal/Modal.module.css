@@ -1,0 +1,79 @@
+.card {
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26); */
+  border-radius: 20px;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(32, 29, 58, 0.8);
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  z-index: 100;
+  overflow: hidden;
+  margin: auto;
+}
+
+.header {
+  background: rgb(15, 13, 30);
+  padding: 1rem;
+}
+
+.header h2 {
+  margin: 0;
+  color: white;
+}
+
+.content {
+  padding: 1rem;
+  background: rgba(15, 13, 30);
+  color: white;
+}
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(15, 13, 30);
+}
+
+.button {
+  font: inherit;
+  border: 1px solid rgb(91, 53, 213);
+  background: rgb(91, 53, 213);
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+  background: rgb(109, 76, 218);
+  border-color: rgb(109, 76, 218);
+}
+
+.button:focus {
+  outline: none;
+}
+
+@media (min-width: 800px) {
+  .modal {
+    width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    width: 70%;
+  }
+}
