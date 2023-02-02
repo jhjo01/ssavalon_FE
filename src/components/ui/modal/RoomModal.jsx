@@ -9,9 +9,14 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   const [lock, setLock] = useState(false);
+  const [err, setErr] = useState(null);
 
   const setLockHandler = () => {
     setLock(!lock);
+  };
+
+  const setErrHandler = (props) => {
+    setErr(props);
   };
 
   const title = "방만들기";
@@ -23,16 +28,25 @@ const ModalOverlay = (props) => {
     event.preventDefault();
 
     const enteredTitle = titleInputRef.current.value;
-    const enteredPwd = pwdInputRef.current.value;
 
     if (enteredTitle.length < 1) {
-      // 방 이름 x글자 이상 x글자 이하
-    } else if (enteredPwd.trim().length < 6) {
-      // 방 비밀번호 x글자 이상 x글자 이하 설정해주셈
-    } else {
-      titleInputRef.current.value = "";
-      pwdInputRef.current.value = "";
+      setErrHandler("title");
+      return;
     }
+
+    if (lock) {
+      const enteredPwd = pwdInputRef.current.value;
+      if (enteredPwd.trim().length < 6) {
+        setErrHandler("pwd");
+        return;
+      }
+
+      titleInputRef.current.value = "";
+    }
+
+    titleInputRef.current.value = "";
+
+    props.onConfirm();
   };
 
   return (
@@ -44,18 +58,28 @@ const ModalOverlay = (props) => {
         <div className={styled.card}>
           <form className={styled.form} onSubmit={createRoomHandler}>
             <label htmlFor="roomtitle">방제목</label>
-            <p className={styled.inputErrMsg}></p>
             <input className={styled.input} id="roomtitle" type="text" ref={titleInputRef} />
-            <br />
+            {err === "title" ? (
+              <p className={styled.inputErrMsg}>방 이름은 x글자 이상 x글자 이하로 설정해주세요.</p>
+            ) : (
+              <br />
+            )}
+
             {lock && (
               <div>
                 <label htmlFor="pwd">비밀번호</label>
-                <p className={styled.inputErrMsg}></p>
                 <input className={styled.input} id="pwd" type="password" ref={pwdInputRef} />
+                {err === "pwd" && (
+                  <p className={styled.inputErrMsg}>
+                    방 비밀번호는 x글자 이상 x글자 이하로 설정해주세요.
+                  </p>
+                )}
               </div>
             )}
-            <input type="checkbox" name="gender" onClick={setLockHandler} />
-            비밀방
+            <label>
+              <input type="checkbox" name="gender" onClick={setLockHandler} />
+              비밀방
+            </label>
             <footer className={styled.actions}>
               <button type="submit" className={styled.buttonPrimary}>
                 만들기

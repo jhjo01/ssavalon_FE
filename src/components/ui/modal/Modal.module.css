@@ -67,13 +67,23 @@
   margin-left: 10px;
 }
 
-.button:hover,
-.button:active {
+.buttonPrimary:hover,
+.buttonPrimary:active {
   background: rgb(109, 76, 218);
   border-color: rgb(109, 76, 218);
 }
 
-.button:focus {
+.buttonPrimary:focus {
+  outline: none;
+}
+
+.buttonDanger:hover,
+.buttonDanger:active {
+  background: rgb(255, 70, 70);
+  border-color: rgb(255, 70, 70);
+}
+
+.buttonDanger:focus {
   outline: none;
 }
 
