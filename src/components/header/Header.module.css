@@ -11,6 +11,9 @@ label.logo {
   font-weight: bold;
 }
 
+.logo a {
+  color: white;
+}
 .nav ul {
   float: right;
 }
