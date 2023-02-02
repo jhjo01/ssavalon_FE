@@ -1,6 +1,8 @@
 .nav {
-  background: #121212;
   height: 80px;
+  width: 1600px;
+  max-width: 95%;
+  margin: 0 auto;
 }
 
 label.logo {
