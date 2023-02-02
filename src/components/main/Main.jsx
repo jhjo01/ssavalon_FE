@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Background from "../../assets/images/image-main-background.png";
+import LoginButton from "../ui/login/LoginButton";
 import styles from "./Main.module.css";
 
 const Main = () => {
@@ -15,8 +16,9 @@ const Main = () => {
           explicabo blanditiis quasi eveniet autem dicta doloremque eum, in eius
           officiis aspernatur?
         </p>
-        <Link to="#">게임하기</Link>
-        <Link to="#">튜토리얼</Link>
+        {/* <Link to="#">게임하기</Link>
+        <Link to="#">튜토리얼</Link> */}
+        <LoginButton />
         <div className={styles.image}>
           <img src={Background} alt="dark character" loading="lazy" />
         </div>
