@@ -17,6 +17,8 @@
   box-shadow: 2px 5px 12px hsl(0deg 0% 75% / 25%);
   cursor: pointer;
   background: #2c2c2c;
+  transition: 0.5s;
+  transform: rotate(0);
 }
 
 .sub_player_job:hover {
@@ -63,4 +65,29 @@
 .sub_player .sub_player_job .sub_player_percent {
   font-weight: 600;
   font-size: 1.5rem;
+}
+
+@media (max-width: 1046px) {
+}
+
+@media (max-width: 976px) {
+  .sub_player {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 25px;
+    margin: 0;
+  }
+
+  .sub_player_job {
+    width: 100%;
+  }
+
+  .sub_player_job:nth-child(1) {
+    margin: 0;
+  }
+
+  .sub_player_job:nth-child(2) {
+    margin: 0;
+  }
 }

@@ -7,3 +7,10 @@
   align-items: center;
   padding-top: 3rem;
 }
+
+@media (max-width: 976px) {
+  .container {
+    width: 100%;
+    flex-direction: column;
+  }
+}

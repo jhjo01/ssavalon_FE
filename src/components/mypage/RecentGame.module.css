@@ -4,4 +4,8 @@
   max-width: 95%;
   margin: 0 auto;
   margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 10px;
+  column-gap: 35px;
 }

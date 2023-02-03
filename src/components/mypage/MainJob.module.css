@@ -31,6 +31,7 @@
   font-size: 3rem;
   font-weight: 600;
   color: #fc7279;
+  margin-bottom: 0.3rem;
 }
 
 .player .player_team {
@@ -75,4 +76,17 @@
   width: 260px;
   left: 0;
   bottom: 0;
+}
+
+@media (max-width: 1046px) {
+  .player {
+    width: 70%;
+  }
+}
+
+@media (max-width: 976px) {
+  .player {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 }
