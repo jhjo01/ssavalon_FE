@@ -1,28 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import styled from "./Modal.module.css";
+import ButtonPrimary from "../Button/ButtonPrimary";
+import Backdrop from "./Backdrop";
 
-const Backdrop = (props) => {
-  return <div className={styled.backdrop} onClick={props.onConfirm} />;
-};
+import styles from "./Modal.module.css";
 
 const ModalOverlay = (props) => {
   const title = "입장 에러";
   const message = "인원이 가득찼습니다.";
+
   return (
-    <div className={styled.modal}>
-      <div className={styled.card}>
-        <header className={styled.header}>
+    <div className={styles.modal}>
+      <div className={styles.card}>
+        <header className={styles.header}>
           <h2>{title}</h2>
         </header>
-        <div className={styled.content}>
+        <div className={styles.content}>
           <p>{message}</p>
         </div>
-        <footer className={styled.actions}>
-          <button className={styled.button} onClick={props.onConfirm}>
-            확인
-          </button>
+        <footer className={styles.actions}>
+          <ButtonPrimary onClick={props.onConfirm}>확인</ButtonPrimary>
         </footer>
       </div>
     </div>

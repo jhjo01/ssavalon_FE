@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Index from "./pages/Index";
-import Lobby from "./pages/Lobby";
+import Lobby from "./pages/LobbyPage";
 import Mypage from "./pages/Mypage";
-
 
 function App() {
   return (

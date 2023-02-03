@@ -19,7 +19,7 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="#">로비</Link>
+            <Link to="/lobby">로비</Link>
           </li>
           <li>
             <Link to="/mypage">마이페이지</Link>
