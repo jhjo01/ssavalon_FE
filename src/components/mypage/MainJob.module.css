@@ -1,12 +1,12 @@
 .player {
   width: 750px;
-  height: 450px;
+  height: 350px;
   border-radius: 15px;
   position: relative;
   display: flex;
   flex-shrink: 1;
-  background-color: #292929;
-  box-shadow: 2px 5px 25px hsla(100, 100%, 100%, 0.25);
+  background-color: #2c2c2c;
+  box-shadow: 2px 5px 12px hsl(0deg 0% 75% / 25%);
   transition: 0.5s;
   transform: rotate(0);
 }
@@ -30,7 +30,8 @@
 .player .player_job {
   font-size: 3rem;
   font-weight: 600;
-  color: #ff4655;
+  color: #fc7279;
+  margin-bottom: 0.3rem;
 }
 
 .player .player_team {
@@ -67,12 +68,61 @@
   display: flex;
   position: relative;
   width: 280px;
+  transition: 0.5s;
 }
 
 .player .player_image img {
   display: block;
   position: absolute;
   width: 260px;
-  left: 20px;
+  left: 0;
   bottom: 0;
+}
+
+@media (max-width: 1046px) {
+  .player {
+    width: 70%;
+  }
+}
+
+@media (max-width: 976px) {
+  .player {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .player .player_image {
+    width: 150px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+
+  .player .player_image img {
+    width: 100%;
+    position: relative;
+  }
+
+  .player .player_stats {
+    width: 100%;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .player .player_job {
+    font-size: 2rem;
+  }
+
+  .player .player_stat_number {
+    font-size: 1.8rem;
+  }
+
+  .player .player_image {
+    width: 100px;
+    top: 40px;
+  }
 }

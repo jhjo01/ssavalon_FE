@@ -10,7 +10,7 @@ const Subjobs = () => {
         <p className={styles.sub_player_odds}>승률</p>
         <p className={styles.sub_player_percent}>10%</p>
         <div className={styles.sub_player_image}>
-          <img src={Police} alt="img-citizen" />
+          <img src={Police} alt="img-citizen" loading="lazy" />
         </div>
       </div>
       <div className={styles.sub_player_job}>
@@ -18,7 +18,7 @@ const Subjobs = () => {
         <p className={styles.sub_player_odds}>승률</p>
         <p className={styles.sub_player_percent}>10%</p>
         <div className={styles.sub_player_image}>
-          <img src={Citizen} alt="img-citizen" />
+          <img src={Citizen} alt="img-citizen" loading="lazy" />
         </div>
       </div>
     </div>
