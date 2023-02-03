@@ -12,12 +12,15 @@ const RecentGameList = (props) => {
         <span>12/02 01:21</span>
       </div>
       <div className={`${styles.line} ${vertical}`}></div>
-      <CitizenXsImage />
-      <CitizenXsImage />
-      <CitizenXsImage />
-      <PoliceXsImage />
-      <KillerXsImage />
-      <KillerXsImage />
+
+      <div className={styles.img_wrapper}>
+        <CitizenXsImage />
+        <CitizenXsImage />
+        <CitizenXsImage />
+        <PoliceXsImage />
+        <KillerXsImage />
+        <KillerXsImage />
+      </div>
     </div>
   );
 };
