@@ -1,7 +1,7 @@
-import styles from "./Killer.module.css";
+import styles from "./MainJob.module.css";
 import Killer from "../../assets/images/image-killer.png";
 
-const Kiiller = () => {
+const MainJob = () => {
   return (
     <div className={styles.player}>
       <div className={styles.player_info}>
@@ -36,4 +36,4 @@ const Kiiller = () => {
   );
 };
 
-export default Kiiller;
+export default MainJob;
