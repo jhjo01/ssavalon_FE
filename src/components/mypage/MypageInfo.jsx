@@ -1,7 +1,7 @@
 import styles from "./MypageInfo.module.css";
 import MainJob from "./MainJob";
 import Subjobs from "./SubJobs";
-import Odds from "./Odds";
+import Odds from "./RecentGame";
 
 const MypageInfo = () => {
   return (
