@@ -1,6 +1,6 @@
 .player {
   width: 750px;
-  height: 450px;
+  height: 350px;
   border-radius: 15px;
   position: relative;
   display: flex;
@@ -73,6 +73,6 @@
   display: block;
   position: absolute;
   width: 260px;
-  left: 20px;
+  left: 0;
   bottom: 0;
 }

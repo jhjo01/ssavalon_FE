@@ -1,5 +1,10 @@
+import PoliceXsImage from "./../ui/jobs/PoliceXsImage";
 const RecentGameList = () => {
-  return <div></div>;
+  return (
+    <div>
+      <PoliceXsImage />
+    </div>
+  );
 };
 
 export default RecentGameList;

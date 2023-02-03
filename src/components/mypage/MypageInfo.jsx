@@ -1,7 +1,8 @@
 import styles from "./MypageInfo.module.css";
 import MainJob from "./MainJob";
 import Subjobs from "./SubJobs";
-import Odds from "./RecentGame";
+import RecentGame from "./RecentGame";
+// import RecentGame from "./RecentGame";
 
 const MypageInfo = () => {
   return (
@@ -10,7 +11,7 @@ const MypageInfo = () => {
         <MainJob />
         <Subjobs />
       </div>
-      <Odds />
+      <RecentGame />
     </>
   );
 };
