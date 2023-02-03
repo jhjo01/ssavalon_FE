@@ -1,0 +1,34 @@
+.card {
+  border-radius: 10px;
+  background-color: rgb(32, 29, 58);
+  width: 208px;
+  height: 80px;
+  margin: 0px 10px 10px 10px;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: rgb(42, 39, 68);
+}
+
+.header {
+  padding: 0.5rem;
+}
+
+.header h3 {
+  margin: 0;
+  color: white;
+}
+
+.actions {
+  padding: 0.5rem 0.5rem 0rem 0rem;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
+.lockIcon {
+  float: right;
+  margin-top: -24px;
+  color: white;
+}
