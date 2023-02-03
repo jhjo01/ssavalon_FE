@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
-import styled from "./Modal.module.css";
+import ButtonPrimary from "../Button/ButtonPrimary";
+import ButtonDanger from "../Button/ButtonDanger";
+import Backdrop from "./Backdrop";
 
-const Backdrop = (props) => {
-  return <div className={styled.backdrop} onClick={props.onConfirm} />;
-};
+import styles from "./Modal.module.css";
 
 const ModalOverlay = (props) => {
   const [lock, setLock] = useState(false);
@@ -50,17 +50,17 @@ const ModalOverlay = (props) => {
   };
 
   return (
-    <div className={styled.modal}>
-      <div className={styled.card}>
-        <header className={styled.header}>
+    <div className={styles.modal}>
+      <div className={styles.card}>
+        <header className={styles.header}>
           <h2>{title}</h2>
         </header>
-        <div className={styled.card}>
-          <form className={styled.form} onSubmit={createRoomHandler}>
+        <div className={styles.card}>
+          <form className={styles.form} onSubmit={createRoomHandler}>
             <label htmlFor="roomtitle">방제목</label>
-            <input className={styled.input} id="roomtitle" type="text" ref={titleInputRef} />
+            <input className={styles.input} id="roomtitle" type="text" ref={titleInputRef} />
             {err === "title" ? (
-              <p className={styled.inputErrMsg}>방 이름은 x글자 이상 x글자 이하로 설정해주세요.</p>
+              <p className={styles.inputErrMsg}>방 이름은 x글자 이상 x글자 이하로 설정해주세요.</p>
             ) : (
               <br />
             )}
@@ -68,9 +68,9 @@ const ModalOverlay = (props) => {
             {lock && (
               <div>
                 <label htmlFor="pwd">비밀번호</label>
-                <input className={styled.input} id="pwd" type="password" ref={pwdInputRef} />
+                <input className={styles.input} id="pwd" type="password" ref={pwdInputRef} />
                 {err === "pwd" && (
-                  <p className={styled.inputErrMsg}>
+                  <p className={styles.inputErrMsg}>
                     방 비밀번호는 x글자 이상 x글자 이하로 설정해주세요.
                   </p>
                 )}
@@ -80,13 +80,11 @@ const ModalOverlay = (props) => {
               <input type="checkbox" name="gender" onClick={setLockHandler} />
               비밀방
             </label>
-            <footer className={styled.actions}>
-              <button type="submit" className={styled.buttonPrimary}>
-                만들기
-              </button>
-              <button type="reset" className={styled.buttonDanger} onClick={props.onConfirm}>
+            <footer className={styles.actions}>
+              <ButtonPrimary type="submit">만들기</ButtonPrimary>
+              <ButtonDanger type="reset" onClick={props.onConfirm}>
                 취소
-              </button>
+              </ButtonDanger>
             </footer>
           </form>
         </div>
