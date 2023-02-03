@@ -1,13 +1,18 @@
 import styles from "./MypageInfo.module.css";
-import Killer from "./Kiiller";
+import MainJob from "./MainJob";
 import Subjobs from "./SubJobs";
+import RecentGame from "./RecentGame";
+// import RecentGame from "./RecentGame";
+
 const MypageInfo = () => {
   return (
-    <div className={styles.container}>
-      <Killer />
-
-      <Subjobs />
-    </div>
+    <>
+      <div className={styles.container}>
+        <MainJob />
+        <Subjobs />
+      </div>
+      <RecentGame />
+    </>
   );
 };
 

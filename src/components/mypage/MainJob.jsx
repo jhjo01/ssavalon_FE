@@ -1,12 +1,12 @@
-import styles from "./Killer.module.css";
+import styles from "./MainJob.module.css";
 import Killer from "../../assets/images/image-killer.png";
 
-const Kiiller = () => {
+const MainJob = () => {
   return (
     <div className={styles.player}>
       <div className={styles.player_info}>
         <h2 className={styles.player_job}>
-          <span className={styles.player_team}>범죄자팀</span>
+          <span className={styles.player_team}>닉네임</span>
           범죄자
         </h2>
         <dl className={styles.player_stats}>
@@ -30,10 +30,10 @@ const Kiiller = () => {
       </div>
 
       <div className={styles.player_image}>
-        <img src={Killer} alt="img-police" />
+        <img src={Killer} alt="img-police" loading="lazy" />
       </div>
     </div>
   );
 };
 
-export default Kiiller;
+export default MainJob;
