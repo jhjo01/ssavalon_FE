@@ -1,6 +1,6 @@
 .card {
-  max-width: 480px;
-  height: 100px;
+  width: 480px;
+  height: 130px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -31,10 +31,45 @@
   height: 45px;
 }
 
+.card .img_wrapper {
+  display: flex;
+}
+
 .win_line {
   background-color: #63b1e4;
 }
 
 .lose_line {
   background-color: #bb605b;
+}
+
+@media (max-width: 1046px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 890px) {
+  .card {
+    height: 125px;
+  }
+
+  .line {
+    height: 60px;
+  }
+}
+
+@media (max-width: 648px) {
+  .card {
+    height: 100px;
+  }
+}
+
+@media (max-width: 520px) {
+  .card .img_wrapper {
+    width: 65%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
 }
