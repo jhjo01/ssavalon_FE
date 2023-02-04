@@ -1,14 +1,14 @@
 import React from "react";
 import Header from "../components/header/Header";
-import Lobby from "../components/Lobby/Lobby";
+import Lobby from "../components/lobby/Lobby";
 
 const LobbyPage = () => {
-  return (
-    <>
-      <Header />
-      <Lobby />
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <Lobby />
+        </>
+    );
 };
 
 export default LobbyPage;
