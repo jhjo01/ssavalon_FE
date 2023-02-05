@@ -8,7 +8,19 @@ import roomList from "../../dummy/roomList";
 
 import styles from "./Lobby.module.css";
 
+// roleDesc start
+import RoleDesc from "../ui/roleDesc/RoleDesc";
+// roleDesc end
+
 const Lobby = () => {
+  // roleDesc start
+  const [showRoleDesc, setShowRoleDesc] = useState(false);
+
+  const setRoleDescHandler = () => {
+    setShowRoleDesc(!showRoleDesc);
+  };
+  // roleDesc end
+
   const [modal, setModal] = useState();
   const [roomInfo, setRoomInfo] = useState(null);
 
@@ -72,6 +84,13 @@ const Lobby = () => {
           방만들기
         </ButtonPrimary>
       </div>
+
+      {!showRoleDesc && (
+        <div className={styles.roleDescButton} onClick={setRoleDescHandler}>
+          역할설명
+        </div>
+      )}
+      {showRoleDesc && <RoleDesc OnShowRole={setRoleDescHandler} />}
 
       <div className={styles.container}>{showRoomList()}</div>
       {modal === "err" && <ErrModal onConfirm={modalHandler} />}
