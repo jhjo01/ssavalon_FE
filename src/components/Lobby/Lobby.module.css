@@ -3,11 +3,8 @@
   max-width: 80%;
   margin: 0 auto;
   display: flex;
-  /* justify-content: start; */
   justify-content: center;
   flex-wrap: wrap;
-
-  border: 1px solid red;
 }
 
 .createButton {
@@ -17,5 +14,4 @@
   display: flex;
   justify-content: right;
   margin-bottom: 20px;
-  border: 1px solid red;
 }
