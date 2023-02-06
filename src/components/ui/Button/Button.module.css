@@ -39,3 +39,47 @@
 .buttonDanger:focus {
   outline: none;
 }
+
+.button_ready {
+  width: 95px;
+  height: 40px;
+  background-color: #88bccf;
+  border: #88bccf;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button_ready:hover {
+  background-color: #9ac7d7;
+  border: #9ac7d7;
+}
+
+.button_start {
+  width: 95px;
+  height: 40px;
+  background-color: #bb605b;
+  border: #bb605b;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button_start:hover {
+  background-color: #c1736f;
+  border: #c1736f;
+}
+
+@media (max-width: 480px) {
+  .button_ready {
+    width: 60px;
+    height: 25px;
+    font-size: 14px;
+  }
+
+  .button_start {
+    width: 60px;
+    height: 25px;
+    font-size: 14px;
+  }
+}

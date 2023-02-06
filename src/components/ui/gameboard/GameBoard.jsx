@@ -1,10 +1,10 @@
-import { useState } from "react";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
+import ButtonRS from "../button/ButtonRS";
 
 const GameBoard = () => {
-  const [peoples, setPeoples] = useState([
+  const peoples = [
     {
       id: "1",
       name: "ada",
@@ -37,7 +37,7 @@ const GameBoard = () => {
       name: "ada",
       rotate: "480deg",
     },
-  ]);
+  ];
 
   return (
     <div
@@ -46,8 +46,11 @@ const GameBoard = () => {
     >
       <div className={styles.game_table_settings}>
         {peoples.map((people) => (
-          <AvatarImage people={people} />
+          <AvatarImage people={people} key={people.id} />
         ))}
+      </div>
+      <div className={styles.game_table_buttons}>
+        <ButtonRS content="준비" />
       </div>
     </div>
   );

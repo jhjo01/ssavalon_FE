@@ -30,6 +30,25 @@
   overflow: hidden;
 }
 
+.jobs_img_wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.jobs_img_wrapper img {
+  width: 100%;
+  border-radius: 50%;
+  /* border: 2px solid red; */
+}
+
+.role_description {
+  max-width: 85%;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
 @media (max-width: 890px) {
   .img_wrapper {
     width: 90px;
