@@ -1,0 +1,90 @@
+.img_wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.img_wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.img_wrapper .nickname {
+  font-size: 0.8rem;
+}
+
+.img_wrapper .nickname .nickname_name {
+  width: 60px;
+  color: #000;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.jobs_img_wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.jobs_img_wrapper img {
+  width: 100%;
+  border-radius: 50%;
+  /* border: 2px solid red; */
+}
+
+.role_description {
+  max-width: 85%;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+@media (max-width: 890px) {
+  .img_wrapper {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 720px) {
+  .img_wrapper {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 648px) {
+  .img_wrapper {
+    width: 50px;
+    height: 50px;
+  }
+
+  .img_wrapper .nickname .nickname_name {
+    width: 50px;
+  }
+}
+
+@media (max-width: 520px) {
+  .img_wrapper {
+    width: auto;
+    height: 32px;
+    flex-direction: row;
+    border: none;
+    border-radius: initial;
+  }
+
+  .img_wrapper img {
+    border-radius: initial;
+    border: none;
+  }
+}

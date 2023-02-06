@@ -1,0 +1,102 @@
+.card {
+  border-radius: 10px;
+  background-color: #292929;
+  width: 330px;
+  height: 200px;
+  margin: 0px 10px 20px 10px;
+  box-shadow: 2px 10px 15px hsla(100, 100%, 100%, 0.15);
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: #393939;
+  transform: scale(1.04);
+  box-shadow: 2px 10px 30px hsla(100, 100%, 100%, 0.25);
+  transition: 0.5s;
+}
+
+.activeCard {
+  border-radius: 10px;
+  background-color: rgb(29, 29, 29);
+  width: 330px;
+  height: 200px;
+  margin: 0px 10px 10px 10px;
+}
+
+.activeCard:disabled {
+  background: #ccc;
+}
+
+.header {
+  padding: 1rem 1rem 1rem 1.5rem;
+  color: white;
+}
+
+.actions {
+  position: relative;
+  bottom: -95px;
+  padding: 0.5rem 1rem 0rem 0rem;
+  display: flex;
+  justify-content: flex-end;
+
+  color: white;
+}
+
+.lockIcon {
+  float: right;
+  margin-top: -24px;
+  color: white;
+}
+
+@media (max-width: 1170px) {
+  .card {
+    width: 260px;
+    height: 200px;
+  }
+  .activeCard {
+    width: 260px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 708px) {
+  .card {
+    width: 400px;
+    height: 200px;
+  }
+  .activeCard {
+    width: 400px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 520px) {
+  .card {
+    width: 300px;
+    height: 200px;
+  }
+  .activeCard {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    width: 250px;
+    height: 100px;
+  }
+  .activeCard {
+    width: 250px;
+    height: 100px;
+  }
+
+  .actions {
+    position: relative;
+    bottom: 0;
+    padding: 0.5rem 1rem 0rem 0rem;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+  }
+}

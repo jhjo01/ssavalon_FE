@@ -1,0 +1,86 @@
+.game_setting {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s;
+}
+
+.game_setting .game_setting_inner {
+  pointer-events: all;
+  display: inline-block;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  transition: all 0.2s;
+}
+
+.game_setting .game_setting_inner .player {
+  position: relative;
+  vertical-align: middle;
+  width: 132px;
+  height: 132px;
+  text-align: center;
+}
+
+.game_setting .game_setting_inner .player .player_avatar {
+  position: relative;
+  padding: 24px 24px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar
+  .player_avatar_background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s;
+  background-size: contain;
+}
+
+.game_setting .game_setting_inner .player .player_avatar_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s;
+}
+
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_avatar_avatar {
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 684px) {
+  .game_setting .game_setting_inner .player {
+    width: 102px;
+    height: 102px;
+  }
+}
+@media (max-width: 480px) {
+  .game_setting .game_setting_inner .player {
+    width: 76px;
+    height: 76px;
+  }
+}
