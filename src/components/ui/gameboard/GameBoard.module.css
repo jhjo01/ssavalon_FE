@@ -1,0 +1,21 @@
+.game_table {
+  display: inline-block;
+  width: 560px;
+  height: 560px;
+  position: absolute;
+  border-radius: 50%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: contain;
+}
+
+.game_table .game_table_settings {
+  position: relative;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  text-align: left;
+  margin-bottom: 32px;
+}
