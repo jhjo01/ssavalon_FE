@@ -4,7 +4,8 @@ import RoomModal from "../ui/modal/RoomCreateModal";
 import ButtonPrimary from "../ui/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import JoinModal from "../ui/modal/RoomJoinModal";
-
+import roomList from "../../dummy/roomList";
+import LoopIcon from '@mui/icons-material/Loop';
 import styles from "./Lobby.module.css";
 
 const Lobby = () => {
@@ -12,7 +13,7 @@ const Lobby = () => {
     const [roomInfo, setRoomInfo] = useState(null);
 
     const setModalHandler = (props) => {
-        console.log(props);
+        // console.log(props);
         if (props.target !== undefined) {
             if (props.target.value === "create") {
                 setModal("create");
@@ -32,81 +33,6 @@ const Lobby = () => {
     const modalHandler = () => {
         setModal(null);
     };
-
-    //dummy
-    const roomList = [
-        {
-            isLock: false,
-            roomNo: 1,
-            title: "1번방",
-            numOfPeople: 6,
-            standby: false,
-        },
-        {
-            isLock: false,
-            roomNo: 2,
-            title: "rty",
-            numOfPeople: 1,
-            standby: true,
-        },
-        {
-            isLock: false,
-            roomNo: 3,
-            title: "jhj",
-            numOfPeople: 3,
-            standby: true,
-        },
-        {
-            isLock: false,
-            roomNo: 4,
-            title: "cvb",
-            numOfPeople: 4,
-            standby: true,
-        },
-        {
-            isLock: true,
-            roomNo: 5,
-            title: "asd",
-            numOfPeople: 6,
-            standby: false,
-        },
-        {
-            isLock: true,
-            roomNo: 6,
-            title: "asd",
-            numOfPeople: 3,
-            standby: true,
-        },
-        { isLock: true, roomNo: 7, title: "df", numOfPeople: 1, standby: true },
-        {
-            isLock: true,
-            roomNo: 8,
-            title: "dd",
-            numOfPeople: 6,
-            standby: false,
-        },
-        {
-            isLock: true,
-            roomNo: 9,
-            title: "qqw",
-            numOfPeople: 3,
-            standby: true,
-        },
-        {
-            isLock: true,
-            roomNo: 10,
-            title: "dfg",
-            numOfPeople: 6,
-            standby: true,
-        },
-        {
-            isLock: true,
-            roomNo: 11,
-            title: "dfg",
-            numOfPeople: 3,
-            standby: true,
-        },
-    ];
 
     const showRoomList = () => {
         const standby = [];
@@ -141,12 +67,17 @@ const Lobby = () => {
     return (
         <>
             <div className={styles.createButton}>
+                <LoopIcon className={styles.guickStart} />
+                <ButtonPrimary value="quick">
+                    빠른입장
+                </ButtonPrimary>
                 <ButtonPrimary value="create" onClick={setModalHandler}>
                     방만들기
                 </ButtonPrimary>
             </div>
 
             <div className={styles.container}>{showRoomList()}</div>
+
             {modal === "err" && <ErrModal onConfirm={modalHandler} />}
             {modal === "create" && <RoomModal onConfirm={modalHandler} />}
             {modal === "join" && roomInfo !== null && (

@@ -11,6 +11,18 @@
   background-color: rgb(42, 39, 68);
 }
 
+.activeCard {
+  border-radius: 10px;
+  background-color: rgba(42, 39, 68, 0.5);
+  width: 208px;
+  height: 80px;
+  margin: 0px 10px 10px 10px;
+}
+
+.activeCard:disabled {
+  background: #ccc;
+}
+
 .header {
   padding: 0.5rem;
 }

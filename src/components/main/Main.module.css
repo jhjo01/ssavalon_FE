@@ -72,7 +72,7 @@
   aspect-ratio: 9 / 16;
   top: 0;
   right: 0;
-  text-align: right;
+  /* text-align: right; */
   z-index: -1;
 }
 
@@ -88,22 +88,34 @@
 }
 
 @media (max-width: 768px) {
-  body {
+  /* body {
     overflow-y: auto;
-  }
+  } */
 
   .image {
     width: 330px;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
   .content .main_text h1 {
-    font-size: 5rem;
+    font-size: 6rem;
   }
 
   .content .main_text p {
     width: 768px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content .main_text h1 {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .content .main_text h1 {
+    font-size: 4rem;
   }
 }

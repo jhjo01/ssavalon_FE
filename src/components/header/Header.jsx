@@ -14,7 +14,7 @@ const Header = () => {
         </label>
         <ul>
           <li>
-            <Link to="#" className={styles.active}>
+            <Link to="/" className={styles.active}>
               로그아웃
             </Link>
           </li>

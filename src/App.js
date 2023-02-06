@@ -4,6 +4,7 @@ import Game from "./pages/Game";
 import Index from "./pages/Index";
 import Lobby from "./pages/LobbyPage";
 import Mypage from "./pages/Mypage";
+import GamePage from "./pages/GamePage";
 
 function App() {
     return (

@@ -1,7 +1,7 @@
 import Header from "../components/header/Header";
 import Main from "../components/main/Main";
 
-const Index = () => {
+const MainPage = () => {
   return (
     <>
       <Header />
@@ -10,4 +10,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default MainPage;
