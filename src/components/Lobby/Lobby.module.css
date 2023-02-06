@@ -1,7 +1,7 @@
 .container {
-  width: 1400px;
+  /* width: 1400px; */
   max-width: 80%;
-  margin: 0 auto;
+  margin: 0 10%;
   display: flex;
   /* justify-content: start; */
   justify-content: center;
@@ -11,11 +11,20 @@
 }
 
 .createButton {
-  width: 1400px;
+  /* width: 1400px; */
   max-width: 80%;
-  margin: 0 auto;
+  margin: 0 10%;
   display: flex;
   justify-content: right;
+  align-items: center;
   margin-bottom: 20px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+.guickStart {
+  color: white;
+}
+
+.guickStart:hover {
+  cursor: pointer;
 }
