@@ -1,6 +1,7 @@
 import styles from "./Game.module.css";
 import BackgroundImage from "../assets/images/image-background.png";
 import GameBoard from "../components/ui/gameboard/GameBoard";
+import LogCard from "../components/ui/logCard/LogCard";
 const Game = () => {
   return (
     <div
@@ -10,6 +11,7 @@ const Game = () => {
       }}
     >
       <GameBoard />
+      <LogCard />
     </div>
   );
 };
