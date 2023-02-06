@@ -6,7 +6,7 @@ import styles from "./RoomCard.module.css";
 const RoomCard = (props) => {
   const roomNo = props.roomInfo.roomNo; // props.roomNo
   const title = props.roomInfo.title; // props.title
-  const disable = props.standby === true ? false : true;
+  // const disable = props.standby === true ? false : true;
 
   const onRoomClick = () => {
     if (props.onRoomClick === undefined) {
@@ -21,7 +21,9 @@ const RoomCard = (props) => {
 
   return (
     // <div className={styles.card } onClick={onRoomClick}>
-    <div className={`${styles.card} ${disable && styles.card_disable}`} onClick={onRoomClick}>
+    // <div className={`${styles.card} ${disable && styles.card_disable}`} onClick={onRoomClick}>
+    <div className={props.roomInfo.standby === true ? styles.card : styles.activeCard} onClick={props.roomInfo.standby === true ? onRoomClick : null}>
+
       <header className={styles.header}>
         <h3>
           {roomNo}. {title}

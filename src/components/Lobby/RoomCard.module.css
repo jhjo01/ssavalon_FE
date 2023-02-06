@@ -11,17 +11,16 @@
   background-color: rgb(42, 39, 68);
 }
 
-.card_disable {
+.activeCard {
   border-radius: 10px;
-  background-color: rgb(36, 36, 36);
+  background-color: rgba(42, 39, 68, 0.5);
   width: 208px;
   height: 80px;
   margin: 0px 10px 10px 10px;
 }
 
-.card_disable:hover {
-  cursor: default;
-  background-color: rgb(36, 36, 36);
+.activeCard:disabled {
+  background: #ccc;
 }
 
 .header {

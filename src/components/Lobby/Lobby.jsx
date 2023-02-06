@@ -5,7 +5,7 @@ import ButtonPrimary from "../ui/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import JoinModal from "../ui/modal/RoomJoinModal";
 import roomList from "../../dummy/roomList";
-
+import LoopIcon from '@mui/icons-material/Loop';
 import styles from "./Lobby.module.css";
 
 // roleDesc start
@@ -30,60 +30,71 @@ const Lobby = () => {
       return;
     }
 
-    if (props.isLock === true) {
-      setRoomInfo(props);
-      setModal("join");
-    } else {
-      // 방입장
-      return;
-    }
-  };
+    const setModalHandler = (props) => {
+        // console.log(props);
+        if (props.target !== undefined) {
+            if (props.target.value === "create") {
+                setModal("create");
+            } else if (props.target.value === "err") {
+                setModal("err");
+            }
+        }
+        if (props.isLock === true) {
+            setRoomInfo(props);
+            setModal("join");
+        } else {
+            // 방입장
+            return;
+        }
+    };
 
-  const modalHandler = () => {
-    setModal(null);
-  };
+    const modalHandler = () => {
+        setModal(null);
+    };
 
-  const createRoom = (props) => {
-    if (props.target !== undefined) {
-      if (props.target.value === "create") {
-        setModal("create");
-      }
-    }
-  };
+    const showRoomList = () => {
+        const standby = [];
+        const active = [];
 
-  const showRoomList = () => {
-    const standby = [];
-    const active = [];
+        for (let i = 0; i < roomList.length; i++) {
+            if (roomList[i].standby === true) {
+                standby.push(
+                    <RoomCard
+                        key={i}
+                        value="join"
+                        roomInfo={roomList[i]}
+                        onRoomClick={setModalHandler}
+                    />
+                );
+            } else {
+                active.push(
+                    <RoomCard
+                        key={i}
+                        value="join"
+                        roomInfo={roomList[i]}
+                        onRoomClick={setModalHandler}
+                    />
+                );
+            }
+        }
+        const result = [...standby, active];
 
-    for (let i = 0; i < roomList.length; i++) {
-      if (roomList[i].standby === true) {
-        standby.push(
-          <RoomCard
-            key={i}
-            value="join"
-            roomInfo={roomList[i]}
-            onRoomClick={joinRoom}
-            standby={roomList[i].standby}
-          />
-        );
-      } else {
-        active.push(
-          <RoomCard key={i} value="err" roomInfo={roomList[i]} standby={roomList[i].standby} />
-        );
-      }
-    }
-    const result = [...standby, active];
+        return result;
+    };
 
-    return result;
-  };
+    return (
+        <>
+            <div className={styles.createButton}>
+                <LoopIcon className={styles.guickStart} />
+                <ButtonPrimary value="quick">
+                    빠른입장
+                </ButtonPrimary>
+                <ButtonPrimary value="create" onClick={setModalHandler}>
+                    방만들기
+                </ButtonPrimary>
+            </div>
 
-  return (
-    <>
-      <div className={styles.createButton}>
-        <ButtonPrimary value="create" onClick={createRoom}>
-          방만들기
-        </ButtonPrimary>
-      </div>
+            <div className={styles.container}>{showRoomList()}</div>
 
       {!showRoleDesc && (
         <div className={styles.roleDescButton} onClick={setRoleDescHandler}>

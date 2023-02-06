@@ -6,6 +6,7 @@
   padding: 0.25rem 1rem;
   cursor: pointer;
   margin-left: 10px;
+  border-radius: 5px;
 }
 
 .buttonPrimary:hover,
@@ -26,6 +27,7 @@
   padding: 0.25rem 1rem;
   cursor: pointer;
   margin-left: 10px;
+  border-radius: 5px;
 }
 
 .buttonDanger:hover,
