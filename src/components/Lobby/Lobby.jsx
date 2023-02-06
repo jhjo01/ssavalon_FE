@@ -8,9 +8,27 @@ import roomList from "../../dummy/roomList";
 import LoopIcon from '@mui/icons-material/Loop';
 import styles from "./Lobby.module.css";
 
+// roleDesc start
+import RoleDesc from "../ui/roleDesc/RoleDesc";
+// roleDesc end
+
 const Lobby = () => {
-    const [modal, setModal] = useState();
-    const [roomInfo, setRoomInfo] = useState(null);
+  // roleDesc start
+  const [showRoleDesc, setShowRoleDesc] = useState(false);
+
+  const setRoleDescHandler = () => {
+    setShowRoleDesc(!showRoleDesc);
+  };
+  // roleDesc end
+
+  const [modal, setModal] = useState();
+  const [roomInfo, setRoomInfo] = useState(null);
+
+  const joinRoom = (props) => {
+    if (props === "err") {
+      setModal("err");
+      return;
+    }
 
     const setModalHandler = (props) => {
         // console.log(props);
@@ -78,13 +96,21 @@ const Lobby = () => {
 
             <div className={styles.container}>{showRoomList()}</div>
 
-            {modal === "err" && <ErrModal onConfirm={modalHandler} />}
-            {modal === "create" && <RoomModal onConfirm={modalHandler} />}
-            {modal === "join" && roomInfo !== null && (
-                <JoinModal roomInfo={roomInfo} onConfirm={modalHandler} />
-            )}
-        </>
-    );
+      {!showRoleDesc && (
+        <div className={styles.roleDescButton} onClick={setRoleDescHandler}>
+          역할설명
+        </div>
+      )}
+      {showRoleDesc && <RoleDesc OnShowRole={setRoleDescHandler} />}
+
+      <div className={styles.container}>{showRoomList()}</div>
+      {modal === "err" && <ErrModal onConfirm={modalHandler} />}
+      {modal === "create" && <RoomModal onConfirm={modalHandler} />}
+      {modal === "join" && roomInfo !== null && (
+        <JoinModal roomInfo={roomInfo} onConfirm={modalHandler} />
+      )}
+    </>
+  );
 };
 
 export default Lobby;

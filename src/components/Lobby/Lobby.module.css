@@ -26,3 +26,11 @@
 .guickStart:hover {
   cursor: pointer;
 }
+
+.roleDescButton {
+  float: left;
+  width: 20px;
+  height: 10%;
+  color: white;
+  border: 1px solid red;
+}

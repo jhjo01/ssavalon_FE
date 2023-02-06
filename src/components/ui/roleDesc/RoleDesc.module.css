@@ -1,0 +1,41 @@
+.roleDesc {
+  position: fixed;
+  width: 300px;
+  height: 500px;
+  float: left;
+  padding: 10px 10px 10px 10px;
+  background-color: rgb(48, 46, 46);
+  justify-content: center;
+  text-align: center;
+
+  border: 1px solid red;
+}
+
+.role {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+  position: relative;
+  top: 0px;
+  margin: 10px 0px 20px 0px;
+  border: 1px solid blue;
+}
+
+.desc {
+  width: 100%;
+  height: 70%;
+  margin: -20px 0px 0px 0px;
+  border: 1px solid yellow;
+}
+.citizen {
+  margin: 0px 0px 0px 0px;
+}
+
+.police {
+  margin: 0px 0px 0px 5%;
+}
+
+.killer {
+  margin: 0px 0px 0px 5%;
+}
