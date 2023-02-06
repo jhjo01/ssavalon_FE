@@ -1,8 +1,10 @@
 import styles from "./Avatar.module.css";
 import AvatarFrame from "../../../assets/images/image-avatar-frame.png";
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
+
 const AvatarImage = (props) => {
   const { people } = props;
+
   return (
     <div
       className={styles.game_setting}

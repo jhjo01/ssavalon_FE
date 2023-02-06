@@ -1,62 +1,34 @@
-import React, { useState } from "react";
-
-import PoliceXsImage from "../jobs/PoliceXsImage";
-import CitizenXsImage from "../jobs/CitizenXsImage";
-import KillerXsImage from "../jobs/KillerXsImage";
-
+import React from "react";
 import styles from "./RoleDesc.module.css";
+import CloseIcon from "@mui/icons-material/Close";
+import CitizenImage from "../../../assets/images/image-citizen-circle.png";
+import PoliceImage from "../../../assets/images/image-police-circle.png";
+import KillerImage from "../../../assets/images/image-killer-circle.png";
 
 const RoleDesc = (props) => {
-  const [role, setRole] = useState(null);
-
-  const setRoleHandler = (props) => {
-    setRole(props.currentTarget.id);
+  const { swipe, handleChangeSwipe } = props;
+  const handleSelectJob = (e) => {
+    console.log(e);
   };
-
-  const OnShowRole = () => {
-    props.OnShowRole();
-  };
-
   return (
-    <div className={styles.roleDesc}>
-      <div>
-        게임에서의 역할 <button onClick={OnShowRole}>닫기</button>
+    <div className={styles.role_desc}>
+      <div className={`${styles.roles_inner} ${swipe}`}>
+        <div className={styles.roles_roles_container}>
+          <CloseIcon onClick={handleChangeSwipe} />
+          <h2 className={styles.roles_title}>역할</h2>
+          <ul className={styles.roles_role}>
+            <li className={styles.role} onClick={handleSelectJob}>
+              <img src={CitizenImage} alt="img-citizen" />
+            </li>
+            <li className={styles.role}>
+              <img src={PoliceImage} alt="img-Police" />
+            </li>
+            <li className={styles.role}>
+              <img src={KillerImage} alt="img-Killer" />
+            </li>
+          </ul>
+        </div>
       </div>
-      <div className={styles.role}>
-        <div id="citizen" className={styles.citizen} onClick={setRoleHandler}>
-          <CitizenXsImage className={styles.citizen} />
-        </div>
-        <div id="police" className={styles.police} onClick={setRoleHandler}>
-          <PoliceXsImage className={styles.police} />
-        </div>
-        <div id="killer" className={styles.killer} onClick={setRoleHandler}>
-          <KillerXsImage className={styles.killer} />
-        </div>
-      </div>
-      {role === "citizen" && (
-        <div className={styles.desc}>
-          <div className={styles.role}>
-            <CitizenXsImage />
-          </div>
-          시민역할설명
-        </div>
-      )}
-      {role === "police" && (
-        <div className={styles.desc}>
-          <div className={styles.role}>
-            <PoliceXsImage />
-          </div>
-          경찰역할설명
-        </div>
-      )}
-      {role === "killer" && (
-        <div className={styles.desc}>
-          <div className={styles.role}>
-            <KillerXsImage />
-          </div>
-          범죄자역할설명
-        </div>
-      )}
     </div>
   );
 };
