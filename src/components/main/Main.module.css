@@ -4,7 +4,6 @@
   margin: 0 auto;
   position: relative;
   padding-top: 5rem;
-  z-index: -1;
 }
 
 .content .main_txt {
@@ -73,7 +72,6 @@
   aspect-ratio: 9 / 16;
   top: 0;
   right: 0;
-  /* text-align: right; */
   z-index: -1;
 }
 
@@ -89,10 +87,6 @@
 }
 
 @media (max-width: 768px) {
-  /* body {
-    overflow-y: auto;
-  } */
-
   .image {
     width: 330px;
     top: 70%;
