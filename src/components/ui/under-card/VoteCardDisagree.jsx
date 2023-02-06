@@ -6,6 +6,10 @@ const VoteCardDisagree = () => {
       <div className={styles.card_content_disagree}>
         <p>반대</p>
       </div>
+      <div className={styles.corner}></div>
+      <div className={styles.corner}></div>
+      <div className={styles.corner}></div>
+      <div className={styles.corner}></div>
     </div>
   );
 };

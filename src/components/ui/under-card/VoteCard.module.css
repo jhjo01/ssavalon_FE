@@ -11,12 +11,56 @@
   font-size: 1.5rem;
   padding: 2.5rem;
   transform: translate(-40%, 0) rotate(-15deg) translate(0, -45%);
-  transition: transform 0.25s ease-out;
+  transition: transform 0.5s ease-out;
   border-radius: 1.25rem;
 }
 
 .card_agree .card_content_agree p {
   text-align: center;
+  z-index: 99;
+}
+
+.card_agree:hover {
+  transform: translate(-40%, 0) rotate(-15deg) translate(0, -60%);
+}
+
+.card_agree .corner {
+  border-right: 2px solid #000;
+  border-top: 2px solid #000;
+  height: 12px;
+  position: absolute;
+  width: 12px;
+}
+
+.card_disagree .corner {
+  border-right: 2px solid #d4cd96;
+  border-top: 2px solid #d4cd96;
+  height: 12px;
+  position: absolute;
+  width: 12px;
+}
+
+.card_agree .corner:nth-of-type(2) {
+  right: 20px;
+  top: 20px;
+}
+
+.card_agree .corner:nth-of-type(3) {
+  left: 20px;
+  top: 20px;
+  transform: rotateZ(-90deg);
+}
+
+.card_agree .corner:nth-of-type(4) {
+  left: 20px;
+  bottom: 20px;
+  transform: rotateZ(180deg);
+}
+
+.card_agree .corner:nth-of-type(5) {
+  right: 20px;
+  bottom: 20px;
+  transform: rotateZ(90deg);
 }
 
 .card_disagree {
@@ -32,13 +76,40 @@
   font-size: 1.5rem;
   padding: 2.5rem;
   transform: translate(-30%, 0) rotate(15deg) translate(0, -45%);
-  transition: transform 0.25s ease-out;
+  transition: transform 0.5s ease-out;
   border-radius: 1.25rem;
   z-index: 2;
 }
 
+.card_disagree:hover {
+  transform: translate(-30%, 0) rotate(15deg) translate(0, -60%);
+}
+
 .card_disagree .card_content_disagree p {
   text-align: center;
+}
+
+.card_disagree .corner:nth-of-type(2) {
+  right: 20px;
+  top: 20px;
+}
+
+.card_disagree .corner:nth-of-type(3) {
+  left: 20px;
+  top: 20px;
+  transform: rotateZ(-90deg);
+}
+
+.card_disagree .corner:nth-of-type(4) {
+  left: 20px;
+  bottom: 20px;
+  transform: rotateZ(180deg);
+}
+
+.card_disagree .corner:nth-of-type(5) {
+  right: 20px;
+  bottom: 20px;
+  transform: rotateZ(90deg);
 }
 
 @media (max-width: 684px) {

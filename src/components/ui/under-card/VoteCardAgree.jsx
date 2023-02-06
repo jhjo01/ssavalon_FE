@@ -6,6 +6,10 @@ const VoteCardAgree = () => {
       <div className={styles.card_content_agree}>
         <p>찬성</p>
       </div>
+      <div className={styles.corner}></div>
+      <div className={styles.corner}></div>
+      <div className={styles.corner}></div>
+      <div className={styles.corner}></div>
     </div>
   );
 };
