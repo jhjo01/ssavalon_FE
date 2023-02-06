@@ -55,7 +55,6 @@ const GameBoard = () => {
           <ButtonRS content="준비" />
         </div>
       </div>
-      <HalfCircle />
     </>
   );
 };

@@ -1,10 +1,12 @@
 import styles from "./HalfCircle.module.css";
-import VoteCard from "./VoteCard";
+import VoteCardAgree from "./VoteCardAgree";
+import VoteCardDisagree from "./VoteCardDisagree";
 
 const UnderCard = () => {
   return (
     <div className={styles.half_circle}>
-      <VoteCard />
+      <VoteCardAgree />
+      <VoteCardDisagree />
     </div>
   );
 };

@@ -1,10 +1,58 @@
-.card {
+.card_agree {
   position: relative;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  height: 250px;
   background-color: #fff;
   color: #000;
+  font-weight: bold;
+  width: 15rem;
+  height: 23rem;
+  filter: drop-shadow(5px 5px 5px #000);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  transform: translate(-40%, 0) rotate(-15deg) translate(0, -45%);
+  transition: transform 0.25s ease-out;
+  border-radius: 1.25rem;
+}
+
+.card_agree .card_content_agree p {
+  text-align: center;
+}
+
+.card_disagree {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+  width: 15rem;
+  height: 23rem;
+  filter: drop-shadow(5px 5px 5px #000);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  transform: translate(-30%, 0) rotate(15deg) translate(0, -45%);
+  transition: transform 0.25s ease-out;
+  border-radius: 1.25rem;
+  z-index: 2;
+}
+
+.card_disagree .card_content_disagree p {
+  text-align: center;
+}
+
+@media (max-width: 684px) {
+  .card_agree,
+  .card_disagree {
+    width: 11rem;
+    height: 18rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card_agree,
+  .card_disagree {
+    width: 150px;
+    height: 250px;
+  }
 }
