@@ -1,10 +1,13 @@
 .container {
-  /* width: 1400px; */
-  max-width: 80%;
-  margin: 0 10%;
+  width: 1300px;
+  height: 70vh;
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 10px 0px 10px 0px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 .createButton {
@@ -25,4 +28,22 @@
 
 .guickStart:hover {
   cursor: pointer;
+}
+
+.roleDescButton {
+  float: left;
+  width: 20px;
+  height: 10%;
+  color: white;
+  border: 1px solid red;
+}
+
+.container::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #121212;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #aaa;
 }
