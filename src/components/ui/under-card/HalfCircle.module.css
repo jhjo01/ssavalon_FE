@@ -1,0 +1,12 @@
+.half_circle {
+  width: 300px;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: red;
+  border-top-right-radius: 100%;
+  border-top-left-radius: 100%;
+  transition: all 1s;
+}

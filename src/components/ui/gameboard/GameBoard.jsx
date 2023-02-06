@@ -2,6 +2,7 @@ import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../button/ButtonRS";
+import HalfCircle from "../under-card/HalfCircle";
 
 const GameBoard = () => {
   const peoples = [
@@ -40,19 +41,22 @@ const GameBoard = () => {
   ];
 
   return (
-    <div
-      className={styles.game_table}
-      style={{ backgroundImage: `url(${GameBoardImage})` }}
-    >
-      <div className={styles.game_table_settings}>
-        {peoples.map((people) => (
-          <AvatarImage people={people} key={people.id} />
-        ))}
+    <>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
+        <div className={styles.game_table_settings}>
+          {peoples.map((people) => (
+            <AvatarImage people={people} key={people.id} />
+          ))}
+        </div>
+        <div className={styles.game_table_buttons}>
+          <ButtonRS content="준비" />
+        </div>
       </div>
-      <div className={styles.game_table_buttons}>
-        <ButtonRS content="준비" />
-      </div>
-    </div>
+      <HalfCircle />
+    </>
   );
 };
 
