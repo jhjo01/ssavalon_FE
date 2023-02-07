@@ -4,7 +4,7 @@ import RoomModal from "../ui/modal/RoomCreateModal";
 import ButtonPrimary from "../ui/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import JoinModal from "../ui/modal/RoomJoinModal";
-import roomList from "../../dummy/roomList";
+// import roomList from "../../dummy/roomList";
 import LoopIcon from "@mui/icons-material/Loop";
 
 import styles from "./Lobby.module.css";
@@ -14,12 +14,12 @@ const Lobby = () => {
   const [modal, setModal] = useState();
   const [roomInfo, setRoomInfo] = useState(null);
   const { rooms, error, loading } = useGetRoom("game/rooms");
-  const joinRoom = (props) => {
-    if (props === "err") {
-      setModal("err");
-      return;
-    }
-  };
+  // const joinRoom = (props) => {
+  //   if (props === "err") {
+  //     setModal("err");
+  //     return;
+  //   }
+  // };
 
   const setModalHandler = (props) => {
     if (props.target !== undefined) {
