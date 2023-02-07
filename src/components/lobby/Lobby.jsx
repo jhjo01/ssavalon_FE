@@ -14,7 +14,6 @@ const Lobby = () => {
   const [modal, setModal] = useState();
   const [roomInfo, setRoomInfo] = useState(null);
   const { rooms, error, loading } = useGetRoom("game/rooms");
-  console.log(rooms);
   const joinRoom = (props) => {
     if (props === "err") {
       setModal("err");
@@ -23,7 +22,6 @@ const Lobby = () => {
   };
 
   const setModalHandler = (props) => {
-    // console.log(props);
     if (props.target !== undefined) {
       if (props.target.value === "create") {
         setModal("create");
@@ -86,7 +84,7 @@ const Lobby = () => {
 
       <div className={styles.container}>
         {rooms.map((room) => (
-          <RoomCard room={room} />
+          <RoomCard room={room} key={room.roomId} />
         ))}
       </div>
       {modal === "err" && <ErrModal onConfirm={modalHandler} />}
