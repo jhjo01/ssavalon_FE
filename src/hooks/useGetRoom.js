@@ -12,6 +12,7 @@ export const useGetRoom = (url) => {
       try {
         const room = await axios.get(`${API_END_POINT}/${url}`);
         setRooms(room.data);
+        // console.log(room);
       } catch (error) {
         setError(error);
       } finally {

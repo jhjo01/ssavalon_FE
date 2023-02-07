@@ -1,34 +1,38 @@
 const gameLog = {
   1: [
     {
-      playerName: "user1",
+      playerName: "김진호",
+      vote: true,
+      jury: true,
+    },
+    {
+      playerName: "이진욱",
+      vote: true,
+      leader: true,
+    },
+    {
+      playerName: "한상준",
       vote: true,
     },
     {
-      playerName: "user2",
+      playerName: "임경찬",
+        vote: true,
+        jury: true,
+    },
+    {
+      playerName: "김민식",
       vote: true,
     },
     {
-      playerName: "user3",
-      vote: true,
-    },
-    {
-      playerName: "user4",
-      vote: true,
-    },
-    {
-      playerName: "user5",
-      vote: true,
-    },
-    {
-      playerName: "user6",
+      playerName: "조재형",
       vote: false,
     },
   ],
   2: [
     {
       playerName: "user1",
-      vote: false,
+          vote: false,
+          jury: true,
     },
     {
       playerName: "user2",
@@ -37,18 +41,22 @@ const gameLog = {
     {
       playerName: "user3",
       vote: true,
+        leader: true,
+        jury: true,
     },
     {
       playerName: "user4",
-      vote: true,
+      vote: false,
     },
     {
       playerName: "user5",
-      vote: true,
+        vote: true,
+        jury: true,
     },
     {
       playerName: "user6",
-      vote: true,
+        vote: true,
+        jury: true,
     },
   ],
 };
