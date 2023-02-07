@@ -8,11 +8,13 @@ import roomList from "../../dummy/roomList";
 import LoopIcon from "@mui/icons-material/Loop";
 
 import styles from "./Lobby.module.css";
+import { useGetRoom } from "./../../hooks/index";
 
 const Lobby = () => {
   const [modal, setModal] = useState();
   const [roomInfo, setRoomInfo] = useState(null);
-
+  const { rooms, error, loading } = useGetRoom("game/rooms");
+  console.log(rooms);
   const joinRoom = (props) => {
     if (props === "err") {
       setModal("err");
@@ -42,25 +44,35 @@ const Lobby = () => {
     setModal(null);
   };
 
-  const showRoomList = () => {
-    const standby = [];
-    const active = [];
+  // const showRoomList = () => {
+  //   const standby = [];
+  //   const active = [];
 
-    for (let i = 0; i < roomList.length; i++) {
-      if (roomList[i].standby === true) {
-        standby.push(
-          <RoomCard key={i} value="join" roomInfo={roomList[i]} onRoomClick={setModalHandler} />
-        );
-      } else {
-        active.push(
-          <RoomCard key={i} value="join" roomInfo={roomList[i]} onRoomClick={setModalHandler} />
-        );
-      }
-    }
-    const result = [...standby, active];
+  //   for (let i = 0; i < roomList.length; i++) {
+  //     if (roomList[i].standby === true) {
+  //       standby.push(
+  //         <RoomCard
+  //           key={i}
+  //           value="join"
+  //           roomInfo={roomList[i]}
+  //           onRoomClick={setModalHandler}
+  //         />
+  //       );
+  //     } else {
+  //       active.push(
+  //         <RoomCard
+  //           key={i}
+  //           value="join"
+  //           roomInfo={roomList[i]}
+  //           onRoomClick={setModalHandler}
+  //         />
+  //       );
+  //     }
+  //   }
+  //   const result = [...standby, active];
 
-    return result;
-  };
+  //   return result;
+  // };
 
   return (
     <>
@@ -72,7 +84,11 @@ const Lobby = () => {
         </ButtonPrimary>
       </div>
 
-      <div className={styles.container}>{showRoomList()}</div>
+      <div className={styles.container}>
+        {rooms.map((room) => (
+          <RoomCard room={room} />
+        ))}
+      </div>
       {modal === "err" && <ErrModal onConfirm={modalHandler} />}
       {modal === "create" && <RoomModal onConfirm={modalHandler} />}
       {modal === "join" && roomInfo !== null && (
