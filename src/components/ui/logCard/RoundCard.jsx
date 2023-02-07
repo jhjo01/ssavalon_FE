@@ -7,13 +7,7 @@ const RoundCard = (props) => {
   const resultCard = () => {
     const result = [];
     for (let i = 0; i < props.roundLog.length; i++) {
-      result.push(
-        <PlayerCard
-          key={i}
-          vote={props.roundLog[i].vote}
-          playerName={props.roundLog[i].playerName}
-        />
-      );
+      result.push(<PlayerCard key={i} data={props.roundLog[i]} />);
     }
     return result;
   };
