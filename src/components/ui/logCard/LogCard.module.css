@@ -21,6 +21,7 @@
   font-size: 0.7rem;
   border: 1px solid black;
   border-radius: 3px;
+  text-align: center;
 }
 
 .result {
@@ -30,21 +31,33 @@
   height: 80%;
 
   padding: 5px 5px 5px 5px;
-
-  border: 1px solid red;
 }
 
 .player_card {
   width: 15%;
   margin: 0px 0px 0px 0px;
+}
 
-  border: 1px solid yellow;
+.crown {
+  position: absolute;
+  top: -5px;
+  margin: 0px 0px 0px -45px;
+  z-index: 999;
+  transform: scale(0.3);
+}
+
+.jury {
+  position: absolute;
+  top: -28px;
+  margin: 0px 0px 0px -24px;
+  z-index: 999;
+  transform: scale(0.2);
 }
 
 @media (max-width: 684px) {
   .card {
-    width: 330px;
-    height: 100px;
+    width: 320px;
+    height: 110px;
     font-size: 0.5rem;
     padding: 3px 3px 3px 3px;
   }
@@ -53,22 +66,35 @@
   }
   .select_box {
     width: 45px;
-    height: 20px;
+    height: 15px;
     margin: 0px 0px 0px 0px;
     font-size: 0.6rem;
     border: 1px solid black;
     border-radius: 3px;
   }
   .result {
-    height: 75%;
+    height: 80%;
     padding: 3px 3px 3px 3px;
+  }
+  .crown {
+    position: absolute;
+    top: -18px;
+    margin: 0px 0px 0px -47px;
+    transform: scale(0.21);
+  }
+
+  .jury {
+    position: absolute;
+    top: -41px;
+    margin: 0px 0px 0px -39px;
+    transform: scale(0.15);
   }
 }
 
 @media (max-width: 480px) {
   .card {
-    width: 230px;
-    height: 70px;
+    width: 250px;
+    height: 80px;
     font-size: 0.5rem;
     padding: 1px 1px 1px 1px;
   }
@@ -85,5 +111,17 @@
   .result {
     height: 75%;
     padding: 1px 1px 1px 1px;
+  }
+  .crown {
+    top: -26px;
+    margin: 0px 0px 0px -50px;
+    transform: scale(0.16);
+  }
+
+  .jury {
+    position: absolute;
+    top: -51px;
+    margin: 0px 0px 0px -45px;
+    transform: scale(0.1);
   }
 }
