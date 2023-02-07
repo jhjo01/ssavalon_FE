@@ -1,6 +1,6 @@
 import styles from "./CardBack.module.css";
 
-const CardBack = () => {
+const CardBack = (props) => {
   return (
     <section className={styles.card_back_wrapper}>
       <div className={styles.card}>

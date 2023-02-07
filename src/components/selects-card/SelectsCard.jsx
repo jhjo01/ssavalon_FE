@@ -1,7 +1,7 @@
 import CardBack from "../ui/card-back/CardBack";
-import styles from "./SelectCard.module.css";
+import styles from "./SelectsCard.module.css";
 
-const SelectCard = () => {
+const SelectsCard = () => {
   const peoples = [
     {
       id: "1",
@@ -37,7 +37,7 @@ const SelectCard = () => {
     },
   ];
   return (
-    <div className={styles.select}>
+    <div className={styles.selects}>
       {peoples.map((people) => (
         <CardBack />
       ))}
@@ -45,4 +45,4 @@ const SelectCard = () => {
   );
 };
 
-export default SelectCard;
+export default SelectsCard;
