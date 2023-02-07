@@ -23,10 +23,10 @@ const AvatarImage = (props) => {
               style={{ backgroundImage: `url(${AvatarFrame})` }}
             ></div>
             <div className={styles.player_avatar_container}>
-              <div
+              {/* <div
                 className={styles.player_avatar_avatar}
                 style={{ backgroundImage: `url(${CitizenImage})` }}
-              ></div>
+              ></div> */}
             </div>
           </div>
         </div>
