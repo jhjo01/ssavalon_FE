@@ -15,7 +15,7 @@
 }
 
 .header {
-  background: rgb(15, 13, 30);
+  background: #292929;
   padding: 1rem;
 }
 
@@ -26,7 +26,7 @@
 
 .content {
   padding: 1rem;
-  background: rgba(15, 13, 30);
+  background: #292929;
   color: white;
 }
 
@@ -34,19 +34,21 @@
   padding: 1rem;
   display: flex;
   justify-content: flex-end;
-  background: rgba(15, 13, 30);
+  background: #292929;
 }
 
 .input {
   width: 95%;
-  height: 30px;
+  height: 40px;
   background-color: white;
   margin: 5px 0;
   border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 0.5rem;
 }
 
 .form {
-  background-color: rgba(15, 13, 30);
+  background-color: #292929;
   color: white;
   padding: 0px 10px 0px 20px;
 }
