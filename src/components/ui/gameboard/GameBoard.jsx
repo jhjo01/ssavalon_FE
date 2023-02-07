@@ -2,6 +2,7 @@ import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../button/ButtonRS";
+import SelectCard from "../../select-card/SelectCard";
 
 const GameBoard = () => {
   const peoples = [
@@ -54,6 +55,7 @@ const GameBoard = () => {
           <ButtonRS content="준비" />
         </div>
       </div>
+      <SelectCard />
     </>
   );
 };

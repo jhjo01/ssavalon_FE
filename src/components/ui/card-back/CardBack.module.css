@@ -1,10 +1,9 @@
 .card_back_wrapper {
-  position: absolute;
-  top: 70%;
+  position: relative;
   width: 140px;
   height: 190px;
-  z-index: 999;
   transition: transform 0.3s;
+  margin-left: -35px;
 }
 
 .card_back_wrapper:hover {

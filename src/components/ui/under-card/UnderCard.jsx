@@ -1,4 +1,4 @@
-import styles from "./HalfCircle.module.css";
+import styles from "./UnderCard.module.css";
 import VoteCardAgree from "./VoteCardAgree";
 import VoteCardDisagree from "./VoteCardDisagree";
 
