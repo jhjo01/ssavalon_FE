@@ -5,7 +5,6 @@ import styles from "./RoomCard.module.css";
 
 const RoomCard = (props) => {
   const { room } = props;
-
   // const roomNo = props.roomInfo.roomNo;  // props.roomNo
   // const title = props.roomInfo.title; // props.title
   // const disable = props.standby === true ? false : true;
@@ -28,7 +27,7 @@ const RoomCard = (props) => {
     <Link to={`/game/${room.roomId}`} className={styles.room_link}>
       <div className={styles.card}>
         <header className={styles.header}>
-          <h3>{props.roomId}. 방 제목</h3>
+          <h3>{room.name}</h3>
           {/* <div className={styles.lockIcon}>{props.roomInfo.isLock && <LockIcon />}</div> */}
           <div className={styles.lockIcon}>
             <LockIcon />
