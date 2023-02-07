@@ -4,21 +4,20 @@ import LockIcon from "@mui/icons-material/Lock";
 import styles from "./RoomCard.module.css";
 
 const RoomCard = (props) => {
-  console.log(props);
   // const roomNo = props.roomInfo.roomNo; // props.roomNo
   // const title = props.roomInfo.title; // props.title
   // const disable = props.standby === true ? false : true;
 
-  const onRoomClick = () => {
-    if (props.onRoomClick === undefined) {
-      return;
-    }
-    if (props.roomInfo.isLock === true) {
-      props.onRoomClick(props.roomInfo);
-      return;
-    }
-    props.onRoomClick(props.value);
-  };
+  // const onRoomClick = () => {
+  //   if (props.onRoomClick === undefined) {
+  //     return;
+  //   }
+  //   if (props.roomInfo.isLock === true) {
+  //     props.onRoomClick(props.roomInfo);
+  //     return;
+  //   }
+  //   props.onRoomClick(props.value);
+  // };
 
   return (
     // <div className={styles.card } onClick={onRoomClick}>

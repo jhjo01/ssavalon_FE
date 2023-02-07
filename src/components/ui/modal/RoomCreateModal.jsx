@@ -6,6 +6,10 @@ import ButtonDanger from "../button/ButtonDanger";
 import Backdrop from "./Backdrop";
 
 import styles from "./Modal.module.css";
+import axios from "axios";
+import { API_END_POINT } from "../../../constants";
+
+// import { createRoom } from "../../../hooks/createRoom";
 
 const ModalOverlay = (props) => {
     const [lock, setLock] = useState(false);
@@ -26,9 +30,7 @@ const ModalOverlay = (props) => {
 
     const createRoomHandler = (event) => {
         event.preventDefault();
-
         const enteredTitle = titleInputRef.current.value;
-
         if (enteredTitle.length < 1) {
             setErrHandler("title");
             return;
@@ -40,14 +42,30 @@ const ModalOverlay = (props) => {
                 setErrHandler("pwd");
                 return;
             }
-
+            // createRoom("/game/room", { enteredTitle });
+            
             titleInputRef.current.value = "";
+            
         }
 
+        const createUrl = API_END_POINT + "/game/room";
+
+        const form = new FormData()
+        form.append('name', enteredTitle)
+
+        axios.post(createUrl, form)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        // createRoom("/game/room", { enteredTitle});
         titleInputRef.current.value = "";
 
         props.onConfirm();
     };
+
 
     return (
         <div className={styles.modal}>
