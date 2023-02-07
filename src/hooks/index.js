@@ -1,0 +1,1 @@
+export { useGetRoom } from "./useGetRoom";
