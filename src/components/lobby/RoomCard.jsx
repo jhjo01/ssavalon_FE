@@ -4,9 +4,8 @@ import LockIcon from "@mui/icons-material/Lock";
 import styles from "./RoomCard.module.css";
 
 const RoomCard = (props) => {
-  console.log(props);
-  // const roomNo = props.roomInfo.roomNo; // props.roomNo
-  // const title = props.roomInfo.title; // props.title
+  const roomNo = props.roomInfo.roomNo; // props.roomNo
+  const title = props.roomInfo.title; // props.title
   // const disable = props.standby === true ? false : true;
 
   const onRoomClick = () => {
@@ -23,17 +22,16 @@ const RoomCard = (props) => {
   return (
     // <div className={styles.card } onClick={onRoomClick}>
     // <div className={`${styles.card} ${disable && styles.card_disable}`} onClick={onRoomClick}>
-    // <div className={props.roomInfo.standby === true ? styles.card : styles.activeCard} onClick={props.roomInfo.standby === true ? onRoomClick : null}>
-    <div className={styles.card}>
+    <div className={props.roomInfo.standby === true ? styles.card : styles.activeCard} onClick={props.roomInfo.standby === true ? onRoomClick : null}>
+
       <header className={styles.header}>
-        <h3>{props.roomId}. 방 제목</h3>
-        {/* <div className={styles.lockIcon}>{props.roomInfo.isLock && <LockIcon />}</div> */}
-        <div className={styles.lockIcon}>
-          <LockIcon />
-        </div>
+        <h3>
+          {roomNo}. {title}
+        </h3>
+        <div className={styles.lockIcon}>{props.roomInfo.isLock && <LockIcon />}</div>
       </header>
 
-      <footer className={styles.actions}>4/6</footer>
+      <footer className={styles.actions}>{props.roomInfo.numOfPeople}/6</footer>
     </div>
   );
 };
