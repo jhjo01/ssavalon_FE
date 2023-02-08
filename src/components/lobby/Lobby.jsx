@@ -14,6 +14,7 @@ const Lobby = () => {
   const [modal, setModal] = useState();
   const [roomInfo, setRoomInfo] = useState(null);
   const { rooms, error, loading } = useGetRoom("game/rooms");
+
   // const joinRoom = (props) => {
   //   if (props === "err") {
   //     setModal("err");
