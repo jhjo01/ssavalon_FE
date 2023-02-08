@@ -46,7 +46,7 @@ const CreateRoomModal = () => {
   };
 
   const handleCloseModal = () => {
-    dispatch(closeModal({ type: "createRoomModal", isOpen: false }));
+    dispatch(closeModal({ type: "CreateRoomModal", isOpen: false }));
   };
 
   const handleCreateRoom = async (event) => {
@@ -56,7 +56,7 @@ const CreateRoomModal = () => {
     form.append("password", roomInfo.password);
     const res = await createRoom(form);
     if (res.status === 200) {
-      dispatch(closeModal({ type: "createRoomModal", isOpen: false }));
+      dispatch(closeModal({ type: "CreateRoomModal", isOpen: false }));
       navigate(`/game/${res.data.roomId}`);
     } else return;
   };
