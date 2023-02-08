@@ -1,19 +1,38 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getRoom } from "../../store/room";
 import ErrModal from "../ui/modal/ErrorModal";
 import RoomModal from "../ui/modal/RoomCreateModal";
 import ButtonPrimary from "../ui/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import JoinModal from "../ui/modal/RoomJoinModal";
-// import roomList from "../../dummy/roomList";
 import LoopIcon from "@mui/icons-material/Loop";
 
 import styles from "./Lobby.module.css";
-import { useGetRoom } from "./../../hooks/index";
+import ErrorModal from "../ui/modal/ErrorModal";
+import { CircularProgress } from "@mui/material";
 
 const Lobby = () => {
+  const dispatch = useDispatch();
+  const status = useSelector((state) => {
+    return state.room.status;
+  });
+  const rooms = useSelector((state) => {
+    return state.room.rooms;
+  });
+
+  const handleRefreshRoomList = () => {
+    dispatch(getRoom());
+  };
+
   const [modal, setModal] = useState();
   const [roomInfo, setRoomInfo] = useState(null);
-  const { rooms, error, loading } = useGetRoom("game/rooms");
+  // const { rooms, error, loading } = useGetRoom("game/rooms");
+  useEffect(() => {
+    dispatch(getRoom());
+
+    return () => {};
+  }, [dispatch]);
 
   // const joinRoom = (props) => {
   //   if (props === "err") {
@@ -43,51 +62,34 @@ const Lobby = () => {
     setModal(null);
   };
 
-  // const showRoomList = () => {
-  //   const standby = [];
-  //   const active = [];
-
-  //   for (let i = 0; i < roomList.length; i++) {
-  //     if (roomList[i].standby === true) {
-  //       standby.push(
-  //         <RoomCard
-  //           key={i}
-  //           value="join"
-  //           roomInfo={roomList[i]}
-  //           onRoomClick={setModalHandler}
-  //         />
-  //       );
-  //     } else {
-  //       active.push(
-  //         <RoomCard
-  //           key={i}
-  //           value="join"
-  //           roomInfo={roomList[i]}
-  //           onRoomClick={setModalHandler}
-  //         />
-  //       );
-  //     }
-  //   }
-  //   const result = [...standby, active];
-
-  //   return result;
-  // };
-
   return (
     <>
       <div className={styles.createButton}>
-        <LoopIcon className={styles.guickStart} />
+        <LoopIcon
+          className={styles.guickStart}
+          onClick={handleRefreshRoomList}
+        />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
         <ButtonPrimary value="create" onClick={setModalHandler}>
           방만들기
         </ButtonPrimary>
       </div>
 
-      <div className={styles.container}>
-        {rooms.map((room) => (
-          <RoomCard room={room} key={room.roomId} />
-        ))}
-      </div>
+      {status === "Loading" && <CircularProgress color="inherit" />}
+      {status === "complete" && (
+        <div className={styles.container}>
+          {rooms.map((room) => (
+            <RoomCard room={room} key={room.roomId} />
+          ))}
+        </div>
+      )}
+      {status === "fail" && (
+        <ErrorModal
+          title="실패"
+          message="방 목록을 불러오는데 실패했습니다."
+          onConfirm={modalHandler}
+        />
+      )}
       {modal === "err" && <ErrModal onConfirm={modalHandler} />}
       {modal === "create" && <RoomModal onConfirm={modalHandler} />}
       {modal === "join" && roomInfo !== null && (
