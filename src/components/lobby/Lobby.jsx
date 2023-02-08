@@ -1,16 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoom } from "../../store/room";
-import ErrModal from "../ui/modal/ErrorModal";
-import RoomModal from "../ui/modal/RoomCreateModal";
+import ErrorModal from "../ui/modal/ErrorModal";
 import ButtonPrimary from "../ui/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import JoinModal from "../ui/modal/RoomJoinModal";
 import LoopIcon from "@mui/icons-material/Loop";
 
 import styles from "./Lobby.module.css";
-import ErrorModal from "../ui/modal/ErrorModal";
 import { CircularProgress } from "@mui/material";
+import { openModal } from "../../store/modal";
 
 const Lobby = () => {
   const dispatch = useDispatch();
@@ -25,42 +24,14 @@ const Lobby = () => {
     dispatch(getRoom());
   };
 
-  const [modal, setModal] = useState();
-  const [roomInfo, setRoomInfo] = useState(null);
-  // const { rooms, error, loading } = useGetRoom("game/rooms");
+  const handleOpenModal = () => {
+    dispatch(openModal({ type: "CreateRoomModal", isOpen: true }));
+  };
+
   useEffect(() => {
     dispatch(getRoom());
-
     return () => {};
   }, [dispatch]);
-
-  // const joinRoom = (props) => {
-  //   if (props === "err") {
-  //     setModal("err");
-  //     return;
-  //   }
-  // };
-
-  const setModalHandler = (props) => {
-    if (props.target !== undefined) {
-      if (props.target.value === "create") {
-        setModal("create");
-      } else if (props.target.value === "err") {
-        setModal("err");
-      }
-    }
-    if (props.isLock === true) {
-      setRoomInfo(props);
-      setModal("join");
-    } else {
-      // 방입장
-      return;
-    }
-  };
-
-  const modalHandler = () => {
-    setModal(null);
-  };
 
   return (
     <>
@@ -70,7 +41,7 @@ const Lobby = () => {
           onClick={handleRefreshRoomList}
         />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
-        <ButtonPrimary value="create" onClick={setModalHandler}>
+        <ButtonPrimary value="create" onClick={handleOpenModal}>
           방만들기
         </ButtonPrimary>
       </div>
@@ -87,14 +58,12 @@ const Lobby = () => {
         <ErrorModal
           title="실패"
           message="방 목록을 불러오는데 실패했습니다."
-          onConfirm={modalHandler}
+          onClick={() => dispatch(getRoom())}
         />
       )}
-      {modal === "err" && <ErrModal onConfirm={modalHandler} />}
-      {modal === "create" && <RoomModal onConfirm={modalHandler} />}
-      {modal === "join" && roomInfo !== null && (
-        <JoinModal roomInfo={roomInfo} onConfirm={modalHandler} />
-      )}
+      {/* {modal === "err" && <ErrModal />}
+      {modal === "create" && <RoomModal />}
+      {modal === "join" && roomInfo !== null && <JoinModal />} */}
     </>
   );
 };

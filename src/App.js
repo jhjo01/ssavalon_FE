@@ -4,6 +4,7 @@ import Game from "./pages/Game";
 import Index from "./pages/Index";
 import Lobby from "./pages/LobbyPage";
 import Mypage from "./pages/Mypage";
+import GlobalModal from "./container/GlobalModal";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/game/:id" element={<Game />} />
       </Routes>
+      <GlobalModal />
     </Router>
   );
 }

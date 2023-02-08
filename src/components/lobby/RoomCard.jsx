@@ -32,7 +32,9 @@ const RoomCard = (props) => {
     // <div className={props.roomInfo.standby === true ? styles.card : styles.activeCard} onClick={props.roomInfo.standby === true ? onRoomClick : null}>
     <div className={styles.card} onClick={handleLinkGame}>
       <header className={styles.header}>
-        <h3>{room.name}</h3>
+        <h3>
+          {room.roomNum}. {room.name}
+        </h3>
         {/* <div className={styles.lockIcon}>{props.roomInfo.isLock && <LockIcon />}</div> */}
         <div className={styles.lockIcon}>
           <LockIcon />

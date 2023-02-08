@@ -27,5 +27,5 @@ export const roomSlice = createSlice({
     });
   },
 });
-export default roomSlice;
+
 export { getRoom };

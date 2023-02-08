@@ -2,7 +2,6 @@ import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../button/ButtonRS";
-import SelectsCard from "../../selects-card/SelectsCard";
 
 const GameBoard = () => {
   const peoples = [
