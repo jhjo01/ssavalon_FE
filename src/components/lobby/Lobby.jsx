@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoom } from "../../store/room";
-import ErrorModal from "../ui/modal/ErrorModal";
-import ButtonPrimary from "../ui/button/ButtonPrimary";
-import RoomCard from "./RoomCard";
-import JoinModal from "../ui/modal/RoomJoinModal";
-import LoopIcon from "@mui/icons-material/Loop";
-
-import styles from "./Lobby.module.css";
 import { CircularProgress } from "@mui/material";
 import { openModal } from "../../store/modal";
+import ButtonPrimary from "../ui/button/ButtonPrimary";
+import RoomCard from "./RoomCard";
+import LoopIcon from "@mui/icons-material/Loop";
+import styles from "./Lobby.module.css";
+import ErrorModal from "../ui/modal/ErrorModal";
 
 const Lobby = () => {
   const dispatch = useDispatch();
@@ -54,6 +52,7 @@ const Lobby = () => {
           ))}
         </div>
       )}
+
       {status === "fail" && (
         <ErrorModal
           title="실패"

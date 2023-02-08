@@ -4,19 +4,15 @@ import { closeModal, selectorModal } from "./../store/modal";
 import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 import CreateRoomModal from "./../components/ui/modal/CreateRoomModal";
-import ErrorModal from "./../components/ui/modal/ErrorModal";
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",
+  JoinRoomModal: "JoinRoomModal",
 };
 
 const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.CreateRoomModal,
     component: <CreateRoomModal />,
-  },
-  {
-    type: MODAL_TYPES.ErrorModal,
-    component: <ErrorModal />,
   },
 ];
 

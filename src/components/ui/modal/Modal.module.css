@@ -1,8 +1,12 @@
 .card {
   border-radius: 20px;
-  padding: 1rem;
+  padding: 2rem;
   color: white;
   font-size: 1rem;
+}
+
+.card .content {
+  margin-bottom: 10px;
 }
 
 .modal {
@@ -24,13 +28,16 @@
   margin: 10px 0px 0px 0px;
 }
 
+.header h2 {
+  margin-bottom: 10px;
+}
+
 .input {
-  width: 95%;
+  width: 100%;
   height: 40px;
   background-color: white;
   margin: 5px 0;
   border-radius: 5px;
-
   padding: 0.5rem;
 }
 
@@ -39,9 +46,43 @@
   margin: 10px 0px 0px 0px;
 }
 
+.actions button {
+  margin: 0;
+}
+
 .input_errMsg {
   color: red;
   font-size: 1rem;
+}
+
+input#check_btn {
+  display: none;
+}
+
+input#check_btn + label {
+  cursor: pointer;
+}
+
+input#check_btn + label > span {
+  vertical-align: middle;
+  padding-left: 6px;
+}
+
+input#check_btn + label:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgb(244, 47, 47);
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+input#check_btn:checked + label:before {
+  content: "";
+  background-color: rgb(244, 47, 47);
+  border-color: rgb(244, 47, 47);
+  margin-left: 2px;
 }
 
 @media (min-width: 800px) {

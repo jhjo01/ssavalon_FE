@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../store/modal";
 import { createRoom } from "./../../../apis/room";
-import { useNavigate } from "react-router-dom";
 import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonDanger from "../button/ButtonDanger";
 import styles from "./Modal.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateRoomModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [roomInfo, setRoomInfo] = useState({
     title: "",
     password: "",
@@ -20,7 +21,7 @@ const CreateRoomModal = () => {
   });
 
   const [checked, setChecked] = useState(false);
-
+  const [disabled, setDisabled] = useState(false);
   const handleInputChange = (event) => {
     setRoomInfo({ ...roomInfo, [event.target.name]: event.target.value });
   };
@@ -37,8 +38,8 @@ const CreateRoomModal = () => {
 
   const handleIsPasswordValid = () => {
     if (
-      roomInfo.password.trim().length > 4 &&
-      roomInfo.password.trim().length < 8
+      roomInfo.password.trim().length >= 4 &&
+      roomInfo.password.trim().length <= 8
     )
       setIsValid({ ...isValid, password: true });
     else setIsValid({ ...isValid, password: false });
@@ -52,12 +53,19 @@ const CreateRoomModal = () => {
     event.preventDefault();
     const form = new FormData();
     form.append("title", roomInfo.title);
+    form.append("password", roomInfo.password);
     const res = await createRoom(form);
     if (res.status === 200) {
       dispatch(closeModal({ type: "createRoomModal", isOpen: false }));
       navigate(`/game/${res.data.roomId}`);
     } else return;
   };
+
+  useEffect(() => {
+    if (isValid.title && isValid.password) setDisabled(false);
+    else if (isValid.title && !checked) setDisabled(false);
+    else setDisabled(true);
+  }, [isValid, checked]);
 
   return (
     <div className={styles.modal}>
@@ -73,6 +81,11 @@ const CreateRoomModal = () => {
             onChange={handleInputChange}
             onBlur={handleIsTitleValid}
           />
+          {!isValid.title && (
+            <p className={styles.input_errMsg}>
+              방 이름은 4글자 이상 8글자 이하로 설정해주세요.
+            </p>
+          )}
 
           {checked && (
             <div>
@@ -87,25 +100,28 @@ const CreateRoomModal = () => {
                 onBlur={handleIsPasswordValid}
                 autoComplete="off"
               />
+              {!isValid.password && (
+                <p className={styles.input_errMsg}>
+                  방 비밀번호는 4글자 이상 8글자 이하로 설정해주세요.
+                </p>
+              )}
             </div>
           )}
-          {!isValid.title && (
-            <p className={styles.input_errMsg}>
-              방 이름은 4글자 이상 8글자 이하로 설정해주세요.
-            </p>
-          )}
-
-          <label>
+          <div className={styles.check_wrap}>
             <input
+              id={styles.check_btn}
               type="checkbox"
               checked={checked}
               onChange={handleCheckedChange}
             />
-            비밀방
-          </label>
-
+            <label htmlFor={styles.check_btn}>
+              <span>비밀방</span>
+            </label>
+          </div>
           <div className={styles.button_area}>
-            <ButtonPrimary type="submit">만들기</ButtonPrimary>
+            <ButtonPrimary type="submit" disabled={disabled}>
+              만들기
+            </ButtonPrimary>
             <ButtonDanger type="reset" onClick={handleCloseModal}>
               취소
             </ButtonDanger>

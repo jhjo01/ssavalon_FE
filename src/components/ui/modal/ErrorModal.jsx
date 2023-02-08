@@ -1,15 +1,14 @@
 import React from "react";
 import styles from "./Modal.module.css";
 import ButtonPrimary from "../button/ButtonPrimary";
-import { Backdrop } from "@mui/material";
+import Backdrop from "./Backdrop";
 import { createPortal } from "react-dom";
 const ErrorModal = (props) => {
   const { title, message, onClick } = props;
-
   return (
     <>
       {createPortal(
-        <Backdrop onConfirm={props.onConfirm} />,
+        <Backdrop onClick={onClick} />,
         document.getElementById("backdrop-root")
       )}
       {createPortal(
