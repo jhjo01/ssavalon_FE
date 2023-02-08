@@ -1,5 +1,8 @@
 .card {
   border-radius: 20px;
+  padding: 1rem;
+  color: white;
+  font-size: 1rem;
 }
 
 .modal {
@@ -12,29 +15,13 @@
   overflow: hidden;
   margin: auto;
   border-radius: 10px;
+  background-color: #292929;
 }
 
-.header {
-  background: #292929;
-  padding: 1rem;
-}
-
-.header h2 {
-  margin: 0;
-  color: white;
-}
-
-.content {
-  padding: 1rem;
-  background: #292929;
-  color: white;
-}
-
-.actions {
-  padding: 1rem;
+.button_area {
   display: flex;
   justify-content: flex-end;
-  background: #292929;
+  margin: 10px 0px 0px 0px;
 }
 
 .input {
@@ -43,19 +30,18 @@
   background-color: white;
   margin: 5px 0;
   border-radius: 5px;
-  font-size: 1.1rem;
+
   padding: 0.5rem;
 }
 
 .form {
-  background-color: #292929;
   color: white;
-  padding: 0px 10px 0px 20px;
+  margin: 10px 0px 0px 0px;
 }
 
-.inputErrMsg {
+.input_errMsg {
   color: red;
-  font-size: 0.5rem;
+  font-size: 1rem;
 }
 
 @media (min-width: 800px) {
@@ -67,5 +53,17 @@
 @media (max-width: 500px) {
   .modal {
     width: 70%;
+  }
+  .inputErrMsg {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .card {
+    font-size: 0.7rem;
+  }
+  .inputErrMsg {
+    font-size: 0.5rem;
   }
 }
