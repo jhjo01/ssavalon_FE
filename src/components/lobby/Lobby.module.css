@@ -1,6 +1,6 @@
 .container {
   width: 1300px;
-  height: 70vh;
+  height: 760px;
   max-width: 95%;
   margin: 0 auto;
   padding: 10px 0px 10px 0px;
@@ -43,6 +43,12 @@
 
 .container::-webkit-scrollbar-thumb {
   background: #aaa;
+}
+
+@media (max-height: 1000px) {
+  .container {
+    height: 75vh;
+  }
 }
 
 @media (max-width: 1046px) {

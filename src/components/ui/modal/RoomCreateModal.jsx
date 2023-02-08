@@ -6,10 +6,7 @@ import ButtonDanger from "../button/ButtonDanger";
 import Backdrop from "./Backdrop";
 
 import styles from "./Modal.module.css";
-import axios from "axios";
-import { API_END_POINT } from "../../../constants";
-
-// import { createRoom } from "../../../hooks/createRoom";
+import { createRoom } from "../../../apis/room";
 
 const ModalOverlay = (props) => {
   const [lock, setLock] = useState(false);
@@ -42,25 +39,14 @@ const ModalOverlay = (props) => {
         setErrHandler("pwd");
         return;
       }
-      // createRoom("/game/room", { enteredTitle });
 
       titleInputRef.current.value = "";
     }
 
-    const createUrl = API_END_POINT + "/game/room";
-
     const form = new FormData();
     form.append("name", enteredTitle);
+    const res = createRoom(form); // 방만들기 요청
 
-    axios
-      .post(createUrl, form)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // createRoom("/game/room", { enteredTitle});
     titleInputRef.current.value = "";
 
     props.onConfirm();
