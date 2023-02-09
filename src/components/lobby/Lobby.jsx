@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRoom } from "../../store/room";
 import { CircularProgress } from "@mui/material";
 import { openModal } from "../../store/modal";
-import ButtonPrimary from "../ui/button/ButtonPrimary";
+import ButtonPrimary from "../common/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import LoopIcon from "@mui/icons-material/Loop";
 import styles from "./Lobby.module.css";
-import ErrorModal from "../ui/modal/ErrorModal";
+import ErrorModal from "../common/modal/ErrorModal";
 
 const Lobby = () => {
   const dispatch = useDispatch();

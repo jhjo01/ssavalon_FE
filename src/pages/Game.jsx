@@ -1,8 +1,8 @@
 import styles from "./Game.module.css";
 import BackgroundImage from "../assets/images/image-background.png";
-import GameBoard from "../components/ui/gameboard/GameBoard";
+import GameBoard from "../components/game/gameboard/GameBoard";
 import VoiceChat from "../components/openVidu/VoiceChat";
-import Role from "./../components/ui/roleDesc/Role";
+import Role from "./../components/game/roleDesc/Role";
 import React from "react";
 import { useLocation } from "react-router-dom";
 const Game = () => {

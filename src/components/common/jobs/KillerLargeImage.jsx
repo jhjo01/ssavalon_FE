@@ -1,5 +1,5 @@
 import KillerImage from "../../../assets/images/image-killer-circle.png";
-import styles from "./jobs.module.css";
+import styles from "./Jobs.module.css";
 
 const KillerLargeImage = () => {
   return (

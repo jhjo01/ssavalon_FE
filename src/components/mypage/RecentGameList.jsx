@@ -1,7 +1,7 @@
 import styles from "./RecentGameList.module.css";
-import PoliceXsImage from "./../ui/jobs/PoliceXsImage";
-import CitizenXsImage from "../ui/jobs/CitizenXsImage";
-import KillerXsImage from "../ui/jobs/KillerXsImage";
+import PoliceXsImage from "./../common/jobs/PoliceXsImage";
+import CitizenXsImage from "../common/jobs/CitizenXsImage";
+import KillerXsImage from "../common/jobs/KillerXsImage";
 const RecentGameList = (props) => {
   const background = props.win ? styles.win : styles.lose;
   const vertical = props.win ? styles.win_line : styles.lose_line;

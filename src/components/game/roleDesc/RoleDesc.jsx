@@ -4,9 +4,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
 import PoliceImage from "../../../assets/images/image-police-circle.png";
 import KillerImage from "../../../assets/images/image-killer-circle.png";
-import CitizenLargeImage from "./../jobs/CitizenLargeImage";
-import PoliceLargeImage from "../jobs/PoliceLargeImage";
-import KillerLargeImage from "./../jobs/KillerLargeImage";
+import CitizenLargeImage from "../../common/jobs/CitizenLargeImage";
+import PoliceLargeImage from "../../common/jobs/PoliceLargeImage";
+import KillerLargeImage from "../../common/jobs/KillerLargeImage";
 
 const RoleDesc = (props) => {
   const { swipe, handleChangeSwipe } = props;

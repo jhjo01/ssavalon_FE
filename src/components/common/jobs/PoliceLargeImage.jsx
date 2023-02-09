@@ -1,5 +1,5 @@
 import PoliceImage from "../../../assets/images/image-police-circle.png";
-import styles from "./jobs.module.css";
+import styles from "./Jobs.module.css";
 
 const PoliceLargeImage = () => {
   return (

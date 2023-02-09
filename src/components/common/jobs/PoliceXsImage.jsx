@@ -1,4 +1,4 @@
-import styles from "./jobs.module.css";
+import styles from "./Jobs.module.css";
 import PoliceImage from "../../../assets/images/image-police.png";
 const PoliceXsImage = () => {
   return (

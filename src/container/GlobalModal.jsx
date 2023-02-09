@@ -1,11 +1,11 @@
-import Backdrop from "../components/ui/modal/Backdrop";
+import Backdrop from "../components/common/modal/Backdrop";
 import { useSelector } from "react-redux";
 import { closeModal, selectorModal } from "./../store/modal";
 import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
-import CreateRoomModal from "./../components/ui/modal/CreateRoomModal";
-import JoinRoomModal from "./../components/ui/modal/JoinRoomModal";
-import LogCard from "../components/ui/logCard/LogCard";
+import CreateRoomModal from "./../components/common/modal/CreateRoomModal";
+import JoinRoomModal from "./../components/common/modal/JoinRoomModal";
+import LogCard from "../components/game/logCard/LogCard";
 
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",

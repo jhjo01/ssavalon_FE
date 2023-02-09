@@ -1,5 +1,5 @@
 import { useState } from "react";
-import RoleDesc from "../roleDesc/RoleDesc";
+import RoleDesc from "./RoleDesc";
 import styles from "./Role.module.css";
 
 const Role = () => {

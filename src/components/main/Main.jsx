@@ -1,6 +1,6 @@
 // import { Link } from "react-router-dom";
 import Background from "../../assets/images/image-main-background.png";
-import LoginButton from "../ui/login/LoginButton";
+import LoginButton from "../common/login/LoginButton";
 import styles from "./Main.module.css";
 
 const Main = () => {

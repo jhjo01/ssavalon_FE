@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import { useState, useRef, useEffect } from "react";
 import SockJS from "sockjs-client";
 import * as StompJs from "@stomp/stompjs";
-import { API_END_POINT } from "./../../../constants/index";
+import { API_END_POINT } from "../../../constants/index";
 import { useDispatch } from "react-redux";
 import { updateRoom } from "../../../store/roomAndPlayer";
 

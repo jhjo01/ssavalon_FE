@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useValidTitleAndPassword } from "../../../hooks/userInput";
 
 const roomInfo = { title: "", password: "" };
-const roomValid = { title: true, password: true };
+const roomValid = { title: false, password: false };
 const CreateRoomModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

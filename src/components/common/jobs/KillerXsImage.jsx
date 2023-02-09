@@ -1,4 +1,4 @@
-import styles from "./jobs.module.css";
+import styles from "./Jobs.module.css";
 import KillerImage from "../../../assets/images/image-killer.png";
 const KillerXsImage = () => {
   return (

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
-import ButtonRS from "../button/ButtonRS";
+import ButtonRS from "../../common/button/ButtonRS";
 import RoundLog from "../logCard/RoundLog";
 import { getRoundLog } from "../../../store/roundLog";
 import SocketTest from "./SocketTest";

@@ -1,5 +1,5 @@
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
-import styles from "./jobs.module.css";
+import styles from "./Jobs.module.css";
 
 const CitizenLargeImage = () => {
   return (

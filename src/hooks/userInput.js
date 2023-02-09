@@ -34,11 +34,19 @@ export const useValidTitleAndPassword = (roomInfo, roomValid) => {
   const [disabled, setDisabled] = useState(true);
 
   const handleInputChange = (event) => {
+    if (event.target.value.length >= 4 && event.target.value.length <= 8) {
+      setIsValid({ ...value, [event.target.name]: true });
+    } else {
+      setIsValid({ ...value, [event.target.name]: false });
+    }
     setValue({ ...value, [event.target.name]: event.target.value });
   };
 
   const handleCheckedChange = () => {
     setChecked(!checked);
+    if (!checked) {
+      setIsValid({ ...value, [value.password]: false });
+    }
   };
 
   const handleIsTitleValid = () => {
