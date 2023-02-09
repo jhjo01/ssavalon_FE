@@ -7,6 +7,7 @@ import ButtonRS from "../button/ButtonRS";
 import SelectsCard from "../../selects-card/SelectsCard";
 import LogCard from "../logCard/LogCard";
 import { getRoundLog } from "../../../store/roundLog";
+import SocketTest from "./SocketTest";
 
 const GameBoard = () => {
   const [selectedRound, setSelectedRound] = useState(null);
@@ -61,7 +62,10 @@ const GameBoard = () => {
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
           {peoples.map((people) => (
             <AvatarImage people={people} key={people.id} />
@@ -75,6 +79,7 @@ const GameBoard = () => {
         </div>
       </div>
       {isLogShow && <LogCard round={selectedRound} gameLog={gameLog} />}
+      <SocketTest />
     </>
   );
 };

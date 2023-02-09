@@ -8,7 +8,6 @@ const RoomCard = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { room } = props;
-  console.log(room);
   const handleLinkGame = () => {
     if (!room.lock) navigate(`/game/${room.roomId}`);
     else {
