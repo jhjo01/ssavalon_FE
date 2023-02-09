@@ -11,9 +11,11 @@ import ErrorModal from "../ui/modal/ErrorModal";
 
 const Lobby = () => {
   const dispatch = useDispatch();
+
   const status = useSelector((state) => {
     return state.room.status;
   });
+
   const rooms = useSelector((state) => {
     return state.room.rooms;
   });
@@ -23,7 +25,9 @@ const Lobby = () => {
   };
 
   const handleOpenModal = () => {
-    dispatch(openModal({ type: "CreateRoomModal", isOpen: true }));
+    dispatch(
+      openModal({ type: "CreateRoomModal", isOpen: true, title: "방만들기" })
+    );
   };
 
   useEffect(() => {

@@ -11,7 +11,13 @@ const RoomCard = (props) => {
   const handleLinkGame = () => {
     if (!room.lock) navigate(`/game/${room.roomNum}`, {state: {roomId: room.roomId}});
     else {
-      dispatch(openModal({ type: "JoinRoomModal", isOpen: false }));
+      dispatch(
+        openModal({
+          type: "JoinRoomModal",
+          isOpen: false,
+          title: `${room.title}`,
+        })
+      );
     }
   };
   return (
