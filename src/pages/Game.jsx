@@ -13,7 +13,6 @@ const Game = () => {
     >
       <GameBoard />
       <Role />
-      <LogCard round={1} />
     </div>
   );
 };

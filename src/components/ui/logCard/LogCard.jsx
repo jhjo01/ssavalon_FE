@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import CloseIcon from "@mui/icons-material/Close";
 import RoundCard from "./RoundCard";
 
-import gameLog from "../../../dummy/gameLog";
-
 import styles from "./LogCard.module.css";
 
 const LogCard = (props) => {
-  // console.log(props);
-  // console.log(Object.keys(gameLog).length);
-  // console.log(Object.keys(gameLog.round).length);
+  const gameLog = props.gameLog;
 
   const round = props.round;
 
@@ -37,7 +33,7 @@ const LogCard = (props) => {
           ))}
         </select>
         <h3>
-          유죄 {gameLog.result.succes} vs {gameLog.result.fail} 무죄
+          유죄 {gameLog.result.success} vs {gameLog.result.fail} 무죄
         </h3>
         <div className={styles.close_button}>
           <CloseIcon />
