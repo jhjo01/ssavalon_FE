@@ -5,24 +5,10 @@ import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../button/ButtonRS";
 import SelectsCard from "../../selects-card/SelectsCard";
-import LogCard from "../logCard/LogCard";
-import { getRoundLog } from "../../../store/roundLog";
+import RoundLog from "../logCard/RoundLog";
 
 const GameBoard = () => {
   const [selectedRound, setSelectedRound] = useState(null);
-  const [isLogShow, setIsLogShow] = useState(false);
-
-  const dispatch = useDispatch();
-
-  const gameLog = useSelector((state) => {
-    return state.roundLog.result;
-  });
-
-  const logShowHandler = async (event) => {
-    await dispatch(getRoundLog(event.target.value));
-    setSelectedRound(event.target.value);
-    setIsLogShow(!isLogShow);
-  };
 
   const peoples = [
     {
@@ -67,14 +53,13 @@ const GameBoard = () => {
             <AvatarImage people={people} key={people.id} />
           ))}
         </div>
-        <button onClick={logShowHandler} value={1}>
-          1라운드
-        </button>
+
         <div className={styles.game_table_buttons}>
           <ButtonRS content="준비" />
         </div>
       </div>
-      {isLogShow && <LogCard round={selectedRound} gameLog={gameLog} />}
+      <RoundLog round={1} />
+      <RoundLog round={2} />
     </>
   );
 };
