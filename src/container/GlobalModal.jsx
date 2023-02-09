@@ -5,10 +5,14 @@ import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 import CreateRoomModal from "./../components/ui/modal/CreateRoomModal";
 import JoinRoomModal from "./../components/ui/modal/JoinRoomModal";
+import LogCard from "../components/ui/logCard/LogCard";
+
+import gameLog from "../dummy/gameLog";
 
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",
   JoinRoomModal: "JoinRoomModal",
+  LogCard: "LogCard",
 };
 
 const MODAL_COMPONENTS = [
@@ -19,6 +23,10 @@ const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.JoinRoomModal,
     component: <JoinRoomModal />,
+  },
+  {
+    type: MODAL_TYPES.LogCard,
+    component: <LogCard />,
   },
 ];
 
@@ -42,10 +50,7 @@ const GlobalModal = () => {
         <Backdrop onClick={() => dispatch(closeModal())} />,
         document.getElementById("backdrop-root")
       )}
-      {ReactDOM.createPortal(
-        renderModal(),
-        document.getElementById("overlay-root")
-      )}
+      {ReactDOM.createPortal(renderModal(), document.getElementById("overlay-root"))}
     </>
   );
 };

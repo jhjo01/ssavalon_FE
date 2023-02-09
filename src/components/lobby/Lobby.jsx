@@ -38,10 +38,7 @@ const Lobby = () => {
   return (
     <>
       <div className={styles.createButton}>
-        <LoopIcon
-          className={styles.guickStart}
-          onClick={handleRefreshRoomList}
-        />
+        <LoopIcon className={styles.guickStart} onClick={handleRefreshRoomList} />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
         <ButtonPrimary value="create" onClick={handleOpenModal}>
           방만들기

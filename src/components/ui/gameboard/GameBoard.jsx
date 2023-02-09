@@ -76,15 +76,13 @@ const GameBoard = () => {
             <AvatarImage user={user} />
           ))}
         </div>
-        <button onClick={logShowHandler} value={1}>
-          1라운드
-        </button>
+
         <div className={styles.game_table_buttons}>
           <ButtonRS content="준비" />
         </div>
       </div>
-      {isLogShow && <LogCard round={selectedRound} gameLog={gameLog} />}
-      <SocketTest />
+      <RoundLog round={1} />
+      <RoundLog round={2} />
     </>
   );
 };
