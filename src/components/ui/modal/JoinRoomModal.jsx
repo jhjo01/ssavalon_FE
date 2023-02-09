@@ -1,25 +1,23 @@
 import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonDanger from "../button/ButtonDanger";
-
 import styles from "./Modal.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../store/modal";
-import { useState } from "react";
+import { useValidPassword } from "./../../../hooks/userInput";
 
 const JoinRoomModal = () => {
   const dispatch = useDispatch();
-  const [password, setPassword] = useState("");
-  const [isValid, setIsValid] = useState(true);
-  const handleChangePassword = (event) => {
-    setPassword(event.target.value);
-  };
+  const title = useSelector((state) => {
+    return state.modal.title;
+  });
 
-  const handleValidChange = () => {
-    if (password.length <= 8 && password.length >= 4) setIsValid(true);
-    else {
-      setIsValid(false);
-    }
-  };
+  const {
+    value,
+    isValid,
+    disabled,
+    handlePasswordChange,
+    handleValidPassword,
+  } = useValidPassword("");
 
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "JoinRoomModal", isOpen: false }));
@@ -28,16 +26,17 @@ const JoinRoomModal = () => {
   return (
     <div className={styles.modal}>
       <div className={styles.card}>
-        <h2>ss</h2>
-        <div className={styles.form}>
+        <h2>{title}</h2>
+        <form className={styles.form} method="POST">
           <label htmlFor="pwd">비밀번호</label>
           <input
             className={styles.input}
             id="pwd"
             type="password"
-            value={password}
-            onChange={handleChangePassword}
-            onBlur={handleValidChange}
+            value={value}
+            onChange={handlePasswordChange}
+            onBlur={handleValidPassword}
+            autoComplete="off"
           />
           {!isValid && (
             <p className={styles.input_errMsg}>
@@ -45,12 +44,14 @@ const JoinRoomModal = () => {
             </p>
           )}
           <div className={styles.button_area}>
-            <ButtonPrimary type="submit">입장</ButtonPrimary>
+            <ButtonPrimary type="submit" disabled={disabled}>
+              입장
+            </ButtonPrimary>
             <ButtonDanger type="reset" onClick={handleCloseModal}>
               취소
             </ButtonDanger>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
