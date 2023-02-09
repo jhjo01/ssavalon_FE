@@ -1,0 +1,16 @@
+.crown {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: -15px;
+  left: 0;
+}
+
+.jury {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: -11px;
+  right: 0;
+  transform: rotate(5deg);
+}
