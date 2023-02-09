@@ -4,6 +4,7 @@ import "./App.css";
 import App from "./App";
 import store from "./store/store";
 import { Provider } from "react-redux";
+import registerServiceWorker from './components/openVidu/registerServiceWorker';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +14,7 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+registerServiceWorker();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

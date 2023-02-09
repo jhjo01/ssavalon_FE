@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/lobby" element={<Lobby />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/game/:id" element={<Game />} />
+        <Route path="/game/:no" element={<Game />} />
       </Routes>
       <GlobalModal />
     </Router>
