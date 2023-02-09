@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   roomId: null,
-  connectedUsers: [{ rotate: "", id: "" }],
+  connectedUsers: '[{ "rotate": null, "id": null }]',
 };
 
 export const roomAndPlayerSlice = createSlice({

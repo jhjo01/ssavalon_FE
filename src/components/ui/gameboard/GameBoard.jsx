@@ -16,7 +16,8 @@ const GameBoard = () => {
     return state.roomAndPlayer.connectedUsers;
   });
 
-  console.log(JSON.parse(connectedUsers));
+  let connect = JSON.parse(connectedUsers);
+
   const dispatch = useDispatch();
 
   const gameLog = useSelector((state) => {
@@ -71,8 +72,8 @@ const GameBoard = () => {
         style={{ backgroundImage: `url(${GameBoardImage})` }}
       >
         <div className={styles.game_table_settings}>
-          {peoples.map((people) => (
-            <AvatarImage people={people} />
+          {connect.map((user) => (
+            <AvatarImage user={user} />
           ))}
         </div>
         <button onClick={logShowHandler} value={1}>
