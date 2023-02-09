@@ -60,7 +60,7 @@ const gameLog = {
     ],
   },
   result: {
-    succes: 1,
+    success: 1,
     fail: 1,
   },
 };
