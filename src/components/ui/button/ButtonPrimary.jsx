@@ -9,6 +9,7 @@ const ButtonPrimary = (props) => {
       type={props.type || "button"}
       className={styles.buttonPrimary}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.children}
     </button>

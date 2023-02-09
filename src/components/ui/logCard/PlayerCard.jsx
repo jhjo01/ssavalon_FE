@@ -11,6 +11,7 @@ const PlayerCard = (props) => {
 
   return (
     <div className={styles.player_card}>
+      <LogCardBack leader={data.leader} vote={data.vote} playerName={data.playerName} />
       {data.leader && (
         <div className={styles.crown}>
           <img src={Crown} alt="crown"></img>
@@ -21,7 +22,6 @@ const PlayerCard = (props) => {
           <img src={Jury} alt="jury"></img>
         </div>
       )}
-      <LogCardBack leader={data.leader} vote={data.vote} playerName={data.playerName} />
     </div>
   );
 };

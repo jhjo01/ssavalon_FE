@@ -1,98 +1,68 @@
-import React, { useState } from "react";
-import ErrModal from "../ui/modal/ErrorModal";
-import RoomModal from "../ui/modal/RoomCreateModal";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getRoom } from "../../store/room";
+import { CircularProgress } from "@mui/material";
+import { openModal } from "../../store/modal";
 import ButtonPrimary from "../ui/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
-import JoinModal from "../ui/modal/RoomJoinModal";
-// import roomList from "../../dummy/roomList";
 import LoopIcon from "@mui/icons-material/Loop";
-
 import styles from "./Lobby.module.css";
-import { useGetRoom } from "./../../hooks/index";
+import ErrorModal from "../ui/modal/ErrorModal";
 
 const Lobby = () => {
-  const [modal, setModal] = useState();
-  const [roomInfo, setRoomInfo] = useState(null);
-  const { rooms, error, loading } = useGetRoom("game/rooms");
+  const dispatch = useDispatch();
+  const status = useSelector((state) => {
+    return state.room.status;
+  });
+  const rooms = useSelector((state) => {
+    return state.room.rooms;
+  });
 
-  // const joinRoom = (props) => {
-  //   if (props === "err") {
-  //     setModal("err");
-  //     return;
-  //   }
-  // };
-
-  const setModalHandler = (props) => {
-    if (props.target !== undefined) {
-      if (props.target.value === "create") {
-        setModal("create");
-      } else if (props.target.value === "err") {
-        setModal("err");
-      }
-    }
-    if (props.isLock === true) {
-      setRoomInfo(props);
-      setModal("join");
-    } else {
-      // 방입장
-      return;
-    }
+  const handleRefreshRoomList = () => {
+    dispatch(getRoom());
   };
 
-  const modalHandler = () => {
-    setModal(null);
+  const handleOpenModal = () => {
+    dispatch(openModal({ type: "CreateRoomModal", isOpen: true }));
   };
 
-  // const showRoomList = () => {
-  //   const standby = [];
-  //   const active = [];
-
-  //   for (let i = 0; i < roomList.length; i++) {
-  //     if (roomList[i].standby === true) {
-  //       standby.push(
-  //         <RoomCard
-  //           key={i}
-  //           value="join"
-  //           roomInfo={roomList[i]}
-  //           onRoomClick={setModalHandler}
-  //         />
-  //       );
-  //     } else {
-  //       active.push(
-  //         <RoomCard
-  //           key={i}
-  //           value="join"
-  //           roomInfo={roomList[i]}
-  //           onRoomClick={setModalHandler}
-  //         />
-  //       );
-  //     }
-  //   }
-  //   const result = [...standby, active];
-
-  //   return result;
-  // };
+  useEffect(() => {
+    dispatch(getRoom());
+    return () => {};
+  }, [dispatch]);
 
   return (
     <>
       <div className={styles.createButton}>
-        <LoopIcon className={styles.guickStart} />
+        <LoopIcon
+          className={styles.guickStart}
+          onClick={handleRefreshRoomList}
+        />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
-        <ButtonPrimary value="create" onClick={setModalHandler}>
+        <ButtonPrimary value="create" onClick={handleOpenModal}>
           방만들기
         </ButtonPrimary>
       </div>
 
-      <div className={styles.container}>
-        {rooms.map((room) => (
-          <RoomCard room={room} key={room.roomId} />
-        ))}
-      </div>
-      {modal === "err" && <ErrModal onConfirm={modalHandler} />}
-      {modal === "create" && <RoomModal onConfirm={modalHandler} />}
-      {modal === "join" && roomInfo !== null && (
-        <JoinModal roomInfo={roomInfo} onConfirm={modalHandler} />
+      {status === "Loading" && <CircularProgress color="inherit" />}
+      {status === "complete" && (
+        <div className={styles.container}>
+          {rooms.map((room) => (
+            <RoomCard room={room} key={room.roomId} />
+          ))}
+        </div>
       )}
+
+      {status === "fail" && (
+        <ErrorModal
+          title="실패"
+          message="방 목록을 불러오는데 실패했습니다."
+          onClick={() => dispatch(getRoom())}
+        />
+      )}
+      {/* {modal === "err" && <ErrModal />}
+      {modal === "create" && <RoomModal />}
+      {modal === "join" && roomInfo !== null && <JoinModal />} */}
     </>
   );
 };
