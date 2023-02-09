@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   roomId: null,
-  connectedUsers: [],
+  connectedUsers: [{ rotate: "", id: "" }],
 };
 
 export const roomAndPlayerSlice = createSlice({
@@ -11,7 +11,7 @@ export const roomAndPlayerSlice = createSlice({
   reducers: {
     updateRoom(state, action) {
       // const { roo } = action.payload;
-      console.log(action.payload);
+
       state.connectedUsers = action.payload;
     },
   },

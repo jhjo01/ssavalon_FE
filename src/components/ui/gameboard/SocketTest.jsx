@@ -13,7 +13,6 @@ const SocketTest = () => {
     return state.roomAndPlayer.connectedUsers;
   });
 
-  console.log(connectedUsers);
   const client = useRef({});
   const [sender, setSender] = useState("함상준");
   const connect = () => {

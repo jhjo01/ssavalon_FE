@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
@@ -12,7 +12,11 @@ import SocketTest from "./SocketTest";
 const GameBoard = () => {
   const [selectedRound, setSelectedRound] = useState(null);
   const [isLogShow, setIsLogShow] = useState(false);
+  const connectedUsers = useSelector((state) => {
+    return state.roomAndPlayer.connectedUsers;
+  });
 
+  console.log(JSON.parse(connectedUsers));
   const dispatch = useDispatch();
 
   const gameLog = useSelector((state) => {
@@ -68,7 +72,7 @@ const GameBoard = () => {
       >
         <div className={styles.game_table_settings}>
           {peoples.map((people) => (
-            <AvatarImage people={people} key={people.id} />
+            <AvatarImage people={people} />
           ))}
         </div>
         <button onClick={logShowHandler} value={1}>
