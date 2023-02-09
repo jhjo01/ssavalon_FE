@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getRoundLog } from "../../../store/roundLog";
 import { openModal } from "../../../store/modal";
 

@@ -7,8 +7,6 @@ import CreateRoomModal from "./../components/ui/modal/CreateRoomModal";
 import JoinRoomModal from "./../components/ui/modal/JoinRoomModal";
 import LogCard from "../components/ui/logCard/LogCard";
 
-import gameLog from "../dummy/gameLog";
-
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",
   JoinRoomModal: "JoinRoomModal",
@@ -50,7 +48,10 @@ const GlobalModal = () => {
         <Backdrop onClick={() => dispatch(closeModal())} />,
         document.getElementById("backdrop-root")
       )}
-      {ReactDOM.createPortal(renderModal(), document.getElementById("overlay-root"))}
+      {ReactDOM.createPortal(
+        renderModal(),
+        document.getElementById("overlay-root")
+      )}
     </>
   );
 };

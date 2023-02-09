@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { roomSlice } from "./room";
 import { modalSlice } from "./modal";
 import { roomAndPlayerSlice } from "./roomAndPlayer";
-import roundLogSlice from "./roundLog";
+import { roundLogSlice } from "./roundLog";
 
 export default configureStore({
   reducer: {

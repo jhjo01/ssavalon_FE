@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../button/ButtonRS";
-import SelectsCard from "../../selects-card/SelectsCard";
-import LogCard from "../logCard/LogCard";
+import RoundLog from "../logCard/RoundLog";
 import { getRoundLog } from "../../../store/roundLog";
 import SocketTest from "./SocketTest";
 
@@ -17,7 +16,6 @@ const GameBoard = () => {
   });
 
   let connect = JSON.parse(connectedUsers);
-
   const dispatch = useDispatch();
 
   const gameLog = useSelector((state) => {
@@ -30,41 +28,6 @@ const GameBoard = () => {
     setIsLogShow(!isLogShow);
   };
 
-  const peoples = [
-    {
-      id: "1",
-      name: "ada",
-      rotate: "180deg",
-    },
-    {
-      id: "2",
-      name: "adaasd",
-      rotate: "240deg",
-    },
-    {
-      id: "3",
-      name: "ada",
-      rotate: "300deg",
-    },
-
-    {
-      id: "4",
-      name: "ada",
-      rotate: "360deg",
-    },
-
-    {
-      id: "5",
-      name: "ada",
-      rotate: "420deg",
-    },
-    {
-      id: "6",
-      name: "ada",
-      rotate: "480deg",
-    },
-  ];
-
   return (
     <>
       <div
@@ -73,7 +36,7 @@ const GameBoard = () => {
       >
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
-            <AvatarImage user={user} />
+            <AvatarImage user={user} key={user.id} />
           ))}
         </div>
 
@@ -81,6 +44,7 @@ const GameBoard = () => {
           <ButtonRS content="준비" />
         </div>
       </div>
+      <SocketTest />
       <RoundLog round={1} />
       <RoundLog round={2} />
     </>

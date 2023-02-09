@@ -10,8 +10,6 @@ export const roomAndPlayerSlice = createSlice({
   initialState,
   reducers: {
     updateRoom(state, action) {
-      // const { roo } = action.payload;
-
       state.connectedUsers = action.payload;
     },
   },
