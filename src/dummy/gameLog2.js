@@ -1,5 +1,5 @@
 const gameLog = {
-  round: 1,
+  round: 2,
   subRound: {
     1: [
       {
@@ -52,6 +52,35 @@ const gameLog = {
       {
         playerName: "user5",
         vote: true,
+      },
+      {
+        playerName: "user6",
+        vote: true,
+        jury: true,
+      },
+    ],
+    3: [
+      {
+        playerName: "user1",
+        vote: true,
+      },
+      {
+        playerName: "user2",
+        vote: true,
+      },
+      {
+        playerName: "user3",
+        vote: true,
+        leader: true,
+      },
+      {
+        playerName: "user4",
+        vote: false,
+      },
+      {
+        playerName: "user5",
+        vote: true,
+        jury: true,
       },
       {
         playerName: "user6",

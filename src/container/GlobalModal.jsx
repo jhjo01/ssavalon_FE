@@ -5,10 +5,12 @@ import { useDispatch } from "react-redux";
 import ReactDOM from "react-dom";
 import CreateRoomModal from "./../components/ui/modal/CreateRoomModal";
 import JoinRoomModal from "./../components/ui/modal/JoinRoomModal";
+import LogCard from "../components/ui/logCard/LogCard";
 
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",
   JoinRoomModal: "JoinRoomModal",
+  LogCard: "LogCard",
 };
 
 const MODAL_COMPONENTS = [
@@ -19,6 +21,10 @@ const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.JoinRoomModal,
     component: <JoinRoomModal />,
+  },
+  {
+    type: MODAL_TYPES.LogCard,
+    component: <LogCard />,
   },
 ];
 

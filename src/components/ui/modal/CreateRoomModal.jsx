@@ -1,49 +1,31 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../store/modal";
 import { createRoom } from "./../../../apis/room";
 import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonDanger from "../button/ButtonDanger";
 import styles from "./Modal.module.css";
 import { useNavigate } from "react-router-dom";
+import { useValidTitleAndPassword } from "../../../hooks/userInput";
 
+const roomInfo = { title: "", password: "" };
+const roomValid = { title: true, password: true };
 const CreateRoomModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [roomInfo, setRoomInfo] = useState({
-    title: "",
-    password: "",
-  });
-  const [isValid, setIsValid] = useState({
-    title: true,
-    password: true,
+  const title = useSelector((state) => {
+    return state.modal.title;
   });
 
-  const [checked, setChecked] = useState(false);
-  const [disabled, setDisabled] = useState(false);
-  const handleInputChange = (event) => {
-    setRoomInfo({ ...roomInfo, [event.target.name]: event.target.value });
-  };
-
-  const handleCheckedChange = () => {
-    setChecked(!checked);
-  };
-
-  const handleIsTitleValid = () => {
-    if (roomInfo.title.trim().length >= 4 && roomInfo.title.trim().length <= 8)
-      setIsValid({ ...isValid, title: true });
-    else setIsValid({ ...isValid, title: false });
-  };
-
-  const handleIsPasswordValid = () => {
-    if (
-      roomInfo.password.trim().length >= 4 &&
-      roomInfo.password.trim().length <= 8
-    )
-      setIsValid({ ...isValid, password: true });
-    else setIsValid({ ...isValid, password: false });
-  };
+  const {
+    value,
+    isValid,
+    checked,
+    disabled,
+    handleInputChange,
+    handleCheckedChange,
+    handleIsTitleValid,
+    handleIsPasswordValid,
+  } = useValidTitleAndPassword(roomInfo, roomValid);
 
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "CreateRoomModal", isOpen: false }));
@@ -52,8 +34,8 @@ const CreateRoomModal = () => {
   const handleCreateRoom = async (event) => {
     event.preventDefault();
     const form = new FormData();
-    form.append("title", roomInfo.title);
-    form.append("password", roomInfo.password);
+    form.append("title", value.title);
+    form.append("password", value.password);
     const res = await createRoom(form);
     if (res.status === 200) {
       dispatch(closeModal({ type: "CreateRoomModal", isOpen: false }));
@@ -61,23 +43,17 @@ const CreateRoomModal = () => {
     } else return;
   };
 
-  useEffect(() => {
-    if (isValid.title && isValid.password) setDisabled(false);
-    else if (isValid.title && !checked) setDisabled(false);
-    else setDisabled(true);
-  }, [isValid, checked]);
-
   return (
     <div className={styles.modal}>
       <div className={styles.card}>
-        <h2>방만들기</h2>
+        <h2>{title}</h2>
         <form className={styles.form} onSubmit={handleCreateRoom}>
           <label>방제목</label>
           <input
             className={styles.input}
             name="title"
             type="text"
-            value={roomInfo.title}
+            value={value.title}
             onChange={handleInputChange}
             onBlur={handleIsTitleValid}
           />
@@ -95,7 +71,7 @@ const CreateRoomModal = () => {
                 name="password"
                 id="password"
                 type="password"
-                value={roomInfo.password}
+                value={value.password}
                 onChange={handleInputChange}
                 onBlur={handleIsPasswordValid}
                 autoComplete="off"

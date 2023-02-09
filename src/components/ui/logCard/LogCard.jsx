@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import CloseIcon from "@mui/icons-material/Close";
 import RoundCard from "./RoundCard";
+import { closeModal } from "../../../store/modal";
 
 import styles from "./LogCard.module.css";
 
-const LogCard = (props) => {
-  const gameLog = props.gameLog;
+const LogCard = () => {
+  const dispatch = useDispatch();
 
-  const round = props.round;
+  const gameLog = useSelector((state) => {
+    return state.roundLog.result;
+  });
 
   const [selected, setSelected] = useState(1);
-
   const onSelectBoxChange = (event) => {
     setSelected(event.target.value);
   };
 
+  const handleCloseModal = () => {
+    dispatch(closeModal({ type: "LogCard", isOpen: false }));
+  };
+
   const subRoundList = [];
 
-  for (let i = 1; i <= Object.keys(gameLog.round).length; i++) {
+  for (let i = 1; i <= Object.keys(gameLog.subRound).length; i++) {
     subRoundList.push(i);
   }
 
@@ -28,7 +35,7 @@ const LogCard = (props) => {
         <select className={styles.select_box} onChange={onSelectBoxChange} value={selected}>
           {subRoundList.map((item) => (
             <option value={item} key={item}>
-              {round}-{item}
+              {gameLog.round}-{item}
             </option>
           ))}
         </select>
@@ -36,10 +43,10 @@ const LogCard = (props) => {
           유죄 {gameLog.result.success} vs {gameLog.result.fail} 무죄
         </h3>
         <div className={styles.close_button}>
-          <CloseIcon />
+          <CloseIcon onClick={handleCloseModal} />
         </div>
       </div>
-      <RoundCard roundLog={gameLog.round[selected]} />
+      <RoundCard roundLog={gameLog.subRound[selected]} />
     </div>
   );
 };
