@@ -1,33 +1,27 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+import { useSelector } from "react-redux";
+import { useSocket, ready } from "../../../hooks/useSocket";
+import { useParams } from "react-router-dom";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../../common/button/ButtonRS";
 import RoundLog from "../logCard/RoundLog";
-import { getRoundLog } from "../../../store/roundLog";
-import SocketTest from "./SocketTest";
 
 const GameBoard = () => {
-  const [selectedRound, setSelectedRound] = useState(null);
-  const [isLogShow, setIsLogShow] = useState(false);
+  const client = useRef({});
+  const { id } = useParams();
+  const sender = "mes";
+  useSocket(client, id, sender);
+
   const connectedUsers = useSelector((state) => {
     return state.roomAndPlayer.connectedUsers;
   });
-
   let connect = JSON.parse(connectedUsers);
-  const dispatch = useDispatch();
 
-  const gameLog = useSelector((state) => {
-    return state.roundLog.result;
-  });
-
-  const logShowHandler = async (event) => {
-    await dispatch(getRoundLog(event.target.value));
-    setSelectedRound(event.target.value);
-    setIsLogShow(!isLogShow);
+  const sendMessage = (type) => {
+    if (type === "READY") ready(type, client, id, sender);
   };
-
   return (
     <>
       <div
@@ -41,10 +35,10 @@ const GameBoard = () => {
         </div>
 
         <div className={styles.game_table_buttons}>
-          <ButtonRS content="준비" />
+          <ButtonRS content="준비" onClick={() => sendMessage("READY")} />
+          <ButtonRS content="나가기" />
         </div>
       </div>
-      <SocketTest />
       <RoundLog round={1} />
       <RoundLog round={2} />
     </>

@@ -1,10 +1,11 @@
 import styles from "./Avatar.module.css";
 import AvatarFrame from "../../../assets/images/image-avatar-frame.png";
-import CitizenImage from "../../../assets/images/image-citizen-circle.png";
+import Crown from "../assets/Crown";
+import Jury from "../assets/Jury";
 
 const AvatarImage = (props) => {
   const { user } = props;
-
+  console.log(user);
   return (
     <div
       className={styles.game_setting}
@@ -23,7 +24,11 @@ const AvatarImage = (props) => {
               style={{ backgroundImage: `url(${AvatarFrame})` }}
             ></div>
             <div className={styles.player_avatar_container}>
-              <h2>asdsa</h2>
+              <Crown />
+              <Jury />
+              <div className={styles.player_username_wrapper}>
+                <span className={styles.player_username}>닉네임</span>
+              </div>
               {/* <div
                 className={styles.player_avatar_avatar}
                 style={{ backgroundImage: `url(${CitizenImage})` }}
