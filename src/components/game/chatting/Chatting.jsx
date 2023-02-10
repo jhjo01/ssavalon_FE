@@ -4,17 +4,22 @@ import styles from "./Chatting.module.css";
 
 const Chatting = (props) => {
     const { message } = props;
+    const myNick = "이진욱"
+    console.log(props);
 
     return (
-        <div className={styles.chat}>
-            <h3>
-                {message.nickName}
-            </h3>
-            <h3>
-                {message.message}
-            </h3>
+        <div className={myNick === message.nickName ? styles.myChat : styles.otherChat}>
+            <div className={myNick === message.nickName ? styles.myChatting : styles.otherChatting}>
+                <h4>
+                    {message.nickName}
+                </h4>
+                <h5>
+                    {message.message}
+                </h5>
+            </div>
         </div>
     );
+    
 };
 
 export default Chatting;

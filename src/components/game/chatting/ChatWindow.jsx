@@ -16,6 +16,7 @@ const ChatWindow = (props) => {
     const {
         value,
         handleInputChange,
+        handleInputReset,
     } = useValidMessage("");
 
     const handleOnKeyUp = async (event) => {
@@ -26,6 +27,25 @@ const ChatWindow = (props) => {
         }
     }
 
+    const messages = [
+        {
+            nickName: "이진욱",
+            message: "배고파"
+        },
+        {
+            nickName: "한상준",
+            message: "나도"
+        },
+        {
+            nickName: "김진호",
+            message: "오늘 점심은 김치볶음밥에 로제떡볶이, 깍두기임. ㄴ러나ㅣㄹ마ㅓㅁ니ㅏ얾ㄴ러만럼ㄴ아ㅣ럼나ㅣ럼ㄴㅇ"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+    ]
+
     const handleSendMessage = async (event) => {
         event.preventDefault();
         // const form = new FormData();
@@ -35,7 +55,12 @@ const ChatWindow = (props) => {
         //     await sendMessage(form);
         // } else return;
         console.log(value);
+        inputReset();
     };
+
+    const inputReset = async () => {
+        handleInputReset();
+    }
 
     return (
         <>
@@ -45,9 +70,9 @@ const ChatWindow = (props) => {
                     <CloseIcon onClick={handleChangeSwipe} />
                 </div>
                 <div className={styles.chatting_message}>
-                    {/* {messages.map((message) => (
-                        <Chatting room={message} key={message.nickName} />
-                    ))}   */}
+                    {messages.map((message) => (
+                        <Chatting message={message} key={message.nickName} />
+                    ))}  
                 </div>
                 <form className={styles.form} onSubmit={handleSendMessage}>
                     <input

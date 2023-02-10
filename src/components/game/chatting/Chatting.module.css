@@ -1,11 +1,28 @@
 .myChat {
-    background-color: cadetblue;
-    max-width: 300px;
-    right: 0;
+    display: flex;
+    justify-content: right;
 }
 
-.outherChat {
+.otherChat {
+    display: flex;
+    justify-content: left;
+}
+
+.myChatting {
+    padding: 5px;
+    background-color: cadetblue;
+    max-height: 50px;
+    max-width: 300px;
+    right: 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.otherChatting {
+    padding: 5px;
     background-color: burlywood;
     max-width: 300px;
     left: 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
