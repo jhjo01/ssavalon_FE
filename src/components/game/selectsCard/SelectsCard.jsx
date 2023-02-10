@@ -1,4 +1,4 @@
-import CardBack from "../ui/card-back/CardBack";
+import CardBack from "../cardBack/CardBack";
 import styles from "./SelectsCard.module.css";
 
 const SelectsCard = () => {

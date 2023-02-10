@@ -1,4 +1,8 @@
-import { API_END_POINT, SOCKET_SUB_END_POINT, SOCKET_PUB_END_POINT } from "../constants/index";
+import {
+  API_END_POINT,
+  SOCKET_SUB_END_POINT,
+  SOCKET_PUB_END_POINT,
+} from "../constants/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as StompJs from "@stomp/stompjs";
@@ -20,6 +24,7 @@ export const useSocket = (client, roomId, sender) => {
 
   const subscribe = (roomId, sender) => {
     client.current.subscribe(`${SOCKET_SUB_END_POINT}/${roomId}`, (message) => {
+      console.log("a");
       dispatch(updateRoom(message.body));
     });
 
@@ -34,30 +39,16 @@ export const useSocket = (client, roomId, sender) => {
     client.current.deactivate();
   };
 
-  // const ready = (client, roomId, sender) => {
-  //   console.log(client);
-  //   client.current.publish({
-  //     destination: SOCKET_PUB_END_POINT,
-  //     headers: {},
-  //     body: JSON.stringify({ type: "READY", roomId: roomId, sender: sender }),
-  //   });
-  // };
-  
-
   useEffect(() => {
     connect();
-
     return () => disconnect();
   }, []);
-
-
 };
 
-export const ready = (client, roomId, sender) => {
-  console.log(client);
+export const ready = (type, client, roomId, sender) => {
   client.current.publish({
     destination: SOCKET_PUB_END_POINT,
     headers: {},
-    body: JSON.stringify({ type: "READY", roomId: roomId, sender: sender }),
+    body: JSON.stringify({ type: type, roomId: roomId, sender: sender }),
   });
 };
