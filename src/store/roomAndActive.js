@@ -4,14 +4,14 @@ const initialState = {
   status: "",
   roomId: "",
   connectedUsers:
-    '[{"userId": null, "userNickName": null, "job":"", "isLeader": null, "isJury: null}]',
+    '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
   round: "",
   voteRound: "",
-  prevRound: '[{"round": 0, "win":null}]',
-  agreeDisagree: '[{"userId": null, "userNickName":null, "agree": null}]',
-  guilty: "",
-  notGuilty: "",
-  script: "",
+  prevRound: '[{"round": 0, "win":cici}]',
+  agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+  guilty: "2",
+  notGuilty: "1",
+  script: "asd",
 };
 
 export const roomAndActiveSlice = createSlice({
