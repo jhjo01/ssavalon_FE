@@ -1,0 +1,11 @@
+.myChat {
+    background-color: cadetblue;
+    max-width: 300px;
+    right: 0;
+}
+
+.outherChat {
+    background-color: burlywood;
+    max-width: 300px;
+    left: 0;
+}

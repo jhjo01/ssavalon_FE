@@ -13,6 +13,7 @@ const RoleDesc = (props) => {
   const [job, setJob] = useState("");
 
   const handleSelectJob = (event) => {
+    console.log(event.target.name);
     setJob(event.target.name);
   };
 
@@ -23,17 +24,13 @@ const RoleDesc = (props) => {
           <CloseIcon onClick={handleChangeSwipe} />
           <h2 className={styles.roles_title}>역할</h2>
           <ul className={styles.roles_role}>
-            <li
-              className={styles.role}
-              name="citizen"
-              onClick={handleSelectJob}
-            >
+            <li className={styles.role} onClick={handleSelectJob}>
               <img src={CitizenImage} alt="img-citizen" name="citizen" />
             </li>
             <li className={styles.role} onClick={handleSelectJob}>
               <img src={PoliceImage} alt="img-police" name="police" />
             </li>
-            <li className={styles.role} name="killer" onClick={handleSelectJob}>
+            <li className={styles.role} onClick={handleSelectJob}>
               <img src={KillerImage} alt="img-killer" name="killer" />
             </li>
           </ul>

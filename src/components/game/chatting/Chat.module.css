@@ -1,0 +1,17 @@
+/* .modal_right {
+    height: 500px;
+} */
+
+.chat_button {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.swipe {
+    margin-right: 5px !important;
+}

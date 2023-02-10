@@ -1,6 +1,6 @@
 import React from "react";
 
-import LogCardBack from "../card-back/LogCardBack";
+import LogCardBack from "../cardBack/LogCardBack";
 import Crown from "../../../assets/images/image-crown.png";
 import Jury from "../../../assets/images/image-jury-select.png";
 

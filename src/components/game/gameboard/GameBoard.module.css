@@ -27,6 +27,15 @@
   margin-bottom: 32px;
 }
 
+.chat_button {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+}
+
 @media (max-width: 684px) {
   .game_table {
     width: 400px;

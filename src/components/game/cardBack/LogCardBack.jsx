@@ -1,6 +1,6 @@
 import styles from "./LogCardBack.module.css";
 
-const CardBack = (props) => {
+const LogCardBack = (props) => {
   let reject = "";
 
   if (!props.vote) {
@@ -26,4 +26,4 @@ const CardBack = (props) => {
   );
 };
 
-export default CardBack;
+export default LogCardBack;

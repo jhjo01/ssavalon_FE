@@ -23,8 +23,8 @@ const CreateRoomModal = () => {
     disabled,
     handleInputChange,
     handleCheckedChange,
-    handleIsTitleValid,
-    handleIsPasswordValid,
+    // handleIsTitleValid,
+    // handleIsPasswordValid,
   } = useValidTitleAndPassword(roomInfo, roomValid);
 
   const handleCloseModal = () => {
@@ -55,7 +55,7 @@ const CreateRoomModal = () => {
             type="text"
             value={value.title}
             onChange={handleInputChange}
-            onBlur={handleIsTitleValid}
+            // onBlur={handleIsTitleValid}
           />
           {!isValid.title && (
             <p className={styles.input_errMsg}>
@@ -73,7 +73,7 @@ const CreateRoomModal = () => {
                 type="password"
                 value={value.password}
                 onChange={handleInputChange}
-                onBlur={handleIsPasswordValid}
+                // onBlur={handleIsPasswordValid}
                 autoComplete="off"
               />
               {!isValid.password && (

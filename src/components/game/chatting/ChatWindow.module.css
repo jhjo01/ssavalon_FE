@@ -1,0 +1,54 @@
+/* .chatting {
+    height: 800px;
+} */
+
+.chatting {
+    position: absolute;
+    bottom: 40px;
+    right: 5px;
+    width: 400px;
+    height: 500px;
+    padding: 5px;
+    background-color: #fff;
+    transition: all 0.5s;
+    margin-right: -405px;
+    border-radius: 5px;
+}
+
+.chatting .chatting_top {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.chatting .chatting_top svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.chatting .chatting_top h2 {
+    margin-left: 5px;
+}
+
+.chatting .chatting_message {
+    width: 100%;
+    height: 400px;
+    padding: 5px;
+}
+
+.chatting .form {
+    width: 100%;
+    display: flex;
+}
+
+.chatting .form .input {
+    width: 300px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-left: 5px;
+}

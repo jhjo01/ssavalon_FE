@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../store/modal";
 import { useValidPassword } from "./../../../hooks/userInput";
 
-const JoinRoomModal = () => {
+const JoinRoomModal = (props) => {
   const dispatch = useDispatch();
   const title = useSelector((state) => {
     return state.modal.title;
@@ -16,7 +16,7 @@ const JoinRoomModal = () => {
     isValid,
     disabled,
     handlePasswordChange,
-    handleValidPassword,
+    // handleValidPassword,
   } = useValidPassword("");
 
   const handleCloseModal = () => {
@@ -35,7 +35,7 @@ const JoinRoomModal = () => {
             type="password"
             value={value}
             onChange={handlePasswordChange}
-            onBlur={handleValidPassword}
+            // onBlur={handleValidPassword}
             autoComplete="off"
           />
           {!isValid && (
