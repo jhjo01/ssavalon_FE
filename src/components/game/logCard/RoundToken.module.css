@@ -1,0 +1,62 @@
+.round_token {
+  display: flex;
+  width: 20%;
+
+  /* margin: 0px 10px 0px 0px; */
+  margin: 0px 5px 0px 5px;
+
+  background-image: url("../../../assets/images/image-round-token-background.png");
+  background-size: contain;
+
+  /* background-image: url("../../../assets/images/image-log-card-background.jpg");
+  background-size: cover; */
+}
+
+.round_token_back {
+  display: flex;
+  position: absolute;
+  top: 40%;
+  left: 15%;
+
+  width: 392px;
+  height: 69px;
+}
+.vote_round_token_back {
+  display: flex;
+  position: absolute;
+  top: 55%;
+  left: 25%;
+
+  width: 280px;
+  height: 46px;
+}
+
+.round_token_back img:hover {
+  cursor: pointer;
+}
+
+img {
+  object-fit: contain;
+}
+
+@media (max-width: 684px) {
+  .round_token_back {
+    width: 280px;
+    height: 46px;
+  }
+  .vote_round_token_back {
+    width: 200px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .round_token_back {
+    width: 200px;
+    height: 32px;
+  }
+  .vote_round_token_back {
+    width: 140px;
+    height: 18px;
+  }
+}

@@ -12,7 +12,6 @@ const PlayerCard = (props) => {
   return (
     <div className={styles.player_card}>
       <LogCardBack
-        leader={data.leader}
         vote={data.vote}
         playerName={data.playerName}
       />
