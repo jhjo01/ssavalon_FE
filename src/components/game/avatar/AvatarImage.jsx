@@ -5,7 +5,6 @@ import Jury from "../assets/Jury";
 
 const AvatarImage = (props) => {
   const { user } = props;
-  console.log(user);
   return (
     <div
       className={styles.game_setting}

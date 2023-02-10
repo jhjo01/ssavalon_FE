@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as StompJs from "@stomp/stompjs";
 import SockJS from "sockjs-client";
-import { updateRoom } from "../store/roomAndPlayer";
+import { updateRoom } from "../store/roomAndStandBy";
 
 export const useSocket = (client, roomId, sender) => {
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ export const useSocket = (client, roomId, sender) => {
 
   const subscribe = (roomId, sender) => {
     client.current.subscribe(`${SOCKET_SUB_END_POINT}/${roomId}`, (message) => {
-      console.log("a");
       dispatch(updateRoom(message.body));
     });
 
