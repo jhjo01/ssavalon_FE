@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { roomSlice } from "./room";
 import { modalSlice } from "./modal";
-import { roomAndPlayerSlice } from "./roomAndPlayer";
+import { roomAndStandBySlice } from "./roomAndStandBy";
 import { roundLogSlice } from "./roundLog";
+import { roomAndActiveSlice } from "./roomAndActive";
 
 export default configureStore({
   reducer: {
     room: roomSlice.reducer,
-    roomAndPlayer: roomAndPlayerSlice.reducer,
+    roomAndStandBy: roomAndStandBySlice.reducer,
+    roomAndActive: roomAndActiveSlice.reducer,
     modal: modalSlice.reducer,
     roundLog: roundLogSlice.reducer,
   },

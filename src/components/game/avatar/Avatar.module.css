@@ -61,6 +61,41 @@
   .game_setting_inner
   .player
   .player_avatar_container
+  .player_username_wrapper {
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  background-image: url("../../../assets/images/image-nickname.png");
+  background-size: cover;
+  margin-bottom: -35px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_username_wrapper
+  .player_username {
+  display: block;
+  color: #fff;
+  font-size: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92.5%;
+  overflow: hidden;
+  text-overflow: eclipsis;
+  white-space: nowrap;
+}
+
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
   .player_avatar_avatar {
   width: 70%;
   height: 70%;

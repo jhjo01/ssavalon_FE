@@ -14,7 +14,9 @@ const LogCardBack = (props) => {
           <div className={styles.layer}>
             <h3>{props.playerName}</h3>
             <br />
-            <h3 className={`${reject}`}>{props.vote === true ? "찬성" : "반대"}</h3>
+            <h3 className={`${reject}`}>
+              {props.vote === true ? "찬성" : "반대"}
+            </h3>
             <div className={styles.corner}></div>
             <div className={styles.corner}></div>
             <div className={styles.corner}></div>
