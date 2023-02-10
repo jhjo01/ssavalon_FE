@@ -7,6 +7,7 @@ import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../../common/button/ButtonRS";
 import RoundLog from "../logCard/RoundLog";
+import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 
 const GameBoard = () => {
   const client = useRef({});
@@ -14,14 +15,13 @@ const GameBoard = () => {
   const sender = "mes";
   useSocket(client, id, sender);
 
-  const connectedUsers = useSelector((state) => {
-    return state.roomAndPlayer.connectedUsers;
-  });
+  const { connectedUsers } = useSelector(selectorRoomAndStandBy);
   let connect = JSON.parse(connectedUsers);
 
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
   };
+
   return (
     <>
       <div
