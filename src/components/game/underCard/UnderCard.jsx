@@ -11,7 +11,6 @@ const UnderCard = (props) => {
   const gameStatus = useSelector(selectorRoomAndActive);
   const [agree, setAgree] = useState([]);
 
-  console.log(open);
   const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
   useEffect(() => {
     title === "agree" ? setAgree(["찬성", "반대"]) : setAgree(["무죄", "유죄"]);
