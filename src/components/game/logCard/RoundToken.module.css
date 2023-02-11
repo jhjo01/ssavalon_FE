@@ -52,6 +52,10 @@
     width: 200px;
     height: 32px;
   }
+
+  .require {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -62,5 +66,8 @@
   .vote_round_token_back {
     width: 140px;
     height: 18px;
+  }
+  .require {
+    font-size: 0.6rem;
   }
 }
