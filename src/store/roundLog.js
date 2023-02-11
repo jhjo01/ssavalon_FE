@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { API_END_POINT } from "../constants/index";
+// import { API_END_POINT } from "../constants/index";
 
 import gameLog from "../dummy/gameLog";
 import gameLog2 from "../dummy/gameLog2";
@@ -8,6 +8,8 @@ import gameLog2 from "../dummy/gameLog2";
 const getRoundLog = createAsyncThunk("roundLogSlice/getRoundLog", async (props) => {
   // test api
   const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+  if (response != null) {
+  }
   if (props === 1) {
     return gameLog;
   } else if (props === 2) {
@@ -21,7 +23,7 @@ const getRoundLog = createAsyncThunk("roundLogSlice/getRoundLog", async (props) 
 export const roundLogSlice = createSlice({
   name: "getRoundLog",
   initialState: {
-    result: [],
+    result: null,
     status: "Loading",
   },
 
