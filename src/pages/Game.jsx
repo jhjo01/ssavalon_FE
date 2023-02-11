@@ -16,12 +16,8 @@ const Game = () => {
     >
       <GameBoard />
       <Role />
-<<<<<<< HEAD
       <Chat />
       {/* <VoiceChat roomId={roomId} /> */}
-=======
-      <LogCard />
->>>>>>> origin
     </div>
   );
 };

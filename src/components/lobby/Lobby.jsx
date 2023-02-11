@@ -7,7 +7,6 @@ import ButtonPrimary from "../common/button/ButtonPrimary";
 import RoomCard from "./RoomCard";
 import LoopIcon from "@mui/icons-material/Loop";
 import styles from "./Lobby.module.css";
-<<<<<<< HEAD
 import ErrorModal from "../common/modal/ErrorModal";
 
 const Lobby = () => {
@@ -16,43 +15,11 @@ const Lobby = () => {
   const status = useSelector((state) => {
     return state.room.status;
   });
-=======
-
-const Lobby = () => {
-  const [modal, setModal] = useState();
-  const [roomInfo, setRoomInfo] = useState(null);
-
-  const joinRoom = (props) => {
-    if (props === "err") {
-      setModal("err");
-      return;
-    }
-  };
-
-  const setModalHandler = (props) => {
-    // console.log(props);
-    if (props.target !== undefined) {
-      if (props.target.value === "create") {
-        setModal("create");
-      } else if (props.target.value === "err") {
-        setModal("err");
-      }
-    }
-    if (props.isLock === true) {
-      setRoomInfo(props);
-      setModal("join");
-    } else {
-      // 방입장
-      return;
-    }
-  };
->>>>>>> origin
 
   const rooms = useSelector((state) => {
     return state.room.rooms;
   });
 
-<<<<<<< HEAD
   const handleRefreshRoomList = () => {
     dispatch(getRoom());
   };
@@ -67,27 +34,6 @@ const Lobby = () => {
     dispatch(getRoom());
     return () => {};
   }, [dispatch]);
-=======
-  const showRoomList = () => {
-    const standby = [];
-    const active = [];
-
-    for (let i = 0; i < roomList.length; i++) {
-      if (roomList[i].standby === true) {
-        standby.push(
-          <RoomCard key={i} value="join" roomInfo={roomList[i]} onRoomClick={setModalHandler} />
-        );
-      } else {
-        active.push(
-          <RoomCard key={i} value="join" roomInfo={roomList[i]} onRoomClick={setModalHandler} />
-        );
-      }
-    }
-    const result = [...standby, active];
-
-    return result;
-  };
->>>>>>> origin
 
   return (
     <>
@@ -99,7 +45,6 @@ const Lobby = () => {
         </ButtonPrimary>
       </div>
 
-<<<<<<< HEAD
       {status === "Loading" && <CircularProgress color="inherit" />}
       {status === "complete" && (
         <div className={styles.container}>
@@ -115,13 +60,6 @@ const Lobby = () => {
           message="방 목록을 불러오는데 실패했습니다."
           onClick={() => dispatch(getRoom())}
         />
-=======
-      <div className={styles.container}>{showRoomList()}</div>
-      {modal === "err" && <ErrModal onConfirm={modalHandler} />}
-      {modal === "create" && <RoomModal onConfirm={modalHandler} />}
-      {modal === "join" && roomInfo !== null && (
-        <JoinModal roomInfo={roomInfo} onConfirm={modalHandler} />
->>>>>>> origin
       )}
       {/* {modal === "err" && <ErrModal />}
       {modal === "create" && <RoomModal />}

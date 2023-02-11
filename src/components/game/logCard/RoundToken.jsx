@@ -36,22 +36,12 @@ const RoundToken = (props) => {
       <div className={styles.require}>
         <h2>{props.require}</h2>
       </div>
-      {props.round < props.now &&
-        prevRoundResult[props.round - 1].win === true && (
-          <img
-            src={roundTokenSuccess}
-            alt="roundToken"
-            onClick={handleOpenModal}
-          />
-        )}
-      {props.round < props.now &&
-        prevRoundResult[props.round - 1].win === false && (
-          <img
-            src={roundTokenFail}
-            alt="roundToken"
-            onClick={handleOpenModal}
-          />
-        )}
+      {props.round < props.now && prevRoundResult[props.round - 1].win === true && (
+        <img src={roundTokenSuccess} alt="roundToken" onClick={handleOpenModal} />
+      )}
+      {props.round < props.now && prevRoundResult[props.round - 1].win === false && (
+        <img src={roundTokenFail} alt="roundToken" onClick={handleOpenModal} />
+      )}
     </div>
   );
 };
