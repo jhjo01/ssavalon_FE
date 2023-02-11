@@ -39,7 +39,7 @@ const SelectsCard = () => {
   return (
     <div className={styles.selects}>
       {peoples.map((people) => (
-        <CardBack />
+        <CardBack people={people} />
       ))}
     </div>
   );

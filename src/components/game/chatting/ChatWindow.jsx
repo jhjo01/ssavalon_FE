@@ -4,7 +4,6 @@ import ButtonPrimary from "../../common/button/ButtonPrimary";
 import { useValidMessage } from "./../../../hooks/userInput";
 import { useDispatch, useSelector } from "react-redux";
 import Chatting from "./Chatting"
-import { sendMessage } from "../../../apis/chat";
 
 const ChatWindow = (props) => {
     const { swipe, handleChangeSwipe } = props;
@@ -20,10 +19,9 @@ const ChatWindow = (props) => {
     } = useValidMessage("");
 
     const handleOnKeyUp = async (event) => {
-        event.preventDefault();
+
         if (event.key === "Enter") {
-            handleSendMessage();
-            console.log("send");
+            handleSendMessage(event);
         }
     }
 
@@ -38,7 +36,43 @@ const ChatWindow = (props) => {
         },
         {
             nickName: "김진호",
-            message: "오늘 점심은 김치볶음밥에 로제떡볶이, 깍두기임. ㄴ러나ㅣㄹ마ㅓㅁ니ㅏ얾ㄴ러만럼ㄴ아ㅣ럼나ㅣ럼ㄴㅇ"
+            message: "오늘 점심은 김치볶음밥에 로제떡볶이, 깍두기임. ㄴ러나ㅣㄹ마ㅓㅁ니ㅏ얾ㄴ러만럼ㄴ아ㅣ럼나ㅣ럼ㄴㅇasdfhsdjklfjasdkl;fjaskl;fhoa;sdjk;hgioasd;jfklasdfioasdhgklasdgklasdjklgasdgkl;asdjfklsdajfklsdjfklsdajfklsadjfklasdjfskl"
+        },
+        {
+            nickName: "임경찬",
+            message: "아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아"
+        },
+        {
+            nickName: "이진욱",
+            message: "asdasdsadasdasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasaasdasdaskbasd,hfbjkasdhfjkasdhfjkahfjkhfjkshajkfhasdkjfhasdjkhfjkashfjkashfjkashfjkshafjkhadafklsadfklasdvlkbsaklvklsasas"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
+        },
+        {
+            nickName: "임경찬",
+            message: "아 오늘 점심 별로네"
         },
         {
             nickName: "임경찬",
@@ -51,10 +85,9 @@ const ChatWindow = (props) => {
         // const form = new FormData();
         // // form.append("user", nickName);
         // form.append("message", value);
-        // if (value.length > 0) {
+        // if (value.length > 0 && value.length <= 300) {
         //     await sendMessage(form);
         // } else return;
-        console.log(value);
         inputReset();
     };
 
@@ -70,8 +103,9 @@ const ChatWindow = (props) => {
                     <CloseIcon onClick={handleChangeSwipe} />
                 </div>
                 <div className={styles.chatting_message}>
-                    {messages.map((message) => (
-                        <Chatting message={message} key={message.nickName} />
+                    <h3 className={styles.enterRoom}>------싸발론에 오신걸 환영합니다.------</h3>
+                    {messages.map((message, index) => (
+                        <Chatting message={message} key={index} />
                     ))}  
                 </div>
                 <form className={styles.form} onSubmit={handleSendMessage}>

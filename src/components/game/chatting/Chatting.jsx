@@ -5,7 +5,6 @@ import styles from "./Chatting.module.css";
 const Chatting = (props) => {
     const { message } = props;
     const myNick = "이진욱"
-    console.log(props);
 
     return (
         <div className={myNick === message.nickName ? styles.myChat : styles.otherChat}>

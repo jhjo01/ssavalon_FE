@@ -39,6 +39,16 @@
     width: 100%;
     height: 400px;
     padding: 5px;
+    overflow: auto;
+}
+
+.chatting .chatting_message .enterRoom {
+    text-align: center;
+    color: crimson;
+}
+
+.chatting .chatting_message::-webkit-scrollbar {
+    display: none;
 }
 
 .chatting .form {
@@ -48,9 +58,23 @@
 
 .chatting .form .input {
     width: 300px;
-    height: 40px;
     background-color: white;
     border-radius: 5px;
     padding: 0.5rem;
     margin-left: 5px;
+}
+
+@media (max-width: 410px) {
+    .chatting {
+        width: 95%;
+        height: 90%;
+    }
+
+    .chatting .chatting_message {
+        height: 85%;
+    }
+
+    .chatting .chatting_message .enterRoom {
+        font-size: 0.8rem;
+    }
 }

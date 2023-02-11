@@ -11,11 +11,15 @@
 .myChatting {
     padding: 5px;
     background-color: cadetblue;
-    max-height: 50px;
     max-width: 300px;
     right: 0;
     margin-bottom: 5px;
     border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.myChatting::-webkit-scrollbar {
+    display: none;
 }
 
 .otherChatting {
@@ -25,4 +29,19 @@
     left: 0;
     margin-bottom: 5px;
     border-radius: 5px;
+    word-wrap: break-word;
+}
+
+.otherChatting::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 410px) {
+    .myChatting {
+        max-width: 90%;
+    }
+    
+    .otherChatting {
+        max-width: 90%;
+    }
 }
