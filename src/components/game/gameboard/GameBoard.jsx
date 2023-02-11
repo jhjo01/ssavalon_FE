@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useSocket, ready } from "../../../hooks/useSocket";
+import { useSocket, ready, chat } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
@@ -10,12 +10,13 @@ import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { updateGameState } from "./../../../store/roomAndActive";
 import UnderCard from "../underCard/UnderCard";
 import RoundTokenBack from "../logCard/RoundTokenBack";
-import SelectOnecard from "../selectOneCard/SelectOneCard"
+import { useValidMessage } from "../../../hooks/useInput";
+import Chat from "../chatting/Chat";
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
   const dispatch = useDispatch();
+  const { value, handleInputChange, handleInputReset } = useValidMessage("");
 
   const open = () => {
     setModalOpen(true);
@@ -65,11 +66,15 @@ const GameBoard = () => {
 
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
+    else if (type === "TALK") chat(type, client, id, sender, value);
   };
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
             <AvatarImage user={user} key={user.id} />
@@ -86,7 +91,14 @@ const GameBoard = () => {
         <RoundTokenBack />
         <RoundTokenBack voteRound={true} />
       </div>
-      <SelectOnecard />
+
+      <Chat
+        sendMessage={() => sendMessage("TALK")}
+        value={value}
+        handleInputChange={handleInputChange}
+        handleInputReset={handleInputReset}
+      />
+      {/* <SelectOnecard /> */}
       <UnderCard open={modalOpen} />
     </>
   );
