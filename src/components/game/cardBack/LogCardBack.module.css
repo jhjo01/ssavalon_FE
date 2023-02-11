@@ -2,11 +2,6 @@
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.3s;
-}
-
-.card_back_wrapper:hover {
-  transform: scale(1.08);
 }
 
 .card_back_wrapper .card {
@@ -130,3 +125,4 @@
     width: 5px;
   }
 }
+

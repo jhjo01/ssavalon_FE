@@ -8,6 +8,7 @@ import { closeModal } from "../../../store/modal";
 import styles from "./LogCard.module.css";
 
 const LogCard = () => {
+  const [randomData, setRandomData] = useState(Math.random());
   const dispatch = useDispatch();
 
   const gameLog = useSelector((state) => {
@@ -17,6 +18,7 @@ const LogCard = () => {
   const [selected, setSelected] = useState(1);
   const onSelectBoxChange = (event) => {
     setSelected(event.target.value);
+    setRandomData(Math.random());
   };
 
   const handleCloseModal = () => {
@@ -50,7 +52,7 @@ const LogCard = () => {
           </div>
         </div>
       )}
-      {gameLog !== null && <RoundCard roundLog={gameLog.subRound[selected]} />}
+      {gameLog !== null && <RoundCard roundLog={gameLog.subRound[selected]} key={randomData} />}
     </div>
   );
 };

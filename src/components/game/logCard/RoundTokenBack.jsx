@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import RoundToken from "./RoundToken";
 
@@ -14,10 +14,11 @@ const RoundTokenBack = (props) => {
       return state.roomAndActive.voteRound;
     });
 */
+
   const now = 3;
   const nowVote = 1;
 
-  if (props.voteRound == true) {
+  if (props.voteRound === true) {
     return (
       <div className={styles.vote_round_token_back}>
         <RoundToken round={1} now={nowVote} voteRound={props.voteRound} />

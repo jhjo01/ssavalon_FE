@@ -11,10 +11,7 @@ const PlayerCard = (props) => {
 
   return (
     <div className={styles.player_card}>
-      <LogCardBack
-        vote={data.vote}
-        playerName={data.playerName}
-      />
+      <LogCardBack vote={data.vote} playerName={data.playerName} />
       {data.leader && (
         <div className={styles.crown}>
           <img src={Crown} alt="crown"></img>
