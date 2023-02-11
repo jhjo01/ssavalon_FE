@@ -1,8 +1,9 @@
-import CardBack from "../ui/card-back/CardBack";
+import CardBack from "../cardBack/CardBack";
 import styles from "./SelectOneCard.module.css";
+import { useValidSelectCard } from "../../../hooks/userSelect";
 
 const SelectOneCard = () => {
-  const peoples = [
+  const people = [
     {
       id: "1",
       name: "ada",
@@ -36,11 +37,19 @@ const SelectOneCard = () => {
       rotate: "480deg",
     },
   ];
+
+  const {
+    disabled,
+    handleSelectChange,
+    handleSubmitJury,
+  } = useValidSelectCard([]);
+
   return (
     <div className={styles.select}>
-      {peoples.map((people) => (
-        <CardBack />
+      {people.map((person) => (
+        <CardBack person={person} onClick={handleSelectChange} />
       ))}
+      <input type="button" value="Choice" className={styles.submitBtn} onClick={handleSubmitJury} disabled={disabled} />
     </div>
   );
 };

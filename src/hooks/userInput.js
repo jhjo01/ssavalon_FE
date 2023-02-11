@@ -96,8 +96,13 @@ export const useValidMessage = (message) => {
     setValue(event.target.value);
   };
 
+  const handleInputReset = () => {
+    setValue("");
+  }
+
   return {
     value,
+    handleInputReset,
     handleInputChange,
   };
 };
