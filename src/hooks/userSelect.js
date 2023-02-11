@@ -8,17 +8,13 @@ export const useValidSelectCard = (people) => {
     const handleSelectChange = (info) => {
         const selectedPeople = selectPeople;
         if (info.selected) {
-            setSelectPeople({
-                selectedPeople: selectedPeople.filter(select => select.id !== info.person.id)
-            });
+            setSelectPeople(selectedPeople.filter(select => select.id !== info.person.id));
         } else if (selectedPeople.length < selectNum) {
-            setSelectPeople({
-                selectedPeople: selectedPeople.concat({ ...info.person })
-            });
+            setSelectPeople(selectedPeople.concat({ ...info.person }));
         } else {
             setSelectPeople([info.person]);
-            console.log(selectPeople);
         }
+        console.log(selectPeople);
     };
 
     const handleSubmitJury = () => {

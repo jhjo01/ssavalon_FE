@@ -10,6 +10,7 @@ import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { updateGameState } from "./../../../store/roomAndActive";
 import UnderCard from "../underCard/UnderCard";
 import RoundTokenBack from "../logCard/RoundTokenBack";
+import SelectOnecard from "../selectOneCard/SelectOneCard"
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -85,6 +86,7 @@ const GameBoard = () => {
         <RoundTokenBack />
         <RoundTokenBack voteRound={true} />
       </div>
+      <SelectOnecard />
       <UnderCard open={modalOpen} />
     </>
   );
