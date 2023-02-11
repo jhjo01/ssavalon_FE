@@ -32,11 +32,11 @@ const RoundTokenBack = (props) => {
 
   return (
     <div className={styles.round_token_back}>
-      <RoundToken round={1} now={now} />
-      <RoundToken round={2} now={now} />
-      <RoundToken round={3} now={now} />
-      <RoundToken round={4} now={now} />
-      <RoundToken round={5} now={now} />
+      <RoundToken require={2} round={1} now={now} />
+      <RoundToken require={3} round={2} now={now} />
+      <RoundToken require={4} round={3} now={now} />
+      <RoundToken require={3} round={4} now={now} />
+      <RoundToken require={4} round={5} now={now} />
     </div>
   );
 };

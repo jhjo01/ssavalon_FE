@@ -9,7 +9,8 @@ import voteRoundToken from "../../../assets/images/image-jury-select.png";
 
 import styles from "./RoundToken.module.css";
 
-const RoundLog = (props) => {
+const RoundToken = (props) => {
+  console.log(props.require);
   const dispatch = useDispatch();
 
   if (props.voteRound === true) {
@@ -33,6 +34,9 @@ const RoundLog = (props) => {
 
   return (
     <div className={styles.round_token}>
+      <div className={styles.require}>
+        <h2>{props.require}</h2>
+      </div>
       {props.round < props.now && prevRoundResult[props.round - 1].win === true && (
         <img src={roundTokenSuccess} alt="roundToken" onClick={handleOpenModal} />
       )}
@@ -43,4 +47,4 @@ const RoundLog = (props) => {
   );
 };
 
-export default RoundLog;
+export default RoundToken;

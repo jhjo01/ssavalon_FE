@@ -81,11 +81,11 @@ const GameBoard = () => {
         </div>
         <button onClick={open}>열기</button>
         <button onClick={close}>닫기</button>
-     
-      <UnderCard open={modalOpen} />
-      <RoundTokenBack />
-      <RoundTokenBack voteRound={true} />
+
+        <RoundTokenBack />
+        <RoundTokenBack voteRound={true} />
       </div>
+      <UnderCard open={modalOpen} />
     </>
   );
 };
