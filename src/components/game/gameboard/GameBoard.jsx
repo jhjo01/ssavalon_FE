@@ -6,10 +6,11 @@ import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import AvatarImage from "../avatar/AvatarImage";
 import ButtonRS from "../../common/button/ButtonRS";
-import RoundLog from "../logCard/RoundLog";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { updateGameState } from "./../../../store/roomAndActive";
 import UnderCard from "../underCard/UnderCard";
+import RoundTokenBack from "../logCard/RoundTokenBack";
+
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -67,10 +68,7 @@ const GameBoard = () => {
 
   return (
     <>
-      <div
-        className={styles.game_table}
-        style={{ backgroundImage: `url(${GameBoardImage})` }}
-      >
+      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
             <AvatarImage user={user} key={user.id} />
@@ -83,11 +81,11 @@ const GameBoard = () => {
         </div>
         <button onClick={open}>열기</button>
         <button onClick={close}>닫기</button>
-      </div>
-
+     
       <UnderCard open={modalOpen} />
-      <RoundLog round={1} />
-      <RoundLog round={2} />
+      <RoundTokenBack />
+      <RoundTokenBack voteRound={true} />
+      </div>
     </>
   );
 };

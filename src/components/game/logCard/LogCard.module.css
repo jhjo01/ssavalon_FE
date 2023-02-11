@@ -49,6 +49,9 @@
   width: 130px;
   margin: 0px 0px 10px 0px;
   position: relative;
+
+  animation-name: flip;
+  animation-duration: 2s;
 }
 
 img {
@@ -147,5 +150,11 @@ img {
   .jury {
     width: 21px;
     height: 21px;
+  }
+}
+
+@keyframes flip {
+  from {
+    transform: rotateY(180deg);
   }
 }
