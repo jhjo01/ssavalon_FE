@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useSocket, ready } from "../../../hooks/useSocket";
+import { useSocket, ready, chat } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
@@ -10,34 +10,59 @@ import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { updateGameState } from "./../../../store/roomAndActive";
 import UnderCard from "../underCard/UnderCard";
 import RoundTokenBack from "../logCard/RoundTokenBack";
-import SelectOnecard from "../selectOneCard/SelectOneCard"
+import SelectCard from "../selectCard/SelectCard"
+import { useValidMessage } from "../../../hooks/useInput";
+import Chat from "../chatting/Chat";
 
 const GameBoard = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-
+  const [modalOpen, setModalOpen] = useState({"under":false, "select":false});
   const dispatch = useDispatch();
+  const { value, handleInputChange, handleInputReset } = useValidMessage("");
 
-  const open = () => {
-    setModalOpen(true);
-    dispatch(
-      updateGameState({
-        status: "voteAgreeDisagree",
-        roomId: "",
-        connectedUsers:
-          '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
-        round: "",
-        voteRound: "",
-        prevRound: '[{"round": 0, "win":cici}]',
-        agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
-        guilty: "2",
-        notGuilty: "1",
-        script: "asd",
-      })
-    );
+  const open = (type) => {
+    if (type === "under") {
+      setModalOpen({ "under": true });
+      dispatch(
+        updateGameState({
+          status: "voteAgreeDisagree",
+          roomId: "",
+          connectedUsers:
+            '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
+          round: "",
+          voteRound: "",
+          prevRound: '[{"round": 0, "win":cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          guilty: "2",
+          notGuilty: "1",
+          script: "asd",
+        })
+      );
+    } else {
+      setModalOpen({ "select": true });
+      dispatch(
+        updateGameState({
+          status: "makeJury",
+          roomId: "",
+          connectedUsers:
+            '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
+          round: "",
+          voteRound: "",
+          prevRound: '[{"round": 0, "win":cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          guilty: "2",
+          notGuilty: "1",
+          script: "asd",
+        })
+      );
+    }
   };
 
-  const close = () => {
-    setModalOpen(false);
+  const close = (type) => {
+    if (type === "under") {
+      setModalOpen({ "under": false });
+    } else {
+      setModalOpen({ "select": false });
+    }
     dispatch(
       updateGameState({
         status: "",
@@ -65,11 +90,15 @@ const GameBoard = () => {
 
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
+    else if (type === "TALK") chat(type, client, id, sender, value);
   };
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
             <AvatarImage user={user} key={user.id} />
@@ -80,14 +109,24 @@ const GameBoard = () => {
           <ButtonRS content="준비" onClick={() => sendMessage("READY")} />
           <ButtonRS content="나가기" />
         </div>
-        <button onClick={open}>열기</button>
-        <button onClick={close}>닫기</button>
-
+        <div className={styles.buttons}>
+          <button onClick={()=>open("under")}>underCard열기</button>
+          <button onClick={()=>close("under")}>underCard닫기</button>
+          <button onClick={()=>open("select")}>selectCard열기</button>
+          <button onClick={()=>close("select")}>selectCard닫기</button>
+        </div>
+        
         <RoundTokenBack />
         <RoundTokenBack voteRound={true} />
       </div>
-      <SelectOnecard />
-      <UnderCard open={modalOpen} />
+      <SelectCard open={modalOpen.select} />
+      <UnderCard open={modalOpen.under} />
+      <Chat
+        sendMessage={() => sendMessage("TALK")}
+        value={value}
+        handleInputChange={handleInputChange}
+        handleInputReset={handleInputReset}
+      />
     </>
   );
 };

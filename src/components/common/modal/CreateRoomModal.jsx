@@ -5,7 +5,7 @@ import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonDanger from "../button/ButtonDanger";
 import styles from "./Modal.module.css";
 import { useNavigate } from "react-router-dom";
-import { useValidTitleAndPassword } from "../../../hooks/userInput";
+import { useValidTitleAndPassword } from "../../../hooks/useInput";
 
 const roomInfo = { title: "", password: "" };
 const roomValid = { title: false, password: false };
