@@ -5,6 +5,7 @@ export const useValidSelectCard = (people) => {
     const [selectNum, setSelectNum] = useState(2);
     const [selectPeople, setSelectPeople] = useState(people);
     const [disabled, setDisabled] = useState(true);
+    
     const handleSelectChange = (info) => {
         const selectedPeople = selectPeople;
         if (info.selected) {
