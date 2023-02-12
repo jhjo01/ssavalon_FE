@@ -90,7 +90,7 @@ export const useValidMessage = (message) => {
 export const useValidNickName = (nickname) => {
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
-  const [isDupli, setIsDipli] = useState(false);
+  const [isDupli, setIsDupli] = useState(false);
   const [disabled, setDisabled] = useState({ "check": true, "signup": true });
 
   const handleNickChange = (event) => {
@@ -100,16 +100,16 @@ export const useValidNickName = (nickname) => {
       setIsValid(false);
     }
     setValue(event.target.value);
-    setIsDipli(false);
+    setIsDupli(false);
   };
 
   useEffect(() => {
-    if (isValid) setDisabled(false);
-    else setDisabled(true);
+    if (isValid) setDisabled({"check": false});
+    else setDisabled({"check": true});
   }, [isValid]);
 
   const handleCheckNick = () => {
-    setIsDipli(true);
+    setIsDupli(true);
     return;
   }
 

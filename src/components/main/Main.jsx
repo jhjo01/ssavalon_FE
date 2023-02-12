@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <section className={styles.content}>
       <div className={styles.main_text}>
-        <h6>#1 </h6>
+        <h6>Homage to Avalon</h6>
         <h3>SSAFY</h3>
         <h1>SSAVALON</h1>
         <p>
