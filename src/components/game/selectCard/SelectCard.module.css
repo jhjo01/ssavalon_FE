@@ -6,14 +6,12 @@
   bottom: -500px;
   left: 52%;
   transform: translate(-50%, 25%);
-  background-color: rgba(0,0,0,0);
-  /* animation-name: up;
-  animation-duration: 1s; */
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .select_up {
   bottom: 0;
-  animation: open 0.5s;
+  animation: up 0.5s;
 }
 
 .select_down {
