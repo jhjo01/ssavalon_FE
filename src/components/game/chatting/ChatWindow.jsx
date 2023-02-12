@@ -51,7 +51,7 @@ const ChatWindow = (props) => {
             placeholder="Input message"
           />
           <div className={styles.icon_wrapper}>
-            <SendIcon />
+            <SendIcon onClick={handleSendMessage} />
           </div>
         </form>
       </div>

@@ -8,6 +8,7 @@
   transition: all 0.5s;
   margin-right: -405px;
   border-radius: 8px;
+  z-index: 99;
 }
 
 .chatting .chatting_top {
@@ -91,7 +92,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 }
+
 @media (max-width: 410px) {
   .chatting {
     width: 95%;

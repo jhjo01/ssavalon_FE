@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../store/login";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import styles from "./LoginButton.module.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,15 +16,15 @@ const Login = () => {
   });
 
   useEffect(() => {
-    dispatch(getUserInfo(code));
+    if (loginState.kakaoId === "") dispatch(getUserInfo(code));
     if (loginState.userStatus === "empty") {
-      navigate("/");
+      navigate("/signup");
     }
-  }, [navigate, code, dispatch, loginState.userStatus]);
+  }, [code, dispatch, loginState.userStatus]);
 
   return (
     <>
-      <div>
+      <div className={styles.loading}>
         <CircularProgress />
       </div>
     </>

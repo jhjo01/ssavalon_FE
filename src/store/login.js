@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
 // import { API_END_POINT } from "../constants/index";
 
 const getUserInfo = createAsyncThunk("loginSlice/getUserInfo", async (props) => {
@@ -10,7 +11,6 @@ const getUserInfo = createAsyncThunk("loginSlice/getUserInfo", async (props) => 
   }
 
   if (response.data.status === "empty") {
-    // redirect
     const data = {
       isLogin: false,
       refreshToken: "",

@@ -1,12 +1,12 @@
 import axios from "axios";
-import { postConfig } from "./config";
+import { postConfig_3030 } from "./config";
 
 export const createRoom = async (data) => {
-  const res = await axios(postConfig("/game/room", data));
+  const res = await axios(postConfig_3030("/game/room", data));
   return res;
 };
 
 export const joinRoom = async (data) => {
-  const res = await axios(postConfig("/", data));
+  const res = await axios(postConfig_3030("/", data));
   return res;
-}
+};
