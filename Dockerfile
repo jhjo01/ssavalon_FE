@@ -8,7 +8,7 @@ RUN mkdir ./build
 
 ADD ./build ./build
 
-RUN rm /etc/nginx/conf.d/react.conf
+RUN rm /etc/nginx/conf.d/default.conf
 
 COPY ./nginx.conf /etc/nginx/conf.d
 
