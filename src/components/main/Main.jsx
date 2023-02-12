@@ -10,9 +10,9 @@ const Main = () => {
         <h3>SSAFY</h3>
         <h1>SSAVALON</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate modi possimus
-          laborum, in rerum obcaecati. Veritatis quae similique explicabo blanditiis quasi eveniet
-          autem dicta doloremque eum, in eius officiis aspernatur?
+          범죄자는 모두 정체를 숨긴 상태로 법정에 섰습니다. 경찰과 시민들은
+          범죄자를 벌하기 위해 매 라운드마다 투표를 진행합니다. 범죄자는 자신의
+          정체를 들키지 않도록, 경찰과 시민들은 범죄자를 찾으세요
         </p>
         <LoginButton />
         <div className={styles.image}>

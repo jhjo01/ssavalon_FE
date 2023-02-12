@@ -5,7 +5,7 @@ import RecentGameList from "./RecentGameList";
 import { useState } from "react";
 
 const MypageInfo = () => {
-  const [job, setJob] = useState("");
+  const [job, setJob] = useState("범죄자");
   const handleJobChange = (event) => {
     setJob(event.target.innerHTML);
   };
