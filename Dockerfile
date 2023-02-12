@@ -1,13 +1,17 @@
-FROM node:16
+FROM nginx
+
+RUN mkdir /app
 
 WORKDIR /app
 
-COPY package.json .
+RUN mkdir ./build
 
-RUN npm install
+ADD ./build ./build
 
-COPY . .
+RUN rm /etc/nginx/conf.d/react.conf
 
-EXPOSE 3000
+COPY ./nginx.conf /etc/nginx/conf.d
 
-CMD ["npm", "start"]
+EXPOSE 80
+
+CMD["nginx", "-g"," daemon off;"];
