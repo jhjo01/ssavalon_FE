@@ -1,47 +1,47 @@
 .myChat {
-    display: flex;
-    justify-content: right;
+  display: flex;
+  justify-content: right;
 }
 
 .otherChat {
-    display: flex;
-    justify-content: left;
+  display: flex;
+  justify-content: left;
 }
 
 .myChatting {
-    padding: 5px;
-    background-color: cadetblue;
-    max-width: 300px;
-    right: 0;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    word-wrap: break-word;
+  padding: 5px;
+  background-color: rgb(78, 140, 255);
+  max-width: 300px;
+  right: 0;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  word-wrap: break-word;
 }
 
 .myChatting::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .otherChatting {
-    padding: 5px;
-    background-color: burlywood;
-    max-width: 300px;
-    left: 0;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    word-wrap: break-word;
+  padding: 5px;
+  background-color: rgb(234, 234, 234);
+  max-width: 300px;
+  left: 0;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  word-wrap: break-word;
 }
 
 .otherChatting::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 410px) {
-    .myChatting {
-        max-width: 90%;
-    }
-    
-    .otherChatting {
-        max-width: 90%;
-    }
+  .myChatting {
+    max-width: 90%;
+  }
+
+  .otherChatting {
+    max-width: 90%;
+  }
 }

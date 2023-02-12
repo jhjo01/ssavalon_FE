@@ -1,17 +1,23 @@
-/* .modal_right {
-    height: 500px;
-} */
-
 .chat_button {
-    position: absolute;
-    bottom: 0;
-    right: 5px;
-    cursor: pointer;
-    color: #fff;
-    border: 0;
-    background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background-color: rgb(25, 118, 210);
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+}
+
+.chat_button svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .swipe {
-    margin-right: 5px !important;
+  margin-right: 5px !important;
 }

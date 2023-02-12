@@ -1,6 +1,6 @@
 import styles from "./Chat.module.css";
 import ChatWindow from "./ChatWindow";
-import ChatIcon from "@mui/icons-material/Chat";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useState } from "react";
 
 const Chat = (props) => {
@@ -14,7 +14,7 @@ const Chat = (props) => {
   return (
     <>
       <button className={styles.chat_button} onClick={handleChangeSwipe}>
-        <ChatIcon />
+        <ChatBubbleOutlineIcon />
       </button>
 
       <ChatWindow
