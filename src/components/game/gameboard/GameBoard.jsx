@@ -10,18 +10,18 @@ import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { updateGameState } from "./../../../store/roomAndActive";
 import UnderCard from "../underCard/UnderCard";
 import RoundTokenBack from "../logCard/RoundTokenBack";
-import SelectCard from "../selectCard/SelectCard"
+import SelectCard from "../selectCard/SelectCard";
 import { useValidMessage } from "../../../hooks/useInput";
 import Chat from "../chatting/Chat";
 
 const GameBoard = () => {
-  const [modalOpen, setModalOpen] = useState({"under":false, "select":false});
+  const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const dispatch = useDispatch();
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
 
   const open = (type) => {
     if (type === "under") {
-      setModalOpen({ "under": true });
+      setModalOpen({ under: true });
       dispatch(
         updateGameState({
           status: "voteAgreeDisagree",
@@ -31,14 +31,15 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree:
+            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
         })
       );
     } else {
-      setModalOpen({ "select": true });
+      setModalOpen({ select: true });
       dispatch(
         updateGameState({
           status: "makeJury",
@@ -48,7 +49,8 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree:
+            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -59,9 +61,9 @@ const GameBoard = () => {
 
   const close = (type) => {
     if (type === "under") {
-      setModalOpen({ "under": false });
+      setModalOpen({ under: false });
     } else {
-      setModalOpen({ "select": false });
+      setModalOpen({ select: false });
     }
     dispatch(
       updateGameState({
@@ -110,12 +112,12 @@ const GameBoard = () => {
           <ButtonRS content="나가기" />
         </div>
         <div className={styles.buttons}>
-          <button onClick={()=>open("under")}>underCard열기</button>
-          <button onClick={()=>close("under")}>underCard닫기</button>
-          <button onClick={()=>open("select")}>selectCard열기</button>
-          <button onClick={()=>close("select")}>selectCard닫기</button>
+          <button onClick={() => open("under")}>underCard열기</button>
+          <button onClick={() => close("under")}>underCard닫기</button>
+          <button onClick={() => open("select")}>selectCard열기</button>
+          <button onClick={() => close("select")}>selectCard닫기</button>
         </div>
-        
+
         <RoundTokenBack />
         <RoundTokenBack voteRound={true} />
       </div>

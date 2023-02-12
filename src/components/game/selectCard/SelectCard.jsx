@@ -1,7 +1,7 @@
 import CardBack from "../cardBack/CardBack";
 import styles from "./SelectCard.module.css";
 import { useSelector } from "react-redux";
-import { useValidSelectCard } from "../../../hooks/userSelect";
+import { useValidSelectCard } from "../../../hooks/useSelect";
 import { selectorRoomAndActive } from "../../../store/roomAndActive";
 import { useState, useEffect } from "react";
 

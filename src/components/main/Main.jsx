@@ -11,10 +11,9 @@ const Main = () => {
         <h3>SSAFY</h3>
         <h1>SSAVALON</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate
-          modi possimus laborum, in rerum obcaecati. Veritatis quae similique
-          explicabo blanditiis quasi eveniet autem dicta doloremque eum, in eius
-          officiis aspernatur?
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate modi possimus
+          laborum, in rerum obcaecati. Veritatis quae similique explicabo blanditiis quasi eveniet
+          autem dicta doloremque eum, in eius officiis aspernatur?
         </p>
         {/* <Link to="#">게임하기</Link>
         <Link to="#">튜토리얼</Link> */}
