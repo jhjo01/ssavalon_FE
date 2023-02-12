@@ -6,6 +6,7 @@ import LobbyPage from "./pages/LobbyPage";
 import Mypage from "./pages/Mypage";
 import NickChangePage from "./pages/NickChangePage";
 import GlobalModal from "./container/GlobalModal";
+import Login from "./pages/LoginPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/lobby" element={<LobbyPage />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/game/:id" element={<GamePage />} />
+        <Route path="/oauth/kakao" element={<Login />} />
         <Route path="/signup" element={<NickChangePage />} />
       </Routes>
       <GlobalModal />
