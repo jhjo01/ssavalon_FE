@@ -13,11 +13,6 @@ export const useValidPassword = (password) => {
     setValue(event.target.value);
   };
 
-  // const handleValidPassword = () => {
-  //   if (value.length <= 8 && value.length >= 4) setIsValid(true);
-  //   else setIsValid(false);
-  // };
-
   useEffect(() => {
     if (isValid) setDisabled(false);
     else setDisabled(true);
@@ -28,7 +23,6 @@ export const useValidPassword = (password) => {
     isValid,
     disabled,
     handlePasswordChange,
-    // handleValidPassword,
   };
 };
 
@@ -54,18 +48,6 @@ export const useValidTitleAndPassword = (roomInfo, roomValid) => {
     }
   };
 
-  // const handleIsTitleValid = () => {
-  //   if (value.title.trim().length >= 4 && value.title.trim().length <= 8)
-  //     setIsValid({ ...isValid, title: true });
-  //   else setIsValid({ ...isValid, title: false });
-  // };
-
-  // const handleIsPasswordValid = () => {
-  //   if (value.password.trim().length >= 4 && value.password.trim().length <= 8)
-  //     setIsValid({ ...isValid, password: true });
-  //   else setIsValid({ ...isValid, password: false });
-  // };
-
   useEffect(() => {
     if (isValid.title && isValid.password) setDisabled(false);
     else if (isValid.title && !checked) setDisabled(false);
@@ -85,8 +67,6 @@ export const useValidTitleAndPassword = (roomInfo, roomValid) => {
     disabled,
     handleInputChange,
     handleCheckedChange,
-    // handleIsTitleValid,
-    // handleIsPasswordValid,
   };
 };
 
@@ -98,11 +78,52 @@ export const useValidMessage = (message) => {
 
   const handleInputReset = () => {
     setValue("");
-  }
+  };
 
   return {
     value,
     handleInputReset,
     handleInputChange,
+  };
+};
+
+export const useValidNickName = (nickname) => {
+  const [value, setValue] = useState(nickname);
+  const [isValid, setIsValid] = useState(false);
+  const [isDupli, setIsDipli] = useState(false);
+  const [disabled, setDisabled] = useState({ "check": true, "signup": true });
+
+  const handleNickChange = (event) => {
+    if (event.target.value.length >= 4 && event.target.value.length <= 8) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+    setValue(event.target.value);
+    setIsDipli(false);
+  };
+
+  useEffect(() => {
+    if (isValid) setDisabled(false);
+    else setDisabled(true);
+  }, [isValid]);
+
+  const handleCheckNick = () => {
+    setIsDipli(true);
+    return;
+  }
+
+  const handleSignUp = () => {
+    return;
+  }
+
+  return {
+    value,
+    isValid,
+    isDupli,
+    disabled,
+    handleNickChange,
+    handleCheckNick,
+    handleSignUp,
   };
 };

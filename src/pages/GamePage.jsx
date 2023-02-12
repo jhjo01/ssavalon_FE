@@ -2,11 +2,9 @@ import styles from "./Game.module.css";
 import BackgroundImage from "../assets/images/image-background.png";
 import GameBoard from "../components/game/gameboard/GameBoard";
 import VoiceChat from "../components/openVidu/VoiceChat";
-import Role from "./../components/game/roleDesc/Role";
-import Chat from "../components/game/chatting/Chat";
+import Role from "../components/game/roleDesc/Role";
 import React from "react";
-import { useLocation } from "react-router-dom";
-const Game = () => {
+const GamePage = () => {
   return (
     <div
       className={styles.layout}
@@ -16,10 +14,9 @@ const Game = () => {
     >
       <GameBoard />
       <Role />
-      <Chat />
       {/* <VoiceChat roomId={roomId} /> */}
     </div>
   );
 };
 
-export default Game;
+export default GamePage;
