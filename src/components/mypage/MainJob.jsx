@@ -1,7 +1,11 @@
 import styles from "./MainJob.module.css";
 import Killer from "../../assets/images/image-killer.png";
+import Police from "../../assets/images/image-police.png";
+import Citizen from "../../assets/images/image-citizen.png";
 
-const MainJob = () => {
+const MainJob = (props) => {
+  const { job } = props;
+
   return (
     <div className={styles.player}>
       <div className={styles.player_info}>
@@ -30,7 +34,13 @@ const MainJob = () => {
       </div>
 
       <div className={styles.player_image}>
-        <img src={Killer} alt="img-police" loading="lazy" />
+        {job === "범죄자" && (
+          <img src={Killer} alt="img-police" loading="lazy" />
+        )}
+        {job === "시민" && (
+          <img src={Citizen} alt="img-citizen" loading="lazy" />
+        )}
+        {job === "경찰" && <img src={Police} alt="img-police" loading="lazy" />}
       </div>
     </div>
   );
