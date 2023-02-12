@@ -16,11 +16,11 @@ const Login = () => {
   });
 
   useEffect(() => {
-    dispatch(getUserInfo(code));
+    if (loginState.kakaoId === "") dispatch(getUserInfo(code));
     if (loginState.userStatus === "empty") {
-      navigate("/");
+      navigate("/signup");
     }
-  }, [navigate, code, dispatch, loginState.userStatus]);
+  }, [code, dispatch, loginState.userStatus]);
 
   return (
     <>
