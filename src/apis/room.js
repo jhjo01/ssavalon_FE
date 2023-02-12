@@ -7,6 +7,6 @@ export const createRoom = async (data) => {
 };
 
 export const joinRoom = async (data) => {
-  const res = await axios(postConfig("/", data));
+  const res = await axios(postConfig_3030("/", data));
   return res;
-}
+};

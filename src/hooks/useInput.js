@@ -93,7 +93,7 @@ export const useValidMessage = (message) => {
 export const useValidNickName = (nickname) => {
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
-  const [isDupli, setIsDipli] = useState(false);
+  const [isDupli, setIsDupli] = useState(false);
   const [disabled, setDisabled] = useState({ check: true, signup: true });
 
   const kakaoId = useSelector((state) => {
@@ -127,10 +127,10 @@ export const useValidNickName = (nickname) => {
 
     if (response.data) {
       // 중복
-      setIsDipli(true);
+      setIsDupli(true);
     } else {
       // 중복 아님
-      setIsDipli(false);
+      setIsDupli(false);
       setDisabled({ check: false, signup: false });
     }
     return;
