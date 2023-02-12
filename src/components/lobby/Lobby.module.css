@@ -9,6 +9,16 @@
   overflow-y: scroll;
 }
 
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
 .createButton {
   width: 1300px;
   max-width: 95%;

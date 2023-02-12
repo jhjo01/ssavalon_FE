@@ -5,7 +5,7 @@ import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonDanger from "../button/ButtonDanger";
 import styles from "./Modal.module.css";
 import { useNavigate } from "react-router-dom";
-import { useValidTitleAndPassword } from "../../../hooks/userInput";
+import { useValidTitleAndPassword } from "../../../hooks/useInput";
 
 const roomInfo = { title: "", password: "" };
 const roomValid = { title: false, password: false };
@@ -23,12 +23,10 @@ const CreateRoomModal = () => {
     disabled,
     handleInputChange,
     handleCheckedChange,
-    // handleIsTitleValid,
-    // handleIsPasswordValid,
   } = useValidTitleAndPassword(roomInfo, roomValid);
 
   const handleCloseModal = () => {
-    dispatch(closeModal({ type: "CreateRoomModal", isOpen: false }));
+    dispatch(closeModal({ type: "CreateRoomModal"}));
   };
 
   const handleCreateRoom = async (event) => {
@@ -38,7 +36,7 @@ const CreateRoomModal = () => {
     form.append("password", value.password);
     const res = await createRoom(form);
     if (res.status === 200) {
-      dispatch(closeModal({ type: "CreateRoomModal", isOpen: false }));
+      dispatch(closeModal({ type: "CreateRoomModal"}));
       navigate(`/game/${res.data.roomId}`);
     } else return;
   };
@@ -55,7 +53,6 @@ const CreateRoomModal = () => {
             type="text"
             value={value.title}
             onChange={handleInputChange}
-            // onBlur={handleIsTitleValid}
           />
           {!isValid.title && (
             <p className={styles.input_errMsg}>
@@ -73,7 +70,6 @@ const CreateRoomModal = () => {
                 type="password"
                 value={value.password}
                 onChange={handleInputChange}
-                // onBlur={handleIsPasswordValid}
                 autoComplete="off"
               />
               {!isValid.password && (

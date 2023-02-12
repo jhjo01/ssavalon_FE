@@ -2,32 +2,53 @@ import ButtonPrimary from "../button/ButtonPrimary";
 import ButtonDanger from "../button/ButtonDanger";
 import styles from "./Modal.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../../../store/modal";
-import { useValidPassword } from "./../../../hooks/userInput";
+import { closeModal, openModal } from "../../../store/modal";
+import { useValidPassword } from "./../../../hooks/useInput";
+import { Navigate } from "react-router-dom";
+import { joinRoom } from "../../../apis/room";
 
-const JoinRoomModal = (props) => {
+const JoinRoomModal = () => {
   const dispatch = useDispatch();
   const title = useSelector((state) => {
     return state.modal.title;
   });
+  const roomId = useSelector((state) => {
+    return state.modal.roomId;
+  });
+  const nickName = useSelector((state) => {
+    return state.room.nickName;
+  });
 
-  const {
-    value,
-    isValid,
-    disabled,
-    handlePasswordChange,
-    // handleValidPassword,
-  } = useValidPassword("");
+  const { value, isValid, disabled, handlePasswordChange } =
+    useValidPassword("");
 
   const handleCloseModal = () => {
-    dispatch(closeModal({ type: "JoinRoomModal", isOpen: false }));
+    dispatch(closeModal({ type: "JoinRoomModal"}));
+  };
+
+  const handleJoinRoom = async (event) => {
+    event.preventDefault();
+    const form = new FormData();
+    form.append("roomId", roomId);
+    form.append("password", value);
+    form.append("nickName", nickName);
+    const res = await joinRoom(form);
+    if (res.status === 200) {
+      dispatch(closeModal({ type: "JoinRoomModal"}));
+      Navigate(`/game/${res.data.roomId}`);
+    } else {
+      dispatch(
+        closeModal({ type: "JoinRoomModal" }),
+        openModal({ type: "ErrorModal", title: title, errMessage: "방이 존재하지 않습니다." })
+      );
+    }
   };
 
   return (
     <div className={styles.modal}>
       <div className={styles.card}>
         <h2>{title}</h2>
-        <form className={styles.form} method="POST">
+        <form className={styles.form} method="POST" onSubmit={handleJoinRoom}>
           <label htmlFor="pwd">비밀번호</label>
           <input
             className={styles.input}
@@ -35,7 +56,6 @@ const JoinRoomModal = (props) => {
             type="password"
             value={value}
             onChange={handlePasswordChange}
-            // onBlur={handleValidPassword}
             autoComplete="off"
           />
           {!isValid && (

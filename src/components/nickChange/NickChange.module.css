@@ -1,0 +1,153 @@
+.content {
+  width: 1400px;
+  max-width: 95%;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 5rem;
+}
+
+.content .form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  border-radius: 20px;
+  padding: 2rem;
+  font-size: 1rem;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.button_area {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px 0px 0px;
+}
+
+.form .input_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input {
+  width: 75%;
+  height: 40px;
+  background-color: white;
+  margin: 5px 0;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.form h2 {
+  margin-bottom: 10px;
+}
+
+.input_errMsg {
+  color: red;
+  font-size: 1rem;
+}
+
+.image {
+  position: absolute;
+  width: 430px;
+  aspect-ratio: 9 / 16;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.image img {
+  height: 100%;
+  transition: 0.4s;
+  aspect-ratio: 9 / 16;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+@media (max-width: 800px) {
+  .content .form {
+    width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .content .form {
+    width: 70%;
+  }
+  .inputErrMsg {
+    font-size: 0.7rem;
+  }
+  .form .input_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .input {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 350px) {
+  .card {
+    font-size: 0.7rem;
+  }
+  .inputErrMsg {
+    font-size: 0.5rem;
+  }
+}
+
+.image {
+  position: absolute;
+  width: 430px;
+  aspect-ratio: 9 / 16;
+  top: 10%;
+  right: 0;
+  z-index: -1;
+}
+
+.image img {
+  height: 100%;
+  transition: 0.4s;
+  aspect-ratio: 9 / 16;
+}
+
+.image img:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+  .image {
+    width: 330px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .content .main_text h1 {
+    font-size: 6rem;
+  }
+
+  .content .main_text p {
+    width: 768px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content .main_text h1 {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .content .main_text h1 {
+    font-size: 4rem;
+  }
+}

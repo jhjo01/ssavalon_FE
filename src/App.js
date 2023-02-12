@@ -1,19 +1,23 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Game from "./pages/Game";
-import Index from "./pages/Index";
-import Lobby from "./pages/LobbyPage";
+import GamePage from "./pages/GamePage";
+import MainPage from "./pages/MainPage";
+import LobbyPage from "./pages/LobbyPage";
 import Mypage from "./pages/Mypage";
+import NickChangePage from "./pages/NickChangePage";
 import GlobalModal from "./container/GlobalModal";
+import Login from "./pages/LoginPage";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/lobby" element={<Lobby />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/lobby" element={<LobbyPage />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/game/:id" element={<Game />} />
+        <Route path="/game/:id" element={<GamePage />} />
+        <Route path="/oauth/kakao" element={<Login />} />
+        <Route path="/signup" element={<NickChangePage />} />
       </Routes>
       <GlobalModal />
     </Router>

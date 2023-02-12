@@ -50,7 +50,7 @@
   margin-top: 12px;
 }
 
-@media (max-width: 890px) {
+@media (max-width: 1046px) {
   .img_wrapper {
     width: 90px;
     height: 90px;

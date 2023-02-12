@@ -1,13 +1,25 @@
 import styles from "./MainJob.module.css";
 import Killer from "../../assets/images/image-killer.png";
+import Police from "../../assets/images/image-police.png";
+import Citizen from "../../assets/images/image-citizen.png";
+import { useEffect, useState } from "react";
 
-const MainJob = () => {
+const MainJob = (props) => {
+  const { job } = props;
+  const [textColor, setTextColor] = useState("");
+
+  useEffect(() => {
+    if (job === "범죄자") setTextColor(styles.killer);
+    else if (job === "경찰") setTextColor(styles.police);
+    else if (job === "시민") setTextColor(styles.citizen);
+  }, [job]);
+
   return (
     <div className={styles.player}>
       <div className={styles.player_info}>
-        <h2 className={styles.player_job}>
+        <h2 className={`${styles.player_job} ${textColor}`}>
           <span className={styles.player_team}>닉네임</span>
-          범죄자
+          {job}
         </h2>
         <dl className={styles.player_stats}>
           <div>
@@ -30,7 +42,13 @@ const MainJob = () => {
       </div>
 
       <div className={styles.player_image}>
-        <img src={Killer} alt="img-police" loading="lazy" />
+        {job === "범죄자" && (
+          <img src={Killer} alt="img-police" loading="lazy" />
+        )}
+        {job === "시민" && (
+          <img src={Citizen} alt="img-citizen" loading="lazy" />
+        )}
+        {job === "경찰" && <img src={Police} alt="img-police" loading="lazy" />}
       </div>
     </div>
   );
