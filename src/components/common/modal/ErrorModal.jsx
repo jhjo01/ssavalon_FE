@@ -3,12 +3,36 @@ import styles from "./Modal.module.css";
 import ButtonPrimary from "../button/ButtonPrimary";
 import Backdrop from "./Backdrop";
 import { createPortal } from "react-dom";
-const ErrorModal = (props) => {
-  const { title, message, onClick } = props;
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../../store/modal";
+import { getRoom } from "../../../store/room";
+
+const ErrorModal = () => {
+  const dispatch = useDispatch();
+  const title = useSelector((state) => {
+    if (state.modal.title === "") {
+      return "실패";
+    }
+    return state.modal.title;
+  });
+  const errMessage = useSelector((state) => {
+    if (state.modal.errMessage === "") {
+      return "방 목록을 불러오는데 실패했습니다.";
+    }
+    return state.modal.errMessage;
+  });
+
+  const handleCloseModal = () => {
+    dispatch(
+      closeModal({ type: "ErrorModal" }),
+      getRoom()
+    );
+  };
+
   return (
     <>
       {createPortal(
-        <Backdrop onClick={onClick} />,
+        <Backdrop onClick={handleCloseModal} />,
         document.getElementById("backdrop-root")
       )}
       {createPortal(
@@ -18,10 +42,10 @@ const ErrorModal = (props) => {
               <h2>{title}</h2>
             </header>
             <div className={styles.content}>
-              <p>{message}</p>
+              <p>{errMessage}</p>
             </div>
             <footer className={styles.actions}>
-              <ButtonPrimary onClick={onClick}>확인</ButtonPrimary>
+              <ButtonPrimary onClick={handleCloseModal}>확인</ButtonPrimary>
             </footer>
           </div>
         </div>,
