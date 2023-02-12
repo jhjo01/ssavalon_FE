@@ -4,6 +4,8 @@ const initialState = {
   type: "",
   isOpen: false,
   title: "",
+  roomId: "",
+  errMessage: "",
 };
 
 export const modalSlice = createSlice({
@@ -11,12 +13,16 @@ export const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
-      const { type, title } = action.payload;
+      const { type, title, roomId, errMessage } = action.payload;
       state.type = type;
       state.isOpen = true;
       state.title = title;
+      state.roomId = roomId;
+      state.errMessage = errMessage;
     },
-    closeModal: (state, action) => {
+    closeModal: (state) => {
+      state.title = "";
+      state.errMessage = "";
       state.isOpen = false;
     },
   },

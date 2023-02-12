@@ -26,7 +26,7 @@ const Lobby = () => {
 
   const handleOpenModal = () => {
     dispatch(
-      openModal({ type: "CreateRoomModal", isOpen: true, title: "방만들기" })
+      openModal({ type: "CreateRoomModal", title: "방만들기" })
     );
   };
 
@@ -45,7 +45,11 @@ const Lobby = () => {
         </ButtonPrimary>
       </div>
 
-      {status === "Loading" && <CircularProgress color="inherit" />}
+      {status === "Loading" &&
+        <div className={styles.loading}>
+          <CircularProgress color="inherit" />
+        </div>
+      }
       {status === "complete" && (
         <div className={styles.container}>
           {rooms.map((room) => (
@@ -54,13 +58,7 @@ const Lobby = () => {
         </div>
       )}
 
-      {status === "fail" && (
-        <ErrorModal
-          title="실패"
-          message="방 목록을 불러오는데 실패했습니다."
-          onClick={() => dispatch(getRoom())}
-        />
-      )}
+      {status === "fail" && <ErrorModal onClick={() => dispatch(getRoom())} />}
       {/* {modal === "err" && <ErrModal />}
       {modal === "create" && <RoomModal />}
       {modal === "join" && roomInfo !== null && <JoinModal />} */}

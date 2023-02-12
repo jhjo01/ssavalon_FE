@@ -107,7 +107,7 @@ export const useValidNickName = (nickname) => {
       setIsValid(false);
     }
     setValue(event.target.value);
-    setIsDipli(false);
+    setIsDupli(false);
   };
 
   useEffect(() => {
@@ -133,7 +133,6 @@ export const useValidNickName = (nickname) => {
       setIsDipli(false);
       setDisabled({ check: false, signup: false });
     }
-
     return;
   };
 

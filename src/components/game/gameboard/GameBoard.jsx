@@ -13,6 +13,7 @@ import RoundTokenBack from "../logCard/RoundTokenBack";
 import SelectCard from "../selectCard/SelectCard";
 import { useValidMessage } from "../../../hooks/useInput";
 import Chat from "../chatting/Chat";
+import Explanation from "../explanation/Explanation"
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
@@ -129,6 +130,7 @@ const GameBoard = () => {
         handleInputChange={handleInputChange}
         handleInputReset={handleInputReset}
       />
+      <Explanation />
     </>
   );
 };
