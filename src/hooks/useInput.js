@@ -98,7 +98,7 @@ export const useValidMessage = (message) => {
 
   const handleInputReset = () => {
     setValue("");
-  }
+  };
 
   return {
     value,

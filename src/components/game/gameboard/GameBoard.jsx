@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useSocket, ready } from "../../../hooks/useSocket";
+import { useSocket, ready, chat } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
@@ -11,10 +11,13 @@ import { updateGameState } from "./../../../store/roomAndActive";
 import UnderCard from "../underCard/UnderCard";
 import RoundTokenBack from "../logCard/RoundTokenBack";
 import SelectCard from "../selectCard/SelectCard"
+import { useValidMessage } from "../../../hooks/useInput";
+import Chat from "../chatting/Chat";
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({"under":false, "select":false});
   const dispatch = useDispatch();
+  const { value, handleInputChange, handleInputReset } = useValidMessage("");
 
   const open = (type) => {
     if (type === "under") {
@@ -87,11 +90,15 @@ const GameBoard = () => {
 
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
+    else if (type === "TALK") chat(type, client, id, sender, value);
   };
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
             <AvatarImage user={user} key={user.id} />
@@ -109,12 +116,17 @@ const GameBoard = () => {
           <button onClick={()=>close("select")}>selectCard닫기</button>
         </div>
         
-
         <RoundTokenBack />
         <RoundTokenBack voteRound={true} />
       </div>
       <SelectCard open={modalOpen.select} />
       <UnderCard open={modalOpen.under} />
+      <Chat
+        sendMessage={() => sendMessage("TALK")}
+        value={value}
+        handleInputChange={handleInputChange}
+        handleInputReset={handleInputReset}
+      />
     </>
   );
 };

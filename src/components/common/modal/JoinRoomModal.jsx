@@ -3,7 +3,7 @@ import ButtonDanger from "../button/ButtonDanger";
 import styles from "./Modal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../store/modal";
-import { useValidPassword } from "./../../../hooks/userInput";
+import { useValidPassword } from "./../../../hooks/useInput";
 
 const JoinRoomModal = (props) => {
   const dispatch = useDispatch();
@@ -11,13 +11,8 @@ const JoinRoomModal = (props) => {
     return state.modal.title;
   });
 
-  const {
-    value,
-    isValid,
-    disabled,
-    handlePasswordChange,
-    // handleValidPassword,
-  } = useValidPassword("");
+  const { value, isValid, disabled, handlePasswordChange } =
+    useValidPassword("");
 
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "JoinRoomModal", isOpen: false }));
@@ -35,7 +30,6 @@ const JoinRoomModal = (props) => {
             type="password"
             value={value}
             onChange={handlePasswordChange}
-            // onBlur={handleValidPassword}
             autoComplete="off"
           />
           {!isValid && (
