@@ -19,7 +19,7 @@ const Login = () => {
     if (loginState.userStatus === "empty") {
       navigate("/");
     }
-  }, [loginState.userStatus]);
+  }, [navigate, code, dispatch, loginState.userStatus]);
 
   return (
     <>
