@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { signup } from "../apis/user";
 
 export const useValidPassword = (password) => {
   const [value, setValue] = useState(password);
@@ -91,7 +94,11 @@ export const useValidNickName = (nickname) => {
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
   const [isDupli, setIsDipli] = useState(false);
-  const [disabled, setDisabled] = useState({ "check": true, "signup": true });
+  const [disabled, setDisabled] = useState({ check: true, signup: true });
+
+  const kakaoId = useSelector((state) => {
+    return state.login.kakaoId;
+  });
 
   const handleNickChange = (event) => {
     if (event.target.value.length >= 4 && event.target.value.length <= 8) {
@@ -104,18 +111,42 @@ export const useValidNickName = (nickname) => {
   };
 
   useEffect(() => {
-    if (isValid) setDisabled(false);
-    else setDisabled(true);
+    if (isValid) setDisabled({ check: false, signup: true });
+    else setDisabled({ check: false, signup: true });
   }, [isValid]);
 
-  const handleCheckNick = () => {
-    setIsDipli(true);
-    return;
-  }
+  const handleCheckNick = async () => {
+    if (!isValid) return;
 
-  const handleSignUp = () => {
+    // 중복체크 진행
+    const response = await axios.get(
+      `https://3.36.97.158:8000/user-service/oauth/duplication/${value}`
+    );
+
+    console.log(response);
+
+    if (response.data) {
+      // 중복
+      setIsDipli(true);
+    } else {
+      // 중복 아님
+      setIsDipli(false);
+      setDisabled({ check: false, signup: false });
+    }
+
     return;
-  }
+  };
+
+  const handleSignUp = (event) => {
+    event.preventDefault();
+
+    const form = new FormData();
+    form.append("kakaoId", kakaoId);
+    form.append("nickname", value);
+
+    const res = signup(form);
+    console.log(res);
+  };
 
   return {
     value,
