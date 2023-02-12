@@ -1,6 +1,7 @@
 .kakao img {
   width: 450px;
   height: 70px;
+  cursor: pointer;
 }
 
 .kakao img:hover {

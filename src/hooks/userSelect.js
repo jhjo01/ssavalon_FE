@@ -26,10 +26,24 @@ export const useValidSelectCard = (people) => {
         setSelectPeople([]);
     }
 
+    const handleStatusChange = (stat, round) => {
+        setStatus(stat);
+        if (stat === "makeJury" && round === 1) {
+            setSelectNum(2);
+        } else if (stat === "makeJury" && (round === 2 || round === 4)) {
+            setSelectNum(3);
+        } else if (stat === "makeJury" && (round === 3 || round === 5)) {
+            setSelectNum(4);
+        } else if (stat === "winCitizen") {
+            setSelectNum(1);
+        }
+    }
+
     return {
         selectPeople,
         disabled,
         handleSelectChange,
         handleSubmitJury,
+        handleStatusChange,
     };
 };
