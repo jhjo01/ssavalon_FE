@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../../../store/login";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import styles from "./LoginButton.module.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Login = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.loading}>
         <CircularProgress />
       </div>
     </>

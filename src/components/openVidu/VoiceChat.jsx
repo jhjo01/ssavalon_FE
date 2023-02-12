@@ -2,7 +2,9 @@ import { OpenVidu } from 'openvidu-browser';
 import axios from 'axios';
 import React, { Component } from 'react';
 import UserVideoComponent from './UserVideoComponent';
-import {OPENVIDU_SERVER_URL, OPENVIDU_SERVER_SECRET} from "../../constants/index"
+import { OPENVIDU_SERVER_URL, OPENVIDU_SERVER_SECRET } from "../../constants/index"
+import MicIcon from '@mui/icons-material/Mic';
+import MicOffIcon from '@mui/icons-material/MicOff';
 
 
 class VoiceChat extends Component {
@@ -156,8 +158,9 @@ class VoiceChat extends Component {
                                 type="button"
                                 id="buttonLeaveSession"
                                 onClick={this.handleMicOnOff}
-                                value="Mic"
-                            />
+                            >
+                                {this.state.isMike? <MicIcon /> : <MicOffIcon />}
+                            </input>
                         </div>
                         
                         <div id="video-container" className="col-md-6">
