@@ -14,14 +14,20 @@ export const useValidSelectCard = (people) => {
         } else {
             setSelectPeople([info.person]);
         }
-        console.log(selectPeople);
     };
 
+    useEffect(() => {
+        if (selectPeople.length === selectNum) {
+            setDisabled(false);
+        } else setDisabled(true);
+    }, [selectPeople]);
+    
     const handleSubmitJury = () => {
-
+        setSelectPeople([]);
     }
 
     return {
+        selectPeople,
         disabled,
         handleSelectChange,
         handleSubmitJury,
