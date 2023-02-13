@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { signup } from "../apis/user";
 import { setUserInfo } from "../store/userInfo";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const useValidPassword = (password) => {
   const [value, setValue] = useState(password);
@@ -100,6 +100,8 @@ export const useValidNickName = (nickname) => {
     return state.user;
   });
 
+  const [kakaoId] = useState(useLocation().state);
+
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
   const [isDupli, setIsDupli] = useState(false);
@@ -124,29 +126,33 @@ export const useValidNickName = (nickname) => {
     if (!isValid) return;
 
     // 중복체크 진행
-    // const response = await axios.get(
-    //   // `https://3.36.97.158:8000/user-service/oauth/duplication/${value}`
-    //   `api/user-service/oauth/duplication/${value}`
-    // );
-    // console.log(response);
+    const response = await axios.get(
+      `https://i8b305.p.ssafy.io:8000/user-service/oauth/duplication/${value}`
+    );
+    console.log(response.data);
 
-    //   if (response.data) {
-    //     // 중복
-    // setIsDupli(true);
-    //   } else {
-    //     // 중복 아님
-    setIsDupli(false);
-    setDisabled({ check: false, signup: false });
-    //   }
+    if (response.data) {
+      // 중복
+      setIsDupli(true);
+    } else {
+      // 중복 아님
+      setIsDupli(false);
+      setDisabled({ check: false, signup: false });
+    }
     return;
   };
 
   const handleSignUp = async (event) => {
     event.preventDefault();
-    const data = { isLogin: true, nickName: "aaa", refreshToken: "bbb" };
-    dispatch(setUserInfo(data));
-    console.log(userInfo);
-    navigate("/");
+    signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
+      const userInfo = {
+        isLogin: true,
+        nickName: data.data.nickname,
+        refreshToken: data.data.refreshToken,
+      };
+      dispatch(setUserInfo(userInfo));
+      navigate("/");
+    });
   };
 
   return {

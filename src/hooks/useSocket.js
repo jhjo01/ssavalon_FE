@@ -1,8 +1,4 @@
-import {
-  API_END_POINT,
-  SOCKET_SUB_END_POINT,
-  SOCKET_PUB_END_POINT,
-} from "../constants/index";
+import { API_END_POINT, SOCKET_SUB_END_POINT, SOCKET_PUB_END_POINT } from "../constants/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as StompJs from "@stomp/stompjs";
@@ -27,6 +23,11 @@ export const useSocket = (client, roomId, sender) => {
     client.current.subscribe(`${SOCKET_SUB_END_POINT}/${roomId}`, (message) => {
       // spring에서 넘어오는 데이터 parse
       const parse = JSON.parse(message.body);
+
+      if (parse.type === "READY") {
+        console.log(message.body);
+        return;
+      }
 
       // 분기문 처리
       if (parse.type === "TALK") {

@@ -1,8 +1,11 @@
 import styles from "./Chatting.module.css";
+import { useSelector } from "react-redux";
 
 const Chatting = (props) => {
     const { message } = props;
-    const myNick = "이진욱"
+    const myNick = useSelector((state) => {
+        return state.user.nickName;
+    });
 
     return (
         <div className={myNick === message.nickName ? styles.myChat : styles.otherChat}>
