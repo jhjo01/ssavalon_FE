@@ -1,20 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
 // import { API_END_POINT } from "../constants/index";
 
 const getUserInfo = createAsyncThunk("loginSlice/getUserInfo", async (props) => {
+  // const response = await axios.get(`/api/oauth/kakao?code=${props}`);
   const response = await axios.get(`http://3.36.97.158:9000/oauth/kakao?code=${props}`);
 
+  console.log(response);
   if (response === null || response.data.kakaoId === "") {
-    return { isLogin: false, refreshToken: "", nickName: "", kakaoId: "", status: "" };
+    return { kakaoId: "", status: "" };
   }
 
   if (response.data.status === "empty") {
     const data = {
-      isLogin: false,
-      refreshToken: "",
-      nickName: "",
       kakaoId: response.data.kakaoId,
       userStatus: response.data.status,
     };
@@ -22,9 +20,6 @@ const getUserInfo = createAsyncThunk("loginSlice/getUserInfo", async (props) => 
   }
 
   const data = {
-    isLogin: true,
-    refreshToken: response.data.refreshToken,
-    nickName: response.data.nickName,
     kakaoId: response.data.kakaoId,
     userStatus: response.data.status,
   };
@@ -35,11 +30,8 @@ const getUserInfo = createAsyncThunk("loginSlice/getUserInfo", async (props) => 
 export const loginSlice = createSlice({
   name: "getUserInfo",
   initialState: {
-    isLogin: false,
     kakaoId: "",
     userStatus: "",
-    refreshToken: "",
-    nickName: "",
     status: "Loading",
   },
 
@@ -48,10 +40,7 @@ export const loginSlice = createSlice({
       state.status = "Loading";
     });
     builder.addCase(getUserInfo.fulfilled, (state, action) => {
-      const { isLogin, refreshToken, nickName, kakaoId, userStatus } = action.payload;
-      state.isLogin = isLogin;
-      state.refreshToken = refreshToken;
-      state.nickName = nickName;
+      const { kakaoId, userStatus } = action.payload;
       state.kakaoId = kakaoId;
       state.userStatus = userStatus;
       state.status = "complete";

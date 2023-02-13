@@ -6,6 +6,7 @@ import { roundLogSlice } from "./roundLog";
 import { roomAndActiveSlice } from "./roomAndActive";
 import { loginSlice } from "./login";
 import { chatSlice } from "./chat";
+import { userSlice } from "./userInfo";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     roundLog: roundLogSlice.reducer,
     login: loginSlice.reducer,
     chat: chatSlice.reducer,
+    user: userSlice.reducer,
   },
 });
