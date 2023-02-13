@@ -12,13 +12,11 @@ export const postConfig_3030 = (url, data) => {
 };
 
 export const postConfig_8000 = (url, data) => {
-
-  
   return {
     method: "POST",
     url: API_BUSINESS + url,
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
     data: data,
   };
