@@ -16,10 +16,6 @@
 }
 
 @media (max-width: 768px) {
-  .kakao {
-    text-align: center;
-  }
-
   .kakao img {
     width: 300px;
   }
