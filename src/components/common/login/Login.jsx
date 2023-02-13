@@ -16,14 +16,21 @@ const Login = () => {
     // api 호출해서  "status":"empty" 인지 확인
     login(code).then((res) => {
       if (res.data.status === "empty")
-        navigate("/signup", { state: res.data.kakaoId }); // empty이면 회원가입 페이지
+        navigate("/signup", {
+          state: res.data.kakaoId,
+        });
+      // empty이면 회원가입 페이지
       else if (res.data.status === "valid") {
-        const data = { isLogin: true, nickName: res.nickname, refreshToken: res.refreshToken };
+        const data = {
+          isLogin: true,
+          nickName: res.nickname,
+          refreshToken: res.refreshToken,
+        };
         dispatch(setUserInfo(data)); // valid이면 로그인 처리
         navigate("/");
       }
     });
-  }, []);
+  }, [code, dispatch, navigate]);
 
   return (
     <>

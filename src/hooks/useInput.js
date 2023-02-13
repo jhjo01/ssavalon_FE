@@ -100,10 +100,6 @@ export const useValidNickName = (nickname) => {
     return state.user;
   });
 
-  if (userInfo.isLogin) {
-    navigate("/");
-  }
-
   const [kakaoId] = useState(useLocation().state);
 
   const [value, setValue] = useState(nickname);
@@ -122,9 +118,12 @@ export const useValidNickName = (nickname) => {
   };
 
   useEffect(() => {
+    if (userInfo.isLogin) {
+      navigate("/");
+    }
     if (isValid) setDisabled({ check: false, signup: true });
     else setDisabled({ check: false, signup: true });
-  }, [isValid]);
+  }, [isValid, userInfo.isLogin]);
 
   const handleCheckNick = async () => {
     if (!isValid) return;
