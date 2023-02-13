@@ -1,26 +1,23 @@
 import styles from "./RecentGame.module.css";
-import PoliceXsImage from "../common/jobs/PoliceXsImage";
-import CitizenXsImage from "../common/jobs/CitizenXsImage";
-import KillerXsImage from "../common/jobs/KillerXsImage";
+import JobXsImage from "../common/jobs/JobXsImage";
 
-const RecentGame= (props) => {
-  const background = props.win ? styles.win : styles.lose;
-  const vertical = props.win ? styles.win_line : styles.lose_line;
+const RecentGame = (props) => {
+  const { gameResult } = props;
+  const background = gameResult.isWin ? styles.win : styles.lose;
+  const vertical = gameResult.isWin ? styles.win_line : styles.lose_line;
+
   return (
     <div className={`${styles.card} ${background}`}>
       <div className={styles.game}>
-        <span>{props.win ? "승리" : "패배"}</span>
+        <span>{gameResult.isWin ? "승리" : "패배"}</span>
         <span>12/02 01:21</span>
       </div>
       <div className={`${styles.line} ${vertical}`}></div>
 
       <div className={styles.img_wrapper}>
-        <CitizenXsImage />
-        <CitizenXsImage />
-        <CitizenXsImage />
-        <PoliceXsImage />
-        <KillerXsImage />
-        <KillerXsImage />
+        {gameResult.gameRes.map((playerResult) => (
+          <JobXsImage playerResult={playerResult} />
+        ))}
       </div>
     </div>
   );

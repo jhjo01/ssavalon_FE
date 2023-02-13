@@ -23,8 +23,8 @@ const Login = () => {
       else if (res.data.status === "valid") {
         const data = {
           isLogin: true,
-          nickName: res.nickname,
-          refreshToken: res.refreshToken,
+          nickName: res.data.nickname,
+          refreshToken: res.data.refreshToken,
         };
         dispatch(setUserInfo(data)); // valid이면 로그인 처리
         navigate("/");
