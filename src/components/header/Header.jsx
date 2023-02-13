@@ -1,12 +1,20 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "../../store/userInfo";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   const isLogin = useSelector((state) => {
     return state.user.isLogin;
   });
+
+  const logoutHandler = () => {
+    const data = { isLogin: false, nickName: "", refreshToken: "" };
+    dispatch(setUserInfo(data));
+  };
 
   return (
     <>
@@ -15,15 +23,15 @@ const Header = () => {
           <Link to="/">SSAVALON</Link>
         </label>
         <input type="checkbox" id="check" className={styles.check} />
-        {isLogin &&
+        {isLogin && (
           <label htmlFor="check" className={styles.checkbtn}>
             <MenuIcon />
           </label>
-        }
-        {isLogin &&
+        )}
+        {isLogin && (
           <ul className={styles.ul}>
             <li className={styles.li}>
-              <Link to="#" className={styles.active}>
+              <Link to="/" className={styles.active} onClick={logoutHandler}>
                 로그아웃
               </Link>
             </li>
@@ -34,7 +42,7 @@ const Header = () => {
               <Link to="/mypage">마이페이지</Link>
             </li>
           </ul>
-        }
+        )}
       </nav>
     </>
   );
