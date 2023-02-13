@@ -17,7 +17,8 @@ const Login = () => {
     login(code).then((res) => {
       if (res.status === "empty") navigate("/signup"); // empty이면 회원가입 페이지
       else if (res.status === "valid") {
-        dispatch(setUserInfo(res)); // valid이면 로그인 처리
+        const data = { isLogin: true, nickName: res.nickname, refreshToken: res.refreshToken };
+        dispatch(setUserInfo(data)); // valid이면 로그인 처리
         navigate("/");
       }
     });
