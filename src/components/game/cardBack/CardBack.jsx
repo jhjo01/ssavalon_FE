@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const CardBack = (props) => {
   const { person, selectPeople } = props;
   const [selected, setSelected] = useState(false);
-  
+
   useEffect(() => {
     if (selectPeople.length === 0) {
       setSelected(false);
@@ -14,10 +14,13 @@ const CardBack = (props) => {
         setSelected(false);
       }
     }
-  }, [selectPeople]);
+  }, [selectPeople, person.id]);
 
   return (
-    <section className={selected ? styles.selected_card : styles.no_selected_card} onClick={() => props.onClick({ person, selected })}>
+    <section
+      className={selected ? styles.selected_card : styles.no_selected_card}
+      onClick={() => props.onClick({ person, selected })}
+    >
       <div className={styles.card}>
         <div className={styles.card_back}>
           <div className={styles.layer}>

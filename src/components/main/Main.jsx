@@ -9,6 +9,10 @@ const Main = () => {
     return state.login.nickName;
   });
   
+  const userInfo = useSelector((state) => {
+    return state.user;
+  });
+
   return (
     <section className={styles.content}>
       <div className={styles.main_text}>
