@@ -47,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://i8b305.p.ssafy.io:8000"
 }

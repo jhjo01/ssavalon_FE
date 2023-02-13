@@ -13,7 +13,7 @@ import RoundTokenBack from "../logCard/RoundTokenBack";
 import SelectCard from "../selectCard/SelectCard";
 import { useValidMessage } from "../../../hooks/useInput";
 import Chat from "../chatting/Chat";
-import Explanation from "../explanation/Explanation"
+import Explanation from "../explanation/Explanation";
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
@@ -32,8 +32,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -50,8 +49,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -91,6 +89,8 @@ const GameBoard = () => {
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
   let connect = JSON.parse(connectedUsers);
 
+  console.log(connect);
+
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
     else if (type === "TALK") chat(type, client, id, sender, value);
@@ -98,15 +98,15 @@ const GameBoard = () => {
 
   return (
     <>
-      <div
-        className={styles.game_table}
-        style={{ backgroundImage: `url(${GameBoardImage})` }}
-      >
+      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
             <AvatarImage user={user} key={user.id} />
           ))}
         </div>
+
+        <RoundTokenBack />
+        <RoundTokenBack voteRound={true} />
 
         <div className={styles.game_table_buttons}>
           <ButtonRS content="준비" onClick={() => sendMessage("READY")} />
@@ -118,9 +118,6 @@ const GameBoard = () => {
           <button onClick={() => open("select")}>selectCard열기</button>
           <button onClick={() => close("select")}>selectCard닫기</button>
         </div>
-
-        <RoundTokenBack />
-        <RoundTokenBack voteRound={true} />
       </div>
       <SelectCard open={modalOpen.select} />
       <UnderCard open={modalOpen.under} />
