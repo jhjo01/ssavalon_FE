@@ -10,4 +10,4 @@ const REDIRECT_URL = "http://localhost:3000/oauth/kakao";
 
 export const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 
-export const API_BUSINESS = "https://3.36.97.158:8000";
+export const API_BUSINESS = "/api";

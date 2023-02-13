@@ -23,10 +23,7 @@ const ErrorModal = () => {
   });
 
   const handleCloseModal = () => {
-    dispatch(
-      closeModal({ type: "ErrorModal" }),
-      getRoom()
-    );
+    dispatch(closeModal({ type: "ErrorModal" }), getRoom());
   };
 
   return (
