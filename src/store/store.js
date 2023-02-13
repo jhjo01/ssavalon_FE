@@ -24,10 +24,23 @@ const persistConfig = {
   blacklist: ["modal"],
 };
 
+
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer: persistedReducer,
+})
+
+export default configureStore({
+  reducer: {
+    room: roomSlice.reducer,
+    roomAndStandBy: roomAndStandBySlice.reducer,
+    roomAndActive: roomAndActiveSlice.reducer,
+    modal: modalSlice.reducer,
+    roundLog: roundLogSlice.reducer,
+    chat: chatSlice.reducer,
+    user: userSlice.reducer,
+  },
 });
 
 export default store;

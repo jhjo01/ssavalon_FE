@@ -143,16 +143,9 @@ export const useValidNickName = (nickname) => {
 
   const handleSignUp = async (event) => {
     event.preventDefault();
-
-    // const res = await signup(form);
-
-    // console.log(res);
-    // 정상이면 {refreshRoken: aaa, nickname: bbb}
     const data = { isLogin: true, nickName: "aaa", refreshToken: "bbb" };
     dispatch(setUserInfo(data));
-
     console.log(userInfo);
-
     navigate("/");
   };
 
