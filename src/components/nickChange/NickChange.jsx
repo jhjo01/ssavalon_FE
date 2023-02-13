@@ -5,7 +5,8 @@ import ButtonPrimary from "../common/button/ButtonPrimary";
 import ButtonDanger from "../common/button/ButtonDanger";
 
 const NickChange = () => {
-  const { value, isValid, isDupli, disabled, handleNickChange, handleCheckNick, handleSignUp } =
+
+const { value, isValid, isDupli, disabled, handleNickChange, handleCheckNick, handleSignUp } =
     useValidNickName("");
 
   return (
@@ -26,8 +27,14 @@ const NickChange = () => {
               중복검사
             </ButtonDanger>
           </div>
-          {!isValid && <p className={styles.input_errMsg}>닉네임은 4글자 이상 8글자 이하입니다.</p>}
-          {isDupli && <p className={styles.input_errMsg}>이미 사용중인 닉네임입니다.</p>}
+          {!isValid && (
+            <p className={styles.input_errMsg}>
+              닉네임은 4글자 이상 8글자 이하입니다.
+            </p>
+          )}
+          {isDupli && (
+            <p className={styles.input_errMsg}>이미 사용중인 닉네임입니다.</p>
+          )}
           <div className={styles.button_area}>
             <ButtonPrimary type="submit" disabled={disabled.signup}>
               회원가입
