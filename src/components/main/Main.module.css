@@ -47,23 +47,21 @@
 
 .content .main_text a {
   display: inline-block;
-  text-decoration: none;
-  color: black;
-  background: #fff;
-  border: 1px solid #fff;
-  padding: 0.7rem 1.3rem;
-  border-radius: 2rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-right: 0.3rem;
+  color: #fff;
+  border: 1px solid rgb(91, 53, 213);
+  background: rgb(91, 53, 213);
+  border-radius: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  width: 450px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
 }
 
 .content .main_text a:hover {
-  transform: scale(1.15);
-  border: 1px solid #f5dca8;
-  background: transparent;
-  color: #fff;
-  transition: 0.4s;
+  background: rgb(109, 76, 218);
+  border-color: rgb(109, 76, 218);
 }
 
 .image {
