@@ -12,7 +12,6 @@ export const postConfig_3030 = (url, data) => {
 };
 
 export const postConfig_8000 = (url, data) => {
-  console.log(data);
   return {
     method: "POST",
     url: API_BUSINESS + url,

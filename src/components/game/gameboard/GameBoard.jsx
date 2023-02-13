@@ -89,7 +89,6 @@ const GameBoard = () => {
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
   let connect = JSON.parse(connectedUsers);
 
-  console.log(connect);
 
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);

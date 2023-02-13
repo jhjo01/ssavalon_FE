@@ -100,6 +100,8 @@ export const useValidNickName = (nickname) => {
     return state.user;
   });
 
+  const [kakaoId] = useState(useLocation().state);
+
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
   const [isDupli, setIsDupli] = useState(false);
@@ -142,10 +144,15 @@ export const useValidNickName = (nickname) => {
 
   const handleSignUp = async (event) => {
     event.preventDefault();
-    signup({ kakaoId: "1231232", nickname: value });
-    // const data = { isLogin: true, nickName: value, refreshToken: "bbb" };
-    // dispatch(setUserInfo(data));
-    // navigate("/");
+    signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
+      const userInfo = {
+        isLogin: true,
+        nickName: data.data.nickname,
+        refreshToken: data.data.refreshToken,
+      };
+      dispatch(setUserInfo(userInfo));
+      navigate("/");
+    });
   };
 
   return {
