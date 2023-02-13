@@ -4,7 +4,6 @@ import { modalSlice } from "./modal";
 import { roomAndStandBySlice } from "./roomAndStandBy";
 import { roundLogSlice } from "./roundLog";
 import { roomAndActiveSlice } from "./roomAndActive";
-import { loginSlice } from "./login";
 import { chatSlice } from "./chat";
 import { userSlice } from "./userInfo";
 
@@ -15,7 +14,6 @@ export default configureStore({
     roomAndActive: roomAndActiveSlice.reducer,
     modal: modalSlice.reducer,
     roundLog: roundLogSlice.reducer,
-    login: loginSlice.reducer,
     chat: chatSlice.reducer,
     user: userSlice.reducer,
   },

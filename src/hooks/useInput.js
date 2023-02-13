@@ -105,10 +105,6 @@ export const useValidNickName = (nickname) => {
   const [isDupli, setIsDupli] = useState(false);
   const [disabled, setDisabled] = useState({ check: true, signup: true });
 
-  const kakaoId = useSelector((state) => {
-    return state.login.kakaoId;
-  });
-
   const handleNickChange = (event) => {
     if (event.target.value.length >= 4 && event.target.value.length <= 8) {
       setIsValid(true);
@@ -148,9 +144,9 @@ export const useValidNickName = (nickname) => {
   const handleSignUp = async (event) => {
     event.preventDefault();
 
-    const form = new FormData();
-    form.append("kakaoId", kakaoId);
-    form.append("nickname", value);
+    // const form = new FormData();
+    // form.append("kakaoId", kakaoId);
+    // form.append("nickname", value);
 
     // const res = await signup(form);
 

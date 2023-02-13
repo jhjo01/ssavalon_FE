@@ -3,19 +3,10 @@ import styles from "./NickChange.module.css";
 import { useValidNickName } from "../../hooks/useInput";
 import ButtonPrimary from "../common/button/ButtonPrimary";
 import ButtonDanger from "../common/button/ButtonDanger";
-import { useNavigate } from "react-router-dom";
-import { signup } from "../../apis/user";
-import { useSelector } from "react-redux";
 
 const NickChange = () => {
-  const navigate = useNavigate();
-
   const { value, isValid, isDupli, disabled, handleNickChange, handleCheckNick, handleSignUp } =
     useValidNickName("");
-
-  const kakaoId = useSelector((state) => {
-    return state.login.kakaoId;
-  });
 
   return (
     <>
