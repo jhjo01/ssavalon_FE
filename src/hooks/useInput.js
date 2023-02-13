@@ -100,6 +100,10 @@ export const useValidNickName = (nickname) => {
     return state.user;
   });
 
+  if (userInfo.isLogin) {
+    navigate("/");
+  }
+
   const [kakaoId] = useState(useLocation().state);
 
   const [value, setValue] = useState(nickname);
