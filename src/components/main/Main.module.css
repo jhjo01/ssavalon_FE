@@ -45,7 +45,7 @@
   margin-bottom: 3rem;
 }
 
-.content .main_text a {
+.content .main_text .go_lobby {
   display: inline-block;
   color: #fff;
   border: 1px solid rgb(91, 53, 213);
@@ -57,9 +57,10 @@
   height: 70px;
   text-align: center;
   line-height: 70px;
+  cursor: pointer;
 }
 
-.content .main_text a:hover {
+.content .main_text .go_lobby:hover {
   background: rgb(109, 76, 218);
   border-color: rgb(109, 76, 218);
 }
@@ -91,6 +92,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .content .main_text {
+    text-align: center;
+  }
 
   .content .main_text h1 {
     font-size: 6rem;
@@ -98,6 +102,11 @@
 
   .content .main_text p {
     width: 768px;
+  }
+
+  .content .main_text .go_lobby {
+    width: 300px;
+    font-size: 1.7rem;
   }
 }
 
