@@ -17,9 +17,9 @@ import Explanation from "../explanation/Explanation";
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
+  const [swipe, setSwipe] = useState([false, false]);
   const dispatch = useDispatch();
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
-  const [swipe, setSwipe] = useState([false, false]);
 
   const handleSwipe = (swipeIndex) => {
     if (swipe[swipeIndex]) setSwipe([false, false]);
