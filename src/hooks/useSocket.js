@@ -8,6 +8,7 @@ import { updateChat } from "../store/chat";
 
 export const useSocket = (client, roomId, sender) => {
   const dispatch = useDispatch();
+
   const connect = () => {
     client.current = new StompJs.Client({
       webSocketFactory: () => new SockJS(`${API_END_POINT}/ws-stomp`),
@@ -23,8 +24,8 @@ export const useSocket = (client, roomId, sender) => {
     client.current.subscribe(`${SOCKET_SUB_END_POINT}/${roomId}`, (message) => {
       // spring에서 넘어오는 데이터 parse
       const parse = JSON.parse(message.body);
-
-      if (parse.type === "READY") {
+      console.log(parse);
+      if (parse.type === "standBy") {
         console.log(message.body);
         return;
       }
@@ -51,17 +52,8 @@ export const useSocket = (client, roomId, sender) => {
 
   useEffect(() => {
     connect();
-    console.log("connet");
     return () => disconnect();
   }, []);
-};
-
-export const ready = (type, client, roomId, sender) => {
-  client.current.publish({
-    destination: SOCKET_PUB_END_POINT,
-    headers: {},
-    body: JSON.stringify({ type: type, roomId: roomId, sender: sender }),
-  });
 };
 
 export const chat = (type, client, roomId, sender, message) => {
