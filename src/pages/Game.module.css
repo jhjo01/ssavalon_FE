@@ -3,6 +3,8 @@
   height: 100vh;
   background-size: cover;
   overflow: hidden;
-  opacity: 0.8;
   position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("../assets/images/image-background.png");
+  opacity: 0.8;
 }

@@ -6,9 +6,15 @@ const JobXsImage = (props) => {
   const { playerResult } = props;
   return (
     <div className={styles.img_wrapper}>
-      {playerResult.job === "범죄자" && <img src={KillerImage} alt="img-killer" />}
-      {playerResult.job === "시민" && <img src={CitizenImage} alt="img-citizen" />}
-      {playerResult.job === "경찰" && <img src={PoliceImage} alt="img-police" />}
+      {playerResult.job === "범죄자" && (
+        <img src={KillerImage} alt="img-killer" />
+      )}
+      {playerResult.job === "시민" && (
+        <img src={CitizenImage} alt="img-citizen" />
+      )}
+      {playerResult.job === "경찰" && (
+        <img src={PoliceImage} alt="img-police" />
+      )}
       <div className={styles.nickname}>
         <p className={styles.nickname_name}>{playerResult.nickname}</p>
       </div>

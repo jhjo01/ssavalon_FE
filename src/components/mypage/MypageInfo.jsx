@@ -19,16 +19,17 @@ const MypageInfo = () => {
 
   // 전역변수로 등록된 닉네임 가져오기
   const nickName = useSelector((state) => state.user.nickName);
-
   // 닉네임을 가지고 내 정보 요청
   useEffect(() => {
     const res = getMypage(nickName);
+    res.then((result) => console.log(result));
     res.then((result) => {
       const recentGames = [];
       for (let i = 0; i < result.gameResultList.length; i += 6) {
         const myResult = result.gameResultList
           .slice(i, i + 6)
           .find((e) => e.nickname === nickName);
+
         recentGames.push({
           gameRes: result.gameResultList.slice(i, i + 6),
           isWin: myResult.isWin,

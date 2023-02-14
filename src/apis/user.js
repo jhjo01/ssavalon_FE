@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { API_BUSINESS } from "../constants";
 import { postConfig_8000, getConfig_8000 } from "./config";
 
 export const signup = async (data) => {
@@ -15,10 +14,8 @@ export const login = async (code) => {
 };
 
 export const getMypage = async (nickName) => {
-  // const response = await axios.get(
-  //   `${API_BUSINESS}/user-service/oauth/mypage/${nickName}`
-  // );
-  // console.log(response);
-  const response = await axios(getConfig_8000(`/user-service/oauth/mypage/${nickName}`));
+  const response = await axios(
+    getConfig_8000(`/user-service/oauth/mypage/${nickName}`)
+  );
   return response.data;
 };

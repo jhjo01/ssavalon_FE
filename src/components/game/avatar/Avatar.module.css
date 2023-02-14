@@ -32,7 +32,11 @@
   border-radius: 50%;
 }
 
-.game_setting .game_setting_inner .player .player_avatar .player_avatar_background {
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar
+  .player_avatar_background {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -40,6 +44,7 @@
   width: 100%;
   height: 100%;
   transition: opacity 0.2s;
+  background-image: url("../../../assets/images/image-avatar-frame.png");
   background-size: contain;
 }
 
@@ -53,7 +58,11 @@
   transition: opacity 0.2s;
 }
 
-.game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_username_wrapper {
   width: 100%;
   height: 28px;
   position: absolute;
@@ -84,7 +93,11 @@
   white-space: nowrap;
 }
 
-.game_setting .game_setting_inner .player .player_avatar_container .player_avatar_avatar {
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_avatar_avatar {
   width: 70%;
   height: 70%;
   position: absolute;
@@ -101,7 +114,11 @@
     height: 102px;
   }
 
-  .game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
+  .game_setting
+    .game_setting_inner
+    .player
+    .player_avatar_container
+    .player_username_wrapper {
     height: 22px;
     margin-bottom: -27px;
   }
@@ -121,7 +138,11 @@
     height: 76px;
   }
 
-  .game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
+  .game_setting
+    .game_setting_inner
+    .player
+    .player_avatar_container
+    .player_username_wrapper {
     height: 17px;
     margin-bottom: -18px;
   }

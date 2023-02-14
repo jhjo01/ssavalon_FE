@@ -1,12 +1,15 @@
 import { API_END_POINT, API_BUSINESS } from "../constants";
 import axios from "axios";
-let token = localStorage.getItem("persist:root");
-token = JSON.parse(token);
-token = JSON.parse(token.user);
-token = token.refreshToken;
 
 axios.interceptors.request.use(
   (config) => {
+    let token = localStorage.getItem("persist:root");
+    if (token) {
+      token = JSON.parse(token);
+      token = JSON.parse(token.user);
+      token = token.refreshToken;
+      console.log(token);
+    }
     // 요청 보낼 때
     if (token) {
       config.headers["Authorization"] = "Bearer " + token;
@@ -47,4 +50,3 @@ export const getConfig_8000 = (url) => {
     url: API_BUSINESS + url,
   };
 };
-

@@ -1,5 +1,4 @@
 import styles from "./Avatar.module.css";
-import AvatarFrame from "../../../assets/images/image-avatar-frame.png";
 import Crown from "../assets/Crown";
 import Jury from "../assets/Jury";
 
@@ -19,10 +18,7 @@ const AvatarImage = (props) => {
       >
         <div className={styles.player}>
           <div className={styles.player_avatar}>
-            <div
-              className={styles.player_avatar_background}
-              style={{ backgroundImage: `url(${AvatarFrame})` }}
-            ></div>
+            <div className={styles.player_avatar_background}></div>
             <div className={styles.player_avatar_container}>
               <Crown />
               <Jury />

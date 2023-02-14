@@ -55,6 +55,7 @@ export const useSocket = (client, roomId, sender) => {
 
   useEffect(() => {
     connect();
+    console.log("connet");
     return () => disconnect();
   }, []);
 };
