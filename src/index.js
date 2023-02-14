@@ -11,6 +11,12 @@ import { persistStore } from "redux-persist";
 
 export let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
+console.log(`
+.▄▄ · .▄▄ ·  ▄▄▄· ▌ ▐· ▄▄▄· ▄▄▌         ▐ ▄ 
+▐█ ▀. ▐█ ▀. ▐█ ▀█▪█·█▌▐█ ▀█ ██•  ▪     •█▌▐█
+▄▀▀▀█▄▄▀▀▀█▄▄█▀▀█▐█▐█•▄█▀▀█ ██▪   ▄█▀▄ ▐█▐▐▌
+▐█▄▪▐█▐█▄▪▐█▐█ ▪▐▌███ ▐█ ▪▐▌▐█▌▐▌▐█▌.▐▌██▐█▌
+ ▀▀▀▀  ▀▀▀▀  ▀  ▀. ▀   ▀  ▀ .▀▀▀  ▀█▄▀▪▀▀ █▪`);
 root.render(
   <React.StrictMode>
     <Provider store={store}>

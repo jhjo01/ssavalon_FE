@@ -8,6 +8,9 @@ const Page404 = () => {
   const handleGoMain = () => {
     navigate("/");
   };
+  console.log(`＿人人 人人＿
+  ＞ (´◎ω◎)  ＜ 에러 잖아?!
+  ￣Y^Y^Y^Y￣`);
   return (
     <>
       <Header />
