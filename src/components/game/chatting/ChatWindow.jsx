@@ -7,15 +7,15 @@ import { useSelector } from "react-redux";
 const ChatWindow = (props) => {
   const {
     swipe,
-    handleChangeSwipe,
+    handleSwipe,
     sendMessage,
     value,
     handleInputChange,
     handleInputReset,
   } = props;
 
-  const messages = useSelector((state) => state.chat.chat);
-
+  const messages = useSelector((state) => state.chat.chat.slice(1));
+  const open = swipe ? styles.swipe : "";
   const handleOnKeyUp = async (event) => {
     if (event.key === "Enter") {
       handleSendMessage(event);
@@ -30,12 +30,13 @@ const ChatWindow = (props) => {
 
   return (
     <>
-      <div className={`${styles.chatting} ${swipe}`}>
+      <div className={`${styles.chatting} ${open}`}>
         <div className={styles.chatting_top}>
           <h2>채팅</h2>
-          <CloseIcon onClick={handleChangeSwipe} />
+          <CloseIcon onClick={handleSwipe} />
         </div>
         <div className={styles.chatting_message}>
+          {console.log(messages)}
           {messages.map((message, index) => (
             <Chatting message={message} key={index} />
           ))}

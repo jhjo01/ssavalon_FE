@@ -8,7 +8,6 @@ axios.interceptors.request.use(
       token = JSON.parse(token);
       token = JSON.parse(token.user);
       token = token.refreshToken;
-      console.log(token);
     }
     // 요청 보낼 때
     if (token) {

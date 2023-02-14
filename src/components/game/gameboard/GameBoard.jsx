@@ -19,6 +19,13 @@ const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const dispatch = useDispatch();
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
+  const [swipe, setSwipe] = useState([false, false]);
+
+  const handleSwipe = (swipeIndex) => {
+    if (swipe[swipeIndex]) setSwipe([false, false]);
+    else if (!swipe[swipeIndex] && swipeIndex === 0) setSwipe([true, false]);
+    else if (!swipe[swipeIndex] && swipeIndex === 1) setSwipe([false, true]);
+  };
 
   const open = (type) => {
     if (type === "under") {
@@ -32,7 +39,8 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree:
+            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -49,7 +57,8 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree:
+            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -83,12 +92,12 @@ const GameBoard = () => {
 
   const client = useRef({});
   const { id } = useParams();
-  const sender = "mes";
+  const sender = useSelector((state) => state.user.nickName);
+
   useSocket(client, id, sender);
 
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
   let connect = JSON.parse(connectedUsers);
-
 
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
@@ -97,7 +106,10 @@ const GameBoard = () => {
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
           {connect.map((user) => (
             <AvatarImage user={user} key={user.id} />
@@ -125,8 +137,10 @@ const GameBoard = () => {
         value={value}
         handleInputChange={handleInputChange}
         handleInputReset={handleInputReset}
+        swipe={swipe[0]}
+        handleSwipe={() => handleSwipe(0)}
       />
-      <Explanation />
+      <Explanation swipe={swipe[1]} handleSwipe={() => handleSwipe(1)} />
     </>
   );
 };

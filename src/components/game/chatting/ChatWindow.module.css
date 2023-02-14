@@ -95,6 +95,10 @@
   cursor: pointer;
 }
 
+.swipe {
+  margin-right: 5px !important;
+}
+
 @media (max-width: 410px) {
   .chatting {
     width: 95%;
