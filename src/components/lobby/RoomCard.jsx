@@ -15,7 +15,7 @@ const RoomCard = (props) => {
 
   const handleLinkGame = async (event) => {
     event.preventDefault();
-    if (!room.lock) {
+    if (room.password === "null") {
       const form = new FormData();
       form.append("roomId", room.roomId);
       form.append("password", "null");
@@ -49,10 +49,10 @@ const RoomCard = (props) => {
         <h3>
           {room.roomNum}. {room.title}
         </h3>
-        <div className={styles.lockIcon}>{room.lock && <LockIcon />}</div>
+        <div className={styles.lockIcon}>{room.password !== "null" && <LockIcon />}</div>
       </header>
 
-      <footer className={styles.actions}>{room.userCount}/6</footer>
+      <footer className={styles.actions}>{room.players.length}/6</footer>
     </div>
   );
 };

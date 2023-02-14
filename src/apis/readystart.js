@@ -7,7 +7,7 @@ export const ready = (roomId, nickname) => {
     nickname: nickname,
   };
 
-  const res = axios(postConfig_8000("/api/game/ready"), body);
+  const res = axios(postConfig_8000("/standby-service/room/ready"), body);
   console.log(res);
   return res.data;
 };
@@ -18,7 +18,7 @@ export const start = (roomId, nickname) => {
     nickname: nickname,
   };
 
-  const res = axios(postConfig_8000("/api/game/start", body));
+  const res = axios(postConfig_8000("/standby-service/room/start", body));
   console.log(res);
   return res.data;
 };
@@ -29,7 +29,7 @@ export const exit = (roomId, nickname) => {
     nickname: nickname,
   };
 
-  const res = axios(postConfig_8000("/api/game/exit"), body);
+  const res = axios(postConfig_8000("/standby-service/room/kick"), body);
   console.log(res);
   return res.data;
 };
