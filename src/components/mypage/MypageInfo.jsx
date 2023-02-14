@@ -21,30 +21,31 @@ const MypageInfo = () => {
   const nickName = useSelector((state) => state.user.nickName);
   // 닉네임을 가지고 내 정보 요청
   useEffect(() => {
-    const res = getMypage(nickName);
-    res.then((result) => console.log(result));
-    res.then((result) => {
-      const recentGames = [];
-      for (let i = 0; i < result.gameResultList.length; i += 6) {
-        const myResult = result.gameResultList
-          .slice(i, i + 6)
-          .find((e) => e.nickname === nickName);
+    if (nickName !== "") {
+      const res = getMypage(nickName);
+      res.then((result) => console.log(result));
+      res.then((result) => {
+        const recentGames = [];
+        for (let i = 0; i < result.gameResultList.length; i += 6) {
+          const myResult = result.gameResultList
+            .slice(i, i + 6)
+            .find((e) => e.nickname === nickName);
 
-        recentGames.push({
-          gameRes: result.gameResultList.slice(i, i + 6),
-          isWin: myResult.isWin,
+          recentGames.push({
+            gameRes: result.gameResultList.slice(i, i + 6),
+            isWin: myResult.isWin,
+          });
+        }
+        setGameResultList(recentGames);
+        setOddsList(result.oddsList);
+        const mainJ = result.oddsList.reduce((prev, value) => {
+          return prev.odds >= value.odds ? prev : value;
         });
-      }
-      setGameResultList(recentGames);
-      setOddsList(result.oddsList);
-      const mainJ = result.oddsList.reduce((prev, value) => {
-        return prev.odds >= value.odds ? prev : value;
+        setMainJob(mainJ);
+        const subJ = result.oddsList.filter((job) => job !== mainJ);
+        setSubJobs(subJ);
       });
-      setMainJob(mainJ);
-      const subJ = result.oddsList.filter((job) => job !== mainJ);
-      setSubJobs(subJ);
-    });
-    return;
+    }
   }, [nickName]);
 
   return (
