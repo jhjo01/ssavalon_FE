@@ -1,7 +1,6 @@
 import styles from "./Chat.module.css";
 import ChatWindow from "./ChatWindow";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import { useState } from "react";
 
 const Chat = (props) => {
   const {

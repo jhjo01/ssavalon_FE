@@ -36,7 +36,6 @@ const ChatWindow = (props) => {
           <CloseIcon onClick={handleSwipe} />
         </div>
         <div className={styles.chatting_message}>
-          {console.log(messages)}
           {messages.map((message, index) => (
             <Chatting message={message} key={index} />
           ))}
