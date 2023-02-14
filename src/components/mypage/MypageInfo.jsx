@@ -22,7 +22,6 @@ const MypageInfo = () => {
   // 닉네임을 가지고 내 정보 요청
   useEffect(() => {
     const res = getMypage(nickName);
-    res.then((result) => console.log(result));
     res.then((result) => {
       const recentGames = [];
       for (let i = 0; i < result.gameResultList.length; i += 6) {
