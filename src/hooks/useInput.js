@@ -130,7 +130,7 @@ export const useValidnickname = (nickname) => {
       navigate("/");
     }
     if (isValid) setDisabled({ check: false, signup: true });
-    else setDisabled({ check: false, signup: true });
+    else setDisabled({ check: true, signup: true });
   }, [isValid, userInfo.isLogin, navigate]);
 
   const handleCheckNick = async () => {
@@ -145,7 +145,7 @@ export const useValidnickname = (nickname) => {
     } else {
       // 중복 아님
       setIsDupli(false);
-      setDisabled({ check: false, signup: false });
+      setDisabled({ check: true, signup: false });
     }
     return;
   };

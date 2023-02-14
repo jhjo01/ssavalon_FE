@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { API_END_POINT } from "../constants/index";
+import { API_BUSINESS } from "../constants/index";
 
 const getRoom = createAsyncThunk("roomSlice/getRoom", async () => {
-  const response = await axios.get(`${API_END_POINT}/game/rooms`);
+  const response = await axios.get(`${API_BUSINESS}/standby-service/room/list`);
   return response.data;
 });
 

@@ -15,6 +15,9 @@ const CreateRoomModal = () => {
   const title = useSelector((state) => {
     return state.modal.title;
   });
+  const nickname = useSelector((state) => {
+    return state.user.nickname;
+  });
 
   const {
     value,
@@ -34,6 +37,7 @@ const CreateRoomModal = () => {
     const form = new FormData();
     form.append("title", value.title);
     form.append("password", value.password);
+    form.append("nickname", nickname);
     const res = await createRoom(form);
     if (res.status === 200) {
       dispatch(closeModal({ type: "CreateRoomModal"}));
