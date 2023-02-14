@@ -69,10 +69,22 @@
     align-items: center;
 }
 
-.explain .progress svg {
+.explain .progress .page {
     width: 5%;
     height: 20%;
     cursor: pointer;
+}
+
+.explain .progress .first_page {
+    width: 5%;
+    height: 20%;
+    visibility: hidden;
+}
+
+.explain .progress .last_page {
+    width: 5%;
+    height: 20%;
+    visibility: hidden;
 }
 
 .rule {

@@ -62,9 +62,13 @@ const ExPlanationWindow = (props) => {
                 <CloseIcon onClick={handleChangeSwipe} />
             </div>
             <div className={styles.progress}>
-                <NavigateBeforeIcon onClick={prevRule} />
+                <div className={index === 0 ? styles.first_page : styles.page} onClick={prevRule}>
+                    <NavigateBeforeIcon />
+                </div>   
                 <Rule rule={rules[index]} ruleImg={ruleImgs[index]} />
-                <NavigateNextIcon onClick={nextRule} />
+                <div className={index === 10 ? styles.last_page : styles.page} onClick={nextRule}>
+                    <NavigateNextIcon />        
+                </div>
             </div>
         </div>
         </>
