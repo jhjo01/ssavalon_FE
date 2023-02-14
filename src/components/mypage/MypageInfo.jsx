@@ -18,17 +18,15 @@ const MypageInfo = () => {
   };
 
   // 전역변수로 등록된 닉네임 가져오기
-  const nickName = useSelector((state) => state.user.nickName);
+  const nickname = useSelector((state) => state.user.nickname);
   // 닉네임을 가지고 내 정보 요청
   useEffect(() => {
-    const res = getMypage(nickName);
+    const res = getMypage(nickname);
     res.then((result) => console.log(result));
     res.then((result) => {
       const recentGames = [];
       for (let i = 0; i < result.gameResultList.length; i += 6) {
-        const myResult = result.gameResultList
-          .slice(i, i + 6)
-          .find((e) => e.nickname === nickName);
+        const myResult = result.gameResultList.slice(i, i + 6).find((e) => e.nickname === nickname);
 
         recentGames.push({
           gameRes: result.gameResultList.slice(i, i + 6),
@@ -45,7 +43,7 @@ const MypageInfo = () => {
       setSubJobs(subJ);
     });
     return;
-  }, [nickName]);
+  }, [nickname]);
 
   return (
     <>

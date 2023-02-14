@@ -12,7 +12,7 @@ const Header = () => {
   });
 
   const logoutHandler = () => {
-    const data = { isLogin: false, nickName: "", refreshToken: "" };
+    const data = { isLogin: false, nickname: "", refreshToken: "" };
     dispatch(setUserInfo(data));
   };
 

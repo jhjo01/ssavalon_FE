@@ -23,7 +23,7 @@ const Login = () => {
       else if (res.data.status === "valid") {
         const data = {
           isLogin: true,
-          nickName: res.data.nickname,
+          nickname: res.data.nickname,
           refreshToken: res.data.refreshToken,
         };
         dispatch(setUserInfo(data)); // valid이면 로그인 처리

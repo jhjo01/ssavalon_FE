@@ -6,10 +6,7 @@ const AvatarImage = (props) => {
   const { user } = props;
 
   return (
-    <div
-      className={styles.game_setting}
-      style={{ transform: `rotate(${user.rotate}deg)` }}
-    >
+    <div className={styles.game_setting} style={{ transform: `rotate(${user.rotate}deg)` }}>
       <div
         className={styles.game_setting_inner}
         style={{

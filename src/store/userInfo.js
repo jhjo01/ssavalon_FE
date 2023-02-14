@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLogin: false,
-  nickName: "",
+  nickname: "",
   refreshToken: "",
 };
 
@@ -11,9 +11,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUserInfo: (state, action) => {
-      const { isLogin, nickName, refreshToken } = action.payload;
+      const { isLogin, nickname, refreshToken } = action.payload;
       state.isLogin = isLogin;
-      state.nickName = nickName;
+      state.nickname = nickname;
       state.refreshToken = refreshToken;
     },
   },

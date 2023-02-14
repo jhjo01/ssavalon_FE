@@ -7,15 +7,17 @@ export const signup = async (data) => {
 };
 
 export const login = async (code) => {
-  const response = await axios.get(
-    `http://i8b305.p.ssafy.io:9000/oauth/kakao?code=${code}`
-  );
+  const response = await axios.get(`http://i8b305.p.ssafy.io:9000/oauth/kakao?code=${code}`);
   return response;
 };
 
-export const getMypage = async (nickName) => {
-  const response = await axios(
-    getConfig_8000(`/user-service/oauth/mypage/${nickName}`)
-  );
+export const getMypage = async (nickname) => {
+  const response = await axios(getConfig_8000(`/user-service/oauth/mypage/${nickname}`));
   return response.data;
+};
+
+export const getDuplication = async (nickname) => {
+  console.log(nickname);
+  const response = await axios(getConfig_8000(`/user-service/oauth/duplication/${nickname}`));
+  return response;
 };

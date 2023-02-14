@@ -8,7 +8,6 @@ axios.interceptors.request.use(
       token = JSON.parse(token);
       token = JSON.parse(token.user);
       token = token.refreshToken;
-      console.log(token);
     }
     // 요청 보낼 때
     if (token) {
@@ -44,9 +43,10 @@ export const postConfig_8000 = (url, data) => {
   };
 };
 
-export const getConfig_8000 = (url) => {
+export const getConfig_8000 = (url, params) => {
   return {
     method: "GET",
     url: API_BUSINESS + url,
+    params: params,
   };
 };

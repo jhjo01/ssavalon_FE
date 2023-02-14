@@ -89,7 +89,6 @@ const GameBoard = () => {
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
   let connect = JSON.parse(connectedUsers);
 
-
   const sendMessage = (type) => {
     if (type === "READY") ready(type, client, id, sender);
     else if (type === "TALK") chat(type, client, id, sender, value);
