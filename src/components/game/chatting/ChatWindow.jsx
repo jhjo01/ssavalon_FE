@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
 import Chatting from "./Chatting";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const ChatWindow = (props) => {
   const {
@@ -24,9 +25,20 @@ const ChatWindow = (props) => {
 
   const handleSendMessage = async (event) => {
     event.preventDefault();
-    sendMessage();
+    if (event.target.value.length > 1) {
+      sendMessage();
+    }
     handleInputReset();
   };
+
+  useEffect(() => {
+    const chatHeight = document.querySelector("#chattingWindow").scrollHeight;
+    document.querySelector("#chattingWindow").scrollTo({
+      top: chatHeight,
+      left: 0,
+      behavior: "smooth"
+    });
+  }, [messages])
 
   return (
     <>
@@ -35,7 +47,7 @@ const ChatWindow = (props) => {
           <h2>채팅</h2>
           <CloseIcon onClick={handleSwipe} />
         </div>
-        <div className={styles.chatting_message}>
+        <div className={styles.chatting_message} id="chattingWindow">
           {messages.map((message, index) => (
             <Chatting message={message} key={index} />
           ))}

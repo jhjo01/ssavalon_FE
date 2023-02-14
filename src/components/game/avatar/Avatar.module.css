@@ -32,11 +32,7 @@
   border-radius: 50%;
 }
 
-.game_setting
-  .game_setting_inner
-  .player
-  .player_avatar
-  .player_avatar_background {
+.game_setting .game_setting_inner .player .player_avatar .player_avatar_background {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -58,11 +54,7 @@
   transition: opacity 0.2s;
 }
 
-.game_setting
-  .game_setting_inner
-  .player
-  .player_avatar_container
-  .player_username_wrapper {
+.game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
   width: 100%;
   height: 28px;
   position: absolute;
@@ -97,6 +89,35 @@
   .game_setting_inner
   .player
   .player_avatar_container
+  .player_user_ready_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_user_ready_wrapper
+  .player_user_ready {
+  font-size: 1.3rem;
+  color: #fff;
+  text-transform: uppercase;
+  animation: typewriter 0.5s steps(44) 1s 1 normal both,
+    blinkTextCursor 500ms infinite;
+}
+
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
   .player_avatar_avatar {
   width: 70%;
   height: 70%;
@@ -108,17 +129,32 @@
   background-repeat: no-repeat;
 }
 
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 75px;
+  }
+}
+
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: hsl(0, 0%, 80%);
+  }
+
+  to {
+    border-right-color: transparent;
+  }
+}
 @media (max-width: 684px) {
   .game_setting .game_setting_inner .player {
     width: 102px;
     height: 102px;
   }
 
-  .game_setting
-    .game_setting_inner
-    .player
-    .player_avatar_container
-    .player_username_wrapper {
+  .game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
     height: 22px;
     margin-bottom: -27px;
   }
@@ -131,6 +167,15 @@
     .player_username {
     font-size: 0.8rem;
   }
+
+  .game_setting
+    .game_setting_inner
+    .player
+    .player_avatar_container
+    .player_user_ready_wrapper
+    .player_user_ready {
+    font-size: 0.8rem;
+  }
 }
 @media (max-width: 480px) {
   .game_setting .game_setting_inner .player {
@@ -138,11 +183,7 @@
     height: 76px;
   }
 
-  .game_setting
-    .game_setting_inner
-    .player
-    .player_avatar_container
-    .player_username_wrapper {
+  .game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
     height: 17px;
     margin-bottom: -18px;
   }
@@ -153,6 +194,15 @@
     .player_avatar_container
     .player_username_wrapper
     .player_username {
+    font-size: 0.6rem;
+  }
+
+  .game_setting
+    .game_setting_inner
+    .player
+    .player_avatar_container
+    .player_user_ready_wrapper
+    .player_user_ready {
     font-size: 0.6rem;
   }
 }

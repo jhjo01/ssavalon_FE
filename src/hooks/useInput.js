@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { signup } from "../apis/user";
 import { setUserInfo } from "../store/userInfo";
 import { useNavigate, useLocation } from "react-router-dom";
+import { getDuplication } from "../apis/user";
 
 export const useValidPassword = (password) => {
   const [value, setValue] = useState(password);
@@ -92,7 +93,7 @@ export const useValidMessage = (message) => {
   };
 };
 
-export const useValidNickName = (nickname) => {
+export const useValidnickname = (nickname) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -102,11 +103,12 @@ export const useValidNickName = (nickname) => {
 
   const [kakaoId] = useState(useLocation().state);
 
+  
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
   const [isDupli, setIsDupli] = useState(false);
   const [disabled, setDisabled] = useState({ check: true, signup: true });
-
+  
   const handleNickChange = (event) => {
     if (event.target.value.length >= 4 && event.target.value.length <= 8) {
       setIsValid(true);
@@ -116,6 +118,12 @@ export const useValidNickName = (nickname) => {
     setValue(event.target.value);
     setIsDupli(false);
   };
+  
+  useEffect(() => {
+    if (kakaoId === null) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   useEffect(() => {
     if (userInfo.isLogin) {
@@ -129,10 +137,7 @@ export const useValidNickName = (nickname) => {
     if (!isValid) return;
 
     // 중복체크 진행
-    const response = await axios.get(
-      `https://i8b305.p.ssafy.io:8000/user-service/oauth/duplication/${value}`
-    );
-    // console.log(response.data);
+    const response = await getDuplication(value);
 
     if (response.data) {
       // 중복
@@ -150,7 +155,7 @@ export const useValidNickName = (nickname) => {
     signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
       const userInfo = {
         isLogin: true,
-        nickName: data.data.nickname,
+        nickname: data.data.nickname,
         refreshToken: data.data.refreshToken,
       };
       dispatch(setUserInfo(userInfo));

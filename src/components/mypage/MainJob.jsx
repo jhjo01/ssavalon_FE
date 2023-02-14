@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const MainJob = (props) => {
   const { mainJob } = props;
   const [textColor, setTextColor] = useState("");
-  const nickName = useSelector((state) => state.user.nickName);
+  const nickname = useSelector((state) => state.user.nickname);
 
   useEffect(() => {
     if (mainJob.job === "범죄자") setTextColor(styles.killer);
@@ -20,36 +20,32 @@ const MainJob = (props) => {
     <div className={styles.player}>
       <div className={styles.player_info}>
         <h2 className={`${styles.player_job} ${textColor}`}>
-          <span className={styles.player_team}>{nickName}</span>
+          <span className={styles.player_team}>{nickname}</span>
           {mainJob.job}
         </h2>
         <dl className={styles.player_stats}>
           <div>
             <dt className={styles.player_stat}>게임</dt>
-            <dd className={styles.player_stat_number}>{ mainJob.totalCnt }</dd>
+            <dd className={styles.player_stat_number}>{mainJob.totalCnt}</dd>
           </div>
           <div>
             <dt className={styles.player_stat}>승</dt>
-            <dd className={styles.player_stat_number}>{ mainJob.winCnt }</dd>
+            <dd className={styles.player_stat_number}>{mainJob.winCnt}</dd>
           </div>
           <div>
             <dt className={styles.player_stat}>패</dt>
-            <dd className={styles.player_stat_number}>{ mainJob.loseCnt }</dd>
+            <dd className={styles.player_stat_number}>{mainJob.loseCnt}</dd>
             <div>
               <dt className={styles.player_stat}>승률</dt>
-              <dt className={styles.player_stat_number}>{ mainJob.odds }%</dt>
+              <dt className={styles.player_stat_number}>{mainJob.odds}%</dt>
             </div>
           </div>
         </dl>
       </div>
 
       <div className={styles.player_image}>
-        {mainJob.job === "범죄자" && (
-          <img src={Killer} alt="img-police" loading="lazy" />
-        )}
-        {mainJob.job === "시민" && (
-          <img src={Citizen} alt="img-citizen" loading="lazy" />
-        )}
+        {mainJob.job === "범죄자" && <img src={Killer} alt="img-police" loading="lazy" />}
+        {mainJob.job === "시민" && <img src={Citizen} alt="img-citizen" loading="lazy" />}
         {mainJob.job === "경찰" && <img src={Police} alt="img-police" loading="lazy" />}
       </div>
     </div>
