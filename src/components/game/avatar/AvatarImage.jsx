@@ -5,8 +5,12 @@ import Jury from "../assets/Jury";
 
 const AvatarImage = (props) => {
   const { user } = props;
+
   return (
-    <div className={styles.game_setting} style={{ transform: `rotate(${user.rotate}deg)` }}>
+    <div
+      className={styles.game_setting}
+      style={{ transform: `rotate(${user.rotate}deg)` }}
+    >
       <div
         className={styles.game_setting_inner}
         style={{
@@ -23,7 +27,7 @@ const AvatarImage = (props) => {
               <Crown />
               <Jury />
               <div className={styles.player_username_wrapper}>
-                <span className={styles.player_username}>닉네임</span>
+                <span className={styles.player_username}>{user.id}</span>
               </div>
               {/* <div
                 className={styles.player_avatar_avatar}

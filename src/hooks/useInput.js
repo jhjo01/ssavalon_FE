@@ -123,7 +123,7 @@ export const useValidNickName = (nickname) => {
     }
     if (isValid) setDisabled({ check: false, signup: true });
     else setDisabled({ check: false, signup: true });
-  }, [isValid, userInfo.isLogin]);
+  }, [isValid, userInfo.isLogin, navigate]);
 
   const handleCheckNick = async () => {
     if (!isValid) return;
