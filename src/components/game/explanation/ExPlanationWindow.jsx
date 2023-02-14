@@ -46,17 +46,35 @@ const ExPlanationWindow = (props) => {
     setIsSlide(false);
   };
 
-  return (
-    <>
-      <div className={`${styles.explain} ${open}`}>
-        <div className={styles.explain_top}>
-          <h2>룰 설명</h2>
-          <CloseIcon onClick={handleSwipe} />
-        </div>
-        <div className={styles.progress}>
-          <NavigateBeforeIcon onClick={prevRule} />
-          <Rule rule={rules[index]} ruleImg={ruleImgs[index]} />
-          <NavigateNextIcon onClick={nextRule} />
+    const prevRule = async () => {
+        if (isSlide) {
+            return;
+        }
+        setIsSlide(true);
+        setIndex((prev) => (prev === 0 ? 0 : prev - 1));
+        setIsSlide(false);
+    };
+
+    useEffect(() => {
+        setIndex(0);
+    }, [swipe]);
+
+    return (
+        <>
+        <div className={`${styles.explain} ${swipe}`}>
+            <div className={styles.explain_top}>
+                <h2>룰 설명</h2>
+                <CloseIcon onClick={handleChangeSwipe} />
+            </div>
+            <div className={styles.progress}>
+                <div className={index === 0 ? styles.first_page : styles.page} onClick={prevRule}>
+                    <NavigateBeforeIcon />
+                </div>   
+                <Rule rule={rules[index]} ruleImg={ruleImgs[index]} />
+                <div className={index === 10 ? styles.last_page : styles.page} onClick={nextRule}>
+                    <NavigateNextIcon />        
+                </div>
+            </div>
         </div>
       </div>
     </>
