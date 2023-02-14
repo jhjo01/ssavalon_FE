@@ -4,26 +4,28 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useState } from "react";
 
 const Chat = (props) => {
-  const { sendMessage, value, handleInputChange, handleInputReset } = props;
-  const [swipe, setSwipe] = useState("");
-  const handleChangeSwipe = () => {
-    if (swipe === "") setSwipe(styles.swipe);
-    else setSwipe("");
-  };
+  const {
+    sendMessage,
+    value,
+    handleInputChange,
+    handleInputReset,
+    swipe,
+    handleSwipe,
+  } = props;
 
   return (
     <>
-      <button className={styles.chat_button} onClick={handleChangeSwipe}>
+      <button className={styles.chat_button} onClick={handleSwipe}>
         <ChatBubbleOutlineIcon />
       </button>
 
       <ChatWindow
         swipe={swipe}
         value={value}
-        handleChangeSwipe={handleChangeSwipe}
         handleInputChange={handleInputChange}
         handleInputReset={handleInputReset}
         sendMessage={sendMessage}
+        handleSwipe={handleSwipe}
       />
     </>
   );
