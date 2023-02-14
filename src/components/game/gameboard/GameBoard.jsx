@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useSocket, ready, chat } from "../../../hooks/useSocket";
+import { useSocket, chat } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
@@ -14,6 +14,7 @@ import SelectCard from "../selectCard/SelectCard";
 import { useValidMessage } from "../../../hooks/useInput";
 import Chat from "../chatting/Chat";
 import Explanation from "../explanation/Explanation";
+import { exit, ready, start } from "../../../apis/readystart";
 
 const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
@@ -92,16 +93,15 @@ const GameBoard = () => {
 
   const client = useRef({});
   const { id } = useParams();
-  const sender = useSelector((state) => state.user.nickName);
+  const nickname = useSelector((state) => state.user.nickName);
 
-  useSocket(client, id, sender);
+  useSocket(client, id, nickname);
 
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
   let connect = JSON.parse(connectedUsers);
 
   const sendMessage = (type) => {
-    if (type === "READY") ready(type, client, id, sender);
-    else if (type === "TALK") chat(type, client, id, sender, value);
+    if (type === "TALK") chat(type, client, id, nickname, value);
   };
 
   return (
@@ -120,8 +120,9 @@ const GameBoard = () => {
         <RoundTokenBack voteRound={true} />
 
         <div className={styles.game_table_buttons}>
-          <ButtonRS content="준비" onClick={() => sendMessage("READY")} />
-          <ButtonRS content="나가기" />
+          <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
+          <ButtonRS content="시작" onClick={() => start(id, nickname)} />
+          <ButtonRS content="나가기" onClick={() => exit(id, nickname)} />
         </div>
         <div className={styles.buttons}>
           <button onClick={() => open("under")}>underCard열기</button>

@@ -43,9 +43,10 @@ export const postConfig_8000 = (url, data) => {
   };
 };
 
-export const getConfig_8000 = (url) => {
+export const getConfig_8000 = (url, params) => {
   return {
     method: "GET",
     url: API_BUSINESS + url,
+    params: params,
   };
 };

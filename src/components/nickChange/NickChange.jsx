@@ -5,9 +5,15 @@ import ButtonPrimary from "../common/button/ButtonPrimary";
 import ButtonDanger from "../common/button/ButtonDanger";
 
 const NickChange = () => {
-
-const { value, isValid, isDupli, disabled, handleNickChange, handleCheckNick, handleSignUp } =
-    useValidNickName("");
+  const {
+    value,
+    isValid,
+    isDupli,
+    disabled,
+    handleNickChange,
+    handleCheckNick,
+    handleSignUp,
+  } = useValidNickName("");
 
   return (
     <>
