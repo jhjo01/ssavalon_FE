@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginButton.module.css";
@@ -23,8 +23,8 @@ const Login = () => {
       else if (res.data.status === "valid") {
         const data = {
           isLogin: true,
-          nickName: res.nickname,
-          refreshToken: res.refreshToken,
+          nickName: res.data.nickname,
+          refreshToken: res.data.refreshToken,
         };
         dispatch(setUserInfo(data)); // valid이면 로그인 처리
         navigate("/");

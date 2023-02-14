@@ -1,4 +1,8 @@
-import { API_END_POINT, SOCKET_SUB_END_POINT, SOCKET_PUB_END_POINT } from "../constants/index";
+import {
+  API_END_POINT,
+  SOCKET_SUB_END_POINT,
+  SOCKET_PUB_END_POINT,
+} from "../constants/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as StompJs from "@stomp/stompjs";
@@ -51,6 +55,7 @@ export const useSocket = (client, roomId, sender) => {
 
   useEffect(() => {
     connect();
+    console.log("connet");
     return () => disconnect();
   }, []);
 };
