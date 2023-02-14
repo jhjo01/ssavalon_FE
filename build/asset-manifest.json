@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fa7d0c94.css",
+    "main.js": "/static/js/main.01485992.js",
+    "static/media/image-background.png": "/static/media/image-background.aa03459fa9b35a24eed7.png",
+    "static/media/image-game-board.png": "/static/media/image-game-board.be9737fba2eaf4a80b85.png",
+    "static/media/image-log-card-background.jpg": "/static/media/image-log-card-background.44bd562cb0002309f759.jpg",
+    "static/media/image-police.png": "/static/media/image-police.0e06178b9a534458878e.png",
+    "static/media/image-killer.png": "/static/media/image-killer.e44999b045bfba971bfd.png",
+    "static/media/image-main-background.png": "/static/media/image-main-background.2d70ba49bf862e02ca8e.png",
+    "static/media/image-citizen.png": "/static/media/image-citizen.ea3bf3c170df3c64dfa4.png",
+    "static/media/image-police-circle.png": "/static/media/image-police-circle.f59e8df485866c501516.png",
+    "static/media/image-citizen-circle.png": "/static/media/image-citizen-circle.29d6ac6df4610ed24f31.png",
+    "static/media/image-avatar-frame.png": "/static/media/image-avatar-frame.cb09ccfc95dfc9d68bf2.png",
+    "static/media/image-killer-circle.png": "/static/media/image-killer-circle.0cf3745cf95699d7d6e5.png",
+    "static/media/image-round-token-fail.png": "/static/media/image-round-token-fail.918a9ddbbe436f12158e.png",
+    "static/media/image-jury-select.png": "/static/media/image-jury-select.66fbe434cdf05c8a5175.png",
+    "index.html": "/index.html",
+    "main.fa7d0c94.css.map": "/static/css/main.fa7d0c94.css.map",
+    "main.01485992.js.map": "/static/js/main.01485992.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa7d0c94.css",
+    "static/js/main.01485992.js"
+  ]
+}
