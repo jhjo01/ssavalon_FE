@@ -18,7 +18,7 @@ const MypageInfo = () => {
   };
 
   // 전역변수로 등록된 닉네임 가져오기
-  const nickName = useSelector((state) => state.user.nickName);
+  const nickname = useSelector((state) => state.user.nickname);
   // 닉네임을 가지고 내 정보 요청
   useEffect(() => {
     if (nickName !== "") {

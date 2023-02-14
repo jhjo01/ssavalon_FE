@@ -9,8 +9,8 @@ const RoomCard = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { room } = props;
-  const nickName = useSelector((state) => {
-    return state.room.nickName;
+  const nickname = useSelector((state) => {
+    return state.room.nickname;
   });
 
   const handleLinkGame = async (event) => {
@@ -19,7 +19,7 @@ const RoomCard = (props) => {
       const form = new FormData();
       form.append("roomId", room.roomId);
       form.append("password", "null");
-      form.append("nickName", nickName);
+      form.append("nickname", nickname);
       const res = await joinRoom(form);
       if (res.status === 200) {
         navigate(`/game/${room.roomId}`, { state: { roomId: room.roomId } });
@@ -32,8 +32,7 @@ const RoomCard = (props) => {
           })
         );
       }
-    }
-    else {
+    } else {
       dispatch(
         openModal({
           type: "JoinRoomModal",

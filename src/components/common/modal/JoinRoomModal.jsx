@@ -15,15 +15,14 @@ const JoinRoomModal = () => {
   const roomId = useSelector((state) => {
     return state.modal.roomId;
   });
-  const nickName = useSelector((state) => {
-    return state.room.nickName;
+  const nickname = useSelector((state) => {
+    return state.room.nickname;
   });
 
-  const { value, isValid, disabled, handlePasswordChange } =
-    useValidPassword("");
+  const { value, isValid, disabled, handlePasswordChange } = useValidPassword("");
 
   const handleCloseModal = () => {
-    dispatch(closeModal({ type: "JoinRoomModal"}));
+    dispatch(closeModal({ type: "JoinRoomModal" }));
   };
 
   const handleJoinRoom = async (event) => {
@@ -31,10 +30,10 @@ const JoinRoomModal = () => {
     const form = new FormData();
     form.append("roomId", roomId);
     form.append("password", value);
-    form.append("nickName", nickName);
+    form.append("nickname", nickname);
     const res = await joinRoom(form);
     if (res.status === 200) {
-      dispatch(closeModal({ type: "JoinRoomModal"}));
+      dispatch(closeModal({ type: "JoinRoomModal" }));
       Navigate(`/game/${res.data.roomId}`);
     } else {
       dispatch(
@@ -59,9 +58,7 @@ const JoinRoomModal = () => {
             autoComplete="off"
           />
           {!isValid && (
-            <p className={styles.input_errMsg}>
-              방 비밀번호는 4글자 이상 8글자 이하입니다.
-            </p>
+            <p className={styles.input_errMsg}>방 비밀번호는 4글자 이상 8글자 이하입니다.</p>
           )}
           <div className={styles.button_area}>
             <ButtonPrimary type="submit" disabled={disabled}>
