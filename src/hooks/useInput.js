@@ -132,7 +132,6 @@ export const useValidNickName = (nickname) => {
     const response = await axios.get(
       `https://i8b305.p.ssafy.io:8000/user-service/oauth/duplication/${value}`
     );
-    // console.log(response.data);
 
     if (response.data) {
       // 중복
