@@ -4,6 +4,8 @@ import {
   SOCKET_PUB_END_POINT,
   CHAT_PUB_END_POINT,
   CHAT_SUB_END_POINT,
+  GAME_SOCKET,
+  GAME_SUB_END_POINT,
 } from "../constants/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -11,8 +13,9 @@ import * as StompJs from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 import { updateRoom } from "../store/roomAndStandBy";
 import { updateChat } from "../store/chat";
+import { updateGameState } from "../store/roomAndActive";
 
-export const useSocket = (client, roomId, sender) => {
+export const useSocket = (client, gameClient, roomId, sender) => {
   const dispatch = useDispatch();
 
   const connect = () => {
@@ -23,7 +26,15 @@ export const useSocket = (client, roomId, sender) => {
       },
     });
 
+    gameClient.current = new StompJs.Client({
+      webSocketFactory: () => new SockJS(`${GAME_SOCKET}/ws-stomp`),
+      onConnect: () => {
+        gameSubscribe(roomId);
+      },
+    });
+
     client.current.activate();
+    gameClient.current.activate();
   };
 
   const subscribe = (roomId, sender) => {
@@ -38,7 +49,6 @@ export const useSocket = (client, roomId, sender) => {
       const parse = JSON.parse(message.body);
 
       // 분기문 처리
-
       dispatch(updateRoom(parse));
     });
 
@@ -47,6 +57,16 @@ export const useSocket = (client, roomId, sender) => {
       headers: {},
       body: JSON.stringify({ type: "ENTER", roomId: roomId, sender: sender }),
     });
+  };
+
+  const gameSubscribe = (roomId) => {
+    gameClient.current.subscribe(
+      `${GAME_SUB_END_POINT}/${roomId}`,
+      (message) => {
+        const parse = JSON.parse(message.body);
+        dispatch(updateGameState(parse));
+      }
+    );
   };
 
   useEffect(() => {

@@ -21,12 +21,12 @@ axios.interceptors.request.use(
   }
 );
 
-export const postConfig_3030 = (url, data) => {
+export const postConfig_9002 = (url, data) => {
   return {
     method: "POST",
     url: API_END_POINT + url,
     headers: {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/json",
     },
     data: data,
   };

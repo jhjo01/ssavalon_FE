@@ -1,4 +1,4 @@
-import { postConfig_8000 } from "./config";
+import { postConfig_8000, postConfig_9002 } from "./config";
 import axios from "axios";
 
 export const ready = async (roomId, nickname) => {
@@ -10,13 +10,13 @@ export const ready = async (roomId, nickname) => {
   return res.data;
 };
 
-export const start = (roomId, nickname) => {
+export const start = (roomId, playerList) => {
   const body = {
     roomId: roomId,
-    nickname: nickname,
+    playerList: playerList,
   };
-
-  const res = axios(postConfig_8000("/standby-service/room/start", body));
+  const res = axios(postConfig_9002(`/api/game/start/${roomId}`, body));
+  console.log(res);
   return res.data;
 };
 
