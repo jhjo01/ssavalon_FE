@@ -15,7 +15,7 @@ import RoundTokenBack from "../logCard/RoundTokenBack";
 import { updateGameState } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start } from "../../../apis/readystart";
-import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
+import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 
 const GameBoard = () => {
@@ -108,7 +108,7 @@ const GameBoard = () => {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(count => count - 1); 
+      setCount((count) => count - 1);
     }, 1000);
     if (count === 0) {
       setModalOpen({ under: false, select: false });
@@ -126,11 +126,11 @@ const GameBoard = () => {
         </div>
 
         <div className={styles.game_settings}>
-          <div className={(modalOpen.select || modalOpen.under) ? styles.timer : styles.no_timer}>
+          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
             <TimerOutlinedIcon />
             <h1>{count}</h1>
           </div>
-          
+
           <RoundTokenBack />
           <RoundTokenBack voteRound={true} />
 
