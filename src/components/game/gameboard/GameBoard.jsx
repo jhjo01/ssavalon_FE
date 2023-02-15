@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSocket, chat, disconnect } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import { useValidMessage } from "../../../hooks/useInput";
-import { useSocket, chat } from "../../../hooks/useSocket";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
 import Chat from "../chatting/Chat";
 import UnderCard from "../underCard/UnderCard";
@@ -135,17 +134,18 @@ const GameBoard = () => {
           <RoundTokenBack />
           <RoundTokenBack voteRound={true} />
 
-        <div className={styles.game_table_buttons}>
-          <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
-          <ButtonRS content="시작" onClick={() => start(id, nickname)} />
-          <ButtonRS
-            content="나가기"
-            onClick={() => {
-              exit(id, nickname);
-              navigate("/lobby");
-              disconnect(client);
-            }}
-          />
+          <div className={styles.game_table_buttons}>
+            <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
+            <ButtonRS content="시작" onClick={() => start(id, nickname)} />
+            <ButtonRS
+              content="나가기"
+              onClick={() => {
+                exit(id, nickname);
+                navigate("/lobby");
+                disconnect(client);
+              }}
+            />
+          </div>
         </div>
         <div className={styles.buttons}>
           <button onClick={() => open("under")}>underCard열기</button>
