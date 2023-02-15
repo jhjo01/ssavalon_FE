@@ -34,9 +34,6 @@ const ExPlanationWindow = (props) => {
     "9. 배심원장이 시계방향 한칸 옆 플레이어로 넘어가고 다음 라운드가 시작된다.",
     "10. 범죄자의 승리로 끝났다면 그대로 종료, 시민의 승리로 끝났다면 암살자는 경찰일 것 같은 사람을 선택한다. 그 사람이 경찰이라면 범죄자팀이 역전 승리한다.",
   ];
-<<<<<<< Updated upstream
-  const ruleImgs = [];
-=======
 
   const ruleImgs = [
     image_rule_1,
@@ -51,7 +48,6 @@ const ExPlanationWindow = (props) => {
     image_rule_9,
     image_rule_10,
   ];
->>>>>>> Stashed changes
 
   const nextRule = async () => {
     if (isSlide) {
