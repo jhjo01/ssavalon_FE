@@ -12,7 +12,10 @@ import SelectCard from "../selectCard/SelectCard";
 import ButtonRS from "../../common/button/ButtonRS";
 import Explanation from "../explanation/Explanation";
 import RoundTokenBack from "../logCard/RoundTokenBack";
-import { updateGameState } from "./../../../store/roomAndActive";
+import {
+  selectorRoomAndActive,
+  updateGameState,
+} from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
@@ -25,13 +28,22 @@ const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const [swipe, setSwipe] = useState({ chat: false, rule: false });
   const [count, setCount] = useState(0);
-  const { value, handleInputChange, handleInputReset } = useValidMessage("");
-  const client = useRef({});
   const { id } = useParams();
-  const nickname = useSelector((state) => state.user.nickname);
-  const { connectedUsers } = useSelector(selectorRoomAndStandBy);
+  const { value, handleInputChange, handleInputReset } = useValidMessage("");
 
-  useSocket(client, id, nickname);
+  const client = useRef({});
+  const gameClient = useRef({});
+  const nickname = useSelector((state) => state.user.nickname);
+  useSocket(client, gameClient, id, nickname);
+
+  const { connectedUsers } = useSelector(selectorRoomAndStandBy);
+  const playerList = useSelector(
+    (state) => state.roomAndStandBy.connectedUsers.players
+  );
+  const gameStatus = useSelector(selectorRoomAndActive);
+  const player = connectedUsers.players.find(
+    (player) => player.nickname === nickname
+  );
 
   const sendMessage = () => {
     chat(client, id, nickname, value);
@@ -129,7 +141,7 @@ const GameBoard = () => {
         <div className={styles.game_table_settings}>
           {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.id} />
+              <AvatarImage user={user} key={user.nickname} />
             ))}
         </div>
 
@@ -145,12 +157,16 @@ const GameBoard = () => {
             <h1>{count}</h1>
           </div>
 
-          <RoundTokenBack />
-          <RoundTokenBack voteRound={true} />
+          {gameStatus.status !== "" && <RoundTokenBack />}
+          {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />}
 
           <div className={styles.game_table_buttons}>
-            <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
-            <ButtonRS content="시작" onClick={() => start(id, nickname)} />
+            {!player.isHost && (
+              <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
+            )}
+            {player.isHost && (
+              <ButtonRS content="시작" onClick={() => start(id, playerList)} />
+            )}
             <ButtonRS
               content="나가기"
               onClick={() => {
@@ -168,7 +184,7 @@ const GameBoard = () => {
           <button onClick={() => close("select")}>selectCard닫기</button>
         </div>
       </div>
-      {/* <RollCard /> */}
+      {gameStatus.status === "makeJury" && <RollCard />}
       <SelectCard open={modalOpen.select} />
       <UnderCard open={modalOpen.under} />
       <Chat

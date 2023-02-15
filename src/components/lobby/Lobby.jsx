@@ -10,6 +10,7 @@ import LoopIcon from "@mui/icons-material/Loop";
 import styles from "./Lobby.module.css";
 import ErrorModal from "../common/modal/ErrorModal";
 import { lime } from "@mui/material/colors";
+import { clearGameState } from "../../store/roomAndActive";
 
 const Lobby = () => {
   const dispatch = useDispatch();
@@ -31,13 +32,30 @@ const Lobby = () => {
   useEffect(() => {
     dispatch(getRoom());
     dispatch(clearChat([{ sender: "", message: "" }]));
+    dispatch(
+      clearGameState({
+        status: "",
+        roomId: "",
+        connectedUsers: "[{}]",
+        round: "",
+        voteRound: "",
+        prevRound: "[{}]",
+        agreeDisagree: "[{}]",
+        guilty: "0",
+        notGuilty: "0",
+        script: "asd",
+      })
+    );
     return () => {};
   }, [dispatch]);
 
   return (
     <>
       <div className={styles.createButton}>
-        <LoopIcon className={styles.guickStart} onClick={handleRefreshRoomList} />
+        <LoopIcon
+          className={styles.guickStart}
+          onClick={handleRefreshRoomList}
+        />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
         <ButtonPrimary value="create" onClick={handleOpenModal}>
           방만들기

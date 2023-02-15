@@ -42,9 +42,33 @@ export const roomAndActiveSlice = createSlice({
       state.notGuilty = notGuilty;
       state.script = script;
     },
+    clearGameState: (state, action) => {
+      const {
+        status,
+        roomId,
+        connectedUsers,
+        round,
+        voteRound,
+        prevRound,
+        agreeDisagree,
+        guilty,
+        notGuilty,
+        script,
+      } = action.payload;
+      state.status = status;
+      state.roomId = roomId;
+      state.connectedUsers = connectedUsers;
+      state.round = round;
+      state.voteRound = voteRound;
+      state.prevRound = prevRound;
+      state.agreeDisagree = agreeDisagree;
+      state.guilty = guilty;
+      state.notGuilty = notGuilty;
+      state.script = script;
+    },
   },
 });
 
-export const { updateGameState } = roomAndActiveSlice.actions;
+export const { updateGameState, clearGameState } = roomAndActiveSlice.actions;
 export const selectorRoomAndActive = (state) => state.roomAndActive;
 export default roomAndActiveSlice.reducer;
