@@ -25,17 +25,18 @@ const GameBoard = () => {
   const { id } = useParams();
   const nickname = useSelector((state) => state.user.nickname);
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
-  
+
   useSocket(client, id, nickname);
-  let connect = JSON.parse(connectedUsers);
+  // let connect = JSON.parse(connectedUsers);
   console.log(connectedUsers);
-  
+
   const sendMessage = (type) => {
     if (type === "TALK") chat(type, client, id, nickname, value);
   };
 
   const handleSwipe = (type) => {
-    if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule)) setSwipe({ chat: false, rule: false });
+    if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule))
+      setSwipe({ chat: false, rule: false });
     else if (type === "chat") setSwipe({ chat: true, rule: false });
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
@@ -52,7 +53,8 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree:
+            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -69,7 +71,8 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree:
+            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -103,11 +106,15 @@ const GameBoard = () => {
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
-          {connect.map((user) => (
-            <AvatarImage user={user} key={user.id} />
-          ))}
+          {connectedUsers.players !== undefined &&
+            connectedUsers.players.map((user) => (
+              <AvatarImage user={user} key={user.id} />
+            ))}
         </div>
 
         <RoundTokenBack />
