@@ -10,7 +10,7 @@ const RoomCard = (props) => {
   const dispatch = useDispatch();
   const { room } = props;
   const nickname = useSelector((state) => {
-    return state.room.nickname;
+    return state.user.nickname;
   });
 
   const handleLinkGame = async (event) => {

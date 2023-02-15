@@ -9,34 +9,34 @@ const SelectCard = (props) => {
   const people = [
     {
       id: "1",
-      name: "ada",
+      name: "aaa",
       rotate: "180deg",
     },
     {
       id: "2",
-      name: "adaasd",
+      name: "bbb",
       rotate: "240deg",
     },
     {
       id: "3",
-      name: "ada",
+      name: "ccc",
       rotate: "300deg",
     },
 
     {
       id: "4",
-      name: "ada",
+      name: "ddd",
       rotate: "360deg",
     },
 
     {
       id: "5",
-      name: "ada",
+      name: "eee",
       rotate: "420deg",
     },
     {
       id: "6",
-      name: "ada",
+      name: "fff",
       rotate: "480deg",
     },
   ];
@@ -53,6 +53,7 @@ const SelectCard = (props) => {
     handleStatusChange,
     handleSubmitJury,
   } = useValidSelectCard([]);
+  console.log(selectPeople);
 
   useEffect(() => {
     if (visible && !open) {

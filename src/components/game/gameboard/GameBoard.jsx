@@ -91,7 +91,7 @@ const GameBoard = () => {
 
   const client = useRef({});
   const { id } = useParams();
-  const nickname = useSelector((state) => state.user.nickName);
+  const nickname = useSelector((state) => state.user.nickname);
 
   useSocket(client, id, nickname);
 

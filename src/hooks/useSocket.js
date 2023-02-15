@@ -30,10 +30,9 @@ export const useSocket = (client, roomId, sender) => {
       // spring에서 넘어오는 데이터 parse
       const parse = JSON.parse(message.body);
       console.log(parse);
-      if (parse.type === "standBy") {
-        console.log(message.body);
-        return;
-      }
+      // if (parse.type === "standBy") {
+      //   return;
+      // }
 
       // 분기문 처리
       if (parse.type === "TALK") {
