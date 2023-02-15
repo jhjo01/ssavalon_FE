@@ -36,9 +36,9 @@ const ChatWindow = (props) => {
     document.querySelector("#chattingWindow").scrollTo({
       top: chatHeight,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
-  }, [messages])
+  }, [messages]);
 
   return (
     <>

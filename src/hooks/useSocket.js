@@ -20,27 +20,26 @@ export const useSocket = (client, roomId, sender) => {
       webSocketFactory: () => new SockJS(`${API_SOCKET}/ws-stomp`),
       onConnect: () => {
         subscribe(roomId, sender);
-        subscribe2(roomId, sender);
       },
     });
 
     client.current.activate();
   };
 
-  
-
   const subscribe = (roomId, sender) => {
+    client.current.subscribe(`${CHAT_SUB_END_POINT}/${roomId}`, (message) => {
+      const parse = JSON.parse(message.body);
+      const object = { sender: parse.nickname, message: parse.message };
+      dispatch(updateChat(object));
+    });
+
     client.current.subscribe(`${SOCKET_SUB_END_POINT}/${roomId}`, (message) => {
       // spring에서 넘어오는 데이터 parse
       const parse = JSON.parse(message.body);
 
       // 분기문 처리
-      if (parse.type === "TALK") {
-        const object = { sender: parse.sender, message: parse.message };
-        dispatch(updateChat(object));
-      } else {
-        dispatch(updateRoom(parse));
-      }
+
+      dispatch(updateRoom(parse));
     });
 
     client.current.publish({
@@ -48,15 +47,8 @@ export const useSocket = (client, roomId, sender) => {
       headers: {},
       body: JSON.stringify({ type: "ENTER", roomId: roomId, sender: sender }),
     });
-
   };
 
-  const subscribe2 = (client, roomId) => {
-    client.current.subscribe(`${CHAT_SUB_END_POINT}/${roomId}`, (message) => {
-      console.log(message);
-    });
-  }
-  
   useEffect(() => {
     connect();
     return () => disconnect(client);
@@ -68,10 +60,6 @@ export const disconnect = (client) => {
 };
 
 export const chat = (client, roomId, nickname, message) => {
-  console.log(client);
-  console.log(roomId);
-  console.log(nickname);
-  console.log(message);
   client.current.publish({
     destination: CHAT_PUB_END_POINT,
     headers: {},

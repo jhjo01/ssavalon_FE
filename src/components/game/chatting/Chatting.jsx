@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 const Chatting = (props) => {
   const { message } = props;
   const myNick = useSelector((state) => {
-    return state.user.nickName;
+    return state.user.nickname;
   });
-  
+
   return (
     <div
       className={myNick === message.sender ? styles.myChat : styles.otherChat}
