@@ -1,18 +1,17 @@
-FROM node:16
+FROM nginx
+
+RUN mkdir /app
 
 WORKDIR /app
 
-COPY . /app/
+RUN mkdir ./build
 
-RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
+ADD ./build ./build
 
-RUN npm run build
-
-FROM nginx
-COPY --from=build /app/build /usr/share/nginx.html
 RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx/nginx.conf /etc/nginx/conf.d
+
+COPY ./nginx.conf /etc/nginx/conf.d
 
 EXPOSE 80
-CMD ["nginx","-g", "daemon off;"]
+
+CMD ["nginx", -"g", "daemon off;"];
