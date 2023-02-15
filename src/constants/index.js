@@ -1,6 +1,9 @@
 export const API_END_POINT = "http://i8b305.p.ssafy.io:3030";
 export const SOCKET_SUB_END_POINT = "/sub/message/user";
 export const SOCKET_PUB_END_POINT = "/pub/message/user";
+export const CHAT_SUB_END_POINT = "/sub/chat/user";
+export const CHAT_PUB_END_POINT = "/pub/chat/user";
+
 export const API_BUSINESS = "https://i8b305.p.ssafy.io:8000";
 export const API_SOCKET = "http://i8b305.p.ssafy.io:9001";
 

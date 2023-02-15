@@ -34,7 +34,7 @@ const GameBoard = () => {
   useSocket(client, id, nickname);
 
   const sendMessage = (type) => {
-    if (type === "TALK") chat(type, client, id, nickname, value);
+    if (type === "TALK") chat(client, id, nickname, value);
   };
 
   const handleSwipe = (type) => {
@@ -56,8 +56,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -74,8 +73,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -122,25 +120,14 @@ const GameBoard = () => {
 
   return (
     <>
-      <div
-        className={styles.game_table}
-        style={{ backgroundImage: `url(${GameBoardImage})` }}
-      >
+      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
           {connectedUsers.players !== undefined &&
-            connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.id} />
-            ))}
+            connectedUsers.players.map((user) => <AvatarImage user={user} key={user.id} />)}
         </div>
 
         <div className={styles.game_settings}>
-          <div
-            className={
-              modalOpen.select || modalOpen.under
-                ? styles.timer
-                : styles.no_timer
-            }
-          >
+          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
             <TimerOutlinedIcon />
             <h1>{count}</h1>
           </div>
