@@ -1,20 +1,22 @@
-import { useRef, useState } from "react";
+import styles from "./GameBoard.module.css";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSocket, chat, disconnect } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
-import styles from "./GameBoard.module.css";
-import GameBoardImage from "../../../assets/images/image-game-board.png";
-import AvatarImage from "../avatar/AvatarImage";
-import ButtonRS from "../../common/button/ButtonRS";
-import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
-import { updateGameState } from "./../../../store/roomAndActive";
-import UnderCard from "../underCard/UnderCard";
-import RoundTokenBack from "../logCard/RoundTokenBack";
-import SelectCard from "../selectCard/SelectCard";
 import { useValidMessage } from "../../../hooks/useInput";
+import { useSocket, chat } from "../../../hooks/useSocket";
+import GameBoardImage from "../../../assets/images/image-game-board.png";
 import Chat from "../chatting/Chat";
+import UnderCard from "../underCard/UnderCard";
+import AvatarImage from "../avatar/AvatarImage";
+import SelectCard from "../selectCard/SelectCard";
+import ButtonRS from "../../common/button/ButtonRS";
 import Explanation from "../explanation/Explanation";
+import RoundTokenBack from "../logCard/RoundTokenBack";
+import { updateGameState } from "./../../../store/roomAndActive";
+import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start } from "../../../apis/readystart";
+import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 import { useNavigate } from "react-router-dom";
 
 const GameBoard = () => {
@@ -22,6 +24,7 @@ const GameBoard = () => {
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const [swipe, setSwipe] = useState({ chat: false, rule: false });
+  const [count, setCount] = useState(0);
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
   const client = useRef({});
   const { id } = useParams();
@@ -77,6 +80,7 @@ const GameBoard = () => {
         })
       );
     }
+    setCount(60);
   };
 
   const close = (type) => {
@@ -100,7 +104,19 @@ const GameBoard = () => {
         script: "asd",
       })
     );
+    setCount(0);
   };
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(count => count - 1); 
+    }, 1000);
+    if (count === 0) {
+      setModalOpen({ under: false, select: false });
+      clearInterval(id);
+    }
+    return () => clearInterval(id);
+  }, [count]);
 
   return (
     <>
@@ -110,8 +126,14 @@ const GameBoard = () => {
             connectedUsers.players.map((user) => <AvatarImage user={user} key={user.id} />)}
         </div>
 
-        <RoundTokenBack />
-        <RoundTokenBack voteRound={true} />
+        <div className={styles.game_settings}>
+          <div className={(modalOpen.select || modalOpen.under) ? styles.timer : styles.no_timer}>
+            <TimerOutlinedIcon />
+            <h1>{count}</h1>
+          </div>
+          
+          <RoundTokenBack />
+          <RoundTokenBack voteRound={true} />
 
         <div className={styles.game_table_buttons}>
           <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
