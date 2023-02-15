@@ -4,10 +4,9 @@ import { KAKAO_AUTH_URL } from "../../../constants";
 
 const LoginButton = () => {
   const requestLogin = () => {
-    const res = (window.location.href = KAKAO_AUTH_URL);
-
-    console.log(res);
+    window.location.href = KAKAO_AUTH_URL;
   };
+  
   return (
     <div>
       <div className={styles.kakao}>

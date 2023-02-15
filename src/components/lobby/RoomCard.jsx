@@ -6,20 +6,20 @@ import styles from "./RoomCard.module.css";
 import { joinRoom } from "../../apis/room";
 
 const RoomCard = (props) => {
+  const { room } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { room } = props;
-  const nickName = useSelector((state) => {
-    return state.room.nickName;
+  const nickname = useSelector((state) => {
+    return state.user.nickname;
   });
 
   const handleLinkGame = async (event) => {
     event.preventDefault();
-    if (!room.lock) {
+    if (room.password === "null") {
       const form = new FormData();
       form.append("roomId", room.roomId);
       form.append("password", "null");
-      form.append("nickName", nickName);
+      form.append("nickname", nickname);
       const res = await joinRoom(form);
       if (res.status === 200) {
         navigate(`/game/${room.roomId}`, { state: { roomId: room.roomId } });
@@ -32,8 +32,7 @@ const RoomCard = (props) => {
           })
         );
       }
-    }
-    else {
+    } else {
       dispatch(
         openModal({
           type: "JoinRoomModal",
@@ -50,10 +49,10 @@ const RoomCard = (props) => {
         <h3>
           {room.roomNum}. {room.title}
         </h3>
-        <div className={styles.lockIcon}>{room.lock && <LockIcon />}</div>
+        <div className={styles.lockIcon}>{room.password !== "null" && <LockIcon />}</div>
       </header>
 
-      <footer className={styles.actions}>{room.userCount}/6</footer>
+      <footer className={styles.actions}>{room.players.length}/6</footer>
     </div>
   );
 };

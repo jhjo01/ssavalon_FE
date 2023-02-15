@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoom } from "../../store/room";
+import { clearChat } from "../../store/chat";
 import { CircularProgress } from "@mui/material";
 import { openModal } from "../../store/modal";
 import ButtonPrimary from "../common/button/ButtonPrimary";
@@ -11,11 +12,9 @@ import ErrorModal from "../common/modal/ErrorModal";
 
 const Lobby = () => {
   const dispatch = useDispatch();
-
   const status = useSelector((state) => {
     return state.room.status;
   });
-
   const rooms = useSelector((state) => {
     return state.room.rooms;
   });
@@ -25,31 +24,33 @@ const Lobby = () => {
   };
 
   const handleOpenModal = () => {
-    dispatch(
-      openModal({ type: "CreateRoomModal", title: "방만들기" })
-    );
+    dispatch(openModal({ type: "CreateRoomModal", title: "방만들기" }));
   };
 
   useEffect(() => {
     dispatch(getRoom());
+    dispatch(clearChat([{ sender: "", message: "" }]));
     return () => {};
   }, [dispatch]);
 
   return (
     <>
       <div className={styles.createButton}>
-        <LoopIcon className={styles.guickStart} onClick={handleRefreshRoomList} />
+        <LoopIcon
+          className={styles.guickStart}
+          onClick={handleRefreshRoomList}
+        />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
         <ButtonPrimary value="create" onClick={handleOpenModal}>
           방만들기
         </ButtonPrimary>
       </div>
 
-      {status === "Loading" &&
+      {status === "Loading" && (
         <div className={styles.loading}>
           <CircularProgress color="inherit" />
         </div>
-      }
+      )}
       {status === "complete" && (
         <div className={styles.container}>
           {rooms.map((room) => (

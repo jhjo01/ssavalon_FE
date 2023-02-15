@@ -1,19 +1,29 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { submitJury } from "../apis/selectCard";
 
 export const useValidSelectCard = (people) => {
     const [status, setStatus] = useState("makeJury");
+    // const [open, setOpen] = useState(false);
     const [selectNum, setSelectNum] = useState(2);
     const [selectPeople, setSelectPeople] = useState(people);
     const [disabled, setDisabled] = useState(true);
     
+    const nickname = useSelector((state) => {
+        return state.user.nickname;
+    });
+    const roomId = useSelector((state) => {
+        return state.roomAndActive.roomId;
+    });
+    
     const handleSelectChange = (info) => {
         const selectedPeople = selectPeople;
         if (info.selected) {
-            setSelectPeople(selectedPeople.filter(select => select.id !== info.person.id));
+            setSelectPeople(selectedPeople.filter(select => select !== info.person.name));
         } else if (selectedPeople.length < selectNum) {
-            setSelectPeople(selectedPeople.concat({ ...info.person }));
+            setSelectPeople(selectedPeople.concat(info.person.name));
         } else {
-            setSelectPeople([info.person]);
+            setSelectPeople([info.person.name]);
         }
     };
 
@@ -24,6 +34,11 @@ export const useValidSelectCard = (people) => {
     }, [selectPeople]);
     
     const handleSubmitJury = () => {
+        // const res = submitJury(roomId, nickname, selectPeople);
+        // if (res.status === 200) {
+        //     return;
+        // }
+        // setOpen(false);
         setSelectPeople([]);
     }
 
@@ -41,6 +56,7 @@ export const useValidSelectCard = (people) => {
     }
 
     return {
+        // open,
         selectPeople,
         disabled,
         handleSelectChange,
