@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 // import { axiosGetRoundLog } from "../apis/roundLog";
 
-
 import gameLog from "../dummy/gameLog";
 import gameLog2 from "../dummy/gameLog2";
 

@@ -23,7 +23,6 @@ const MypageInfo = () => {
   useEffect(() => {
     if (nickName !== "") {
       const res = getMypage(nickName);
-      // res.then((result) => console.log(result));
       res.then((result) => {
         const recentGames = [];
         for (let i = 0; i < result.gameResultList.length; i += 6) {

@@ -1,6 +1,7 @@
 import styles from "./GameBoard.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useSocket, chat, disconnect } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import { useValidMessage } from "../../../hooks/useInput";
 import { useSocket, chat } from "../../../hooks/useSocket";
@@ -16,9 +17,11 @@ import { updateGameState } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start } from "../../../apis/readystart";
 import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
+import { useNavigate } from "react-router-dom";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const [swipe, setSwipe] = useState({ chat: false, rule: false });
   const [count, setCount] = useState(0);
@@ -27,17 +30,16 @@ const GameBoard = () => {
   const { id } = useParams();
   const nickname = useSelector((state) => state.user.nickname);
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
-  
+
   useSocket(client, id, nickname);
-  let connect = JSON.parse(connectedUsers);
-  console.log(connectedUsers);
-  
+
   const sendMessage = (type) => {
     if (type === "TALK") chat(type, client, id, nickname, value);
   };
 
   const handleSwipe = (type) => {
-    if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule)) setSwipe({ chat: false, rule: false });
+    if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule))
+      setSwipe({ chat: false, rule: false });
     else if (type === "chat") setSwipe({ chat: true, rule: false });
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
@@ -120,9 +122,8 @@ const GameBoard = () => {
     <>
       <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
-          {connect.players.map((user) => (
-            <AvatarImage user={user} key={user.nickname} />
-          ))}
+          {connectedUsers.players !== undefined &&
+            connectedUsers.players.map((user) => <AvatarImage user={user} key={user.id} />)}
         </div>
 
         <div className={styles.game_settings}>
@@ -134,11 +135,17 @@ const GameBoard = () => {
           <RoundTokenBack />
           <RoundTokenBack voteRound={true} />
 
-          <div className={styles.game_table_buttons}>
-            <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
-            <ButtonRS content="시작" onClick={() => start(id, nickname)} />
-            <ButtonRS content="나가기" onClick={() => exit(id, nickname)} />
-          </div>
+        <div className={styles.game_table_buttons}>
+          <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
+          <ButtonRS content="시작" onClick={() => start(id, nickname)} />
+          <ButtonRS
+            content="나가기"
+            onClick={() => {
+              exit(id, nickname);
+              navigate("/lobby");
+              disconnect(client);
+            }}
+          />
         </div>
         <div className={styles.buttons}>
           <button onClick={() => open("under")}>underCard열기</button>
