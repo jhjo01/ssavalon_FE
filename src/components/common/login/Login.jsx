@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./LoginButton.module.css";
 import { setUserInfo } from "../../../store/userInfo";
 import { login } from "../../../apis/user";
+import { lime } from '@mui/material/colors';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Login = () => {
   return (
     <>
       <div className={styles.loading}>
-        <CircularProgress />
+        <CircularProgress sx={{ color: lime[500] }} />
       </div>
     </>
   );
