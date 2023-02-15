@@ -2,11 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { getRoundLog } from "../../../store/roundLog";
 import { openModal } from "../../../store/modal";
-
 import roundTokenSuccess from "../../../assets/images/image-round-token-success.png";
 import roundTokenFail from "../../../assets/images/image-round-token-fail.png";
 import voteRoundToken from "../../../assets/images/image-jury-select.png";
-
 import styles from "./RoundToken.module.css";
 
 const RoundToken = (props) => {

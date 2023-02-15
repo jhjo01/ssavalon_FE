@@ -6,9 +6,9 @@ import styles from "./RoomCard.module.css";
 import { joinRoom } from "../../apis/room";
 
 const RoomCard = (props) => {
+  const { room } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { room } = props;
   const nickname = useSelector((state) => {
     return state.user.nickname;
   });

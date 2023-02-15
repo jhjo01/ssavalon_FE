@@ -2,6 +2,7 @@ import styles from "./Avatar.module.css";
 import Crown from "../assets/Crown";
 import Jury from "../assets/Jury";
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
+
 const AvatarImage = (props) => {
   const { user } = props;
 

@@ -7,11 +7,9 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 const ExPlanationWindow = (props) => {
   const { swipe, handleSwipe } = props;
-
   const [index, setIndex] = useState(0);
   const [isSlide, setIsSlide] = useState(false);
   const open = swipe ? styles.swipe : "";
-
   const rules = [
     "1. 캐릭터 카드를 랜덤으로 받는다.",
     "2. 범죄자 세력과 경찰이 정체를 확인하는 시간을 가진다.",
@@ -25,7 +23,6 @@ const ExPlanationWindow = (props) => {
     "9. 배심원장이 시계방향 한칸 옆 플레이어로 넘어가고 다음 라운드가 시작된다.",
     "10. 범죄자의 승리로 끝났다면 그대로 종료, 시민의 승리로 끝났다면 암살자는 경찰일 것 같은 사람을 선택한다. 그 사람이 경찰이라면 범죄자팀이 역전 승리한다.",
   ];
-
   const ruleImgs = [];
 
   const nextRule = async () => {

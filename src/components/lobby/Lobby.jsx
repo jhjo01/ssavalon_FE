@@ -12,11 +12,9 @@ import ErrorModal from "../common/modal/ErrorModal";
 
 const Lobby = () => {
   const dispatch = useDispatch();
-
   const status = useSelector((state) => {
     return state.room.status;
   });
-
   const rooms = useSelector((state) => {
     return state.room.rooms;
   });

@@ -19,8 +19,12 @@ const JoinRoomModal = () => {
   const nickname = useSelector((state) => {
     return state.user.nickname;
   });
-
-  const { value, isValid, disabled, handlePasswordChange } = useValidPassword("");
+  const {
+    value,
+    isValid,
+    disabled,
+    handlePasswordChange
+  } = useValidPassword("");
 
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "JoinRoomModal" }));

@@ -4,13 +4,16 @@ import styles from "./Page404.module.css";
 import Background from "../assets/images/image-main-background.png";
 
 const Page404 = () => {
-  const navigate = useNavigate();
-  const handleGoMain = () => {
-    navigate("/");
-  };
   console.log(`＿人人 人人＿
   ＞ (´◎ω◎)  ＜ 에러 잖아?!
   ￣Y^Y^Y^Y￣`);
+
+  const navigate = useNavigate();
+  
+  const handleGoMain = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <Header />

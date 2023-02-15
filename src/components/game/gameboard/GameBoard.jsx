@@ -21,6 +21,18 @@ const GameBoard = () => {
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const [swipe, setSwipe] = useState({ chat: false, rule: false });
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
+  const client = useRef({});
+  const { id } = useParams();
+  const nickname = useSelector((state) => state.user.nickname);
+  const { connectedUsers } = useSelector(selectorRoomAndStandBy);
+  
+  useSocket(client, id, nickname);
+  let connect = JSON.parse(connectedUsers);
+  console.log(connectedUsers);
+  
+  const sendMessage = (type) => {
+    if (type === "TALK") chat(type, client, id, nickname, value);
+  };
 
   const handleSwipe = (type) => {
     if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule)) setSwipe({ chat: false, rule: false });
@@ -87,21 +99,6 @@ const GameBoard = () => {
         script: "asd",
       })
     );
-  };
-
-  const client = useRef({});
-  const { id } = useParams();
-  const nickname = useSelector((state) => state.user.nickname);
-
-  useSocket(client, id, nickname);
-
-  const { connectedUsers } = useSelector(selectorRoomAndStandBy);
-  let connect = JSON.parse(connectedUsers);
-
-  console.log(connectedUsers);
-
-  const sendMessage = (type) => {
-    if (type === "TALK") chat(type, client, id, nickname, value);
   };
 
   return (

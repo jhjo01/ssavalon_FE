@@ -6,6 +6,18 @@ import { selectorRoomAndActive } from "../../../store/roomAndActive";
 import { useState, useEffect } from "react";
 
 const SelectCard = (props) => {
+  const { open } = props;
+  const [animate, setAnimate] = useState(false);
+  const [visible, setVisible] = useState(open);
+  const gameStatus = useSelector(selectorRoomAndActive);
+  const {
+    // open,
+    selectPeople,
+    disabled,
+    handleSelectChange,
+    handleStatusChange,
+    handleSubmitJury,
+  } = useValidSelectCard([]);
   const people = [
     {
       id: "1",
@@ -40,20 +52,6 @@ const SelectCard = (props) => {
       rotate: "480deg",
     },
   ];
-  
-  const {
-    // open,
-    selectPeople,
-    disabled,
-    handleSelectChange,
-    handleStatusChange,
-    handleSubmitJury,
-  } = useValidSelectCard([]);
-  const { open } = props;
-  const [animate, setAnimate] = useState(false);
-  const [visible, setVisible] = useState(open);
-  const gameStatus = useSelector(selectorRoomAndActive);
-
 
   useEffect(() => {
     if (visible && !open) {

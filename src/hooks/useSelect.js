@@ -8,6 +8,7 @@ export const useValidSelectCard = (people) => {
     const [selectNum, setSelectNum] = useState(2);
     const [selectPeople, setSelectPeople] = useState(people);
     const [disabled, setDisabled] = useState(true);
+    
     const nickname = useSelector((state) => {
         return state.user.nickname;
     });
