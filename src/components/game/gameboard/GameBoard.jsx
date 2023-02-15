@@ -57,7 +57,7 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
- const open = (type) => {
+  const open = (type) => {
     if (type === "under") {
       setModalOpen({ under: true, select: false, role: false });
     } else if (type === "role") {
@@ -69,7 +69,7 @@ const GameBoard = () => {
       setModalOpen({ under: false, select: true, role: false });
     }
   };
-  
+
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
       setPlayer(
@@ -124,16 +124,32 @@ const GameBoard = () => {
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
-            {connectedUsers.players !== undefined &&
+          {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.nickname} job={job} />
+              <AvatarImage
+                user={user}
+                key={user.nickname}
+                job={job}
+                activePlayer={gameStatus.playerList.find(
+                  (player) => player.nickname === user.nickname
+                )}
+              />
             ))}
         </div>
 
         <div className={styles.game_settings}>
-          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
+          <div
+            className={
+              modalOpen.select || modalOpen.under
+                ? styles.timer
+                : styles.no_timer
+            }
+          >
             <TimerOutlinedIcon />
             <h1>{count}</h1>
           </div>
@@ -166,7 +182,9 @@ const GameBoard = () => {
       </div>
       {modalOpen.role && <RollCard job={job} />}
       <SelectCard open={modalOpen.select} />
-      <UnderCard open={modalOpen.under} />
+      {modalOpen.under && (
+        <UnderCard open={modalOpen.under} setModalOpen={setModalOpen} />
+      )}
       <Chat
         sendMessage={sendMessage}
         value={value}
