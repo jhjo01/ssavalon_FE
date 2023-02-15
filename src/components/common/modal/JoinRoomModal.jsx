@@ -19,12 +19,7 @@ const JoinRoomModal = () => {
   const nickname = useSelector((state) => {
     return state.user.nickname;
   });
-  const {
-    value,
-    isValid,
-    disabled,
-    handlePasswordChange
-  } = useValidPassword("");
+  const { value, isValid, disabled, handlePasswordChange } = useValidPassword("");
 
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "JoinRoomModal" }));
@@ -37,14 +32,15 @@ const JoinRoomModal = () => {
     form.append("password", value);
     form.append("nickname", nickname);
     const res = await joinRoom(form);
-    if (res.status === 200) {
+
+    if (res.data.message === "비밀번호가 틀립니다.") {
+      dispatch(closeModal({ type: "JoinRoomModal" }));
+      dispatch(
+        openModal({ type: "ErrorModal", title: "비밀번호 오류", errMessage: res.data.message })
+      );
+    } else {
       dispatch(closeModal({ type: "JoinRoomModal" }));
       navigate(`/game/${res.data.roomId}`);
-    } else {
-      dispatch(
-        closeModal({ type: "JoinRoomModal" }),
-        openModal({ type: "ErrorModal", title: title, errMessage: "방이 존재하지 않습니다." })
-      );
     }
   };
 

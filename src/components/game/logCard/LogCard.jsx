@@ -13,7 +13,7 @@ const LogCard = () => {
   const gameLog = useSelector((state) => {
     return state.roundLog.result;
   });
-  
+
   const subRoundList = [];
   if (gameLog !== null) {
     for (let i = 1; i <= Object.keys(gameLog.subRound).length; i++) {

@@ -20,10 +20,20 @@ const RoomCard = (props) => {
       form.append("roomId", room.roomId);
       form.append("password", "null");
       form.append("nickname", nickname);
+
       const res = await joinRoom(form);
-      if (res.status === 200) {
+
+      if (res.data.message === "방이 가득 차 있습니다.") {
+        dispatch(
+          openModal({
+            type: "ErrorModal",
+            title: "입장에러",
+            errMessage: res.data.message,
+          })
+        );
+      } else if (res.data.message === "SUCCESS") {
         navigate(`/game/${room.roomId}`, { state: { roomId: room.roomId } });
-      } else if (res.status === 300) {
+      } else {
         dispatch(
           openModal({
             type: "ErrorModal",

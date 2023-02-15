@@ -168,7 +168,7 @@ const GameBoard = () => {
           <button onClick={() => close("select")}>selectCard닫기</button>
         </div>
       </div>
-      <RollCard />
+      {/* <RollCard /> */}
       <SelectCard open={modalOpen.select} />
       <UnderCard open={modalOpen.under} />
       <Chat
