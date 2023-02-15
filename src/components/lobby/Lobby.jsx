@@ -9,6 +9,7 @@ import RoomCard from "./RoomCard";
 import LoopIcon from "@mui/icons-material/Loop";
 import styles from "./Lobby.module.css";
 import ErrorModal from "../common/modal/ErrorModal";
+import { lime } from '@mui/material/colors';
 
 const Lobby = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const Lobby = () => {
 
       {status === "Loading" && (
         <div className={styles.loading}>
-          <CircularProgress color="inherit" />
+          <CircularProgress sx={{ color: lime[500] }} />
         </div>
       )}
       {status === "complete" && (
