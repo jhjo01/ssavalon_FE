@@ -17,7 +17,6 @@ export const getMypage = async (nickname) => {
 };
 
 export const getDuplication = async (nickname) => {
-  console.log(nickname);
   const response = await axios(getConfig_8000(`/user-service/oauth/duplication/${nickname}`));
   return response;
 };

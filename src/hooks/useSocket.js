@@ -16,8 +16,7 @@ export const useSocket = (client, roomId, sender) => {
 
   const connect = () => {
     client.current = new StompJs.Client({
-      webSocketFactory: () =>
-        new SockJS(`http://i8b305.p.ssafy.io:9001/ws-stomp`),
+      webSocketFactory: () => new SockJS(`http://i8b305.p.ssafy.io:9001/ws-stomp`),
       onConnect: () => {
         subscribe(roomId, sender);
       },
@@ -46,15 +45,14 @@ export const useSocket = (client, roomId, sender) => {
       body: JSON.stringify({ type: "ENTER", roomId: roomId, sender: sender }),
     });
   };
-
-  const disconnect = () => {
-    client.current.deactivate();
-  };
-
   useEffect(() => {
     connect();
-    return () => disconnect();
+    return () => disconnect(client);
   }, []);
+};
+
+export const disconnect = (client) => {
+  client.current.deactivate();
 };
 
 export const chat = (type, client, roomId, sender, message) => {

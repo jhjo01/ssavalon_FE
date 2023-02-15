@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useSocket, chat } from "../../../hooks/useSocket";
+import { useSocket, chat, disconnect } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import styles from "./GameBoard.module.css";
 import GameBoardImage from "../../../assets/images/image-game-board.png";
@@ -15,9 +15,11 @@ import { useValidMessage } from "../../../hooks/useInput";
 import Chat from "../chatting/Chat";
 import Explanation from "../explanation/Explanation";
 import { exit, ready, start } from "../../../apis/readystart";
+import { useNavigate } from "react-router-dom";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState({ under: false, select: false });
   const [swipe, setSwipe] = useState({ chat: false, rule: false });
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
@@ -27,8 +29,6 @@ const GameBoard = () => {
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
 
   useSocket(client, id, nickname);
-  // let connect = JSON.parse(connectedUsers);
-  console.log(connectedUsers);
 
   const sendMessage = (type) => {
     if (type === "TALK") chat(type, client, id, nickname, value);
@@ -53,8 +53,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -71,8 +70,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -106,15 +104,10 @@ const GameBoard = () => {
 
   return (
     <>
-      <div
-        className={styles.game_table}
-        style={{ backgroundImage: `url(${GameBoardImage})` }}
-      >
+      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
           {connectedUsers.players !== undefined &&
-            connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.id} />
-            ))}
+            connectedUsers.players.map((user) => <AvatarImage user={user} key={user.id} />)}
         </div>
 
         <RoundTokenBack />
@@ -123,7 +116,14 @@ const GameBoard = () => {
         <div className={styles.game_table_buttons}>
           <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
           <ButtonRS content="시작" onClick={() => start(id, nickname)} />
-          <ButtonRS content="나가기" onClick={() => exit(id, nickname)} />
+          <ButtonRS
+            content="나가기"
+            onClick={() => {
+              exit(id, nickname);
+              navigate("/lobby");
+              disconnect(client);
+            }}
+          />
         </div>
         <div className={styles.buttons}>
           <button onClick={() => open("under")}>underCard열기</button>

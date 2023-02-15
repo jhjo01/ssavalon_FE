@@ -4,7 +4,6 @@ export const OPENVIDU_SERVER_SECRET = "MY_SECRET";
 export const SOCKET_SUB_END_POINT = "/sub/message/user";
 export const SOCKET_PUB_END_POINT = "/pub/message/user";
 
-
 // Kakao API_KEY, REDIRECT_URL
 const REST_API_KEY = "e21948e5e842e29a34dd1216456745dd";
 const REDIRECT_URL = "http://localhost:3000/oauth/kakao";
