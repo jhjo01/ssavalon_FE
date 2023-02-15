@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { signup } from "../apis/user";
 import { setUserInfo } from "../store/userInfo";
 import { useNavigate, useLocation } from "react-router-dom";
 import { getDuplication } from "../apis/user";
 
+// 비밀방 입장
 export const useValidPassword = (password) => {
   const [value, setValue] = useState(password);
   const [isValid, setIsValid] = useState(false);
   const [disabled, setDisabled] = useState(true);
+
   const handlePasswordChange = (event) => {
     if (event.target.value.length >= 4 && event.target.value.length <= 8) {
       setIsValid(true);
@@ -32,6 +33,7 @@ export const useValidPassword = (password) => {
   };
 };
 
+// 비밀방 생성
 export const useValidTitleAndPassword = (roomInfo, roomValid) => {
   const [value, setValue] = useState(roomInfo);
   const [isValid, setIsValid] = useState(roomValid);
@@ -76,8 +78,11 @@ export const useValidTitleAndPassword = (roomInfo, roomValid) => {
   };
 };
 
+
+// 채팅창
 export const useValidMessage = (message) => {
   const [value, setValue] = useState(message);
+
   const handleInputChange = (event) => {
     setValue(event.target.value);
   };
@@ -93,6 +98,7 @@ export const useValidMessage = (message) => {
   };
 };
 
+// 닉네임 생성
 export const useValidnickname = (nickname) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -101,9 +107,7 @@ export const useValidnickname = (nickname) => {
     return state.user;
   });
 
-  const [kakaoId] = useState(useLocation().state);
-
-  
+  const [kakaoId] = useState(useLocation().state);  
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
   const [isDupli, setIsDupli] = useState(false);
@@ -130,12 +134,12 @@ export const useValidnickname = (nickname) => {
       navigate("/");
     }
     if (isValid) setDisabled({ check: false, signup: true });
-    else setDisabled({ check: false, signup: true });
+    else setDisabled({ check: true, signup: true });
   }, [isValid, userInfo.isLogin, navigate]);
 
   const handleCheckNick = async () => {
     if (!isValid) return;
-
+    
     // 중복체크 진행
     const response = await getDuplication(value);
 
@@ -145,7 +149,7 @@ export const useValidnickname = (nickname) => {
     } else {
       // 중복 아님
       setIsDupli(false);
-      setDisabled({ check: false, signup: false });
+      setDisabled({ check: true, signup: false });
     }
     return;
   };

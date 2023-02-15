@@ -1,8 +1,6 @@
 import React from "react";
 // import { useSelector } from "react-redux";
-
 import RoundToken from "./RoundToken";
-
 import styles from "./RoundToken.module.css";
 
 const RoundTokenBack = (props) => {

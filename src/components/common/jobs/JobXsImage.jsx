@@ -2,8 +2,10 @@ import styles from "./Jobs.module.css";
 import CitizenImage from "../../../assets/images/image-citizen.png";
 import KillerImage from "../../../assets/images/image-killer.png";
 import PoliceImage from "../../../assets/images/image-police.png";
+
 const JobXsImage = (props) => {
   const { playerResult } = props;
+  
   return (
     <div className={styles.img_wrapper}>
       {playerResult.job === "범죄자" && (

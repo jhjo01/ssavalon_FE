@@ -6,6 +6,7 @@ const LoginButton = () => {
   const requestLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
+  
   return (
     <div>
       <div className={styles.kakao}>

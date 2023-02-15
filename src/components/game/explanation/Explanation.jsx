@@ -4,6 +4,7 @@ import ExPlanationWindow from "./ExPlanationWindow";
 
 const Explanation = (props) => {
   const { swipe, handleSwipe } = props;
+  
   return (
     <>
       <button className={styles.explain_button} onClick={handleSwipe}>

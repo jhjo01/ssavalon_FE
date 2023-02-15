@@ -14,9 +14,9 @@ const ChatWindow = (props) => {
     handleInputChange,
     handleInputReset,
   } = props;
-
   const messages = useSelector((state) => state.chat.chat.slice(1));
   const open = swipe ? styles.swipe : "";
+
   const handleOnKeyUp = async (event) => {
     if (event.key === "Enter") {
       handleSendMessage(event);

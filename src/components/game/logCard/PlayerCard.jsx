@@ -1,9 +1,7 @@
 import React from "react";
-
 import LogCardBack from "../cardBack/LogCardBack";
 import Crown from "../../../assets/images/image-crown.png";
 import Jury from "../../../assets/images/image-jury-select.png";
-
 import styles from "./LogCard.module.css";
 
 const PlayerCard = (props) => {

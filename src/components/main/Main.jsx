@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const navigate = useNavigate();
-
   const isLogin = useSelector((state) => {
     return state.user.isLogin;
   });

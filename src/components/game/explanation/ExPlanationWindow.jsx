@@ -4,14 +4,23 @@ import { useEffect, useState } from "react";
 import Rule from "./Rule";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import image_rule_1 from "../../../assets/images/image-reject.png";
+import image_rule_2 from "../../../assets/images/image-reject.png";
+import image_rule_3 from "../../../assets/images/image-rule-3.png";
+import image_rule_4 from "../../../assets/images/image-rule-4.png";
+import image_rule_5 from "../../../assets/images/image-rule-5.png";
+import image_rule_5_1 from "../../../assets/images/image-rule-5-1.png";
+import image_rule_6 from "../../../assets/images/image-rule-6.png";
+import image_rule_7 from "../../../assets/images/image-reject.png";
+import image_rule_8 from "../../../assets/images/image-reject.png";
+import image_rule_9 from "../../../assets/images/image-rule-9.png";
+import image_rule_10 from "../../../assets/images/image-reject.png";
 
 const ExPlanationWindow = (props) => {
   const { swipe, handleSwipe } = props;
-
   const [index, setIndex] = useState(0);
   const [isSlide, setIsSlide] = useState(false);
   const open = swipe ? styles.swipe : "";
-
   const rules = [
     "1. 캐릭터 카드를 랜덤으로 받는다.",
     "2. 범죄자 세력과 경찰이 정체를 확인하는 시간을 가진다.",
@@ -26,7 +35,19 @@ const ExPlanationWindow = (props) => {
     "10. 범죄자의 승리로 끝났다면 그대로 종료, 시민의 승리로 끝났다면 암살자는 경찰일 것 같은 사람을 선택한다. 그 사람이 경찰이라면 범죄자팀이 역전 승리한다.",
   ];
 
-  const ruleImgs = [];
+  const ruleImgs = [
+    image_rule_1,
+    image_rule_2,
+    image_rule_3,
+    image_rule_4,
+    image_rule_5,
+    image_rule_5_1,
+    image_rule_6,
+    image_rule_7,
+    image_rule_8,
+    image_rule_9,
+    image_rule_10,
+  ];
 
   const nextRule = async () => {
     if (isSlide) {
@@ -48,24 +69,24 @@ const ExPlanationWindow = (props) => {
 
   useEffect(() => {
     setIndex(0);
-  }, [swipe])
+  }, [swipe]);
 
   return (
-      <>
+    <>
       <div className={`${styles.explain} ${open}`}>
-          <div className={styles.explain_top}>
-              <h2>룰 설명</h2>
-              <CloseIcon onClick={handleSwipe} />
+        <div className={styles.explain_top}>
+          <h2>룰 설명</h2>
+          <CloseIcon onClick={handleSwipe} />
+        </div>
+        <div className={styles.progress}>
+          <div className={index === 0 ? styles.first_page : styles.page} onClick={prevRule}>
+            <NavigateBeforeIcon />
           </div>
-          <div className={styles.progress}>
-              <div className={index === 0 ? styles.first_page : styles.page} onClick={prevRule}>
-                  <NavigateBeforeIcon />
-              </div>   
-              <Rule rule={rules[index]} ruleImg={ruleImgs[index]} />
-              <div className={index === 10 ? styles.last_page : styles.page} onClick={nextRule}>
-                  <NavigateNextIcon />        
-              </div>
+          <Rule rule={rules[index]} ruleImg={ruleImgs[index]} />
+          <div className={index === 10 ? styles.last_page : styles.page} onClick={nextRule}>
+            <NavigateNextIcon />
           </div>
+        </div>
       </div>
     </>
   );

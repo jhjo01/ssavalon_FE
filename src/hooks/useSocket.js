@@ -1,4 +1,4 @@
-import { API_END_POINT, SOCKET_SUB_END_POINT, SOCKET_PUB_END_POINT } from "../constants/index";
+import { API_SOCKET, SOCKET_SUB_END_POINT, SOCKET_PUB_END_POINT } from "../constants/index";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import * as StompJs from "@stomp/stompjs";
@@ -11,7 +11,7 @@ export const useSocket = (client, roomId, sender) => {
 
   const connect = () => {
     client.current = new StompJs.Client({
-      webSocketFactory: () => new SockJS(`${API_END_POINT}/ws-stomp`),
+      webSocketFactory: () => new SockJS(`${API_SOCKET}/ws-stomp`),
       onConnect: () => {
         subscribe(roomId, sender);
       },
@@ -24,18 +24,13 @@ export const useSocket = (client, roomId, sender) => {
     client.current.subscribe(`${SOCKET_SUB_END_POINT}/${roomId}`, (message) => {
       // spring에서 넘어오는 데이터 parse
       const parse = JSON.parse(message.body);
-      console.log(parse);
-      if (parse.type === "standBy") {
-        console.log(message.body);
-        return;
-      }
 
       // 분기문 처리
       if (parse.type === "TALK") {
         const object = { sender: parse.sender, message: parse.message };
         dispatch(updateChat(object));
       } else {
-        dispatch(updateRoom(message.body));
+        dispatch(updateRoom(parse));
       }
     });
 
@@ -45,15 +40,14 @@ export const useSocket = (client, roomId, sender) => {
       body: JSON.stringify({ type: "ENTER", roomId: roomId, sender: sender }),
     });
   };
-
-  const disconnect = () => {
-    client.current.deactivate();
-  };
-
   useEffect(() => {
     connect();
-    return () => disconnect();
+    return () => disconnect(client);
   }, []);
+};
+
+export const disconnect = (client) => {
+  client.current.deactivate();
 };
 
 export const chat = (type, client, roomId, sender, message) => {

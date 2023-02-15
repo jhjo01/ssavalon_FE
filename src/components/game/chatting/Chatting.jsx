@@ -6,6 +6,7 @@ const Chatting = (props) => {
   const myNick = useSelector((state) => {
     return state.user.nickName;
   });
+  
   return (
     <div
       className={myNick === message.sender ? styles.myChat : styles.otherChat}

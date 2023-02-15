@@ -9,14 +9,13 @@ import RoomCard from "./RoomCard";
 import LoopIcon from "@mui/icons-material/Loop";
 import styles from "./Lobby.module.css";
 import ErrorModal from "../common/modal/ErrorModal";
+import { lime } from "@mui/material/colors";
 
 const Lobby = () => {
   const dispatch = useDispatch();
-
   const status = useSelector((state) => {
     return state.room.status;
   });
-
   const rooms = useSelector((state) => {
     return state.room.rooms;
   });
@@ -38,10 +37,7 @@ const Lobby = () => {
   return (
     <>
       <div className={styles.createButton}>
-        <LoopIcon
-          className={styles.guickStart}
-          onClick={handleRefreshRoomList}
-        />
+        <LoopIcon className={styles.guickStart} onClick={handleRefreshRoomList} />
         <ButtonPrimary value="quick">빠른입장</ButtonPrimary>
         <ButtonPrimary value="create" onClick={handleOpenModal}>
           방만들기
@@ -50,7 +46,7 @@ const Lobby = () => {
 
       {status === "Loading" && (
         <div className={styles.loading}>
-          <CircularProgress color="inherit" />
+          <CircularProgress sx={{ color: lime[500] }} />
         </div>
       )}
       {status === "complete" && (

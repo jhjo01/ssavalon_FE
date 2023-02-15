@@ -1,8 +1,7 @@
 import React from "react";
-
 import PlayerCard from "./PlayerCard";
-
 import styles from "./LogCard.module.css";
+
 const RoundCard = (props) => {
   const resultCard = () => {
     const result = [];

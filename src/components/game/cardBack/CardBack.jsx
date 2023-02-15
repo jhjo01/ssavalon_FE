@@ -10,11 +10,11 @@ const CardBack = (props) => {
       setSelected(false);
     } else {
       for (let selcetPerson of selectPeople) {
-        if (selcetPerson.id === person.id) return setSelected(true);
+        if (selcetPerson === person.name) return setSelected(true);
         setSelected(false);
       }
     }
-  }, [selectPeople, person.id]);
+  }, [selectPeople, person.name]);
 
   return (
     <section
