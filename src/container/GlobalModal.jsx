@@ -7,12 +7,18 @@ import CreateRoomModal from "./../components/common/modal/CreateRoomModal";
 import JoinRoomModal from "./../components/common/modal/JoinRoomModal";
 import LogCard from "../components/game/logCard/LogCard";
 import ErrorModal from "../components/common/modal/ErrorModal";
+import RoundResult from "../components/game/result/RoundResult";
+import TrialResult from "../components/game/result/TrialResult";
+import GameResult from "../components/game/result/GameResult";
 
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",
   JoinRoomModal: "JoinRoomModal",
   LogCard: "LogCard",
-  ErrorModal:"ErrorModal",
+  ErrorModal: "ErrorModal",
+  RoundResult: "RoundResult",
+  TrialResult: "TrialResult",
+  GameResult: "GameResult",
 };
 
 const MODAL_COMPONENTS = [
@@ -31,6 +37,18 @@ const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.ErrorModal,
     component: <ErrorModal />,
+  },
+  {
+    type: MODAL_TYPES.RoundResult,
+    component: <RoundResult />,
+  },
+  {
+    type: MODAL_TYPES.TrialResult,
+    component: <TrialResult />,
+  },
+  {
+    type: MODAL_TYPES.GameResult,
+    component: <GameResult />,
   },
 ];
 
@@ -54,10 +72,7 @@ const GlobalModal = () => {
         <Backdrop onClick={() => dispatch(closeModal())} />,
         document.getElementById("backdrop-root")
       )}
-      {ReactDOM.createPortal(
-        renderModal(),
-        document.getElementById("overlay-root")
-      )}
+      {ReactDOM.createPortal(renderModal(), document.getElementById("overlay-root"))}
     </>
   );
 };

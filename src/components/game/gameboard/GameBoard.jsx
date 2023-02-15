@@ -18,6 +18,9 @@ import { exit, ready, start } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
+import RoundResult from "../result/RoundResult";
+import { openModal } from "../../../store/modal";
+import TrialResult from "../result/TrialResult";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
@@ -56,13 +59,14 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
         })
       );
+    } else if (type === "round") {
+      setModalOpen({ under: true, select: false });
     } else {
       setModalOpen({ under: false, select: true });
       dispatch(
@@ -74,8 +78,7 @@ const GameBoard = () => {
           round: "",
           voteRound: "",
           prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
+          agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
           guilty: "2",
           notGuilty: "1",
           script: "asd",
@@ -120,27 +123,26 @@ const GameBoard = () => {
     return () => clearInterval(id);
   }, [count]);
 
+  const openRoundResult = () => {
+    dispatch(openModal({ type: "RoundResult" }));
+  };
+  const openTrialResult = () => {
+    dispatch(openModal({ type: "TrialResult" }));
+  };
+  const openGameResult = () => {
+    dispatch(openModal({ type: "GameResult" }));
+  };
+
   return (
     <>
-      <div
-        className={styles.game_table}
-        style={{ backgroundImage: `url(${GameBoardImage})` }}
-      >
+      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
           {connectedUsers.players !== undefined &&
-            connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.id} />
-            ))}
+            connectedUsers.players.map((user) => <AvatarImage user={user} key={user.id} />)}
         </div>
 
         <div className={styles.game_settings}>
-          <div
-            className={
-              modalOpen.select || modalOpen.under
-                ? styles.timer
-                : styles.no_timer
-            }
-          >
+          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
             <TimerOutlinedIcon />
             <h1>{count}</h1>
           </div>
@@ -166,6 +168,9 @@ const GameBoard = () => {
           <button onClick={() => close("under")}>underCard닫기</button>
           <button onClick={() => open("select")}>selectCard열기</button>
           <button onClick={() => close("select")}>selectCard닫기</button>
+          <button onClick={openRoundResult}>roundResult보기</button>
+          <button onClick={openTrialResult}>TrialResult보기</button>
+          <button onClick={openGameResult}>GameResult보기</button>
         </div>
       </div>
       {/* <RollCard /> */}

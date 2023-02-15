@@ -6,7 +6,6 @@ export const ready = async (roomId, nickname) => {
     roomId: roomId,
     nickname: nickname,
   };
-
   const res = await axios(postConfig_8000("/standby-service/room/ready", body));
   return res.data;
 };
