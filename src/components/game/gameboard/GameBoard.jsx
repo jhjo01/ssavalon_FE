@@ -25,25 +25,23 @@ import RollCard from "../rollCard/RollCard";
 const GameBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [modalOpen, setModalOpen] = useState({ under: false, select: false });
+  const [modalOpen, setModalOpen] = useState({
+    under: false,
+    select: false,
+    role: false,
+  });
   const [swipe, setSwipe] = useState({ chat: false, rule: false });
   const [count, setCount] = useState(0);
+  const [player, setPlayer] = useState([]);
+  const [job, setJob] = useState([]);
   const { id } = useParams();
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
-
   const client = useRef({});
   const gameClient = useRef({});
   const nickname = useSelector((state) => state.user.nickname);
-  useSocket(client, gameClient, id, nickname);
-
   const { connectedUsers } = useSelector(selectorRoomAndStandBy);
-  const playerList = useSelector(
-    (state) => state.roomAndStandBy.connectedUsers.players
-  );
   const gameStatus = useSelector(selectorRoomAndActive);
-  const player = connectedUsers.players.find(
-    (player) => player.nickname === nickname
-  );
+  useSocket(client, gameClient, id, nickname);
 
   const sendMessage = () => {
     chat(client, id, nickname, value);
@@ -58,68 +56,47 @@ const GameBoard = () => {
 
   const open = (type) => {
     if (type === "under") {
-      setModalOpen({ under: true, select: false });
-      dispatch(
-        updateGameState({
-          status: "voteAgreeDisagree",
-          roomId: "",
-          connectedUsers:
-            '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
-          round: "",
-          voteRound: "",
-          prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
-          guilty: "2",
-          notGuilty: "1",
-          script: "asd",
-        })
-      );
+      setModalOpen({ under: true, select: false, role: false });
+    } else if (type === "role") {
+      setModalOpen({ under: false, select: false, role: true });
+      setTimeout(() => {
+        setModalOpen({ under: false, select: true, role: false });
+      }, 2000);
     } else {
-      setModalOpen({ under: false, select: true });
-      dispatch(
-        updateGameState({
-          status: "makeJury",
-          roomId: "",
-          connectedUsers:
-            '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
-          round: "",
-          voteRound: "",
-          prevRound: '[{"round": 0, "win":cici}]',
-          agreeDisagree:
-            '[{"userId": cici, "userNickName":cici, "agree": cici}]',
-          guilty: "2",
-          notGuilty: "1",
-          script: "asd",
-        })
-      );
+      setModalOpen({ under: false, select: true, role: false });
     }
-    setCount(60);
   };
 
-  const close = (type) => {
-    if (type === "under") {
-      setModalOpen({ under: false, select: false });
-    } else {
-      setModalOpen({ under: false, select: false });
+  useEffect(() => {
+    if (connectedUsers.players !== undefined) {
+      setPlayer(
+        connectedUsers.players.find((player) => player.nickname === nickname)
+      );
     }
-    dispatch(
-      updateGameState({
-        status: "",
-        roomId: "",
-        connectedUsers:
-          '[{"userId": cici, "userNickName": cici, "job":"", "isLeader": cici, "isJury: cici}]',
-        round: "",
-        voteRound: "",
-        prevRound: '[{"round": 0, "win":cici}]',
-        agreeDisagree: '[{"userId": cici, "userNickName":cici, "agree": cici}]',
-        guilty: "2",
-        notGuilty: "1",
-        script: "asd",
-      })
-    );
-    setCount(0);
-  };
+
+    return () => {};
+  }, [connectedUsers]);
+
+  useEffect(() => {
+    if (gameStatus.playerList !== undefined) {
+      setJob(
+        gameStatus.playerList.find((player) => player.nickname === nickname).job
+      );
+    }
+
+    if (
+      gameStatus.status === "makeJury" &&
+      gameStatus.round === 1 &&
+      gameStatus.voteRound === 1
+    ) {
+      open("role");
+    } else if (
+      gameStatus.status === "voteAgreeDisgree" ||
+      gameStatus.status === "voteGuiltyNotGuilty"
+    ) {
+      open("under");
+    }
+  }, [gameStatus.playerList]);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -141,7 +118,7 @@ const GameBoard = () => {
         <div className={styles.game_table_settings}>
           {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.nickname} />
+              <AvatarImage user={user} key={user.nickname} job={job} />
             ))}
         </div>
 
@@ -161,30 +138,29 @@ const GameBoard = () => {
           {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />}
 
           <div className={styles.game_table_buttons}>
-            {!player.isHost && (
+            {gameStatus.status === "" && !player.isHost && (
               <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
             )}
-            {player.isHost && (
-              <ButtonRS content="시작" onClick={() => start(id, playerList)} />
+            {gameStatus.status === "" && player.isHost && (
+              <ButtonRS
+                content="시작"
+                onClick={() => start(id, connectedUsers.players)}
+              />
             )}
-            <ButtonRS
-              content="나가기"
-              onClick={() => {
-                exit(id, nickname);
-                navigate("/lobby");
-                disconnect(client);
-              }}
-            />
+            {gameStatus.status === "" && (
+              <ButtonRS
+                content="나가기"
+                onClick={() => {
+                  exit(id, nickname);
+                  navigate("/lobby");
+                  disconnect(client);
+                }}
+              />
+            )}
           </div>
         </div>
-        <div className={styles.buttons}>
-          <button onClick={() => open("under")}>underCard열기</button>
-          <button onClick={() => close("under")}>underCard닫기</button>
-          <button onClick={() => open("select")}>selectCard열기</button>
-          <button onClick={() => close("select")}>selectCard닫기</button>
-        </div>
       </div>
-      {gameStatus.status === "makeJury" && <RollCard />}
+      {modalOpen.role && <RollCard job={job} />}
       <SelectCard open={modalOpen.select} />
       <UnderCard open={modalOpen.under} />
       <Chat

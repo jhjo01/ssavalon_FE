@@ -11,6 +11,7 @@ import styles from "./Lobby.module.css";
 import ErrorModal from "../common/modal/ErrorModal";
 import { lime } from "@mui/material/colors";
 import { clearGameState } from "../../store/roomAndActive";
+import { clearRoom } from "../../store/roomAndStandBy";
 
 const Lobby = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,9 @@ const Lobby = () => {
         notGuilty: "0",
         script: "asd",
       })
+    );
+    dispatch(
+      clearRoom([{ nickname: "", rotate: "", isHost: "", isReady: "" }])
     );
     return () => {};
   }, [dispatch]);

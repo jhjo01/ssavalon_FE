@@ -4,7 +4,7 @@ import Jury from "../assets/Jury";
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
 
 const AvatarImage = (props) => {
-  const { user } = props;
+  const { user, job } = props;
   return (
     <div
       className={styles.game_setting}
@@ -25,7 +25,7 @@ const AvatarImage = (props) => {
               <div className={styles.player_username_wrapper}>
                 <span className={styles.player_username}>{user.nickname}</span>
               </div>
-              {user.isReady && (
+              {user.isReady && job.length === 0 && (
                 <div className={styles.player_user_ready_wrapper}>
                   {true && <h1 className={styles.player_user_ready}>READY</h1>}
                 </div>

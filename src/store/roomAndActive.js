@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   status: "",
   roomId: "",
-  connectedUsers:
+  playerList:
     '[{"userId": cici, "usernickname": cici, "job":"", "isLeader": cici, "isJury: cici}]',
   round: "",
   voteRound: "",
@@ -22,7 +22,7 @@ export const roomAndActiveSlice = createSlice({
       const {
         status,
         roomId,
-        connectedUsers,
+        playerList,
         round,
         voteRound,
         prevRound,
@@ -33,7 +33,7 @@ export const roomAndActiveSlice = createSlice({
       } = action.payload;
       state.status = status;
       state.roomId = roomId;
-      state.connectedUsers = connectedUsers;
+      state.playerList = playerList;
       state.round = round;
       state.voteRound = voteRound;
       state.prevRound = prevRound;
@@ -46,7 +46,7 @@ export const roomAndActiveSlice = createSlice({
       const {
         status,
         roomId,
-        connectedUsers,
+        playerList,
         round,
         voteRound,
         prevRound,
@@ -57,7 +57,7 @@ export const roomAndActiveSlice = createSlice({
       } = action.payload;
       state.status = status;
       state.roomId = roomId;
-      state.connectedUsers = connectedUsers;
+      state.playerList = playerList;
       state.round = round;
       state.voteRound = voteRound;
       state.prevRound = prevRound;

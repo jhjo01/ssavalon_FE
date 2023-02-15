@@ -47,19 +47,11 @@
   align-items: center;
 }
 
-.timer h1, .timer svg {
+.timer h1,
+.timer svg {
   font-size: 40px;
   color: #fff;
   margin: 0 5px;
-}
-
-.game_table .buttons {
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  left: -150px;
 }
 
 .no_timer {
@@ -79,7 +71,8 @@
     height: 280px;
   }
 
-  .timer h1, .timer svg {
+  .timer h1,
+  .timer svg {
     font-size: 30px;
   }
 }
