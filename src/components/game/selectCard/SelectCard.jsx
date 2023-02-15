@@ -40,20 +40,20 @@ const SelectCard = (props) => {
       rotate: "480deg",
     },
   ];
-
-  const { open } = props;
-  const [animate, setAnimate] = useState(false);
-  const [visible, setVisible] = useState(open);
-  const gameStatus = useSelector(selectorRoomAndActive);
-
+  
   const {
+    // open,
     selectPeople,
     disabled,
     handleSelectChange,
     handleStatusChange,
     handleSubmitJury,
   } = useValidSelectCard([]);
-  console.log(selectPeople);
+  const { open } = props;
+  const [animate, setAnimate] = useState(false);
+  const [visible, setVisible] = useState(open);
+  const gameStatus = useSelector(selectorRoomAndActive);
+
 
   useEffect(() => {
     if (visible && !open) {

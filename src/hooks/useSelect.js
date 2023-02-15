@@ -4,6 +4,7 @@ import { submitJury } from "../apis/selectCard";
 
 export const useValidSelectCard = (people) => {
     const [status, setStatus] = useState("makeJury");
+    // const [open, setOpen] = useState(false);
     const [selectNum, setSelectNum] = useState(2);
     const [selectPeople, setSelectPeople] = useState(people);
     const [disabled, setDisabled] = useState(true);
@@ -32,10 +33,11 @@ export const useValidSelectCard = (people) => {
     }, [selectPeople]);
     
     const handleSubmitJury = () => {
-        const res = submitJury(roomId, nickname, selectPeople);
-        if (res.status === 200) {
-            return;
-        }
+        // const res = submitJury(roomId, nickname, selectPeople);
+        // if (res.status === 200) {
+        //     return;
+        // }
+        // setOpen(false);
         setSelectPeople([]);
     }
 
@@ -53,6 +55,7 @@ export const useValidSelectCard = (people) => {
     }
 
     return {
+        // open,
         selectPeople,
         disabled,
         handleSelectChange,

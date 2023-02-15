@@ -17,20 +17,20 @@ import Explanation from "../explanation/Explanation";
 import { exit, ready, start } from "../../../apis/readystart";
 
 const GameBoard = () => {
-  const [modalOpen, setModalOpen] = useState({ under: false, select: false });
-  const [swipe, setSwipe] = useState([false, false]);
   const dispatch = useDispatch();
+  const [modalOpen, setModalOpen] = useState({ under: false, select: false });
+  const [swipe, setSwipe] = useState({ chat: false, rule: false });
   const { value, handleInputChange, handleInputReset } = useValidMessage("");
 
-  const handleSwipe = (swipeIndex) => {
-    if (swipe[swipeIndex]) setSwipe([false, false]);
-    else if (!swipe[swipeIndex] && swipeIndex === 0) setSwipe([true, false]);
-    else if (!swipe[swipeIndex] && swipeIndex === 1) setSwipe([false, true]);
+  const handleSwipe = (type) => {
+    if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule)) setSwipe({ chat: false, rule: false });
+    else if (type === "chat") setSwipe({ chat: true, rule: false });
+    else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
   const open = (type) => {
     if (type === "under") {
-      setModalOpen({ under: true });
+      setModalOpen({ under: true, select: false });
       dispatch(
         updateGameState({
           status: "voteAgreeDisagree",
@@ -47,7 +47,7 @@ const GameBoard = () => {
         })
       );
     } else {
-      setModalOpen({ select: true });
+      setModalOpen({ under: false, select: true });
       dispatch(
         updateGameState({
           status: "makeJury",
@@ -68,9 +68,9 @@ const GameBoard = () => {
 
   const close = (type) => {
     if (type === "under") {
-      setModalOpen({ under: false });
+      setModalOpen({ under: false, select: false });
     } else {
-      setModalOpen({ select: false });
+      setModalOpen({ under: false, select: false });
     }
     dispatch(
       updateGameState({
@@ -135,10 +135,10 @@ const GameBoard = () => {
         value={value}
         handleInputChange={handleInputChange}
         handleInputReset={handleInputReset}
-        swipe={swipe[0]}
-        handleSwipe={() => handleSwipe(0)}
+        swipe={swipe.chat}
+        handleSwipe={() => handleSwipe("chat")}
       />
-      <Explanation swipe={swipe[1]} handleSwipe={() => handleSwipe(1)} />
+      <Explanation swipe={swipe.rule} handleSwipe={() => handleSwipe("rule")} />
     </>
   );
 };

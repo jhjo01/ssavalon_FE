@@ -23,7 +23,7 @@ const MypageInfo = () => {
   useEffect(() => {
     if (nickName !== "") {
       const res = getMypage(nickName);
-      res.then((result) => console.log(result));
+      // res.then((result) => console.log(result));
       res.then((result) => {
         const recentGames = [];
         for (let i = 0; i < result.gameResultList.length; i += 6) {
@@ -53,10 +53,10 @@ const MypageInfo = () => {
       <div className={styles.container}>
         <MainJob mainJob={mainJob} />
         <div className={styles.sub_player}>
-          {subJobs.map((subJob) => (
+          {subJobs.map((subJob, index) => (
             <Subjob
               subJob={subJob}
-              key={subJob.job}
+              key={index}
               handleJobChange={() => handleJobChange(subJob)}
             />
           ))}

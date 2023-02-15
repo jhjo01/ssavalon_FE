@@ -16,7 +16,7 @@ const RecentGame = (props) => {
 
       <div className={styles.img_wrapper}>
         {gameResult.gameRes.map((playerResult) => (
-          <JobXsImage playerResult={playerResult} />
+          <JobXsImage playerResult={playerResult} key={playerResult.nickname} />
         ))}
       </div>
     </div>

@@ -7,9 +7,9 @@ const UnderCard = (props) => {
   const { open } = props;
   const [animate, setAnimate] = useState(false);
   const [visible, setVisible] = useState(open);
+  const [agree, setAgree] = useState([]);
 
   const gameStatus = useSelector(selectorRoomAndActive);
-  const [agree, setAgree] = useState([]);
 
   const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
   useEffect(() => {

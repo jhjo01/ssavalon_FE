@@ -8,7 +8,7 @@ const getRoom = createAsyncThunk("roomSlice/getRoom", async () => {
 
   const response = await axiosGetRooms();
 
-  console.log(response.data);
+  // console.log(response.data);
   return response.data;
 });
 
