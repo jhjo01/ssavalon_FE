@@ -3,12 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   status: "",
   roomId: "",
-  playerList:
-    '[{"userId": cici, "usernickname": cici, "job":"", "isLeader": cici, "isJury: cici}]',
+  connectedUsers: '[{ "nickname": cici, "job":"", "isLeader": cici, "isJury: cici}]',
   round: "",
   voteRound: "",
   prevRound: '[{"round": 0, "win":cici}]',
-  agreeDisagree: '[{"userId": cici, "usernickname":cici, "agree": cici}]',
+  agreeDisagree: '[{"nickname":cici, "agree": cici}]',
   guilty: "2",
   notGuilty: "1",
   script: "asd",

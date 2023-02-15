@@ -21,6 +21,9 @@ import { exit, ready, start } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
+import RoundResult from "../result/RoundResult";
+import { openModal } from "../../../store/modal";
+import TrialResult from "../result/TrialResult";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
@@ -54,7 +57,7 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
-  const open = (type) => {
+ const open = (type) => {
     if (type === "under") {
       setModalOpen({ under: true, select: false, role: false });
     } else if (type === "role") {
@@ -66,7 +69,7 @@ const GameBoard = () => {
       setModalOpen({ under: false, select: true, role: false });
     }
   };
-
+  
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
       setPlayer(
@@ -109,27 +112,28 @@ const GameBoard = () => {
     return () => clearInterval(id);
   }, [count]);
 
+  const openRoundResult = () => {
+    dispatch(openModal({ type: "RoundResult" }));
+  };
+  const openTrialResult = () => {
+    dispatch(openModal({ type: "TrialResult" }));
+  };
+  const openGameResult = () => {
+    dispatch(openModal({ type: "GameResult" }));
+  };
+
   return (
     <>
-      <div
-        className={styles.game_table}
-        style={{ backgroundImage: `url(${GameBoardImage})` }}
-      >
+      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
-          {connectedUsers.players !== undefined &&
+            {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
               <AvatarImage user={user} key={user.nickname} job={job} />
             ))}
         </div>
 
         <div className={styles.game_settings}>
-          <div
-            className={
-              modalOpen.select || modalOpen.under
-                ? styles.timer
-                : styles.no_timer
-            }
-          >
+          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
             <TimerOutlinedIcon />
             <h1>{count}</h1>
           </div>
