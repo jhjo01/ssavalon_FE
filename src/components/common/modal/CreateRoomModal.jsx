@@ -18,29 +18,22 @@ const CreateRoomModal = () => {
   const nickname = useSelector((state) => {
     return state.user.nickname;
   });
-
-  const {
-    value,
-    isValid,
-    checked,
-    disabled,
-    handleInputChange,
-    handleCheckedChange,
-  } = useValidTitleAndPassword(roomInfo, roomValid);
+  const { value, isValid, checked, disabled, handleInputChange, handleCheckedChange } =
+    useValidTitleAndPassword(roomInfo, roomValid);
 
   const handleCloseModal = () => {
-    dispatch(closeModal({ type: "CreateRoomModal"}));
+    dispatch(closeModal({ type: "CreateRoomModal" }));
   };
 
   const handleCreateRoom = async (event) => {
     event.preventDefault();
     const form = new FormData();
     form.append("title", value.title);
-    form.append("password", value.password);
+    form.append("password", value.password === "" ? "null" : value.password);
     form.append("nickname", nickname);
     const res = await createRoom(form);
     if (res.status === 200) {
-      dispatch(closeModal({ type: "CreateRoomModal"}));
+      dispatch(closeModal({ type: "CreateRoomModal" }));
       navigate(`/game/${res.data.roomId}`);
     } else return;
   };
@@ -59,9 +52,7 @@ const CreateRoomModal = () => {
             onChange={handleInputChange}
           />
           {!isValid.title && (
-            <p className={styles.input_errMsg}>
-              방 이름은 4글자 이상 8글자 이하로 설정해주세요.
-            </p>
+            <p className={styles.input_errMsg}>방 이름은 4글자 이상 8글자 이하로 설정해주세요.</p>
           )}
 
           {checked && (
