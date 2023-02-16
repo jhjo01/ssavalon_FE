@@ -8,11 +8,8 @@ const TrialResult = () => {
 
   const gameStatus = useSelector(selectorRoomAndActive);
 
-  const guilty =
-    gameStatus.playerList !== undefined && gameStatus.playerList.guilty;
-  const notGuilty =
-    gameStatus.playerList !== undefined && gameStatus.playerList.notGuilty;
-
+  const guilty = gameStatus.playerList !== undefined && gameStatus.guilty;
+  const notGuilty = gameStatus.playerList !== undefined && gameStatus.notGuilty;
   return (
     <div className={styles.card}>
       <div className={styles.round_select}>

@@ -1,4 +1,4 @@
-import styles from "../cardBack/LogCardBack.module.css";
+import styles from "./ResultCardBack.module.css";
 
 const ResultCardBack = (props) => {
   let reject = "";
@@ -14,7 +14,9 @@ const ResultCardBack = (props) => {
           <div className={styles.layer}>
             <h3>{props.data.count}</h3>
             <br />
-            <h3 className={`${reject}`}>{props.data.voteType === true ? "유죄" : "무죄"}</h3>
+            <h3 className={`${reject}`}>
+              {props.data.voteType === true ? "유죄" : "무죄"}
+            </h3>
             <div className={styles.corner}></div>
             <div className={styles.corner}></div>
             <div className={styles.corner}></div>

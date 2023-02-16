@@ -22,6 +22,7 @@ import TrialResult from "./../result/TrialResult";
 
 const GameBoard = () => {
   const navigate = useNavigate();
+
   const [modalOpen, setModalOpen] = useState({
     under: false, // 찬반 or 유무죄 투표
     select: false, // 배심원단 선정 or 경찰 선택
@@ -57,7 +58,6 @@ const GameBoard = () => {
   };
 
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
-  console.log(gameStatus);
   const open = (type) => {
     if (type === "under") {
       setModalOpen({
@@ -137,6 +137,7 @@ const GameBoard = () => {
   };
 
   // 대기중 내 정보 저장
+
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
       setPlayer(
@@ -237,6 +238,7 @@ const GameBoard = () => {
                   exit(id, nickname);
                   navigate("/lobby");
                   disconnect(client);
+                  disconnect(gameClient);
                 }}
               />
             )}

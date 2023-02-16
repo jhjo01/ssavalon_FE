@@ -17,21 +17,12 @@
   justify-content: space-between;
   padding: 1px 1px 0px 1px;
   margin: 0px 0px 5px 0px;
+  font-size: 2rem;
 }
 .round_select .close_button {
   height: 25px;
   cursor: pointer;
   margin: 0px 0px 0px 0px;
-}
-
-.select_box {
-  width: 50px;
-  height: 25px;
-  font-size: 0.7rem;
-  border: 1px solid black;
-  border-radius: 3px;
-  text-align: center;
-  margin: 0px 0px 5px 0px;
 }
 
 .result {
@@ -79,19 +70,12 @@
   .card {
     width: 320px;
     height: 290px;
-    font-size: 0.5rem;
+    font-size: 2rem;
     padding: 3px 3px 3px 3px;
   }
   .round_select {
     margin: 0px 0px 3px 0px;
-  }
-  .select_box {
-    width: 45px;
-    height: 20px;
-    margin: 0px 0px 5px 0px;
-    font-size: 0.6rem;
-    border: 1px solid black;
-    border-radius: 3px;
+    font-size: 1rem;
   }
   .result_trial {
     width: 100%;
@@ -115,20 +99,7 @@
   }
   .round_select {
     margin: 0px 0px 1px 0px;
-  }
-  .select_box {
-    width: 40px;
-    height: 20px;
-    margin: 0px 0px 5px 0px;
-    font-size: 0.5rem;
-    border: 1px solid black;
-    border-radius: 3px;
-  }
-  .result_trial {
-    width: 100%;
-    height: 60%;
-    padding: 5px 35px 5px 35px;
-    transform: translate(0%, 30%);
+    font-size: 1rem;
   }
   .result_card_back {
     width: 110px;

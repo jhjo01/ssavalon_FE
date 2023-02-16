@@ -7,7 +7,6 @@ export const GAME_PUB_END_POINT = "/pub/message/user";
 export const API_BUSINESS = "https://i8b305.p.ssafy.io:8000";
 export const API_END_POINT = "http://i8b305.p.ssafy.io:9002";
 export const API_SOCKET = "http://i8b305.p.ssafy.io:9001";
-export const GAME_SOCKET = "http://i8b305.p.ssafy.io:9002";
 
 // Kakao API_KEY, REDIRECT_URL
 const REST_API_KEY = "e21948e5e842e29a34dd1216456745dd";

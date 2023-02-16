@@ -1,10 +1,10 @@
 import {
   API_SOCKET,
+  API_END_POINT,
   SOCKET_SUB_END_POINT,
   SOCKET_PUB_END_POINT,
   CHAT_PUB_END_POINT,
   CHAT_SUB_END_POINT,
-  GAME_SOCKET,
   GAME_SUB_END_POINT,
 } from "../constants/index";
 import { useDispatch } from "react-redux";
@@ -27,7 +27,7 @@ export const useSocket = (client, gameClient, roomId, sender) => {
     });
 
     gameClient.current = new StompJs.Client({
-      webSocketFactory: () => new SockJS(`${GAME_SOCKET}/ws-stomp`),
+      webSocketFactory: () => new SockJS(`${API_END_POINT}/ws-stomp`),
       onConnect: () => {
         gameSubscribe(roomId);
       },
@@ -71,7 +71,11 @@ export const useSocket = (client, gameClient, roomId, sender) => {
 
   useEffect(() => {
     connect();
-    return () => disconnect(client);
+    return () => {
+      disconnect(client);
+      disconnect(gameClient);
+    };
+    // eslint-disable-next-line
   }, []);
 };
 
