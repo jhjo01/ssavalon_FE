@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../LogCard.module.css";
+import styles from "../../logCard/LogCard.module.css";
 import JobCardBack from "./JobCardBack";
 
 const PlayerCard = (props) => {

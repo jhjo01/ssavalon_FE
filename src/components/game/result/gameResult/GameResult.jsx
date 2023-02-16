@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "../LogCard.module.css";
+import styles from "../../logCard/LogCard.module.css";
 import userList from "../../../../dummy/userList";
 import GameResultCard from "./GameResultCard";
 
 const GameResult = () => {
   const [randomData, setRandomData] = useState(Math.random());
 
-  //   const roundResult = useSelector((state) => {
-  //     return state.roomAndActive;
+  //   const userList = useSelector((state) => {
+  //     return state.roomAndActive.connectedUsers;
   //   });
-
-  console.log(userList);
 
   return (
     <div className={styles.card}>

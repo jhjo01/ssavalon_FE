@@ -1,9 +1,8 @@
 import React from "react";
 import PlayerCard from "./PlayerCard";
-import styles from "../LogCard.module.css";
+import styles from "../../logCard/LogCard.module.css";
 
 const GameResultCard = (props) => {
-  console.log(props);
   const resultCard = () => {
     const result = [];
     for (let i = 0; i < props.userLits.length; i++) {

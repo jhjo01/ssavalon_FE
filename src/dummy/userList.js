@@ -13,7 +13,7 @@ const userList = [
   },
   {
     nickname: "user3",
-    job: "citizen",
+    job: "police",
     isLeader: true,
     isJury: true,
   },
