@@ -4,19 +4,21 @@ import { useSelector } from "react-redux";
 import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 
 const UnderCard = (props) => {
-  const { open, setModalOpen, vote, nickname, roomId } = props;
+  const { open, setModalOpen, vote, nickname, roomId, setFlag } = props;
 
   const [animate, setAnimate] = useState(false);
   const [visible, setVisible] = useState(open);
   const [agree, setAgree] = useState([]);
   const gameStatus = useSelector(selectorRoomAndActive);
-  const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty"; // Disgree로 넘어옴
+  const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
+
   const handleVote = (event) => {
     if (
       event.target.outerText === "무죄" ||
       event.target.outerText === "반대"
     ) {
       vote(nickname, false, roomId);
+      setFlag(false);
       setModalOpen({
         under: false,
         select: false,
@@ -30,6 +32,7 @@ const UnderCard = (props) => {
       event.target.outerText === "찬성"
     ) {
       vote(nickname, true, roomId);
+      setFlag(false);
       setModalOpen({
         under: false,
         select: false,

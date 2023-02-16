@@ -4,7 +4,6 @@ import { submitJury } from "../apis/selectCard";
 
 export const useValidSelectCard = (people) => {
   const [status, setStatus] = useState("makeJury");
-  // const [open, setOpen] = useState(false);
   const [selectNum, setSelectNum] = useState(2);
   const [selectPeople, setSelectPeople] = useState(people);
   const [disabled, setDisabled] = useState(true);

@@ -105,16 +105,6 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-      setTimeout(() => {
-        setModalOpen({
-          under: false,
-          select: false,
-          role: false,
-          agree: false,
-          guilty: false,
-          result: false,
-        });
-      }, 5000);
     } else if (type === "guilty") {
       setModalOpen({
         under: false,
@@ -124,16 +114,6 @@ const GameBoard = () => {
         guilty: true,
         result: false,
       });
-      setTimeout(() => {
-        setModalOpen({
-          under: false,
-          select: false,
-          role: false,
-          agree: false,
-          guilty: false,
-          result: false,
-        });
-      }, 5000);
     } else if (type === "result") {
       setModalOpen({
         under: false,
@@ -189,7 +169,6 @@ const GameBoard = () => {
     ) {
       if (flag) {
         open("under");
-        setFlag(false);
       }
     } else if (
       gameStatus.status === "makeJury" ||
@@ -271,6 +250,7 @@ const GameBoard = () => {
         vote={vote}
         nickname={nickname}
         roomId={id}
+        setFlag={setFlag}
       />
 
       {modalOpen.role && <RollCard job={job} />}
