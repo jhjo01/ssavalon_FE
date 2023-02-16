@@ -1,22 +1,22 @@
 const gameLog = {
-  round: 2,
+  round: 4,
   subRound: {
     1: [
       {
         nickname: "김진호짱짱맨",
         vote: true,
         leader: false,
-        jury: true,
-      },
-      {
-        nickname: "싸피이진욱",
-        vote: true,
-        leader: true,
         jury: false,
       },
       {
-        nickname: "한상준준",
+        nickname: "싸피이진욱",
         vote: false,
+        leader: true,
+        jury: true,
+      },
+      {
+        nickname: "한상준준",
+        vote: true,
         leader: false,
         jury: true,
       },
@@ -28,15 +28,15 @@ const gameLog = {
       },
       {
         nickname: "김민식당",
-        vote: true,
+        vote: false,
         leader: false,
-        jury: true,
+        jury: false,
       },
       {
         nickname: "조재형형",
         vote: false,
         leader: false,
-        jury: false,
+        jury: true,
       },
     ],
     2: [
@@ -54,13 +54,13 @@ const gameLog = {
       },
       {
         nickname: "한상준준",
-        vote: false,
+        vote: true,
         leader: false,
-        jury: false,
+        jury: true,
       },
       {
-        nickname: "경찬비두",
-        vote: false,
+        nickname: "경친비두",
+        vote: true,
         leader: true,
         jury: true,
       },
@@ -72,47 +72,9 @@ const gameLog = {
       },
       {
         nickname: "조재형형",
-        vote: false,
-        leader: false,
-        jury: true,
-      },
-    ],
-    3: [
-      {
-        nickname: "김진호짱짱맨",
-        vote: true,
-        leader: false,
-        jury: true,
-      },
-      {
-        nickname: "싸피이진욱",
         vote: true,
         leader: false,
         jury: false,
-      },
-      {
-        nickname: "한상준준",
-        vote: false,
-        leader: false,
-        jury: true,
-      },
-      {
-        nickname: "경찬비두",
-        vote: false,
-        leader: false,
-        jury: false,
-      },
-      {
-        nickname: "김민식당",
-        vote: true,
-        leader: true,
-        jury: false,
-      },
-      {
-        nickname: "조재형형",
-        vote: true,
-        leader: false,
-        jury: true,
       },
     ],
   },
