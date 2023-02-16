@@ -12,41 +12,44 @@ import SelectCard from "../selectCard/SelectCard";
 import ButtonRS from "../../common/button/ButtonRS";
 import Explanation from "../explanation/Explanation";
 import RoundTokenBack from "../logCard/RoundTokenBack";
-import { selectorRoomAndActive, updateGameState } from "./../../../store/roomAndActive";
+import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
-import { exit, ready, start } from "../../../apis/readystart";
+import { exit, ready, start, vote } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
-import RoundResult from "../result/RoundResult";
-import { openModal } from "../../../store/modal";
-import TrialResult from "../result/TrialResult";
 
 const GameBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState({
-    under: false,
-    select: false,
-    role: false,
+    under: false, // 찬반 or 유무죄 투표
+    select: false, // 배심원단 선정 or 경찰 선택
+    role: false, // 역할 분배
+    agree: false, // 찬반 투표 결과
+    guilty: false, // 유무죄 결과
+    result: false, // 게임 결과
   });
-  const [swipe, setSwipe] = useState({ chat: false, rule: false });
-  const [count, setCount] = useState(0);
-  const [player, setPlayer] = useState([]);
-  const [job, setJob] = useState([]);
-  const { id } = useParams();
-  const { value, handleInputChange, handleInputReset } = useValidMessage("");
+  const [swipe, setSwipe] = useState({ chat: false, rule: false }); // 채팅창, 룰 설명창
+  const [count, setCount] = useState(0); // 타이머
+  const [player, setPlayer] = useState([]); // 준비상태 내 정보
+  const [myInfo, setMyInfo] = useState({}); // 게임중 내 정보
+  const [job, setJob] = useState(""); // 게임중 내 정보
+  const { id } = useParams(); // 방 아이디
+  const { value, handleInputChange, handleInputReset } = useValidMessage(""); // 채팅 정보
   const client = useRef({});
   const gameClient = useRef({});
-  const nickname = useSelector((state) => state.user.nickname);
-  const { connectedUsers } = useSelector(selectorRoomAndStandBy);
-  const gameStatus = useSelector(selectorRoomAndActive);
+  const nickname = useSelector((state) => state.user.nickname); // 내 닉네임
+  const { connectedUsers } = useSelector(selectorRoomAndStandBy); // 대기중인 유저 정보
+  const gameStatus = useSelector(selectorRoomAndActive); // 게임중 정보
   useSocket(client, gameClient, id, nickname);
 
+  // 채팅 보내기
   const sendMessage = () => {
     chat(client, id, nickname, value);
   };
 
+  // 채팅창, 룰 설명창 열고 닫기
   const handleSwipe = (type) => {
     if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule))
       setSwipe({ chat: false, rule: false });
@@ -54,30 +57,124 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
+
+  // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
   const open = (type) => {
     if (type === "under") {
-      setModalOpen({ under: true, select: false, role: false });
+      setModalOpen({
+        under: true,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
     } else if (type === "role") {
-      setModalOpen({ under: false, select: false, role: true });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: true,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
       setTimeout(() => {
-        setModalOpen({ under: false, select: true, role: false });
-      }, 2000);
-    } else {
-      setModalOpen({ under: false, select: true, role: false });
+        setModalOpen({
+          under: false,
+          select: true,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
+      }, 10000);
+    } else if (type === "select") {
+      setModalOpen({
+        under: false,
+        select: true,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
+    } else if (type === "agree") {
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: true,
+        guilty: false,
+        result: false,
+      });
+      setTimeout(() => {
+        setModalOpen({
+          under: false,
+          select: false,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
+      }, 5000);
+    } else if (type === "guilty") {
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: true,
+        result: false,
+      });
+      setTimeout(() => {
+        setModalOpen({
+          under: false,
+          select: false,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
+      }, 5000);
+    } else if (type === "result") {
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: true,
+      });
+      setTimeout(() => {
+        setModalOpen({
+          under: false,
+          select: false,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
+      }, 5000);
     }
   };
 
+
+  // 대기중 내 정보 저장
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
       setPlayer(connectedUsers.players.find((player) => player.nickname === nickname));
     }
-
     return () => {};
-  }, [connectedUsers]);
+  }, [nickname, connectedUsers]);
 
+  // 게임중 내정보 저장, 게임 상태별 분기 처리
   useEffect(() => {
     if (gameStatus.playerList !== undefined) {
-      setJob(gameStatus.playerList.find((player) => player.nickname === nickname).job);
+      setMyInfo(
+        gameStatus.playerList.find((player) => player.nickname === nickname)
+      );
+      setJob(
+        gameStatus.playerList.find((player) => player.nickname === nickname).job
+      );
     }
 
     if (gameStatus.status === "makeJury" && gameStatus.round === 1 && gameStatus.voteRound === 1) {
@@ -87,46 +184,44 @@ const GameBoard = () => {
       gameStatus.status === "voteGuiltyNotGuilty"
     ) {
       open("under");
+    } else if (
+      gameStatus.status === "makeJury" ||
+      gameStatus.status === "winCitizen"
+    ) {
+      open("select");
+    } else if (gameStatus.status === "resultAgreeDisagree") {
+      open("agree");
+    } else if (gameStatus.status === "resultGuiltyNotGuilty") {
+      open("guilty");
+    } else if (gameStatus.status === "resultGame") {
+      open("result");
     }
-  }, [gameStatus.playerList]);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCount((count) => count - 1);
-    }, 1000);
-    if (count === 0) {
-      setModalOpen({ under: false, select: false });
-      clearInterval(id);
-    }
-    return () => clearInterval(id);
-  }, [count]);
-
-  const openRoundResult = () => {
-    dispatch(openModal({ type: "RoundResult" }));
-  };
-  const openTrialResult = () => {
-    dispatch(openModal({ type: "TrialResult" }));
-  };
-  const openGameResult = () => {
-    dispatch(openModal({ type: "GameResult" }));
-  };
+  }, [gameStatus, nickname, dispatch]);
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
           {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.nickname} job={job} />
+              <AvatarImage
+                user={user}
+                key={user.nickname}
+                job={job}
+                activePlayer={
+                  gameStatus.playerList !== undefined &&
+                  gameStatus.playerList.find(
+                    (player) => player.nickname === user.nickname
+                  )
+                }
+              />
             ))}
         </div>
 
         <div className={styles.game_settings}>
-          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
-            <TimerOutlinedIcon />
-            <h1>{count}</h1>
-          </div>
-
           {gameStatus.status !== "" && <RoundTokenBack />}
           {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />}
 
@@ -152,8 +247,21 @@ const GameBoard = () => {
       </div>
       <button onClick={openGameResult}>openGameResult</button>
       {modalOpen.role && <RollCard job={job} />}
-      <SelectCard open={modalOpen.select} />
-      <UnderCard open={modalOpen.under} />
+      <SelectCard open={modalOpen.select} myInfo={myInfo} />
+
+      <UnderCard
+        open={modalOpen.under}
+        setModalOpen={setModalOpen}
+        vote={vote}
+        nickname={nickname}
+        roomId={id}
+      />
+
+      {modalOpen.role && <RollCard myInfo={myInfo} />}
+      {modalOpen.select && (
+        <SelectCard open={modalOpen.select} myInfo={myInfo} />
+      )}
+
       <Chat
         sendMessage={sendMessage}
         value={value}

@@ -16,7 +16,6 @@ export const start = (roomId, playerList) => {
     playerList: playerList,
   };
   const res = axios(postConfig_9002(`/api/game/start/${roomId}`, body));
-  console.log(res);
   return res.data;
 };
 
@@ -28,4 +27,14 @@ export const exit = (roomId, nickname) => {
 
   const res = axios(postConfig_8000("/standby-service/room/kick", body));
   return res.data;
+};
+
+export const vote = async (nickname, vote, roomId) => {
+  const body = {
+    nickname: nickname,
+    vote: vote,
+    roomId: roomId,
+  };
+  const res = await axios(postConfig_9002("/api/game/firstvote/", body));
+  return res;
 };

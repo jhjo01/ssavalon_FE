@@ -4,13 +4,30 @@ import { useSelector } from "react-redux";
 import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 
 const UnderCard = (props) => {
-  const { open } = props;
+  const { open, setModalOpen, vote, nickname, roomId } = props;
+
   const [animate, setAnimate] = useState(false);
   const [visible, setVisible] = useState(open);
   const [agree, setAgree] = useState([]);
   const gameStatus = useSelector(selectorRoomAndActive);
   const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
-  
+
+  const handleVote = (event) => {
+    if (
+      event.target.outerText === "무죄" ||
+      event.target.outerText === "반대"
+    ) {
+      vote(nickname, false, roomId);
+
+      setModalOpen({ under: false, select: false, role: false });
+    } else if (
+      event.target.outerText === "유죄" ||
+      event.target.outerText === "찬성"
+    ) {
+      vote(nickname, true, roomId);
+      setModalOpen({ under: false, select: false, role: false });
+    }
+  };
   useEffect(() => {
     title === "agree" ? setAgree(["찬성", "반대"]) : setAgree(["무죄", "유죄"]);
   }, [title]);
@@ -31,7 +48,7 @@ const UnderCard = (props) => {
       }`}
       tabIndex={-1}
     >
-      <div className={styles.card_agree}>
+      <div className={styles.card_agree} onClick={handleVote}>
         <div className={styles.card_content_agree}>
           <p>{agree[0]}</p>
         </div>
@@ -40,7 +57,7 @@ const UnderCard = (props) => {
         <div className={styles.corner}></div>
         <div className={styles.corner}></div>
       </div>
-      <div className={styles.card_disagree}>
+      <div className={styles.card_disagree} onClick={handleVote}>
         <div className={styles.card_content_disagree}>
           <p>{agree[1]}</p>
         </div>

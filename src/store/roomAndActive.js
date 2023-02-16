@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   status: "",
   roomId: "",
-  connectedUsers: '[{ "nickname": cici, "job":"", "isLeader": cici, "isJury: cici}]',
+  playerList: '[{ "nickname": cici, "job":"", "isLeader": cici, "isJury: cici}]',
   round: "",
   voteRound: "",
   prevRound: '[{"round": 0, "win":cici}]',
