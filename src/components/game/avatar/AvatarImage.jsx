@@ -5,6 +5,7 @@ import CitizenImage from "../../../assets/images/image-citizen-circle.png";
 
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;
+  console.log(activePlayer);
   const color = user.isHost ? styles.host : "";
   return (
     <div

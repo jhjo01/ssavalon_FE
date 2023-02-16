@@ -17,7 +17,7 @@ import {
   updateGameState,
 } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
-import { exit, ready, start } from "../../../apis/readystart";
+import { exit, ready, start, vote } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
@@ -135,9 +135,12 @@ const GameBoard = () => {
                 user={user}
                 key={user.nickname}
                 job={job}
-                activePlayer={gameStatus.playerList.find(
-                  (player) => player.nickname === user.nickname
-                )}
+                activePlayer={
+                  gameStatus.playerList !== undefined &&
+                  gameStatus.playerList.find(
+                    (player) => player.nickname === user.nickname
+                  )
+                }
               />
             ))}
         </div>
@@ -182,9 +185,16 @@ const GameBoard = () => {
       </div>
       {modalOpen.role && <RollCard job={job} />}
       <SelectCard open={modalOpen.select} />
-      {modalOpen.under && (
-        <UnderCard open={modalOpen.under} setModalOpen={setModalOpen} />
-      )}
+      <button onClick={() => open("under")}>zz</button>
+
+      <UnderCard
+        open={modalOpen.under}
+        setModalOpen={setModalOpen}
+        vote={vote}
+        nickname={nickname}
+        roomId={id}
+      />
+
       <Chat
         sendMessage={sendMessage}
         value={value}

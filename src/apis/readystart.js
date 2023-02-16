@@ -29,4 +29,12 @@ export const exit = (roomId, nickname) => {
   return res.data;
 };
 
-export const voteAgree = () => {};
+export const vote = async (nickname, vote, roomId) => {
+  const body = {
+    nickname: nickname,
+    vote: vote,
+    roomId: roomId,
+  };
+  const res = await axios(postConfig_9002("/api/game/firstvote/", body));
+  return res;
+};
