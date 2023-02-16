@@ -124,20 +124,6 @@ const GameBoard = () => {
         guilty: false,
         result: true,
       });
-      setTimeout(() => {
-        setModalOpen({
-          under: false,
-          select: false,
-          role: false,
-          agree: false,
-          guilty: false,
-          result: false,
-        });
-        exit(id, nickname);
-        navigate("/lobby");
-        disconnect(client);
-        disconnect(gameClient);
-      }, 10000);
     }
   };
 
