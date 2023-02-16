@@ -2,6 +2,8 @@ import styles from "./Avatar.module.css";
 import Crown from "../assets/Crown";
 import Jury from "../assets/Jury";
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
+import KillerImage from "../../../assets/images/image-killer-circle.png";
+import PoliceImage from "../../../assets/images/image-police-circle.png";
 
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;
