@@ -9,7 +9,7 @@ const JobCardBack = (props) => {
     reject = styles.reject;
     backgroundImg = styles.killer;
     job = "범죄자";
-  } else if (props.job === "citizen") {
+  } else if (props.job === "citizens") {
     backgroundImg = styles.citizen;
     job = "시민";
   } else {

@@ -1,6 +1,6 @@
 import React from "react";
 import PlayerCard from "./PlayerCard";
-import styles from "../../logCard/LogCard.module.css";
+import styles from "./GameResult.module.css";
 
 const GameResultCard = (props) => {
   const resultCard = () => {
@@ -11,7 +11,7 @@ const GameResultCard = (props) => {
     return result;
   };
 
-  return <div className={styles.result}>{resultCard()}</div>;
+  return <div className={styles.result_total}>{resultCard()}</div>;
 };
 
 export default GameResultCard;

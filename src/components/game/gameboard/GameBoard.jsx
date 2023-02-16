@@ -19,8 +19,7 @@ import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
 import RoundResult from "../result/RoundResult";
 import TrialResult from "./../result/TrialResult";
-import GameResult from './../result/gameResult/GameResult'
-
+import GameResult from "./../result/gameResult/GameResult";
 const GameBoard = () => {
   const navigate = useNavigate();
 
@@ -49,7 +48,7 @@ const GameBoard = () => {
   const sendMessage = () => {
     chat(client, id, nickname, value);
   };
-
+  console.log(gameStatus);
   // 채팅창, 룰 설명창 열고 닫기
   const handleSwipe = (type) => {
     if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule))
@@ -60,7 +59,8 @@ const GameBoard = () => {
 
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
   const open = (type) => {
-    if (type === "under") { // 찬반 or 유무죄 투표창 열기
+    if (type === "under") {
+      // 찬반 or 유무죄 투표창 열기
       setModalOpen({
         under: true,
         select: false,
@@ -69,7 +69,8 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-    } else if (type === "role") { // 게임 시작될 때 분배된 역할 보여주고 배심원장에게 배심원 선정창 표시
+    } else if (type === "role") {
+      // 게임 시작될 때 분배된 역할 보여주고 배심원장에게 배심원 선정창 표시
       setModalOpen({
         under: false,
         select: false,
@@ -88,7 +89,8 @@ const GameBoard = () => {
           result: false,
         });
       }, 5000);
-    } else if (type === "select") { // 배심장에게 배심원 선정창 표시
+    } else if (type === "select") {
+      // 배심장에게 배심원 선정창 표시
       setModalOpen({
         under: false,
         select: true,
@@ -97,7 +99,8 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-    } else if (type === "agree") { // 찬반 투표 결과 표시
+    } else if (type === "agree") {
+      // 찬반 투표 결과 표시
       setModalOpen({
         under: false,
         select: false,
@@ -106,7 +109,8 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-    } else if (type === "guilty") { // 유무죄 투표 결과 표시
+    } else if (type === "guilty") {
+      // 유무죄 투표 결과 표시
       setModalOpen({
         under: false,
         select: false,
@@ -115,8 +119,9 @@ const GameBoard = () => {
         guilty: true,
         result: false,
       });
-    } else if (type === "result") { // 게임 결과 표시
-      setModalOpen({ 
+    } else if (type === "result") {
+      // 게임 결과 표시
+      setModalOpen({
         under: false,
         select: false,
         role: false,
@@ -172,7 +177,10 @@ const GameBoard = () => {
       setFlag(true);
     } else if (gameStatus.status === "resultGuiltyNotGuilty") {
       open("guilty");
-    } else if (gameStatus.status === "resultGame" || gameStatus.status === "successChoice") {
+    } else if (
+      gameStatus.status === "resultGame" ||
+      gameStatus.status === "successChoice"
+    ) {
       open("result");
     }
   }, [
@@ -209,8 +217,8 @@ const GameBoard = () => {
 
         <div className={styles.game_settings}>
           {gameStatus.status !== "" && <RoundTokenBack />} {/*재판 라운드*/}
-          {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />} {/*투표 라운드*/}
-
+          {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />}{" "}
+          {/*투표 라운드*/}
           <div className={styles.game_table_buttons}>
             {/*참가자 준비 버튼*/}
             {gameStatus.status === "" && !player.isHost && (
@@ -255,7 +263,9 @@ const GameBoard = () => {
       {modalOpen.role && <RollCard job={job} />}
 
       {/*배심원단 선정, 경찰 선택*/}
-      {modalOpen.select && <SelectCard open={modalOpen.select} myInfo={myInfo} />}
+      {modalOpen.select && (
+        <SelectCard open={modalOpen.select} myInfo={myInfo} />
+      )}
 
       {/*찬반 투표 결과*/}
       {modalOpen.agree && <RoundResult />}
@@ -265,7 +275,7 @@ const GameBoard = () => {
 
       {/*최종 게임 결과*/}
       {modalOpen.result && <GameResult />}
-      
+
       {/*채팅창*/}
       <Chat
         sendMessage={sendMessage}
