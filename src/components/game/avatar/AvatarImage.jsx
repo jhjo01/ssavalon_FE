@@ -4,10 +4,13 @@ import Jury from "../assets/Jury";
 import CitizenImage from "../../../assets/images/image-citizen-circle.png";
 import KillerImage from "../../../assets/images/image-killer-circle.png";
 import PoliceImage from "../../../assets/images/image-police-circle.png";
+import { useSelector } from "react-redux";
+import { selectorUserInfo } from "./../../../store/userInfo";
 
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;
   const color = user.isHost ? styles.host : "";
+  const nickname = useSelector(selectorUserInfo).nickname;
 
   console.log(activePlayer);
   return (
@@ -62,7 +65,7 @@ const AvatarImage = (props) => {
                   ></div>
                 )}
 
-              {job === "citizens" && activePlayer.job === "citizens" && (
+              {job === "citizens" && activePlayer.nickname === nickname && (
                 <div
                   className={styles.player_avatar_avatar}
                   style={{ backgroundImage: `url(${CitizenImage})` }}
