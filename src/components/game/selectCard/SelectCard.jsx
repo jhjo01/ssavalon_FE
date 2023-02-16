@@ -8,14 +8,14 @@ import { useEffect } from "react";
 const SelectCard = (props) => {
   const { open, myInfo } = props; // 창 열기 여부, 게임 중 내 정보
   const gameStatus = useSelector(selectorRoomAndActive); // 게임 중 전체 정보
-  const policeCandis =
-    gameStatus.status === "makeJury"
+  const policeCandis = gameStatus.status &&
+    (gameStatus.status === "makeJury"
       ? []
       : gameStatus.playerList !== undefined &&
         gameStatus.playerList.map(
           (playerUser) =>
             playerUser.job === "citizens" || playerUser.job === "police"
-        ); // 경찰 후보자 분류
+    )); // 경찰 후보자 분류
   const {
     selectPeople,
     disabled,
