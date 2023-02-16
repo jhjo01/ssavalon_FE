@@ -123,11 +123,11 @@ export const useValidnickname = (nickname) => {
   };
 
   // kakao login temp
-  // useEffect(() => {
-  //   if (kakaoId === null) {
-  //     navigate("/");
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    if (kakaoId === null) {
+      navigate("/");
+    }
+  }, [navigate, kakaoId]);
 
   useEffect(() => {
     if (userInfo.isLogin) {
@@ -159,14 +159,15 @@ export const useValidnickname = (nickname) => {
     const rand = Math.random() * 100;
     signup({ kakaoId: rand, nickname: value }).then((data) => {
       // kakao login temp
-      // signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
-      const userInfo = {
-        isLogin: true,
-        nickname: data.data.nickname,
-        refreshToken: data.data.refreshToken,
-      };
-      dispatch(setUserInfo(userInfo));
-      navigate("/");
+      signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
+        const userInfo = {
+          isLogin: true,
+          nickname: data.data.nickname,
+          refreshToken: data.data.refreshToken,
+        };
+        dispatch(setUserInfo(userInfo));
+        navigate("/");
+      });
     });
   };
 
