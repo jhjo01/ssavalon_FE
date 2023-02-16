@@ -7,7 +7,6 @@ import PoliceImage from "../../../assets/images/image-police-circle.png";
 
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;
-  console.log(activePlayer);
   const color = user.isHost ? styles.host : "";
   return (
     <div

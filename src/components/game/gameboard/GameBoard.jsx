@@ -57,44 +57,112 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
-
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
 
   const open = (type) => {
     if (type === "under") {
-      setModalOpen({ under: true, select: false, role: false, agree: false, guilty: false, result: false });
+      setModalOpen({
+        under: true,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
     } else if (type === "role") {
-      setModalOpen({ under: false, select: false, role: true, agree: false, guilty: false, result: false });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: true,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
       setTimeout(() => {
-        setModalOpen({ under: false, select: true, role: false, agree: false, guilty: false, result: false });
+        setModalOpen({
+          under: false,
+          select: true,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
       }, 10000);
     } else if (type === "select") {
-      setModalOpen({ under: false, select: true, role: false, agree: false, guilty: false, result: false });
+      setModalOpen({
+        under: false,
+        select: true,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
     } else if (type === "agree") {
-      setModalOpen({ under: false, select: false, role: false, agree: true, guilty: false, result: false });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: true,
+        guilty: false,
+        result: false,
+      });
       setTimeout(() => {
-        setModalOpen({ under: false, select: false, role: false, agree: false, guilty: false, result: false });
+        setModalOpen({
+          under: false,
+          select: false,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
       }, 5000);
     } else if (type === "guilty") {
-      setModalOpen({ under: false, select: false, role: false, agree: false, guilty: true, result: false });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: true,
+        result: false,
+      });
       setTimeout(() => {
-        setModalOpen({ under: false, select: false, role: false, agree: false, guilty: false, result: false });
+        setModalOpen({
+          under: false,
+          select: false,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
       }, 5000);
     } else if (type === "result") {
-      setModalOpen({ under: false, select: false, role: false, agree: false, guilty: false, result: true });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: true,
+      });
       setTimeout(() => {
-        setModalOpen({ under: false, select: false, role: false, agree: false, guilty: false, result: false });
+        setModalOpen({
+          under: false,
+          select: false,
+          role: false,
+          agree: false,
+          guilty: false,
+          result: false,
+        });
       }, 5000);
     }
   };
-
 
   // 대기중 내 정보 저장
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
       setPlayer(
         connectedUsers.players.find((player) => player.nickname === nickname)
-    );
+      );
     }
     return () => {};
   }, [nickname, connectedUsers]);
@@ -121,7 +189,10 @@ const GameBoard = () => {
       gameStatus.status === "voteGuiltyNotGuilty"
     ) {
       open("under");
-    } else if (gameStatus.status === "makeJury" || gameStatus.status === "winCitizen") {
+    } else if (
+      gameStatus.status === "makeJury" ||
+      gameStatus.status === "winCitizen"
+    ) {
       open("select");
     } else if (gameStatus.status === "resultAgreeDisagree") {
       open("agree");
@@ -131,18 +202,6 @@ const GameBoard = () => {
       open("result");
     }
   }, [gameStatus, nickname, dispatch]);
-
-  // 타이머 작동
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCount((count) => count - 1);
-    }, 1000);
-    if (count === 0) {
-      close();
-      clearInterval(id);
-    }
-    return () => clearInterval(id);
-  }, [count]);
 
   return (
     <>
@@ -168,17 +227,6 @@ const GameBoard = () => {
         </div>
 
         <div className={styles.game_settings}>
-          <div
-            className={
-              modalOpen.select || modalOpen.under
-                ? styles.timer
-                : styles.no_timer
-            }
-          >
-            <TimerOutlinedIcon />
-            <h1>{count}</h1>
-          </div>
-
           {gameStatus.status !== "" && <RoundTokenBack />}
           {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />}
 
@@ -206,7 +254,7 @@ const GameBoard = () => {
         </div>
       </div>
       {modalOpen.role && <RollCard job={job} />}
-      <SelectCard open={modalOpen.select} />
+      <SelectCard open={modalOpen.select} myInfo={myInfo} />
 
       <UnderCard
         open={modalOpen.under}
@@ -217,7 +265,9 @@ const GameBoard = () => {
       />
 
       {modalOpen.role && <RollCard myInfo={myInfo} />}
-      {modalOpen.select && <SelectCard open={modalOpen.select} myInfo={myInfo} />}
+      {modalOpen.select && (
+        <SelectCard open={modalOpen.select} myInfo={myInfo} />
+      )}
 
       <Chat
         sendMessage={sendMessage}
