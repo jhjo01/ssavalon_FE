@@ -7,24 +7,27 @@ import styles from "./Modal.module.css";
 import { useNavigate } from "react-router-dom";
 import { useValidTitleAndPassword } from "../../../hooks/useInput";
 
-const roomInfo = { title: "", password: "" };
-const roomValid = { title: false, password: false };
+const roomInfo = { title: "", password: "" }; // 초기 방정보 설정
+const roomValid = { title: false, password: false }; // 초기 버튼 비활성화 설정
 const CreateRoomModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const title = useSelector((state) => {
     return state.modal.title;
   });
+  // 내 닉네임 가져오기
   const nickname = useSelector((state) => {
     return state.user.nickname;
   });
   const { value, isValid, checked, disabled, handleInputChange, handleCheckedChange } =
     useValidTitleAndPassword(roomInfo, roomValid);
 
+  // 생성창 닫기
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "CreateRoomModal" }));
   };
 
+  // 게임방 생성
   const handleCreateRoom = async (event) => {
     event.preventDefault();
     const form = new FormData();

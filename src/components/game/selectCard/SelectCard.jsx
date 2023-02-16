@@ -6,8 +6,8 @@ import { selectorRoomAndActive } from "../../../store/roomAndActive";
 import { useEffect } from "react";
 
 const SelectCard = (props) => {
-  const { open, myInfo } = props;
-  const gameStatus = useSelector(selectorRoomAndActive);
+  const { open, myInfo } = props; // 창 열기 여부, 게임 중 내 정보
+  const gameStatus = useSelector(selectorRoomAndActive); // 게임 중 전체 정보
   const policeCandis =
     gameStatus.status === "makeJury"
       ? []
@@ -15,7 +15,7 @@ const SelectCard = (props) => {
         gameStatus.playerList.map(
           (playerUser) =>
             playerUser.job === "citizens" || playerUser.job === "police"
-        );
+        ); // 경찰 후보자 분류
   const {
     selectPeople,
     disabled,
@@ -25,10 +25,10 @@ const SelectCard = (props) => {
   } = useValidSelectCard([]);
 
   useEffect(() => {
-    handleStatusChange(gameStatus.status, gameStatus.round);
+    handleStatusChange(gameStatus.status, gameStatus.round); // 게임 단계 수정
   }, [gameStatus, handleStatusChange]);
 
-  if (gameStatus.status === "makeJury" && myInfo.isLeader) {
+  if (gameStatus.status === "makeJury" && myInfo.isLeader) { // 배심원 선정 단계이고 내가 배심원장일 경우 선정창 표시
     return (
       <div
         className={`${open ? styles.select_up : styles.select_down} ${
@@ -56,7 +56,7 @@ const SelectCard = (props) => {
     );
   }
   if (
-    gameStatus.status === "winCitizen" && myInfo.job === "assassin"
+    gameStatus.status === "winCitizen" && myInfo.job === "assassin" // 경찰 선택 단계이고 내가 암살자일 경우 경찰 선택창 표시
   ) {
     return (
       <div

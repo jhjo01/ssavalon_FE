@@ -6,14 +6,15 @@ import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 const UnderCard = (props) => {
   const { open, setModalOpen, vote, myInfo, roomId, setFlag } = props;
 
-  const [animate, setAnimate] = useState(false);
+  const [animate, setAnimate] = useState(false); // 애니메이션 초기 설정
   const [visible, setVisible] = useState(open);
-  const [agree, setAgree] = useState([]);
-  const gameStatus = useSelector(selectorRoomAndActive);
-  const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
+  const [agree, setAgree] = useState([]); // 찬반 or 유무죄 초기 설정
+  const gameStatus = useSelector(selectorRoomAndActive); // 게임 중 전체 정보
+  const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty"; // 게임 단계 설정
 
   const handleVote = (event) => {
     if ((myInfo.job === "police" || myInfo.job === "citizens") && title === "guilty") {
+      // 내 직업이 경찰이나 시민일 경우 투표여부 상관없이 무조건 유죄
       vote(myInfo.nickname, true, roomId, title);
     } else if (
       event.target.outerText === "무죄" ||
@@ -38,7 +39,7 @@ const UnderCard = (props) => {
   };
 
   useEffect(() => {
-    title === "agree" ? setAgree(["찬성", "반대"]) : setAgree(["무죄", "유죄"]);
+    title === "agree" ? setAgree(["찬성", "반대"]) : setAgree(["무죄", "유죄"]); // 찬반 or 유무죄 설정
   }, [title]);
 
   useEffect(() => {

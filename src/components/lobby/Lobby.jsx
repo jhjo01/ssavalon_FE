@@ -17,15 +17,17 @@ const Lobby = () => {
   const dispatch = useDispatch();
   const status = useSelector((state) => {
     return state.room.status;
-  });
+  }); // 현재 상태 정보
   const rooms = useSelector((state) => {
     return state.room.rooms;
-  });
+  }); // 방 목록
 
+  // 새로고침 버튼 클릭
   const handleRefreshRoomList = () => {
     dispatch(getRoom());
   };
 
+  // 방 만들기 버튼 클릭
   const handleOpenModal = () => {
     dispatch(openModal({ type: "CreateRoomModal", title: "방만들기" }));
   };
@@ -80,9 +82,6 @@ const Lobby = () => {
       )}
 
       {status === "fail" && <ErrorModal onClick={() => dispatch(getRoom())} />}
-      {/* {modal === "err" && <ErrModal />}
-      {modal === "create" && <RoomModal />}
-      {modal === "join" && roomInfo !== null && <JoinModal />} */}
     </>
   );
 };

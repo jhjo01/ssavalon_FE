@@ -12,7 +12,7 @@ const ButtonRS = (props) => {
       return player.isReady ? count++ : count;
     });
 
-  const disabled = count === 5 ? false : true;
+  const disabled = count === 5 ? false : true; // 준비 5명일때 시작 버튼 활성화
   let color = "";
   if (content === "준비") color = styles.button_ready;
   else if (content === "시작") color = styles.button_start;

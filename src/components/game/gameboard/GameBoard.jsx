@@ -60,7 +60,7 @@ const GameBoard = () => {
 
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
   const open = (type) => {
-    if (type === "under") {
+    if (type === "under") { // 찬반 or 유무죄 투표창 열기
       setModalOpen({
         under: true,
         select: false,
@@ -69,7 +69,7 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-    } else if (type === "role") {
+    } else if (type === "role") { // 게임 시작될 때 분배된 역할 보여주고 배심원장에게 배심원 선정창 표시
       setModalOpen({
         under: false,
         select: false,
@@ -88,7 +88,7 @@ const GameBoard = () => {
           result: false,
         });
       }, 5000);
-    } else if (type === "select") {
+    } else if (type === "select") { // 배심장에게 배심원 선정창 표시
       setModalOpen({
         under: false,
         select: true,
@@ -97,7 +97,7 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-    } else if (type === "agree") {
+    } else if (type === "agree") { // 찬반 투표 결과 표시
       setModalOpen({
         under: false,
         select: false,
@@ -106,7 +106,7 @@ const GameBoard = () => {
         guilty: false,
         result: false,
       });
-    } else if (type === "guilty") {
+    } else if (type === "guilty") { // 유무죄 투표 결과 표시
       setModalOpen({
         under: false,
         select: false,
@@ -115,8 +115,8 @@ const GameBoard = () => {
         guilty: true,
         result: false,
       });
-    } else if (type === "result") {
-      setModalOpen({
+    } else if (type === "result") { // 게임 결과 표시
+      setModalOpen({ 
         under: false,
         select: false,
         role: false,
@@ -128,7 +128,6 @@ const GameBoard = () => {
   };
 
   // 대기중 내 정보 저장
-
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
       setPlayer(

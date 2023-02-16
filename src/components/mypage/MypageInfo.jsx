@@ -7,10 +7,10 @@ import { getMypage } from "../../apis/user";
 import { useSelector } from "react-redux";
 
 const MypageInfo = () => {
-  const [mainJob, setMainJob] = useState({});
-  const [subJobs, setSubJobs] = useState([]);
-  const [gameResultList, setGameResultList] = useState([]);
-  const [oddsList, setOddsList] = useState([]);
+  const [mainJob, setMainJob] = useState({}); // 가장 승률이 높은 직업
+  const [subJobs, setSubJobs] = useState([]); // 나머지 직업
+  const [gameResultList, setGameResultList] = useState([]); // 최근 게임 결과
+  const [oddsList, setOddsList] = useState([]); // 직업별 승률 정보
   const handleJobChange = (subJob) => {
     setMainJob(subJob);
     const subJ = oddsList.filter((job) => job !== subJob);
@@ -24,6 +24,7 @@ const MypageInfo = () => {
     if (nickName !== "") {
       const res = getMypage(nickName);
       res.then((result) => {
+        // 이전 게임 기록 정보 처리 및 저장
         const recentGames = [];
         for (let i = 0; i < result.gameResultList.length; i += 6) {
           const myResult = result.gameResultList
@@ -36,11 +37,17 @@ const MypageInfo = () => {
           });
         }
         setGameResultList(recentGames);
+
+        // 직업별 승룰 정보 저장
         setOddsList(result.oddsList);
+
+        // 가장 승률이 좋은 직업 탐색 및 저장
         const mainJ = result.oddsList.reduce((prev, value) => {
           return prev.odds >= value.odds ? prev : value;
         });
         setMainJob(mainJ);
+
+        // 나머지 직업 분류 및 저장
         const subJ = result.oddsList.filter((job) => job !== mainJ);
         setSubJobs(subJ);
       });
@@ -56,7 +63,7 @@ const MypageInfo = () => {
             <Subjob
               subJob={subJob}
               key={index}
-              handleJobChange={() => handleJobChange(subJob)}
+              handleJobChange={() => handleJobChange(subJob)} // 메인 직업 교체
             />
           ))}
         </div>
