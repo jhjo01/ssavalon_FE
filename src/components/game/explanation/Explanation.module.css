@@ -1,84 +1,127 @@
 .explain_button {
-    position: absolute;
-    bottom: 16px;
-    right: 75px;
-    width: 48px;
-    height: 48px;
-    background-color: rgb(25, 118, 210);
-    cursor: pointer;
-    color: #fff;
-    border: 0;
-    border-radius: 50%;
+  position: absolute;
+  bottom: 16px;
+  right: 75px;
+  width: 48px;
+  height: 48px;
+  background-color: rgb(25, 118, 210);
+  cursor: pointer;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
 }
 
 .explain_button svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .swipe {
-    margin-right: 5px !important;
+  margin-right: 5px !important;
 }
 
 .explain {
-    position: absolute;
-    bottom: 16px;
-    right: 5px;
-    width: 400px;
-    background-color: #fff;
-    transition: all 0.5s;
-    margin-right: -405px;
-    border-radius: 8px;
-    z-index: 99;
+  position: absolute;
+  bottom: 16px;
+  right: 5px;
+  width: 400px;
+  height: 500px;
+  background-color: #fff;
+  transition: all 0.5s;
+  margin-right: -405px;
+  border-radius: 8px;
+  z-index: 99;
+}
+
+.explain img {
+  width: 100%;
+  height: 100%;
 }
 
 .explain .explain_top {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(78, 140, 255);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 0.75rem;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(78, 140, 255);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 0.75rem;
 }
 
 .explain .explain_top svg {
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-    color: #fff;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #fff;
 }
 
 .explain .explain_top h2 {
-    color: #fff;
-    margin-left: 5px;
-    font-size: 1.15rem;
+  color: #fff;
+  margin-left: 5px;
+  font-size: 1.15rem;
 }
 
 .explain .progress {
-    width: 100%;
-    padding: 10px 5px;
+  width: 100%;
+  height: 90%;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.explain .progress .page {
+  width: 5%;
+  height: 20%;
+  cursor: pointer;
+}
+
+.explain .progress .first_page {
+  width: 5%;
+  height: 20%;
+  visibility: hidden;
+}
+
+.explain .progress .last_page {
+  width: 5%;
+  height: 20%;
+  visibility: hidden;
+}
+
+.rule {
+  width: 90%;
+  height: 100%;
+}
+
+.rule .rule_image {
+  height: 70%;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.rule .rule_text {
+  height: 30%;
+  padding: 5px;
+  border: 1px solid black;
 }
 
 @media (max-width: 410px) {
-    .explain {
-        top: 10%;
-        width: 95%;
-        height: 80%;
-    }
+  .explain {
+    top: 20%;
+    width: 95%;
+    height: 65%;
+  }
 
-    .explain .progress {
-        height: 90%;
-        overflow-y: scroll;
-    }
+  .explain .progress {
+    height: 90%;
+    overflow-y: scroll;
+  }
 
-    .explain .progress::-webkit-scrollbar {
-        display: none;
-    }
+  .explain .progress::-webkit-scrollbar {
+    display: none;
+  }
 }
-
-

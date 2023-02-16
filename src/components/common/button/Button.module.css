@@ -70,21 +70,36 @@
   margin-top: 10px;
 }
 
+.button_start:disabled {
+  opacity: 0.3;
+}
+
 .button_start:hover {
   background-color: #c1736f;
   border: #c1736f;
 }
 
-@media (max-width: 480px) {
-  .button_ready {
-    width: 60px;
-    height: 25px;
-    font-size: 14px;
-  }
+.button_exit {
+  width: 95px;
+  height: 40px;
+  background-color: #67c23a;
+  border: #67c23a;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
 
-  .button_start {
+.button_exit:hover {
+  background-color: #85ce61;
+  border-color: #85ce61;
+}
+@media (max-width: 480px) {
+  .button_ready,
+  .button_start,
+  .button_exit {
     width: 60px;
     height: 25px;
-    font-size: 14px;
+    font-size: 12px;
   }
 }

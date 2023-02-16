@@ -3,95 +3,122 @@ const gameLog = {
   subRound: {
     1: [
       {
-        playerName: "김진호짱짱맨맨맨",
+        nickname: "김진호짱짱맨",
         vote: true,
+        leader: false,
         jury: true,
       },
       {
-        playerName: "이진욱",
+        nickname: "싸피이진욱",
         vote: true,
         leader: true,
+        jury: false,
       },
       {
-        playerName: "한상준",
+        nickname: "한상준준",
         vote: false,
-      },
-      {
-        playerName: "임경찬",
-        vote: false,
+        leader: false,
         jury: true,
       },
       {
-        playerName: "김민식",
-        vote: true,
+        nickname: "경친비두",
+        vote: false,
+        leader: false,
+        jury: false,
       },
       {
-        playerName: "조재형",
+        nickname: "김민식당",
+        vote: true,
+        leader: false,
+        jury: true,
+      },
+      {
+        nickname: "조재형형",
         vote: false,
+        leader: false,
+        jury: false,
       },
     ],
     2: [
       {
-        playerName: "user1",
+        nickname: "김진호짱짱맨",
+        vote: true,
+        leader: false,
+        jury: true,
+      },
+      {
+        nickname: "싸피이진욱",
+        vote: true,
+        leader: false,
+        jury: false,
+      },
+      {
+        nickname: "한상준준",
         vote: false,
+        leader: false,
+        jury: false,
       },
       {
-        playerName: "user2",
-        vote: true,
-      },
-      {
-        playerName: "user3",
-        vote: true,
+        nickname: "경찬비두",
+        vote: false,
         leader: true,
         jury: true,
       },
       {
-        playerName: "user4",
+        nickname: "김민식당",
+        vote: true,
+        leader: false,
+        jury: false,
+      },
+      {
+        nickname: "조재형형",
         vote: false,
-      },
-      {
-        playerName: "user5",
-        vote: true,
-      },
-      {
-        playerName: "user6",
-        vote: true,
+        leader: false,
         jury: true,
       },
     ],
     3: [
       {
-        playerName: "user1",
+        nickname: "김진호짱짱맨",
         vote: true,
-      },
-      {
-        playerName: "user2",
-        vote: true,
-      },
-      {
-        playerName: "user3",
-        vote: true,
-        leader: true,
-      },
-      {
-        playerName: "user4",
-        vote: false,
-      },
-      {
-        playerName: "user5",
-        vote: true,
+        leader: false,
         jury: true,
       },
       {
-        playerName: "user6",
+        nickname: "싸피이진욱",
         vote: true,
+        leader: false,
+        jury: false,
+      },
+      {
+        nickname: "한상준준",
+        vote: false,
+        leader: false,
+        jury: true,
+      },
+      {
+        nickname: "경찬비두",
+        vote: false,
+        leader: false,
+        jury: false,
+      },
+      {
+        nickname: "김민식당",
+        vote: true,
+        leader: true,
+        jury: false,
+      },
+      {
+        nickname: "조재형형",
+        vote: true,
+        leader: false,
         jury: true,
       },
     ],
   },
   result: {
-    success: 1,
-    fail: 1,
+    success: 3,
+    fail: 0,
   },
 };
 

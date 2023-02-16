@@ -115,14 +115,13 @@
   }
 
   .card_back_wrapper .card .card_back {
-    padding: 0.1rem;
+    padding: 0.15rem;
   }
 
   .card_back_wrapper .card .card_back .layer .corner {
-    border-right: 1px solid #d4cd96;
-    border-top: 1px solid #d4cd96;
-    height: 5px;
-    width: 5px;
+    border-right: 2px solid #d4cd96;
+    border-top: 2px solid #d4cd96;
+    height: 8px;
+    width: 8px;
   }
 }
-

@@ -10,15 +10,6 @@
   background-size: contain;
 }
 
-.game_table .game_table_buttons {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .game_table .game_table_settings {
   position: relative;
   pointer-events: none;
@@ -29,13 +20,42 @@
   margin-bottom: 32px;
 }
 
-.game_table .buttons {
-  position: fixed;
-  z-index: 999;
-  top: 0;
+.game_table .game_settings {
   display: flex;
   flex-direction: column;
-  left: -150px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.game_table .game_settings .game_table_buttons {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game_table .game_settings .timer {
+  position: absolute;
+  top: 25%;
+  display: flex;
+  align-items: center;
+}
+
+.timer h1,
+.timer svg {
+  font-size: 40px;
+  color: #fff;
+  margin: 0 5px;
+}
+
+.no_timer {
+  display: none;
 }
 
 @media (max-width: 684px) {
@@ -49,5 +69,10 @@
   .game_table {
     width: 280px;
     height: 280px;
+  }
+
+  .timer h1,
+  .timer svg {
+    font-size: 30px;
   }
 }

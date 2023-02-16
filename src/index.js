@@ -4,17 +4,26 @@ import "./App.css";
 import App from "./App";
 import store from "./store/store";
 import { Provider } from "react-redux";
-// import RegisterServiceWorker from './components/openVidu/RegisterServiceWorker';
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
+export let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
+console.log(`
+.▄▄ · .▄▄ ·  ▄▄▄· ▌ ▐· ▄▄▄· ▄▄▌         ▐ ▄ 
+▐█ ▀. ▐█ ▀. ▐█ ▀█▪█·█▌▐█ ▀█ ██•  ▪     •█▌▐█
+▄▀▀▀█▄▄▀▀▀█▄▄█▀▀█▐█▐█•▄█▀▀█ ██▪   ▄█▀▄ ▐█▐▐▌
+▐█▄▪▐█▐█▄▪▐█▐█ ▪▐▌███ ▐█ ▪▐▌▐█▌▐▌▐█▌.▐▌██▐█▌
+ ▀▀▀▀  ▀▀▀▀  ▀  ▀. ▀   ▀  ▀ .▀▀▀  ▀█▄▀▪▀▀ █▪`);
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
-// RegisterServiceWorker();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -6,24 +6,34 @@ import styles from "./RoomCard.module.css";
 import { joinRoom } from "../../apis/room";
 
 const RoomCard = (props) => {
+  const { room } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { room } = props;
-  const nickName = useSelector((state) => {
-    return state.room.nickName;
-  });
+  const nickname = useSelector((state) => {
+    return state.user.nickname;
+  }); // 내 닉네임 가져오기
 
   const handleLinkGame = async (event) => {
     event.preventDefault();
-    if (!room.lock) {
+    if (room.password === "null") { // 비밀방이 아닐 경우
       const form = new FormData();
       form.append("roomId", room.roomId);
       form.append("password", "null");
-      form.append("nickName", nickName);
+      form.append("nickname", nickname);
+
       const res = await joinRoom(form);
-      if (res.status === 200) {
+
+      if (res.data.message === "방이 가득 차 있습니다.") {
+        dispatch(
+          openModal({
+            type: "ErrorModal",
+            title: "입장에러",
+            errMessage: res.data.message,
+          })
+        );
+      } else if (res.data.message === "SUCCESS") {
         navigate(`/game/${room.roomId}`, { state: { roomId: room.roomId } });
-      } else if (res.status === 300) {
+      } else {
         dispatch(
           openModal({
             type: "ErrorModal",
@@ -32,8 +42,7 @@ const RoomCard = (props) => {
           })
         );
       }
-    }
-    else {
+    } else { // 비밀방일 경우
       dispatch(
         openModal({
           type: "JoinRoomModal",
@@ -50,10 +59,10 @@ const RoomCard = (props) => {
         <h3>
           {room.roomNum}. {room.title}
         </h3>
-        <div className={styles.lockIcon}>{room.lock && <LockIcon />}</div>
+        <div className={styles.lockIcon}>{room.password !== "null" && <LockIcon />}</div>
       </header>
 
-      <footer className={styles.actions}>{room.userCount}/6</footer>
+      <footer className={styles.actions}>{room.players.length}/6</footer>
     </div>
   );
 };

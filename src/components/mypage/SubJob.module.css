@@ -1,0 +1,92 @@
+.sub_player_job {
+    width: 215px;
+    height: 165px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 2px 5px 12px hsl(0deg 0% 75% / 25%);
+    cursor: pointer;
+    background: #2c2c2c;
+    transition: 0.5s;
+    transform: rotate(0);
+}
+
+.sub_player_job:hover {
+    transform: rotateX(10deg) rotateY(-15deg) rotateZ(3deg);
+    box-shadow: 5px 2px 25px hsla(100, 100%, 100%, 0.25);
+    transition: 0.5s;
+}
+
+.sub_player_job:nth-child(1) {
+    margin: 0 0 10px 10px;
+}
+
+.sub_player_job:nth-child(2) {
+    margin: 10px 0 0 10px;
+}
+
+.sub_player_job h2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    color: #fff;
+    padding: 1.125rem;
+    z-index: 999;
+}
+
+.sub_player_job p {
+    color: #fff;
+    padding: 0 1.125rem;
+}
+
+.sub_player_job .sub_player_image {
+    position: absolute;
+    top: -20px;
+    right: 0px;
+    width: 125px;
+    height: 180px;
+    transition: 0.5s;
+    aspect-ratio: 2 / 3;
+}
+
+.sub_player_job .sub_player_image img {
+    width: 125px;
+    height: 100%;
+    aspect-ratio: 2 / 2.5;
+}
+
+.sub_player_job .sub_player_odds {
+    font-weight: 400;
+    opacity: 0.45;
+}
+
+.sub_player_job .sub_player_percent {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 976px) {
+    .sub_player_job {
+        width: 100%;
+    }
+
+    .sub_player_job:nth-child(1) {
+        margin: 0;
+    }
+
+    .sub_player_job:nth-child(2) {
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .sub_player_job .sub_player_image {
+        width: 80px;
+    }
+
+    .sub_player_job .sub_player_image img {
+        width: 80px;
+    }
+}

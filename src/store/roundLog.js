@@ -1,22 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-// import { API_END_POINT } from "../constants/index";
+// import { axiosGetRoundLog } from "../apis/roundLog";
 
 import gameLog from "../dummy/gameLog";
 import gameLog2 from "../dummy/gameLog2";
+import gameLog3 from "../dummy/gameLog3";
+import gameLog4 from "../dummy/gameLog4";
 
 const getRoundLog = createAsyncThunk("roundLogSlice/getRoundLog", async (props) => {
-  // test api
-  const response = await axios.get(`https://jsonplaceholder.typicode.com/users`);
+  // const response = await axiosGetRoundLog(props);
+  const response = props;
+
   if (response != null) {
   }
   if (props === 1) {
     return gameLog;
   } else if (props === 2) {
     return gameLog2;
+  } else if (props === 3) {
+    return gameLog3;
+  } else if (props === 4) {
+    return gameLog4;
   }
 
-  // const response = await axios.get(`${API_END_POINT}/game/rooms`);
   // return response.data;
 });
 

@@ -13,7 +13,6 @@ const RoleDesc = (props) => {
   const [job, setJob] = useState("");
 
   const handleSelectJob = (event) => {
-    console.log(event.target.name);
     setJob(event.target.name);
   };
 
