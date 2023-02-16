@@ -14,7 +14,7 @@ const SelectCard = (props) => {
       : gameStatus.playerList !== undefined &&
         gameStatus.playerList.map(
           (playerUser) =>
-            playerUser.job === "citizen" || playerUser.job === "police"
+            playerUser.job === "citizens" || playerUser.job === "police"
         );
   const {
     selectPeople,
@@ -55,7 +55,10 @@ const SelectCard = (props) => {
       </div>
     );
   }
-  if (gameStatus.status === "winCitizen" && myInfo.job === "killer") {
+  if (
+    gameStatus.status === "winCitizen" &&
+    (myInfo.job === "evil" || myInfo.job === "assassin")
+  ) {
     return (
       <div
         className={`${open ? styles.select_up : styles.select_down} ${

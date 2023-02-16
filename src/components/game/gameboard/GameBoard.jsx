@@ -57,8 +57,8 @@ const GameBoard = () => {
   };
 
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
+  console.log(gameStatus);
   const open = (type) => {
-    console.log(gameStatus);
     if (type === "under") {
       setModalOpen({
         under: true,
@@ -199,12 +199,20 @@ const GameBoard = () => {
       setFlag(true);
     } else if (gameStatus.status === "resultAgreeDisagree") {
       open("agree");
+      setFlag(true);
     } else if (gameStatus.status === "resultGuiltyNotGuilty") {
       open("guilty");
     } else if (gameStatus.status === "resultGame") {
       open("result");
     }
-  }, [gameStatus, nickname, flag]);
+  }, [
+    gameStatus.status,
+    nickname,
+    flag,
+    gameStatus.playerList,
+    gameStatus.round,
+    gameStatus.voteRound,
+  ]);
 
   return (
     <>
@@ -266,6 +274,7 @@ const GameBoard = () => {
       />
 
       {modalOpen.role && <RollCard job={job} />}
+
       {modalOpen.select && (
         <SelectCard open={modalOpen.select} myInfo={myInfo} />
       )}
