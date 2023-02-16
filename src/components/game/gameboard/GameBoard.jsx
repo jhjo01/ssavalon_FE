@@ -15,7 +15,6 @@ import RoundTokenBack from "../logCard/RoundTokenBack";
 import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start, vote } from "../../../apis/readystart";
-import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
 
@@ -31,7 +30,6 @@ const GameBoard = () => {
     result: false, // 게임 결과
   });
   const [swipe, setSwipe] = useState({ chat: false, rule: false }); // 채팅창, 룰 설명창
-  const [count, setCount] = useState(0); // 타이머
   const [player, setPlayer] = useState([]); // 준비상태 내 정보
   const [myInfo, setMyInfo] = useState({}); // 게임중 내 정보
   const [job, setJob] = useState(""); // 게임중 내 정보
@@ -245,7 +243,6 @@ const GameBoard = () => {
           </div>
         </div>
       </div>
-      <button onClick={openGameResult}>openGameResult</button>
       {modalOpen.role && <RollCard job={job} />}
       <SelectCard open={modalOpen.select} myInfo={myInfo} />
 
