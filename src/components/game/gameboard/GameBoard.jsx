@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
 import RoundResult from "../result/RoundResult";
 import TrialResult from "./../result/TrialResult";
+import GameResult from './../result/gameResult/GameResult'
 
 const GameBoard = () => {
   const navigate = useNavigate();
@@ -132,7 +133,11 @@ const GameBoard = () => {
           guilty: false,
           result: false,
         });
-      }, 5000);
+        exit(id, nickname);
+        navigate("/lobby");
+        disconnect(client);
+        disconnect(gameClient);
+      }, 10000);
     }
   };
 
@@ -182,7 +187,7 @@ const GameBoard = () => {
       setFlag(true);
     } else if (gameStatus.status === "resultGuiltyNotGuilty") {
       open("guilty");
-    } else if (gameStatus.status === "resultGame") {
+    } else if (gameStatus.status === "resultGame" || gameStatus.status === "successChoice") {
       open("result");
     }
   }, [
@@ -218,19 +223,24 @@ const GameBoard = () => {
         </div>
 
         <div className={styles.game_settings}>
-          {gameStatus.status !== "" && <RoundTokenBack />}
-          {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />}
+          {gameStatus.status !== "" && <RoundTokenBack />} {/*재판 라운드*/}
+          {gameStatus.status !== "" && <RoundTokenBack voteRound={true} />} {/*투표 라운드*/}
 
           <div className={styles.game_table_buttons}>
+            {/*참가자 준비 버튼*/}
             {gameStatus.status === "" && !player.isHost && (
               <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
             )}
+
+            {/*호스트 시작 버튼*/}
             {gameStatus.status === "" && player.isHost && (
               <ButtonRS
                 content="시작"
                 onClick={() => start(id, connectedUsers.players)}
               />
             )}
+
+            {/*나가기 버튼*/}
             {gameStatus.status === "" && (
               <ButtonRS
                 content="나가기"
@@ -246,6 +256,7 @@ const GameBoard = () => {
         </div>
       </div>
 
+      {/*찬반, 유무죄 투표*/}
       <UnderCard
         open={modalOpen.under}
         setModalOpen={setModalOpen}
@@ -253,18 +264,24 @@ const GameBoard = () => {
         myInfo={myInfo}
         roomId={id}
         setFlag={setFlag}
-
       />
 
+      {/*분배된 역할 보여주기*/}
       {modalOpen.role && <RollCard job={job} />}
 
-      {modalOpen.select && (
-        <SelectCard open={modalOpen.select} myInfo={myInfo} />
-      )}
+      {/*배심원단 선정, 경찰 선택*/}
+      {modalOpen.select && <SelectCard open={modalOpen.select} myInfo={myInfo} />}
 
+      {/*찬반 투표 결과*/}
       {modalOpen.agree && <RoundResult />}
+
+      {/*유무죄 투표 결과*/}
       {modalOpen.guilty && <TrialResult />}
 
+      {/*최종 게임 결과*/}
+      {modalOpen.result && <GameResult />}
+      
+      {/*채팅창*/}
       <Chat
         sendMessage={sendMessage}
         value={value}
@@ -273,6 +290,8 @@ const GameBoard = () => {
         swipe={swipe.chat}
         handleSwipe={() => handleSwipe("chat")}
       />
+
+      {/*룰 설명창*/}
       <Explanation swipe={swipe.rule} handleSwipe={() => handleSwipe("rule")} />
     </>
   );
