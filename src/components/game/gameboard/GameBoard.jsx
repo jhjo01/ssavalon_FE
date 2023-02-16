@@ -34,7 +34,7 @@ const GameBoard = () => {
   const [swipe, setSwipe] = useState({ chat: false, rule: false }); // 채팅창, 룰 설명창
   const [player, setPlayer] = useState([]); // 준비상태 내 정보
   const [myInfo, setMyInfo] = useState({}); // 게임중 내 정보
-  const [job, setJob] = useState(""); // 게임중 내 정보
+  const [job, setJob] = useState(""); // 게임중 내 직업 정보
   const [flag, setFlag] = useState(true);
   const { id } = useParams(); // 방 아이디
   const { value, handleInputChange, handleInputReset } = useValidMessage(""); // 채팅 정보
@@ -250,9 +250,10 @@ const GameBoard = () => {
         open={modalOpen.under}
         setModalOpen={setModalOpen}
         vote={vote}
-        nickname={nickname}
+        myInfo={myInfo}
         roomId={id}
         setFlag={setFlag}
+
       />
 
       {modalOpen.role && <RollCard job={job} />}

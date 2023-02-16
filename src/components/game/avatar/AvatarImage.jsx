@@ -5,7 +5,6 @@ import CitizenImage from "../../../assets/images/image-citizen-circle.png";
 import KillerImage from "../../../assets/images/image-killer-circle.png";
 import PoliceImage from "../../../assets/images/image-police-circle.png";
 import { useSelector } from "react-redux";
-import { selectorUserInfo } from "./../../../store/userInfo";
 
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;

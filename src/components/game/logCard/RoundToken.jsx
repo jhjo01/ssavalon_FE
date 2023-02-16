@@ -1,14 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getRoundLog } from "../../../store/roundLog";
 import { openModal } from "../../../store/modal";
 import roundTokenSuccess from "../../../assets/images/image-round-token-success.png";
 import roundTokenFail from "../../../assets/images/image-round-token-fail.png";
 import voteRoundToken from "../../../assets/images/image-jury-select.png";
 import styles from "./RoundToken.module.css";
+import { selectorRoomAndActive } from "../../../store/roomAndActive";
 
 const RoundToken = (props) => {
   const dispatch = useDispatch();
+  const gameStatus = useSelector(selectorRoomAndActive);
+  const prevRoundResult = gameStatus.prevRound;
 
   if (props.voteRound === true) {
     return (
@@ -18,11 +21,6 @@ const RoundToken = (props) => {
     );
   }
 
-  const prevRoundResult = [
-    { round: 1, win: true },
-    { round: 2, win: false },
-    { round: 3, win: true },
-  ];
 
   const handleOpenModal = () => {
     dispatch(getRoundLog(props.round));

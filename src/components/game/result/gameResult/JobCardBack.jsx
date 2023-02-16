@@ -1,7 +1,4 @@
 import styles from "./JobCardBack.module.css";
-import PoliceImage from "../../../../assets/images/image-police-card.png";
-import KillerImage from "../../../../assets/images/image-killer-card.png";
-import CitizenImage from "../../../../assets/images/image-citizen-card.png";
 
 const JobCardBack = (props) => {
   let reject = "";

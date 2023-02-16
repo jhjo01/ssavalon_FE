@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 
 const UnderCard = (props) => {
-  const { open, setModalOpen, vote, nickname, roomId, setFlag } = props;
+  const { open, setModalOpen, vote, myInfo, roomId, setFlag } = props;
 
   const [animate, setAnimate] = useState(false);
   const [visible, setVisible] = useState(open);
@@ -13,35 +13,28 @@ const UnderCard = (props) => {
   const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
 
   const handleVote = (event) => {
-    if (
+    if ((myInfo.job === "police" || myInfo.job === "citizens") && title === "guilty") {
+      vote(myInfo.nickname, true, roomId, title);
+    } else if (
       event.target.outerText === "무죄" ||
       event.target.outerText === "반대"
     ) {
-      vote(nickname, false, roomId, title);
-      setFlag(false);
-      setModalOpen({
-        under: false,
-        select: false,
-        role: false,
-        agree: false,
-        guilty: false,
-        result: false,
-      });
+      vote(myInfo.nickname, false, roomId, title);
     } else if (
       event.target.outerText === "유죄" ||
       event.target.outerText === "찬성"
     ) {
-      vote(nickname, true, roomId, title);
-      setFlag(false);
-      setModalOpen({
-        under: false,
-        select: false,
-        role: false,
-        agree: false,
-        guilty: false,
-        result: false,
-      });
+      vote(myInfo.nickname, true, roomId, title);
     }
+    setFlag(false);
+    setModalOpen({
+      under: false,
+      select: false,
+      role: false,
+      agree: false,
+      guilty: false,
+      result: false,
+    });
   };
 
   useEffect(() => {
@@ -87,7 +80,7 @@ const UnderCard = (props) => {
         </div>
       ) : (
         gameStatus.playerList !== undefined &&
-        gameStatus.playerList.find((player) => player.nickname === nickname)
+        gameStatus.playerList.find((player) => player.nickname === myInfo.nickname)
           .isJury && (
           <div
             className={`${
