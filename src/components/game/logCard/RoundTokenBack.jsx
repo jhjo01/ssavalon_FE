@@ -1,20 +1,16 @@
 import React from "react";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import RoundToken from "./RoundToken";
 import styles from "./RoundToken.module.css";
 
 const RoundTokenBack = (props) => {
-  /* //useRedux
-    const now = useSelector((state) => {
-      return state.roomAndActive.round;
-    });
-    const nowVote = useSelector((state) => {
-      return state.roomAndActive.voteRound;
-    });
-*/
-
-  const now = 3;
-  const nowVote = 1;
+ //useRedux
+  const now = useSelector((state) => {
+    return state.roomAndActive.round;
+  });
+  const nowVote = useSelector((state) => {
+    return state.roomAndActive.voteRound;
+  });
 
   if (props.voteRound === true) {
     return (

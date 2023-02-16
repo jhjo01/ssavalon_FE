@@ -16,7 +16,6 @@ export const start = (roomId, playerList) => {
     playerList: playerList,
   };
   const res = axios(postConfig_9002(`/api/game/start/${roomId}`, body));
-  console.log(res);
   return res.data;
 };
 
