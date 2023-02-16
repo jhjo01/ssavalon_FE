@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import roundResult from "../../../dummy/roundResult";
 import RoundCard from "../logCard/RoundCard";
 import styles from "../logCard/LogCard.module.css";
+import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 
 const RoundResult = () => {
-  const [randomData, setRandomData] = useState(Math.random());
-
-  //   const roundResult = useSelector((state) => {
-  //     return state.roomAndActive;
-  //   });
+  const gameStatus = useSelector(selectorRoomAndActive);
 
   let agree = 0;
   let disagree = 0;
 
-  for (let i = 0; i < roundResult.length; i++) {
-    const temp = {
-      nickname: roundResult[i].nickname,
-      vote: roundResult[i].agree,
-      agree: roundResult[i].agree,
-    };
-    roundResult[i] = temp;
-    if (roundResult[i].vote) {
-      agree++;
-    } else {
-      disagree++;
+  if (gameStatus.playerList !== undefined) {
+    for (let i = 0; i < gameStatus.agreeDisagree.length; i++) {
+      const temp = {
+        nickname: gameStatus.agreeDisagree[i].nickname,
+        vote: gameStatus.agreeDisagree[i].agree,
+      };
+      roundResult[i] = temp;
+      if (temp.vote) {
+        agree++;
+      } else {
+        disagree++;
+      }
     }
   }
 
@@ -37,7 +34,7 @@ const RoundResult = () => {
           찬성 {agree} vs {disagree} 반대
         </h3>
       </div>
-      <RoundCard roundLog={roundResult} key={randomData} />
+      <RoundCard roundLog={roundResult} />
     </div>
   );
 };

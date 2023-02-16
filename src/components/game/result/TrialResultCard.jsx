@@ -3,8 +3,8 @@ import ResultCardBack from "./ResultCardBack";
 import styles from "./LogCard.module.css";
 
 const TrialResultCard = (props) => {
-  const guilty = { voteType: true, count: props.result.guilty };
-  const notGuilty = { voteType: false, count: props.result.notGuilty };
+  const guilty = { voteType: true, count: props.guilty };
+  const notGuilty = { voteType: false, count: props.notGuilty };
 
   return (
     <div className={styles.result_trial}>

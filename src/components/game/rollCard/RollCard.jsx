@@ -5,6 +5,7 @@ import CitizenImage from "../../../assets/images/image-citizen-card.png";
 
 const RollCard = (props) => {
   const { job } = props;
+
   return (
     <div className={styles.card_back}>
       <div className={styles.layer}>

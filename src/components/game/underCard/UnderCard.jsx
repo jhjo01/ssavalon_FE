@@ -10,24 +10,37 @@ const UnderCard = (props) => {
   const [visible, setVisible] = useState(open);
   const [agree, setAgree] = useState([]);
   const gameStatus = useSelector(selectorRoomAndActive);
-  const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty";
-
+  const title = gameStatus.status === "voteAgreeDisagree" ? "agree" : "guilty"; // Disgree로 넘어옴
   const handleVote = (event) => {
     if (
       event.target.outerText === "무죄" ||
       event.target.outerText === "반대"
     ) {
       vote(nickname, false, roomId);
-
-      setModalOpen({ under: false, select: false, role: false });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
     } else if (
       event.target.outerText === "유죄" ||
       event.target.outerText === "찬성"
     ) {
       vote(nickname, true, roomId);
-      setModalOpen({ under: false, select: false, role: false });
+      setModalOpen({
+        under: false,
+        select: false,
+        role: false,
+        agree: false,
+        guilty: false,
+        result: false,
+      });
     }
   };
+
   useEffect(() => {
     title === "agree" ? setAgree(["찬성", "반대"]) : setAgree(["무죄", "유죄"]);
   }, [title]);

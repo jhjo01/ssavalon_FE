@@ -1,6 +1,6 @@
 import styles from "./GameBoard.module.css";
 import { useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSocket, chat, disconnect } from "../../../hooks/useSocket";
 import { useParams } from "react-router-dom";
 import { useValidMessage } from "../../../hooks/useInput";
@@ -17,9 +17,10 @@ import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start, vote } from "../../../apis/readystart";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
+import RoundResult from "../result/RoundResult";
+import TrialResult from "./../result/TrialResult";
 
 const GameBoard = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState({
     under: false, // 찬반 or 유무죄 투표
@@ -33,6 +34,7 @@ const GameBoard = () => {
   const [player, setPlayer] = useState([]); // 준비상태 내 정보
   const [myInfo, setMyInfo] = useState({}); // 게임중 내 정보
   const [job, setJob] = useState(""); // 게임중 내 정보
+  const [flag, setFlag] = useState(true);
   const { id } = useParams(); // 방 아이디
   const { value, handleInputChange, handleInputReset } = useValidMessage(""); // 채팅 정보
   const client = useRef({});
@@ -41,7 +43,6 @@ const GameBoard = () => {
   const { connectedUsers } = useSelector(selectorRoomAndStandBy); // 대기중인 유저 정보
   const gameStatus = useSelector(selectorRoomAndActive); // 게임중 정보
   useSocket(client, gameClient, id, nickname);
-
   // 채팅 보내기
   const sendMessage = () => {
     chat(client, id, nickname, value);
@@ -55,9 +56,9 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
-
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
   const open = (type) => {
+    console.log(gameStatus);
     if (type === "under") {
       setModalOpen({
         under: true,
@@ -85,7 +86,7 @@ const GameBoard = () => {
           guilty: false,
           result: false,
         });
-      }, 10000);
+      }, 5000);
     } else if (type === "select") {
       setModalOpen({
         under: false,
@@ -155,11 +156,12 @@ const GameBoard = () => {
     }
   };
 
-
   // 대기중 내 정보 저장
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
-      setPlayer(connectedUsers.players.find((player) => player.nickname === nickname));
+      setPlayer(
+        connectedUsers.players.find((player) => player.nickname === nickname)
+      );
     }
     return () => {};
   }, [nickname, connectedUsers]);
@@ -175,18 +177,26 @@ const GameBoard = () => {
       );
     }
 
-    if (gameStatus.status === "makeJury" && gameStatus.round === 1 && gameStatus.voteRound === 1) {
+    if (
+      gameStatus.status === "makeJury" &&
+      gameStatus.round === 1 &&
+      gameStatus.voteRound === 1
+    ) {
       open("role");
     } else if (
       gameStatus.status === "voteAgreeDisgree" ||
       gameStatus.status === "voteGuiltyNotGuilty"
     ) {
-      open("under");
+      if (flag) {
+        open("under");
+        setFlag(false);
+      }
     } else if (
       gameStatus.status === "makeJury" ||
       gameStatus.status === "winCitizen"
     ) {
       open("select");
+      setFlag(true);
     } else if (gameStatus.status === "resultAgreeDisagree") {
       open("agree");
     } else if (gameStatus.status === "resultGuiltyNotGuilty") {
@@ -194,7 +204,7 @@ const GameBoard = () => {
     } else if (gameStatus.status === "resultGame") {
       open("result");
     }
-  }, [gameStatus, nickname, dispatch]);
+  }, [gameStatus, nickname, flag]);
 
   return (
     <>
@@ -228,7 +238,10 @@ const GameBoard = () => {
               <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
             )}
             {gameStatus.status === "" && player.isHost && (
-              <ButtonRS content="시작" onClick={() => start(id, connectedUsers.players)} />
+              <ButtonRS
+                content="시작"
+                onClick={() => start(id, connectedUsers.players)}
+              />
             )}
             {gameStatus.status === "" && (
               <ButtonRS
@@ -243,8 +256,6 @@ const GameBoard = () => {
           </div>
         </div>
       </div>
-      {modalOpen.role && <RollCard job={job} />}
-      <SelectCard open={modalOpen.select} myInfo={myInfo} />
 
       <UnderCard
         open={modalOpen.under}
@@ -254,10 +265,13 @@ const GameBoard = () => {
         roomId={id}
       />
 
-      {modalOpen.role && <RollCard myInfo={myInfo} />}
+      {modalOpen.role && <RollCard job={job} />}
       {modalOpen.select && (
         <SelectCard open={modalOpen.select} myInfo={myInfo} />
       )}
+
+      {modalOpen.agree && <RoundResult />}
+      {modalOpen.guilty && <TrialResult />}
 
       <Chat
         sendMessage={sendMessage}
