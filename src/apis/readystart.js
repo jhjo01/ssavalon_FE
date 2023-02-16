@@ -29,12 +29,23 @@ export const exit = (roomId, nickname) => {
   return res.data;
 };
 
-export const vote = async (nickname, vote, roomId) => {
-  const body = {
-    nickname: nickname,
-    vote: vote,
-    roomId: roomId,
-  };
-  const res = await axios(postConfig_9002("/api/game/firstvote/", body));
-  return res;
+export const vote = async (nickname, vote, roomId, title) => {
+  if (title === "agree") {
+    const body = {
+      nickname: nickname,
+      vote: vote,
+      roomId: roomId,
+    };
+    const res = await axios(postConfig_9002("/api/game/firstvote/", body));
+    return res;
+  } else {
+    const body = {
+      nickname: nickname,
+      guilty: vote,
+      roomId: roomId,
+    };
+
+    const res = await axios(postConfig_9002("/api/game/secvote/"), body);
+    return res;
+  }
 };

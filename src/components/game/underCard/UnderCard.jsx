@@ -17,7 +17,7 @@ const UnderCard = (props) => {
       event.target.outerText === "무죄" ||
       event.target.outerText === "반대"
     ) {
-      vote(nickname, false, roomId);
+      vote(nickname, false, roomId, title);
       setFlag(false);
       setModalOpen({
         under: false,
@@ -31,7 +31,7 @@ const UnderCard = (props) => {
       event.target.outerText === "유죄" ||
       event.target.outerText === "찬성"
     ) {
-      vote(nickname, true, roomId);
+      vote(nickname, true, roomId, title);
       setFlag(false);
       setModalOpen({
         under: false,
@@ -58,31 +58,65 @@ const UnderCard = (props) => {
 
   if (!animate && !visible) return null;
   return (
-    <div
-      className={`${open ? styles.half_circle_up : styles.half_circle_down} ${
-        styles.half_circle
-      }`}
-      tabIndex={-1}
-    >
-      <div className={styles.card_agree} onClick={handleVote}>
-        <div className={styles.card_content_agree}>
-          <p>{agree[0]}</p>
+    <>
+      {title === "agree" ? (
+        <div
+          className={`${
+            open ? styles.half_circle_up : styles.half_circle_down
+          } ${styles.half_circle}`}
+          tabIndex={-1}
+        >
+          <div className={styles.card_agree} onClick={handleVote}>
+            <div className={styles.card_content_agree}>
+              <p>{agree[0]}</p>
+            </div>
+            <div className={styles.corner}></div>
+            <div className={styles.corner}></div>
+            <div className={styles.corner}></div>
+            <div className={styles.corner}></div>
+          </div>
+          <div className={styles.card_disagree} onClick={handleVote}>
+            <div className={styles.card_content_disagree}>
+              <p>{agree[1]}</p>
+            </div>
+            <div className={styles.corner}></div>
+            <div className={styles.corner}></div>
+            <div className={styles.corner}></div>
+            <div className={styles.corner}></div>
+          </div>
         </div>
-        <div className={styles.corner}></div>
-        <div className={styles.corner}></div>
-        <div className={styles.corner}></div>
-        <div className={styles.corner}></div>
-      </div>
-      <div className={styles.card_disagree} onClick={handleVote}>
-        <div className={styles.card_content_disagree}>
-          <p>{agree[1]}</p>
-        </div>
-        <div className={styles.corner}></div>
-        <div className={styles.corner}></div>
-        <div className={styles.corner}></div>
-        <div className={styles.corner}></div>
-      </div>
-    </div>
+      ) : (
+        gameStatus.playerList !== undefined &&
+        gameStatus.playerList.find((player) => player.nickname === nickname)
+          .isJury && (
+          <div
+            className={`${
+              open ? styles.half_circle_up : styles.half_circle_down
+            } ${styles.half_circle}`}
+            tabIndex={-1}
+          >
+            <div className={styles.card_agree} onClick={handleVote}>
+              <div className={styles.card_content_agree}>
+                <p>{agree[0]}</p>
+              </div>
+              <div className={styles.corner}></div>
+              <div className={styles.corner}></div>
+              <div className={styles.corner}></div>
+              <div className={styles.corner}></div>
+            </div>
+            <div className={styles.card_disagree} onClick={handleVote}>
+              <div className={styles.card_content_disagree}>
+                <p>{agree[1]}</p>
+              </div>
+              <div className={styles.corner}></div>
+              <div className={styles.corner}></div>
+              <div className={styles.corner}></div>
+              <div className={styles.corner}></div>
+            </div>
+          </div>
+        )
+      )}
+    </>
   );
 };
 
