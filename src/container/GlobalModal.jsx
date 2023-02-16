@@ -9,7 +9,7 @@ import LogCard from "../components/game/logCard/LogCard";
 import ErrorModal from "../components/common/modal/ErrorModal";
 import RoundResult from "../components/game/result/RoundResult";
 import TrialResult from "../components/game/result/TrialResult";
-import GameResult from "../components/game/result/GameResult";
+import GameResult from "../components/game/result/gameResult/GameResult";
 
 const MODAL_TYPES = {
   CreateRoomModal: "CreateRoomModal",

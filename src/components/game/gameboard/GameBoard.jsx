@@ -57,8 +57,8 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
-  // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
 
+  // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
   const open = (type) => {
     if (type === "under") {
       setModalOpen({
@@ -157,12 +157,11 @@ const GameBoard = () => {
     }
   };
 
+
   // 대기중 내 정보 저장
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
-      setPlayer(
-        connectedUsers.players.find((player) => player.nickname === nickname)
-      );
+      setPlayer(connectedUsers.players.find((player) => player.nickname === nickname));
     }
     return () => {};
   }, [nickname, connectedUsers]);
@@ -178,11 +177,7 @@ const GameBoard = () => {
       );
     }
 
-    if (
-      gameStatus.status === "makeJury" &&
-      gameStatus.round === 1 &&
-      gameStatus.voteRound === 1
-    ) {
+    if (gameStatus.status === "makeJury" && gameStatus.round === 1 && gameStatus.voteRound === 1) {
       open("role");
     } else if (
       gameStatus.status === "voteAgreeDisgree" ||
@@ -235,10 +230,7 @@ const GameBoard = () => {
               <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
             )}
             {gameStatus.status === "" && player.isHost && (
-              <ButtonRS
-                content="시작"
-                onClick={() => start(id, connectedUsers.players)}
-              />
+              <ButtonRS content="시작" onClick={() => start(id, connectedUsers.players)} />
             )}
             {gameStatus.status === "" && (
               <ButtonRS
@@ -253,6 +245,7 @@ const GameBoard = () => {
           </div>
         </div>
       </div>
+      <button onClick={openGameResult}>openGameResult</button>
       {modalOpen.role && <RollCard job={job} />}
       <SelectCard open={modalOpen.select} myInfo={myInfo} />
 

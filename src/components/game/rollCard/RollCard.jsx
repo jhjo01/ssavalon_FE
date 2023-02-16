@@ -14,7 +14,6 @@ const RollCard = (props) => {
             <p>당신의 직업은 경찰입니다.</p>
           </>
         )}
-
         {(job === "evil" || job === "assassin") && (
           <>
             <img src={KillerImage} alt="img-killer" />
