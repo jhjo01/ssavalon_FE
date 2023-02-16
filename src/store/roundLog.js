@@ -3,6 +3,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import gameLog from "../dummy/gameLog";
 import gameLog2 from "../dummy/gameLog2";
+import gameLog3 from "../dummy/gameLog3";
+import gameLog4 from "../dummy/gameLog4";
 
 const getRoundLog = createAsyncThunk("roundLogSlice/getRoundLog", async (props) => {
   // const response = await axiosGetRoundLog(props);
@@ -14,6 +16,10 @@ const getRoundLog = createAsyncThunk("roundLogSlice/getRoundLog", async (props) 
     return gameLog;
   } else if (props === 2) {
     return gameLog2;
+  } else if (props === 3) {
+    return gameLog3;
+  } else if (props === 4) {
+    return gameLog4;
   }
 
   // return response.data;

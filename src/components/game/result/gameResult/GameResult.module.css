@@ -1,0 +1,142 @@
+.card_result {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0.5rem;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 100;
+  background-image: url("../../../../assets/images/image-log-card-background.jpg");
+  background-size: cover;
+}
+
+.card_result .result_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 1px 0px 1px;
+  margin: 0px 0px 5px 0px;
+  font-size: 1.5rem;
+}
+
+.result_total {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 370px;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 1rem;
+}
+
+.result_trial {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 65%;
+  padding: 5px 40px 5px 40px;
+  transform: translate(0%, 25%);
+}
+
+.player_card {
+  width: 130px;
+  margin: 0px 0px 10px 0px;
+  position: relative;
+  animation-name: flip;
+  animation-duration: 1s;
+}
+
+.result_card_back {
+  width: 160px;
+  margin: 0px 0px 10px 0px;
+  position: relative;
+  animation-name: flip;
+  animation-duration: 1s;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.card_result .button_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_result .button_wrapper .ready {
+  width: 125px;
+  height: 40px;
+  background-color: rgb(91, 53, 213);
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.card_result .button_wrapper .exit {
+  width: 125px;
+  height: 40px;
+  background-color: #bb605b;
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+@media (max-width: 684px) {
+  .card_result {
+    width: 350px;
+    height: 350px;
+    font-size: 2rem;
+    padding: 3px 3px 3px 3px;
+  }
+  .card_result .result_wrapper {
+    font-size: 0.8rem;
+  }
+  .result_total {
+    height: 255px;
+    margin: 0;
+  }
+  .result_card_back {
+    width: 110px;
+    margin: 0px 0px 4px 0px;
+    position: relative;
+  }
+
+  .card_result .button_wrapper .ready {
+    width: 90px;
+    height: 35px;
+    font-size: 0.4rem;
+  }
+
+  .card_result .button_wrapper .exit {
+    width: 90px;
+    height: 35px;
+    font-size: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card_result {
+    width: 280px;
+    height: 340px;
+  }
+
+  .result_total {
+    margin-bottom: 0.5rem;
+  }
+}
+@keyframes flip {
+  from {
+    transform: rotateY(180deg);
+  }
+}

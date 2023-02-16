@@ -10,6 +10,7 @@ const Main = () => {
     return state.user.isLogin;
   });
 
+  // 로비이동 버튼
   const handleGoLobby = () => {
     navigate("/lobby");
   }
@@ -25,7 +26,7 @@ const Main = () => {
           라운드마다 투표를 진행합니다. 범죄자는 자신의 정체를 들키지 않도록, 경찰과 시민들은
           범죄자를 찾으세요
         </p>
-        {isLogin ? 
+        {isLogin ? // 로그인여부에 따라 표시
           <button className={styles.go_lobby} onClick={handleGoLobby}>
             게임하러 가기
           </button> :

@@ -24,8 +24,9 @@
   background-size: 3px 3px;
   background-color: #302f34;
   border-radius: 1px;
-  box-shadow: 0px -6px 8px 0px rgb(0 0 0 / 30%), 0px 6px 8px 0px rgb(0 0 0 / 20%),
-    6px 0px 8px 0px rgb(0 0 0 / 10%), -6px 0px 8px 0px rgb(0 0 0 / 20%);
+  box-shadow: 0px -6px 8px 0px rgb(0 0 0 / 30%),
+    0px 6px 8px 0px rgb(0 0 0 / 20%), 6px 0px 8px 0px rgb(0 0 0 / 10%),
+    -6px 0px 8px 0px rgb(0 0 0 / 20%);
   cursor: default;
   height: 100%;
   left: 0;
@@ -46,7 +47,7 @@
 
 .card_back_wrapper .card .card_back .layer h3 {
   text-align: center;
-  font-size: 1rem;
+  font-size: 2rem;
   margin: 0 auto;
   font-weight: 600;
 }
@@ -89,7 +90,7 @@
 @media (max-width: 684px) {
   .card_back_wrapper .card .card_back .layer h3 {
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 1rem;
     margin: 0 auto;
     font-weight: 600;
   }
@@ -109,7 +110,7 @@
 @media (max-width: 480px) {
   .card_back_wrapper .card .card_back .layer h3 {
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 1rem;
     margin: 0 auto;
     font-weight: 600;
   }

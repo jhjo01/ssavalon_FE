@@ -78,7 +78,6 @@ export const useValidTitleAndPassword = (roomInfo, roomValid) => {
   };
 };
 
-
 // 채팅창
 export const useValidMessage = (message) => {
   const [value, setValue] = useState(message);
@@ -107,12 +106,12 @@ export const useValidnickname = (nickname) => {
     return state.user;
   });
 
-  const [kakaoId] = useState(useLocation().state);  
+  const [kakaoId] = useState(useLocation().state);
   const [value, setValue] = useState(nickname);
   const [isValid, setIsValid] = useState(false);
   const [isDupli, setIsDupli] = useState(false);
   const [disabled, setDisabled] = useState({ check: true, signup: true });
-  
+
   const handleNickChange = (event) => {
     if (event.target.value.length >= 4 && event.target.value.length <= 8) {
       setIsValid(true);
@@ -122,12 +121,13 @@ export const useValidnickname = (nickname) => {
     setValue(event.target.value);
     setIsDupli(false);
   };
-  
-  useEffect(() => {
-    if (kakaoId === null) {
-      navigate("/");
-    }
-  }, [navigate]);
+
+  // kakao login temp
+  // useEffect(() => {
+  //   if (kakaoId === null) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
 
   useEffect(() => {
     if (userInfo.isLogin) {
@@ -139,7 +139,7 @@ export const useValidnickname = (nickname) => {
 
   const handleCheckNick = async () => {
     if (!isValid) return;
-    
+
     // 중복체크 진행
     const response = await getDuplication(value);
 
@@ -156,7 +156,10 @@ export const useValidnickname = (nickname) => {
 
   const handleSignUp = async (event) => {
     event.preventDefault();
-    signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
+    const rand = Math.random() * 100;
+    signup({ kakaoId: rand, nickname: value }).then((data) => {
+      // kakao login temp
+      // signup({ kakaoId: kakaoId, nickname: value }).then((data) => {
       const userInfo = {
         isLogin: true,
         nickname: data.data.nickname,

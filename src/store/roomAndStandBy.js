@@ -12,9 +12,12 @@ export const roomAndStandBySlice = createSlice({
     updateRoom(state, action) {
       state.connectedUsers = action.payload;
     },
+    clearRoom(state, action) {
+      state.connectedUsers = action.payload;
+    },
   },
 });
 
-export const { updateRoom } = roomAndStandBySlice.actions;
+export const { updateRoom, clearRoom } = roomAndStandBySlice.actions;
 export const selectorRoomAndStandBy = (state) => state.roomAndStandBy;
 export default roomAndStandBySlice.reducer;

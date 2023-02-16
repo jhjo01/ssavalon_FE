@@ -35,6 +35,30 @@
   width: 100%;
 }
 
+.citizen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../../assets/images/image-citizen-card.png");
+  background-size: cover;
+}
+
+.killer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../../assets/images/image-killer-card.png");
+  background-size: cover;
+}
+
+.police {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../../assets/images/image-police-card.png");
+  background-size: cover;
+}
+
 .card_back_wrapper .card .card_back .layer {
   display: flex;
   flex-direction: column;

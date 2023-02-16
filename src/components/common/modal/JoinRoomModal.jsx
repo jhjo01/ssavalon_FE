@@ -10,21 +10,26 @@ import { useNavigate } from "react-router-dom";
 const JoinRoomModal = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // 방 제목 가져오기
   const title = useSelector((state) => {
     return state.modal.title;
   });
+  // 방 아이디 가져오기
   const roomId = useSelector((state) => {
     return state.modal.roomId;
   });
+  // 내 닉네임 가져오기
   const nickname = useSelector((state) => {
     return state.user.nickname;
   });
   const { value, isValid, disabled, handlePasswordChange } = useValidPassword("");
 
+  // 입장창 닫기
   const handleCloseModal = () => {
     dispatch(closeModal({ type: "JoinRoomModal" }));
   };
 
+  // 입장 시도
   const handleJoinRoom = async (event) => {
     event.preventDefault();
     const form = new FormData();
@@ -33,12 +38,13 @@ const JoinRoomModal = () => {
     form.append("nickname", nickname);
     const res = await joinRoom(form);
 
-    if (res.data.message === "비밀번호가 틀립니다.") {
+    if (res.data.message === "비밀번호가 틀립니다.") { // 비밀번호가 틀렸을 경우
       dispatch(closeModal({ type: "JoinRoomModal" }));
       dispatch(
         openModal({ type: "ErrorModal", title: "비밀번호 오류", errMessage: res.data.message })
       );
     } else {
+      // 방 입장
       dispatch(closeModal({ type: "JoinRoomModal" }));
       navigate(`/game/${res.data.roomId}`);
     }

@@ -70,6 +70,10 @@
   margin-top: 10px;
 }
 
+.button_start:disabled {
+  opacity: 0.3;
+}
+
 .button_start:hover {
   background-color: #c1736f;
   border: #c1736f;

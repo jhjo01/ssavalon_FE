@@ -3,37 +3,37 @@ const gameLog = {
   subRound: {
     1: [
       {
-        nickname: "김진호짱짱맨맨맨",
+        nickname: "김진호짱짱맨",
         vote: true,
         leader: false,
         jury: true,
       },
       {
-        nickname: "이진욱",
+        nickname: "싸피이진욱",
         vote: true,
         leader: true,
         jury: false,
       },
       {
-        nickname: "한상준",
+        nickname: "한상준준",
         vote: false,
         leader: false,
         jury: false,
       },
       {
-        nickname: "임경찬",
+        nickname: "경찬비두",
         vote: false,
         leader: false,
         jury: true,
       },
       {
-        nickname: "김민식",
+        nickname: "김민식당",
         vote: true,
         leader: false,
         jury: false,
       },
       {
-        nickname: "조재형",
+        nickname: "조재형형",
         vote: false,
         leader: false,
         jury: false,
@@ -41,37 +41,37 @@ const gameLog = {
     ],
     2: [
       {
-        nickname: "user1",
+        nickname: "김진호짱짱맨",
         vote: false,
         leader: false,
         jury: false,
       },
       {
-        nickname: "user2",
+        nickname: "싸피이진욱",
         vote: true,
         leader: false,
         jury: false,
       },
       {
-        nickname: "user3",
+        nickname: "한상준준",
         vote: true,
         leader: true,
         jury: true,
       },
       {
-        nickname: "user4",
-        vote: false,
-        leader: false,
-        jury: false,
-      },
-      {
-        nickname: "user5",
+        nickname: "경찬비두",
         vote: true,
         leader: false,
         jury: false,
       },
       {
-        nickname: "user6",
+        nickname: "김민식당",
+        vote: true,
+        leader: false,
+        jury: false,
+      },
+      {
+        nickname: "조재형형",
         vote: true,
         leader: false,
         jury: true,

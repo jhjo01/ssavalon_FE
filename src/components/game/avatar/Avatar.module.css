@@ -32,7 +32,11 @@
   border-radius: 50%;
 }
 
-.game_setting .game_setting_inner .player .player_avatar .player_avatar_background {
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar
+  .player_avatar_background {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -54,7 +58,11 @@
   transition: opacity 0.2s;
 }
 
-.game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_username_wrapper {
   width: 100%;
   height: 28px;
   position: absolute;
@@ -85,11 +93,7 @@
   white-space: nowrap;
 }
 
-.game_setting
-  .game_setting_inner
-  .player
-  .player_avatar_container
-  .player_user_ready_wrapper {
+.game_setting .game_setting_inner .player .player_avatar_container .player_user_ready_wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -110,15 +114,11 @@
   font-size: 1.3rem;
   color: #fff;
   text-transform: uppercase;
-  animation: typewriter 0.5s steps(44) 1s 1 normal both,
-    blinkTextCursor 500ms infinite;
+  animation: typewriter steps(44) 1s 1 normal both,
+    /* animation: typewriter 0.5s steps(44) 1s 1 normal both, */ blinkTextCursor 500ms infinite;
 }
 
-.game_setting
-  .game_setting_inner
-  .player
-  .player_avatar_container
-  .player_avatar_avatar {
+.game_setting .game_setting_inner .player .player_avatar_container .player_avatar_avatar {
   width: 70%;
   height: 70%;
   position: absolute;
@@ -129,6 +129,14 @@
   background-repeat: no-repeat;
 }
 
+.game_setting
+  .game_setting_inner
+  .player
+  .player_avatar_container
+  .player_username_wrapper
+  .host {
+  color: red;
+}
 @keyframes typewriter {
   from {
     width: 0;
@@ -154,7 +162,11 @@
     height: 102px;
   }
 
-  .game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
+  .game_setting
+    .game_setting_inner
+    .player
+    .player_avatar_container
+    .player_username_wrapper {
     height: 22px;
     margin-bottom: -27px;
   }
@@ -183,7 +195,11 @@
     height: 76px;
   }
 
-  .game_setting .game_setting_inner .player .player_avatar_container .player_username_wrapper {
+  .game_setting
+    .game_setting_inner
+    .player
+    .player_avatar_container
+    .player_username_wrapper {
     height: 17px;
     margin-bottom: -18px;
   }

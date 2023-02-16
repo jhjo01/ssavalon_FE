@@ -17,21 +17,12 @@
   justify-content: space-between;
   padding: 1px 1px 0px 1px;
   margin: 0px 0px 5px 0px;
+  font-size: 2rem;
 }
 .round_select .close_button {
   height: 25px;
   cursor: pointer;
   margin: 0px 0px 0px 0px;
-}
-
-.select_box {
-  width: 50px;
-  height: 25px;
-  font-size: 0.7rem;
-  border: 1px solid black;
-  border-radius: 3px;
-  text-align: center;
-  margin: 0px 0px 5px 0px;
 }
 
 .result {
@@ -43,8 +34,27 @@
   padding: 5px 5px 5px 5px;
 }
 
+.result_trial {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 65%;
+  padding: 5px 40px 5px 40px;
+  transform: translate(0%, 25%);
+}
+
 .player_card {
   width: 130px;
+  margin: 0px 0px 10px 0px;
+  position: relative;
+  animation-name: flip;
+  animation-duration: 1s;
+}
+
+.result_card_back {
+  width: 160px;
   margin: 0px 0px 10px 0px;
   position: relative;
   animation-name: flip;
@@ -56,59 +66,27 @@
   height: 100%;
 }
 
-.crown {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  top: 0;
-  left: 0;
-  margin: -5px 0px 0px -5px;
-}
-
-.jury {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  top: 0;
-  right: 0;
-  margin: 0px 0px 0px 0px;
-}
-
 @media (max-width: 684px) {
   .card {
     width: 320px;
     height: 290px;
-    font-size: 0.5rem;
+    font-size: 2rem;
     padding: 3px 3px 3px 3px;
   }
   .round_select {
     margin: 0px 0px 3px 0px;
+    font-size: 1rem;
   }
-  .select_box {
-    width: 45px;
-    height: 20px;
-    margin: 0px 0px 5px 0px;
-    font-size: 0.6rem;
-    border: 1px solid black;
-    border-radius: 3px;
+  .result_trial {
+    width: 100%;
+    height: 65%;
+    padding: 5px 30px 5px 30px;
+    transform: translate(0%, 25%);
   }
-  .result {
-    height: 266px;
-    padding: 3px 3px 3px 3px;
-  }
-  .player_card {
-    width: 90px;
-    margin: 0px 0px 7px 0px;
+  .result_card_back {
+    width: 110px;
+    margin: 0px 0px 4px 0px;
     position: relative;
-  }
-  .crown {
-    width: 30px;
-    height: 30px;
-  }
-
-  .jury {
-    width: 30px;
-    height: 30px;
   }
 }
 
@@ -121,32 +99,18 @@
   }
   .round_select {
     margin: 0px 0px 1px 0px;
+    font-size: 1rem;
   }
-  .select_box {
-    width: 40px;
-    height: 20px;
-    margin: 0px 0px 5px 0px;
-    font-size: 0.5rem;
-    border: 1px solid black;
-    border-radius: 3px;
-  }
-  .result {
-    height: 225px;
-    padding: 1px 1px 1px 1px;
-  }
-  .player_card {
-    width: 75px;
+  .result_card_back {
+    width: 110px;
     margin: 0px 0px 4px 0px;
     position: relative;
   }
-  .crown {
-    width: 21px;
-    height: 21px;
-  }
 
-  .jury {
-    width: 21px;
-    height: 21px;
+  .result_card_back {
+    width: 80px;
+    margin: 0px 0px 4px 0px;
+    position: relative;
   }
 }
 

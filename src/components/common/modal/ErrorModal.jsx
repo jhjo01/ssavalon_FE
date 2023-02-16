@@ -11,15 +11,15 @@ const ErrorModal = () => {
   const dispatch = useDispatch();
   const title = useSelector((state) => {
     if (state.modal.title === "") {
-      return "실패";
+      return "실패"; // 방 목록 불러오기 실패
     }
-    return state.modal.title;
+    return state.modal.title; // 방 입장 에러
   });
   const errMessage = useSelector((state) => {
     if (state.modal.errMessage === "") {
-      return "방 목록을 불러오는데 실패했습니다.";
+      return "방 목록을 불러오는데 실패했습니다."; // 방 목록 불러오기 실패
     }
-    return state.modal.errMessage;
+    return state.modal.errMessage; // 방 입장 에러 메시지
   });
 
   const handleCloseModal = () => {

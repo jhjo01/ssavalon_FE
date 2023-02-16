@@ -11,11 +11,11 @@ const RoomCard = (props) => {
   const dispatch = useDispatch();
   const nickname = useSelector((state) => {
     return state.user.nickname;
-  });
+  }); // 내 닉네임 가져오기
 
   const handleLinkGame = async (event) => {
     event.preventDefault();
-    if (room.password === "null") {
+    if (room.password === "null") { // 비밀방이 아닐 경우
       const form = new FormData();
       form.append("roomId", room.roomId);
       form.append("password", "null");
@@ -42,7 +42,7 @@ const RoomCard = (props) => {
           })
         );
       }
-    } else {
+    } else { // 비밀방일 경우
       dispatch(
         openModal({
           type: "JoinRoomModal",

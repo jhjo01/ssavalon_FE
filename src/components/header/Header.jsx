@@ -7,10 +7,12 @@ import { setUserInfo } from "../../store/userInfo";
 const Header = () => {
   const dispatch = useDispatch();
 
+  // 로그인 여부 가져오기
   const isLogin = useSelector((state) => {
     return state.user.isLogin;
   });
 
+  // 로그아웃
   const logoutHandler = () => {
     const data = { isLogin: false, nickname: "", refreshToken: "" };
     dispatch(setUserInfo(data));
@@ -25,7 +27,7 @@ const Header = () => {
         <input type="checkbox" id="check" className={styles.check} />
         {isLogin && (
           <label htmlFor="check" className={styles.checkbtn}>
-            <MenuIcon />
+            <MenuIcon /> 
           </label>
         )}
         {isLogin && (
