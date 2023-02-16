@@ -1,5 +1,4 @@
 import React from "react";
-import PlayerCard from "../logCard/PlayerCard";
 import ResultCardBack from "./ResultCardBack";
 import styles from "./LogCard.module.css";
 

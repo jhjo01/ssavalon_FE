@@ -12,10 +12,7 @@ import SelectCard from "../selectCard/SelectCard";
 import ButtonRS from "../../common/button/ButtonRS";
 import Explanation from "../explanation/Explanation";
 import RoundTokenBack from "../logCard/RoundTokenBack";
-import {
-  selectorRoomAndActive,
-  updateGameState,
-} from "./../../../store/roomAndActive";
+import { selectorRoomAndActive, updateGameState } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
 import { exit, ready, start } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
@@ -57,7 +54,7 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
- const open = (type) => {
+  const open = (type) => {
     if (type === "under") {
       setModalOpen({ under: true, select: false, role: false });
     } else if (type === "role") {
@@ -69,12 +66,10 @@ const GameBoard = () => {
       setModalOpen({ under: false, select: true, role: false });
     }
   };
-  
+
   useEffect(() => {
     if (connectedUsers.players !== undefined) {
-      setPlayer(
-        connectedUsers.players.find((player) => player.nickname === nickname)
-      );
+      setPlayer(connectedUsers.players.find((player) => player.nickname === nickname));
     }
 
     return () => {};
@@ -82,16 +77,10 @@ const GameBoard = () => {
 
   useEffect(() => {
     if (gameStatus.playerList !== undefined) {
-      setJob(
-        gameStatus.playerList.find((player) => player.nickname === nickname).job
-      );
+      setJob(gameStatus.playerList.find((player) => player.nickname === nickname).job);
     }
 
-    if (
-      gameStatus.status === "makeJury" &&
-      gameStatus.round === 1 &&
-      gameStatus.voteRound === 1
-    ) {
+    if (gameStatus.status === "makeJury" && gameStatus.round === 1 && gameStatus.voteRound === 1) {
       open("role");
     } else if (
       gameStatus.status === "voteAgreeDisgree" ||
@@ -126,7 +115,7 @@ const GameBoard = () => {
     <>
       <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
         <div className={styles.game_table_settings}>
-            {connectedUsers.players !== undefined &&
+          {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
               <AvatarImage user={user} key={user.nickname} job={job} />
             ))}
@@ -146,10 +135,7 @@ const GameBoard = () => {
               <ButtonRS content="준비" onClick={() => ready(id, nickname)} />
             )}
             {gameStatus.status === "" && player.isHost && (
-              <ButtonRS
-                content="시작"
-                onClick={() => start(id, connectedUsers.players)}
-              />
+              <ButtonRS content="시작" onClick={() => start(id, connectedUsers.players)} />
             )}
             {gameStatus.status === "" && (
               <ButtonRS
@@ -164,6 +150,7 @@ const GameBoard = () => {
           </div>
         </div>
       </div>
+      <button onClick={openGameResult}>openGameResult</button>
       {modalOpen.role && <RollCard job={job} />}
       <SelectCard open={modalOpen.select} />
       <UnderCard open={modalOpen.under} />

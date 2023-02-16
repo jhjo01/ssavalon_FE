@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import roundResult from "../../../dummy/roundResult";
-import RoundCard from "../logCard/RoundCard";
 import TrialResultCard from "./TrialResultCard";
 import styles from "../logCard/LogCard.module.css";
 
