@@ -8,6 +8,8 @@ import PoliceImage from "../../../assets/images/image-police-circle.png";
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;
   const color = user.isHost ? styles.host : "";
+
+  console.log(activePlayer);
   return (
     <div
       className={styles.game_setting}
@@ -35,10 +37,37 @@ const AvatarImage = (props) => {
                   {true && <h1 className={styles.player_user_ready}>READY</h1>}
                 </div>
               )}
-              {/* <div
-                className={styles.player_avatar_avatar}
-                style={{ backgroundImage: `url(${CitizenImage})` }}
-              ></div> */}
+              {job === "police" && activePlayer.job === "police" && (
+                <div
+                  className={styles.player_avatar_avatar}
+                  style={{ backgroundImage: `url(${PoliceImage})` }}
+                ></div>
+              )}
+
+              {job === "police" &&
+                (activePlayer.job === "evil" ||
+                  activePlayer.job === "assassin") && (
+                  <div
+                    className={styles.player_avatar_avatar}
+                    style={{ backgroundImage: `url(${KillerImage})` }}
+                  ></div>
+                )}
+
+              {(job === "evil" || job === "assassin") &&
+                (activePlayer.job === "evil" ||
+                  activePlayer.job === "assassin") && (
+                  <div
+                    className={styles.player_avatar_avatar}
+                    style={{ backgroundImage: `url(${KillerImage})` }}
+                  ></div>
+                )}
+
+              {job === "citizens" && activePlayer.job === "citizens" && (
+                <div
+                  className={styles.player_avatar_avatar}
+                  style={{ backgroundImage: `url(${CitizenImage})` }}
+                ></div>
+              )}
             </div>
           </div>
         </div>

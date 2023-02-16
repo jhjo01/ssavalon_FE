@@ -56,7 +56,6 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
-  console.log(gameStatus);
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
   const open = (type) => {
     console.log(gameStatus);
