@@ -10,9 +10,7 @@ import { selectorUserInfo } from "./../../../store/userInfo";
 const AvatarImage = (props) => {
   const { user, job, activePlayer } = props;
   const color = user.isHost ? styles.host : "";
-  const nickname = useSelector(selectorUserInfo).nickname;
-
-  console.log(activePlayer);
+  const nickname = useSelector((state) => state.user.nickname);
   return (
     <div
       className={styles.game_setting}
