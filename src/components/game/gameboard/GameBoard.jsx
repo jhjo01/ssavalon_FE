@@ -14,7 +14,7 @@ import Explanation from "../explanation/Explanation";
 import RoundTokenBack from "../logCard/RoundTokenBack";
 import { selectorRoomAndActive } from "./../../../store/roomAndActive";
 import { selectorRoomAndStandBy } from "./../../../store/roomAndStandBy";
-import { exit, ready, start } from "../../../apis/readystart";
+import { exit, ready, start, vote } from "../../../apis/readystart";
 import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import { useNavigate } from "react-router-dom";
 import RollCard from "../rollCard/RollCard";
@@ -57,7 +57,9 @@ const GameBoard = () => {
     else if (type === "rule") setSwipe({ chat: false, rule: true });
   };
 
+
   // 분배 받은 역할, 배심원단 선정, 경찰 선택, 찬반 투표, 유무죄 투표 띄우기
+
   const open = (type) => {
     if (type === "under") {
       setModalOpen({ under: true, select: false, role: false, agree: false, guilty: false, result: false });
@@ -86,10 +88,6 @@ const GameBoard = () => {
     }
   };
 
-  // 모든 모달창 닫기
-  const close = () => {
-    setModalOpen({ under: false, select: false, role: false });
-  };
 
   // 대기중 내 정보 저장
   useEffect(() => {
@@ -148,16 +146,35 @@ const GameBoard = () => {
 
   return (
     <>
-      <div className={styles.game_table} style={{ backgroundImage: `url(${GameBoardImage})` }}>
+      <div
+        className={styles.game_table}
+        style={{ backgroundImage: `url(${GameBoardImage})` }}
+      >
         <div className={styles.game_table_settings}>
-            {connectedUsers.players !== undefined &&
+          {connectedUsers.players !== undefined &&
             connectedUsers.players.map((user) => (
-              <AvatarImage user={user} key={user.nickname} job={job} />
+              <AvatarImage
+                user={user}
+                key={user.nickname}
+                job={job}
+                activePlayer={
+                  gameStatus.playerList !== undefined &&
+                  gameStatus.playerList.find(
+                    (player) => player.nickname === user.nickname
+                  )
+                }
+              />
             ))}
         </div>
 
         <div className={styles.game_settings}>
-          <div className={modalOpen.select || modalOpen.under ? styles.timer : styles.no_timer}>
+          <div
+            className={
+              modalOpen.select || modalOpen.under
+                ? styles.timer
+                : styles.no_timer
+            }
+          >
             <TimerOutlinedIcon />
             <h1>{count}</h1>
           </div>
@@ -188,10 +205,20 @@ const GameBoard = () => {
           </div>
         </div>
       </div>
+      {modalOpen.role && <RollCard job={job} />}
+      <SelectCard open={modalOpen.select} />
+
+      <UnderCard
+        open={modalOpen.under}
+        setModalOpen={setModalOpen}
+        vote={vote}
+        nickname={nickname}
+        roomId={id}
+      />
+
       {modalOpen.role && <RollCard myInfo={myInfo} />}
       {modalOpen.select && <SelectCard open={modalOpen.select} myInfo={myInfo} />}
-      
-      <UnderCard open={modalOpen.under} />
+
       <Chat
         sendMessage={sendMessage}
         value={value}

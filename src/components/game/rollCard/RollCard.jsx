@@ -4,6 +4,7 @@ import KillerImage from "../../../assets/images/image-killer-card.png";
 import CitizenImage from "../../../assets/images/image-citizen-card.png";
 
 const RollCard = (props) => {
+
   const { myInfo } = props;
   return (
     <div className={styles.card_back}>
@@ -14,6 +15,7 @@ const RollCard = (props) => {
             <p>당신의 직업은 경찰입니다.</p>
           </>
         )}
+
         {(myInfo.job === "evil" || myInfo.job === "assassin") && (
           <>
             <img src={KillerImage} alt="img-killer" />
