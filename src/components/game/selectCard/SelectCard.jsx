@@ -56,8 +56,7 @@ const SelectCard = (props) => {
     );
   }
   if (
-    gameStatus.status === "winCitizen" &&
-    (myInfo.job === "evil" || myInfo.job === "assassin")
+    gameStatus.status === "winCitizen" && myInfo.job === "assassin"
   ) {
     return (
       <div

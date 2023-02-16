@@ -36,7 +36,7 @@ export const vote = async (nickname, vote, roomId, title) => {
       vote: vote,
       roomId: roomId,
     };
-    const res = await axios(postConfig_9002("/api/game/firstvote/", body));
+    const res = await axios(postConfig_9002("/api/game/firstvote", body));
     return res;
   } else {
     const body = {
@@ -45,7 +45,7 @@ export const vote = async (nickname, vote, roomId, title) => {
       roomId: roomId,
     };
 
-    const res = await axios(postConfig_9002("/api/game/secvote/", body));
+    const res = await axios(postConfig_9002("/api/game/secvote", body));
     return res;
   }
 };
