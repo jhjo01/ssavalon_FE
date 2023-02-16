@@ -48,7 +48,6 @@ const GameBoard = () => {
   const sendMessage = () => {
     chat(client, id, nickname, value);
   };
-  console.log(gameStatus);
   // 채팅창, 룰 설명창 열고 닫기
   const handleSwipe = (type) => {
     if ((type === "chat" && swipe.chat) || (type === "rule" && swipe.rule))
@@ -274,7 +273,13 @@ const GameBoard = () => {
       {modalOpen.guilty && <TrialResult />}
 
       {/*최종 게임 결과*/}
-      {modalOpen.result && <GameResult />}
+      {modalOpen.result && (
+        <GameResult
+          client={client}
+          gameClient={gameClient}
+          disconnect={disconnect}
+        />
+      )}
 
       {/*채팅창*/}
       <Chat
