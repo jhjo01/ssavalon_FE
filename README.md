@@ -1,92 +1,132 @@
-# project5teamFront
+# 1. SSAVALON 소개
 
+![메인 화면](./images/메인화면.png)
 
+### ** 보드게임 '레지스탕스 아발론'을 현대적으로 재해석한 게임 **
 
-## Getting started
+🌵 보드게임 아발론을 직접 해보면서 느낀 불편한 점을 작성해보면서 보드게임을 웹서비스로 이식해서
+물리적인 불편함을 해소해보자 만든 프로젝트 입니다.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+| 중세보단 친숙한 현대의 재판진행에서 게임진행의 모티브를 얻었고 사회자의 역할이 없어서 기존보다 적은 인원으로 플레이가 가능합니다.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+# 2. 🔍 개발 환경
 
-## Add your files
+## 2-1. 환경 설정
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### **👨‍💻 Front-end**
 
-```
-cd existing_repo
-git remote add origin https://lab.ssafy.com/rudcks5562/project5teamfront.git
-git branch -M master
-git push -uf origin master
-```
+    - Visual Studio Code
 
-## Integrate with your tools
+    - react.js 18.2.0
 
-- [ ] [Set up project integrations](https://lab.ssafy.com/rudcks5562/project5teamfront/-/settings/integrations)
+    - react-redux 8.0.5
 
-## Collaborate with your team
+    - Node.js 18.16.0
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### **👨‍💻 Back-end**
 
-## Test and Deploy
+    - Intellij 2022.3.1
 
-Use the built-in continuous integration in GitLab.
+    - SpringBoot 2.7.8
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+    - gradle 7.4.2
 
-***
+    - JDK 11.0.17
 
-# Editing this README
+### **👨‍💻 DB**
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+    - MySQL 8.0.30
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+    - Redis 7.0.8
 
-## Name
-Choose a self-explaining name for your project.
+### **👩‍💻 CI/CD**
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+    - Server : AWS EC2 Ubuntu 20.04 LTS
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+# 3. 🦈 주요 기능
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## 3-1. 서비스 소개
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+#### 1. 랜딩 페이지
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+    -  랜딩 페이지를 통해 게임에 대한 전반적인 정보를 파악할 수 있습니다.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+![랜딩 페이지](./images/메인화면.png)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+#### 2. 게임참가
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+    - 로비에서 게임을 생성하거나 참여할 수 있습니다.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+![게임참가](./images/게임참가.gif)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+#### 3. 게임시작
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+    - 방장을 제외한 모든 인원이 준비를 완료하면 게임을 시작할 수 있습니다.
 
-## License
-For open source projects, say how it is licensed.
+![게임시작](./images/게임시작.gif)
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+#### 4. 채팅
+
+    - 채팅을 통해 게임 중 다른 플레이어와 소통할 수 있습니다.
+
+![채팅](./images/채탕.gif)
+
+#### 5. 배심원단 선정
+
+    - 배심원장이 되면 배심원단 인원을 선택할 수 있습니다. 선택을 완료하면 모든 플레이어가 배심원단의 인원 구성에 대한 찬성/반대 투표를 진행합니다.
+
+![배심원단 선정](./images/배심원단_선정.gif)
+
+#### 6. 배심원단 선정 결과
+
+    - 투표를 완료하면 모든 플레이어의 배심원단 인원 구성에 대한 찬성/반대 여부를 확인할 수 있습니다.
+
+![배심원단 선정 결과](./images/배심원단_선정_결과.gif)
+
+#### 7. 유무죄 투표
+
+    - 과반수 이상의 찬성으로 배심원단 선정이 완료될 경우 배심원단이 유무죄 투표를 할 수 있습니다.
+
+![유무죄 투표](./images/유무죄_투표.gif)
+
+#### 8. 범죄자 경찰지목
+
+    - 유죄가 3표 이상 나온다면 범죄자는 경찰을 선택하는 최후의 선택을 하고 틀릴경우 시민의 승리가 됩니다.
+
+![범죄자 경찰지목](./images/범죄자_경찰지목.gif)
+
+# 4. 📁 설계 문서
+
+## 4-1. ERD
+
+![ERD](./images/erd.png)
+
+## 4-2. Figma
+
+![Wireframe](./images/wireframe.png)
+
+# 5. 🖊 Cooperation&Promises
+
+## 5-1. Tools
+
+    - Git
+    - Jira
+    - Notion
+    - Mattermost
+    - Webex
+
+## 5-2. Convention
+
+#### - FE CONVENTION
+
+    - html,css 작성시 snake case를 사용한다
+    - 컴포넌트의 이름은 Pascal case 로 작성한다.
+    - 컴포넌트가 아닌것들의 이름은 Camel case 로 작성한다.
+    - Unit test파일명은 대상 파일명과 동일하게 작성한다.
+    - 속성명은 Camel case 로 작성한다.
+    - null 또는 undefined일 수 있는 값은 optional chainging 연산자를 사용한다
+    - 외부 데이터는 props로 받아서 사용한다.
+    - props는 절대 직접 수정하지 않는다.
+    - spared 연산자를 사용한다.
+    - var는 사용하지 않는다.
+    - 되도록 arrow function을 사용한다.
