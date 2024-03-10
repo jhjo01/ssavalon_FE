@@ -7,7 +7,7 @@ export const signup = async (data) => {
 };
 
 export const login = async (code) => {
-  const response = await axios.get(`http://i8b305.p.ssafy.io:9000/oauth/kakao?code=${code}`);
+  const response = await axios.get(`:9000/oauth/kakao?code=${code}`);
   return response;
 };
 
